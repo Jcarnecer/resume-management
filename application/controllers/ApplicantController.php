@@ -10,20 +10,27 @@ class ApplicantController extends CI_Controller {
   }
   public function index() {
   //  $this->check_session();
-    $role = $_GET["role"] ?? null;
+    $role = $_GET["role"] ?? null; 
     $salary = $_GET["salary"] ?? null;
-    $status = $_GET["application_status"] ?? null;
+    $status = $_GET["status"] ?? null;
     $this->load->model('applicant');
     $data['title'] = "Astrid Technologies | Resume Management";
 
-     if ($role != null) {
-       $data['applicants'] = $this->applicant->get_where("position", $role);
-     } else if ($salary != null) {
+    $query = [];
+
+    if ($role != null) {
+      $query["position"] = $role;
+    }
+
+    if ($status != null) {
+      $query["application_status"] = $status;
+    }
+
+     if ($salary != null) {
        $data['applicants'] = $this->applicant->sort_by("salary", $salary);
-     } else if($status != null){
-       $data['applicants'] = $this->applicant->get_where("application_status", $status);
-     }
-      else {
+     } else if (count($query) > 0) {
+       $data['applicants'] = $this->db->get_where('applicants', $query)->result();
+     } else {
       $data['applicants'] = $this->applicant->all();
      }
     $this->load->view('include/header',$data);
@@ -35,6 +42,9 @@ class ApplicantController extends CI_Controller {
 
   public function add_applicant() {
     $data['title'] = "Astrid Technologies | New Applicant";
+    $this->load->model('role');
+    $data['roles'] = $this->role->view_role();
+
     $this->load->view('include/header',$data);
 		$this->load->view('applicant/new');
 	}
@@ -179,10 +189,9 @@ class ApplicantController extends CI_Controller {
   public function home(){
   //  $this->check_session();
     $this->load->model('role');
+    $this->load->model('applicant');
     $data['role'] = $this->role->view_role();
-    $data['count'] = $this->role->count();
-    $data['count_web']= $this->role->count_web();
-    $data['count_java']= $this->role->count_java();
+    $data['count'] = $this->applicant->count();
     $this->load->view('include/header');
 
     $this->load->view('applicant/home', $data);
@@ -192,7 +201,7 @@ class ApplicantController extends CI_Controller {
 
    $this->load->model('role');
 
-   $this->role->addrole = $_POST['add_role'];
+   $this->role->name = $_POST['name'];
    $this->role->insert_role();
 
    redirect('home');

@@ -93,6 +93,15 @@ class Applicant extends CI_Model {
     $query = $this->db->update('applicants', $this->applicant);
   }
 
+  public function count($position = null){
+    if($position == null){
+      $query = $this->db->get('applicants');
+    }else{
+      $query = $this->db->get_where('applicants', ['position'=> $position]);
+    }
+      return $query->num_rows();
+
+  }
 
 
 /*  public function update_status($application_status, $id)

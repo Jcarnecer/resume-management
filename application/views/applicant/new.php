@@ -79,10 +79,15 @@
            </div>
          </div>
 
+
          <div class="form-group">
            <label  class="col-sm-3 control-label">Position:</label>
            <div class="col-sm-9">
-               <input type="text" name="position" class="form-control" placeholder="Position"/>
+               <select name="position">
+                 <?php foreach ($roles as $role): ?>
+                  <option value="<?= $role->id; ?>"><?= $role->name; ?></option>
+                <?php endforeach; ?>
+               </select>
            </div>
          </div>
 
