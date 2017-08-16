@@ -2,7 +2,7 @@
 
   <div class="input-group" style="float:right">
     <form method="POST" action="<?= base_url('applicant/insert_role');?>" >
-      <input type="text" name="add_role" class="form-control">
+      <input type="text" name="name" class="form-control">
       <span class="input-group-btn" style="width:0;">
         <input class="btn btn-default" type="submit" value="Add Role">
       </span>
@@ -18,17 +18,14 @@
 
   <div class="container" id="applicant-div">
     <?php foreach ($role as $role) : ?>
-    <h2><?php echo $role->addrole;?></h2>
+    <h2><?php echo $role->name;?></h2>
         <div class="row">
            <div class="container">
-             <?php if($role->addrole == 'Java Developer'){ ?>
-            <a href="<?= base_url('applicant');?>" type="button" class="btn btn-default" id="btn">  APPLICANTS <br><?= $count_java ?> </a>
-            <?php }else{ ?>
-                  <a href="<?= base_url('applicant');?>" type="button" class="btn btn-default" id="btn">  APPLICANTS <br><?= $count_web ?> </a>
-            <?php } ?>
-            <a href="<?= base_url('applicant?application_status=2');?>" type="button" class="btn btn-default" id="btn">FOR INTERVIEW</a>
-            <a href="<?= base_url('applicant?application_status=3');?>" type="button" class="btn btn-default" id="btn">SHORTLIST</a>
-            <a href="<?= base_url('applicant?application_status=4');?>" type="button" class="btn btn-default" id="btn">REJECTED</a>
+
+            <a href="<?= base_url('applicant?status=1&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn"> APPLICANTS <br><?= $this->applicant->count($role->id); ?> </a>
+            <a href="<?= base_url('applicant?status=2&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">FOR INTERVIEW</a>
+            <a href="<?= base_url('applicant?status=3&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">SHORTLIST</a>
+            <a href="<?= base_url('applicant?status=4&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">REJECTED</a>
            </div>
          </div>
              <?php endforeach; ?>

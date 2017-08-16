@@ -147,6 +147,7 @@ $(function(){
                     $('#position').html(response.position);
                     $('#app_date').html(response.application_date);
                     $('#comment').html(response.comment);
+                    $('#resume').attr("href", "<?php print base_url('assets/uploads'); ?>/" + response.file);
                     $('#resume').html(response.file);
                     $('#viewmodal').modal('show');
                 }
