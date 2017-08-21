@@ -6,6 +6,7 @@ class Employee extends CI_Model {
   public $first_name;
   public $middle_name;
   public $email_address;
+  public $home_address;
   public $phone_number;
   public $birth_date;
   public $position;
@@ -14,14 +15,20 @@ class Employee extends CI_Model {
   public $tin;
   public $philhealth;
   public $pagibig;
+  public $status;
 
 
-  public function insert_emp(){
+  public function insert(){
     $this->db->insert('employees', $this->employee);
   }
 
-  public function view_emp(){
+  public function view(){
     $query = $this->db->get('employees');
+    return $query->result();
+  }
+
+  public function get($key,$value){
+    $query = $this->db->get_where('employees',[$key => $value]);
     return $query->result();
   }
 
