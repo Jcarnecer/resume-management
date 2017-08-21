@@ -61,7 +61,7 @@ $route['applicant/insert_role']['POST'] = 'ApplicantController/insert_role';
 $route['applicant/add'] = 'applicantcontroller/add_applicant';
 $route['addEmployee'] ='ApplicantController/view_add_employee';
 $route['applicant/add_employee']['POST'] = 'ApplicantController/add_employee';
-
+$route['add_result']['POST'] = 'ApplicantController/add_result';
 //Login
 $route['auth/login']  = "login/auth";
 $route['auth/logout'] = "login/logout";

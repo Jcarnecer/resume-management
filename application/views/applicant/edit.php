@@ -1,30 +1,10 @@
-
   <center>
-    <h1>Edit Applicant</h1>
+    <h3><b>Edit Applicant</b></h3>
   </center>
     <div class="container">
      <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Last Name:</label>
-         <div class="col-sm-9">
-             <input type="text" name="last_name" value="<?= $applicant_data->last_name ?>" class="form-control"  placeholder="Last Name"/>
-         </div>
-       </div>
 
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">First Name:</label>
-         <div class="col-sm-9">
-             <input type="text" name="first_name" value="<?= $applicant_data->first_name ?>" class="form-control" placeholder="First Name"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Middle Name:</label>
-         <div class="col-sm-9">
-             <input type="text" name="middle_name" value="<?= $applicant_data->middle_name ?>" class="form-control" placeholder="Middle Name"/>
-         </div>
-       </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
@@ -49,70 +29,85 @@
 
 
       <div class="form-group">
-        <label  class="col-sm-3 control-label">Birth Date:</label>
+        <label  class="col-sm-3 control-label">Status:</label>
         <div class="col-sm-9">
-            <input type="date" name="bdate" value="<?= $applicant_data->bdate ?>" class="form-control"/>
+          <select class="form-control" name="status" value="<?php $applicant_data->application_status;?>">
+            <option value="1" selected>Applicant</option>
+            <option value="2">For Interview</option>
+            <option value="3">Shortlist</option>
+            <option value="4">Archived</option>
+          </select>
         </div>
       </div>
 
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Degree:</label>
-         <div class="col-sm-9">
-             <input type="text" name="degree" value="<?= $applicant_data->degree ?>" class="form-control" placeholder="Degree"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">School:</label>
-         <div class="col-sm-9">
-             <input type="text" name="school" value="<?= $applicant_data->school ?>" class="form-control" placeholder="School"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Position:</label>
-         <div class="col-sm-9">
-             <input type="text" name="position" value="<?= $applicant_data->position ?>" class="form-control" placeholder="Position"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Application Date:</label>
-         <div class="col-sm-9">
-             <input type="date" name="application_date" value="<?= $applicant_data->application_date ?>" class="form-control"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Expected Salary:</label>
-         <div class="col-sm-9">
-             <input type="text" name="salary" value="<?= $applicant_data->salary ?>" class="form-control" placeholder="Expected Salary"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label class="col-sm-3 control-label">Comment:</label>
-         <div class="col-sm-9">
-           <textarea class="form-control" name="comment"></textarea>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label class="col-sm-3 control-label">Image:</label>
-         <div class="col-sm-9">
-           <input type="file" name="image">
-         </div>
-       </div>
-
-
        <div class="form-group">
          <div class="col-sm-9 col-sm-offset-3">
-           <input type="submit" value="Create" class="btn btn-primary" />
+           <input type="submit" value="Update" class="btn btn-primary" />
          </div>
        </div>
 
     </form>
+
+    </div>
+
+    <div class="container">
+      <center>
+        <h3><b>Exam/Interview</b></h3>
+      </center>
+
+       <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="<?= base_url('add_result'); ?>">
+         <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
+
+        <div class="form-group">
+          <label  class="col-sm-3 control-label">Exam Result:</label>
+          <div class="col-sm-9">
+            <select class="form-control" name="exam_result">
+              <option value="1">Pass</option>
+              <option value="0">Failed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label  class="col-sm-3 control-label">Interview Result:</label>
+          <div class="col-sm-9">
+            <select class="form-control" name="interview_result">
+              <option value="1">Pass</option>
+              <option value="0">Failed</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label  class="col-sm-3 control-label">Interviewer:</label>
+          <div class="col-sm-9">
+              <input class="form-control" name="interviewer" placeholder="Interviewer"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Interview Notes:</label>
+          <div class="col-sm-9">
+            <input type="file" name="notes">
+          </div>
+        </div>
+
+         <div class="form-group">
+           <label class="col-sm-3 control-label">Comments:</label>
+           <div class="col-sm-9">
+             <textarea class="form-control" name="comment"> </textarea>
+           </div>
+         </div>
+
+        <div class="form-group">
+          <div class="col-sm-9 col-sm-offset-3">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+          </div>
+        </div>
+
+      </form>
+
     </div>
 </body>
 </html>

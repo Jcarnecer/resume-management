@@ -17,18 +17,17 @@
 
 
   <div class="container" id="applicant-div">
-    <?php foreach ($role as $role) : ?>
+    <?php foreach ($role as $role) :?>
     <h2><?php echo $role->name;?></h2>
         <div class="row">
            <div class="container">
-
-            <a href="<?= base_url('applicant?status=1&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn"> APPLICANTS <br><?= $this->applicant->count($role->id); ?> </a>
-            <a href="<?= base_url('applicant?status=2&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">FOR INTERVIEW</a>
-            <a href="<?= base_url('applicant?status=3&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">SHORTLIST</a>
-            <a href="<?= base_url('applicant?status=4&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">REJECTED</a>
+            <a href="<?= base_url('applicant?status=1&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">APPLICANTS <br><?= $this->applicant->count($role->id,1); ?> </a>
+            <a href="<?= base_url('applicant?status=2&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">FOR INTERVIEW <br><?= $this->applicant->count($role->id,2); ?></a>
+            <a href="<?= base_url('applicant?status=3&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">SHORTLIST <br><?= $this->applicant->count($role->id,3); ?></a>
+            <a href="<?= base_url('applicant?status=4&role=' . $role->id); ?>" type="button" class="btn btn-default" id="btn">REJECTED <br><?= $this->applicant->count($role->id,4); ?></a>
            </div>
          </div>
-             <?php endforeach; ?>
+             <?php endforeach;?>
     </div>
   </div>
 

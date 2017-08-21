@@ -1,6 +1,4 @@
 
-
-  <a href="<?= base_url('home')?>"><img id="logo" src="assets/img/logo.png"></a>
     <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-right">New Applicant</a>
 
       <div class="panel panel-default">
@@ -8,13 +6,6 @@
 
           <div class="col-sm-2">
             <ul class="nav nav-pills nav-stacked">
-              <div class="list-group">
-                <li><a href="#">Role</a></li>
-                  <div class="list-group">
-                    <li class="list-group-item"><a href="<?= base_url('applicant?role=Web Developer') ?>">Web Developer</a>
-                    <li class="list-group-item"><a href="<?= base_url('applicant?role=Intern') ?>">Intern</a>
-                  </div>
-              </div>
 
               <div class="list-group">
                 <li><a href="#">Expected Salary</a></li>
@@ -42,7 +33,6 @@
                     <th>Name</th>
                     <th>Expected Salary</th>
                     <th>Actions</th>
-                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,11 +44,9 @@
                     <td>
                       <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
                       <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" type="button" class="btn btn-warning" data-id="<?= $applicant->id;?>" >Edit</a>
-                      <button type="button" class="btn btn-danger" id="archived">Archived</button>
                     </td>
-                    <td>
-                      </div>
-                    </td>
+              </div>
+
                   </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -113,7 +101,28 @@
 
               <div class="list-item">
                 <label class="group-label">Resume:</label>
-                <div class="group-data"><a id="resume"></a></div>
+                <div class="group-data"><a target="_blank" id="resume"></a></div>
+              </div>
+
+              <b>Exam/Interview</b>
+              <div class="list-item">
+                <label class="group-label">Exam Result:</label>
+                <div class="group-data" id="exam-result"></div>
+              </div>
+
+              <div class="list-item">
+                <label class="group-label">Interview Result:</label>
+                <div class="group-data" id="interview-result"></div>
+              </div>
+
+              <div class="list-item">
+                <label class="group-label">Interviewer:</label>
+                <div class="group-data" id="interviewer"></div>
+              </div>
+
+              <div class="list-item">
+                <label class="group-label">interview notes:</label>
+                <div class="group-data"><a target="_blank" id="interview-notes"></a></div>
               </div>
 
 
@@ -149,6 +158,22 @@ $(function(){
                     $('#comment').html(response.comment);
                     $('#resume').attr("href", "<?php print base_url('assets/uploads'); ?>/" + response.file);
                     $('#resume').html(response.file);
+                    $('#interviewer').html(response.interviewer);
+                    $('#interview-notes').attr("href", "<?php print base_url('assets/uploads'); ?>/" + response.interview_notes);
+                    $('#interview-notes').html(response.interview_notes);
+                    if(response.exam_result == 1){
+                      $('#exam-result').html("Passed");
+                    }
+                    else{
+                      $('#exam-result').html("Failed");
+                    }
+                    if(response.interview_result == 1){
+                      $('#interview-result').html("Passed");
+                    }
+                    else{
+                      $('#interview-result').html("Failed");
+                    }
+
                     $('#viewmodal').modal('show');
                 }
             }

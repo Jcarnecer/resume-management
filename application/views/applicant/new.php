@@ -36,13 +36,6 @@
          </div>
 
          <div class="form-group">
-           <label  class="col-sm-3 control-label">Password:</label>
-           <div class="col-sm-9">
-               <input type="password" name="password" class="form-control" placeholder="Password"/>
-           </div>
-         </div>
-
-         <div class="form-group">
            <label  class="col-sm-3 control-label">Phone Number:</label>
            <div class="col-sm-9">
                <input type="number" name="phone_no" class="form-control" placeholder="Phone Number"/>
@@ -83,7 +76,7 @@
          <div class="form-group">
            <label  class="col-sm-3 control-label">Position:</label>
            <div class="col-sm-9">
-               <select name="position">
+               <select name="position" class="form-control">
                  <?php foreach ($roles as $role): ?>
                   <option value="<?= $role->id; ?>"><?= $role->name; ?></option>
                 <?php endforeach; ?>
@@ -116,6 +109,13 @@
            <label class="col-sm-3 control-label">Resume:</label>
            <div class="col-sm-9">
              <input type="file" name="resume">
+           </div>
+         </div>
+
+         <div class="form-group">
+           <label class="col-sm-3 control-label">Image:</label>
+           <div class="col-sm-9">
+             <input type="file" name="image">
            </div>
          </div>
 

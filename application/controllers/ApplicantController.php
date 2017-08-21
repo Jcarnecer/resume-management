@@ -10,7 +10,7 @@ class ApplicantController extends CI_Controller {
   }
   public function index() {
   //  $this->check_session();
-    $role = $_GET["role"] ?? null; 
+    $role = $_GET["role"] ?? null;
     $salary = $_GET["salary"] ?? null;
     $status = $_GET["status"] ?? null;
     $this->load->model('applicant');
@@ -45,7 +45,7 @@ class ApplicantController extends CI_Controller {
     $this->load->model('role');
     $data['roles'] = $this->role->view_role();
 
-    $this->load->view('include/header',$data);
+    $this->load->view('include/header', $data);
 		$this->load->view('applicant/new');
 	}
 
@@ -53,7 +53,7 @@ class ApplicantController extends CI_Controller {
   public function create_applicant(){
 
     $config['upload_path'] = "assets/uploads";
-    $config['allowed_types'] = 'doc|pdf|docx';
+    $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
     $config['max_size'] = 2048;
 
     $this->load->library('upload', $config);
@@ -66,6 +66,16 @@ class ApplicantController extends CI_Controller {
         endif;
     else:
       echo "sobrang required";
+    endif;
+
+    if (isset($_FILES['image']) && !empty($_FILES['image']['name'])):
+      if ($this->upload->do_upload('image')):
+        $image = $this->upload->data('file_name');
+      else:
+        echo $this->upload->display_errors();
+      endif;
+    else:
+        echo "F*ck this shit!";
     endif;
 
     $this->load->model('applicant');
@@ -82,10 +92,11 @@ class ApplicantController extends CI_Controller {
     $this->applicant->bdate = $_POST['bdate'];
     $this->applicant->address = $_POST['address'];
     $this->applicant->email_add = $_POST['email_add'];
+    $this->applicant->images = $image;
     $this->applicant->file = $resume;
+    $this->applicant->interview_notes = $notes;
     $this->applicant->application_status = 1;
     $this->applicant->category = 1;
-    $this->applicant->password = sha1($_POST['password']);
 
     $this->applicant->insert();
 
@@ -116,9 +127,9 @@ class ApplicantController extends CI_Controller {
     $id = $this->uri->segment(3);
     // print_r($id);die;
     $this->load->model('applicant');
-
+    $title['title'] = "Astrid Technologies | New Applicant";
     $data['applicant_data']= $this->applicant->get($id);
-    $this->load->view('include/header',$data);
+    $this->load->view('include/header',$title);
     $this->load->view('applicant/edit', $data);
 
   }
@@ -126,43 +137,96 @@ class ApplicantController extends CI_Controller {
   public function edit()
   {
 
-    $config['upload_path'] = "assets/uploads";
-    $config['allowed_types'] = 'jpg|jpeg|png';
-    $config['max_size'] = 2048;
-
-    $this->load->library('upload', $config);
-
-    if (isset($_FILES['image']) && !empty($_FILES['image']['name'])):
-        if ($this->upload->do_upload('image')):
-        $image =  $this->upload->data('file_name');
-        else:
-            echo  $this->upload->display_errors();
-        endif;
-    else:
-      echo "sobrang required";
-    endif;
-
     $this->load->model('applicant');
-    $this->applicant->first_name = $_POST['first_name'];
-    $this->applicant->last_name = $_POST['last_name'];
-    $this->applicant->middle_name = $_POST['middle_name'];
-    $this->applicant->degree = $_POST['degree'];
-    $this->applicant->school = $_POST['school'];
-    $this->applicant->position = $_POST['position'];
-    $this->applicant->application_date = date("Y-m-d", strtotime($_POST['application_date']));
-    $this->applicant->salary = $_POST['salary'];
     $this->applicant->comment = $_POST['comment'];
     $this->applicant->phone_no = $_POST['phone_no'];
-    $this->applicant->bdate = $_POST['bdate'];
     $this->applicant->address = $_POST['address'];
-    $this->applicant->address = $_POST['email_add'];
+    $this->applicant->email_add = $_POST['email_add'];
     $this->applicant->id  = $_POST['id'];
-    $this->applicant->images  = $image;
-    $this->applicant->application_status = 1;
+    $this->applicant->application_status = $_POST['status'];
 
     $this->applicant->edit();
 
     redirect('/applicant');
+  }
+
+
+  public function home(){
+  //  $this->check_session();
+    $this->load->model('role');
+    $this->load->model('applicant');
+    $title['title'] = "Astrid Technologies | New Applicant";
+    $data['role'] = $this->role->view_role();
+    $data['count'] = $this->applicant->count();
+    $this->load->view('include/header',$title);
+
+    $this->load->view('applicant/home', $data);
+  }
+
+  public function insert_role(){
+
+   $this->load->model('role');
+
+   $this->role->name = $_POST['name'];
+   $this->role->insert_role();
+
+   redirect('home');
+ }
+
+  public function view_add_employee(){
+     $this->load->view('applicant/addEmployee');
+  }
+
+  public function add_employee(){
+   $this->load->model('applicant');
+
+   $this->applicant->last_name = $_POST['last_name'];
+   $this->applicant->first_name = $_POST['first_name'];
+   $this->applicant->middle_name = $_POST['middle_name'];
+   $this->applicant->email_add = $_POST['email_add'];
+   $this->applicant->phone_no = $_POST['phone_no'];
+   $this->applicant->address = $_POST['address'];
+   $this->applicant->bdate = $_POST['bdate'];
+   $this->applicant->position = $_POST['position'];
+   $this->applicant->date_hired = date("Y-m-d", strtotime($_POST['date_hired']));
+   $this->applicant->sss = $_POST['sss'];
+   $this->applicant->tin = $_POST['tin'];
+   $this->applicant->philhealth = $_POST['philhealth'];
+   $this->applicant->pagibig = $_POST['pagibig'];
+
+   $this->applicant->category = 0;
+
+   $this->applicant->insert();
+
+   redirect('/home');
+ }
+
+  public function add_result()
+  {
+
+    $config['upload_path'] = "assets/uploads";
+    $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
+    $config['max_size'] = 2048;
+
+    $this->load->library('upload', $config);
+
+    if (isset($_FILES['notes']) && !empty($_FILES['notes']['name'])):
+      if ($this->upload->do_upload('notes')):
+        $notes = $this->upload->data('file_name');
+      else:
+        echo $this->upload->display_errors();
+      endif;
+    else:
+        echo "F*ck this shit!";
+    endif;
+    $this->load->model('applicant');
+    $this->applicant->exam_result = $_POST['exam_result'];
+    $this->applicant->interviewer = $_POST['interviewer'];
+    $this->applicant->interview_result = $_POST['interview_result'];
+    $this->applicant->id  = $_POST['id'];
+    $this->applicant->interview_notes = $notes;
+    $this->applicant->addresult();
+    redirect('/home');
   }
 
   public function upload(){
@@ -185,56 +249,6 @@ class ApplicantController extends CI_Controller {
     }
 
   }
-
-  public function home(){
-  //  $this->check_session();
-    $this->load->model('role');
-    $this->load->model('applicant');
-    $data['role'] = $this->role->view_role();
-    $data['count'] = $this->applicant->count();
-    $this->load->view('include/header');
-
-    $this->load->view('applicant/home', $data);
-  }
-
-  public function insert_role(){
-
-   $this->load->model('role');
-
-   $this->role->name = $_POST['name'];
-   $this->role->insert_role();
-
-   redirect('home');
- }
-
-public function view_add_employee(){
-   $this->load->view('applicant/addEmployee');
-}
-
-public function add_employee(){
-   $this->load->model('applicant');
-
-   $this->applicant->last_name = $_POST['last_name'];
-   $this->applicant->first_name = $_POST['first_name'];
-   $this->applicant->middle_name = $_POST['middle_name'];
-   $this->applicant->email_add = $_POST['email_add'];
-   $this->applicant->phone_no = $_POST['phone_no'];
-   $this->applicant->address = $_POST['address'];
-   $this->applicant->bdate = $_POST['bdate'];
-   $this->applicant->position = $_POST['position'];
-   $this->applicant->date_hired = date("Y-m-d", strtotime($_POST['date_hired']));
-   $this->applicant->sss = $_POST['sss'];
-   $this->applicant->tin = $_POST['tin'];
-   $this->applicant->philhealth = $_POST['philhealth'];
-   $this->applicant->pagibig = $_POST['pagibig'];
-
-   $this->applicant->category = 0;
-
-   $this->applicant->insert();
-
-   redirect('/home');
-}
-
 
 
 }
