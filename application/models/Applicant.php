@@ -26,6 +26,9 @@ class Applicant extends CI_Model {
   public $interview_result;
   public $interview_notes;
 
+  /*public function insert_emp(){
+    $this->db->insert('employees', $this->applicant);
+  }*/
 
   public function insert(){
     $this->db->insert('applicants', $this->applicant);

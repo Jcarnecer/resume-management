@@ -10,7 +10,7 @@
   </div>
 </div>
 
-
+  
 <div class="container">
   <button id="applicant" type="button" class="btn btn-default">Applicants <br><?= $count;?></button>
   <button id="employee" type="button" class="btn btn-default">Employees</button>
@@ -32,8 +32,22 @@
   </div>
 
   <div class="container" id="employee-div">
-    <a href="<?= base_url('addEmployee')?>" id="addEmployee" type="button" class="btn btn-default">Add Employee</a>
+
+
+    <div class="row">
+       <div class="container">
+
+        <a href="<?= base_url('view_employee');?>" type="button" class="btn btn-default" id="btn">Former</a>
+        <a href="<?= base_url('view_employee');?>" type="button" class="btn btn-default" id="btn">Current</a>
+
+        <a href="<?= base_url('addEmployee')?>" id="addEmployee" type="button" class="btn btn-default">Add Employee</a><br>
+
+      </div>
+
   </div>
+</div>
+
+
 
 
  <script>
