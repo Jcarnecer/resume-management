@@ -2,7 +2,6 @@
 
 class Applicant extends CI_Model {
 
-//Kailangan parehas yung variable at name ng nasa db
   public $last_name;
   public $first_name;
   public $middle_name;
@@ -19,16 +18,13 @@ class Applicant extends CI_Model {
   public $bdate;
   public $file;
   public $images;
-  public $password;
   public $id;
   public $category;
-
   public $date_hired;
-  public $sss;
-  public $tin;
-  public $philhealth;
-  public $pagibig;
-
+  public $exam_result;
+  public $interviewer;
+  public $interview_result;
+  public $interview_notes;
 
   /*public function insert_emp(){
     $this->db->insert('employees', $this->applicant);
@@ -92,26 +88,37 @@ class Applicant extends CI_Model {
 
   public function edit()
   {
-    $this->db->where('id',$this->id);
-    $query = $this->db->update('applicants', $this->applicant);
+    $this->db->set('comment', $this->applicant->comment);
+    $this->db->set('phone_no', $this->applicant->phone_no);
+    $this->db->set('address', $this->applicant->address);
+    $this->db->set('email_add', $this->applicant->email_add);
+    $this->db->set('application_status', $this->applicant->application_status);
+    $this->db->where('id' ,$this->id);
+    $query = $this->db->update('applicants');
   }
 
-  public function count($position = null){
-    if($position == null){
+
+  public function count($position = null, $application_status = null){
+    if($position == null && $application_status == null){
       $query = $this->db->get('applicants');
-    }else{
-      $query = $this->db->get_where('applicants', ['position'=> $position]);
     }
+    else{
+      $query = $this->db->get_where('applicants', ['position'=> $position, 'application_status' => $application_status]);
+    }
+
       return $query->num_rows();
+  }
+
+  public function addresult(){
+
+    $this->db->set('exam_result', $this->applicant->exam_result);
+    $this->db->set('interviewer', $this->applicant->interviewer);
+    $this->db->set('interview_result', $this->applicant->interview_result);
+    $this->db->set('interview_notes', $this->applicant->interview_notes);
+    $this->db->where('id',$this->id);
+    $query = $this->db->update('applicants');
 
   }
 
-
-/*  public function update_status($application_status, $id)
-  {
-    $this->db->set('application_status',$application_status);
-    $this->db->where('id', $id)
-    $this->db->update('applicants');
-  } */
 
 }
