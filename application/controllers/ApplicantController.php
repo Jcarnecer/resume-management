@@ -155,9 +155,13 @@ class ApplicantController extends CI_Controller {
   //  $this->check_session();
     $this->load->model('role');
     $this->load->model('applicant');
+    $this->load->model('employee');
     $title['title'] = "Astrid Technologies | New Applicant";
     $data['role'] = $this->role->view_role();
     $data['count'] = $this->applicant->count();
+    $data['countemployee'] = $this->employee->count();
+    $data['countempformer'] = $this->employee->count_former();
+    $data['countempcurrent'] = $this->employee->count_current();
     $this->load->view('include/header',$title);
 
     $this->load->view('applicant/home', $data);
@@ -174,7 +178,9 @@ class ApplicantController extends CI_Controller {
  }
 
   public function view_add_employee(){
-     $this->load->view('applicant/addEmployee');
+    $title['title'] = "Astrid Technologies | New Applicant";
+    $this->load->view('include/header',$title);
+    $this->load->view('applicant/addEmployee');
   }
 
   public function add_employee(){
