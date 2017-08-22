@@ -1,28 +1,28 @@
-<!DOCTYPE html>
 
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-
- <head>
-  <title>Display employee details</title>
- </head>
  <body>
-  <div class="row">
-   <div style="width:500px;margin:50px;">
+  <div class="container">
+
     <h1>Employees</h1>
-    <table class="table table-inverse">
-     <tr>
-       <td><strong>First Name</strong></td>
-       <td><strong>Last Name</strong></td>
-     </tr>
-     <?php foreach($employee as $employees){?>
-     <tr>
-       <td><?= $employees->first_name;?></td>
-       <td><?= $employees->last_name;?></td>
-     </tr>
-     <?php }?>
-    </table>
+
+      <table class="table table-inverse">
+       <tr>
+         <td><strong>Name</strong></td>
+         <td><strong>Home Address</strong></td>
+         <td><strong>Email Address</strong>
+         <td><strong>Position</strong>
+         <td><strong>Date Hired</strong>
+       </tr>
+       <?php foreach($employee as $employees){?>
+       <tr>
+         <td><?= $employees->first_name;?> <?= $employees->middle_name;?> <?= $employees->last_name;?></td>
+         <td><?= $employees->home_address;?></td>
+         <td><?= $employees->email_address;?></td>
+         <td><?= $employees->position;?></td>
+         <td><?= $employees->date_hired;?></td>
+
+       <?php }?>
+      </table>
+
    </div>
   </div>
  </body>
