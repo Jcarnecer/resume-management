@@ -30,6 +30,9 @@ class Applicant extends CI_Model {
   public $pagibig;
 
 
+  /*public function insert_emp(){
+    $this->db->insert('employees', $this->applicant);
+  }*/
 
   public function insert(){
     $this->db->insert('applicants', $this->applicant);

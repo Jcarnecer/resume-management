@@ -10,7 +10,7 @@ class ApplicantController extends CI_Controller {
   }
   public function index() {
   //  $this->check_session();
-    $role = $_GET["role"] ?? null; 
+    $role = $_GET["role"] ?? null;
     $salary = $_GET["salary"] ?? null;
     $status = $_GET["status"] ?? null;
     $this->load->model('applicant');
@@ -207,30 +207,37 @@ class ApplicantController extends CI_Controller {
    redirect('home');
  }
 
+ public function view_employee(){
+           $this->load->model('employee');
+
+           $data['employee']=$this->employee->view_emp();
+           $this->load->view('applicant/ViewEmployee', $data);
+ }
+
 public function view_add_employee(){
    $this->load->view('applicant/addEmployee');
 }
 
 public function add_employee(){
-   $this->load->model('applicant');
+   $this->load->model('employee');
 
-   $this->applicant->last_name = $_POST['last_name'];
-   $this->applicant->first_name = $_POST['first_name'];
-   $this->applicant->middle_name = $_POST['middle_name'];
-   $this->applicant->email_add = $_POST['email_add'];
-   $this->applicant->phone_no = $_POST['phone_no'];
-   $this->applicant->address = $_POST['address'];
-   $this->applicant->bdate = $_POST['bdate'];
-   $this->applicant->position = $_POST['position'];
-   $this->applicant->date_hired = date("Y-m-d", strtotime($_POST['date_hired']));
-   $this->applicant->sss = $_POST['sss'];
-   $this->applicant->tin = $_POST['tin'];
-   $this->applicant->philhealth = $_POST['philhealth'];
-   $this->applicant->pagibig = $_POST['pagibig'];
+   $this->employee->last_name = $_POST['last_name'];
+   $this->employee->first_name = $_POST['first_name'];
+   $this->employee->middle_name = $_POST['middle_name'];
+   $this->employee->email_address = $_POST['email_address'];
+   $this->employee->phone_number = $_POST['phone_number'];
+   $this->employee->home_address = $_POST['home_address'];
+   $this->employee->birth_date = $_POST['birth_date'];
+   $this->employee->position = $_POST['position'];
+   $this->employee->date_hired = date("Y-m-d", strtotime($_POST['date_hired']));
+   $this->employee->sss = $_POST['sss'];
+   $this->employee->tin = $_POST['tin'];
+   $this->employee->philhealth = $_POST['philhealth'];
+   $this->employee->pagibig = $_POST['pagibig'];
 
-   $this->applicant->category = 0;
+   //$this->applicant->category = 0;
 
-   $this->applicant->insert();
+   $this->employee->insert_emp();
 
    redirect('/home');
 }

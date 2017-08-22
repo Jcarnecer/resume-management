@@ -62,6 +62,8 @@ $route['applicant/add'] = 'applicantcontroller/add_applicant';
 $route['addEmployee'] ='ApplicantController/view_add_employee';
 $route['applicant/add_employee']['POST'] = 'ApplicantController/add_employee';
 
+$route['view_employee']['GET'] = 'ApplicantController/view_employee';
+
 //Login
 $route['auth/login']  = "login/auth";
 $route['auth/logout'] = "login/logout";
