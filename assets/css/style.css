@@ -1,53 +1,7 @@
-#logo
-{
-  width: 200px;
-  height: 150px;
-  padding: 15px;
-}
+body {
+  background-color: #ffffff; }
 
-#thumbnail
-{
-  width: 100px;
-  height: 100px;
-}
-#add-button
-{
-  margin-top: 70px;
-  margin-right: 40px;
-}
-
-#btn{
-  width: 200px;
-  height: 75px;
-}
-#applicant{
-  width: 200px;
-  height: 100px;
-}
-#employee{
-  width: 200px;
-  height: 100px;
-}
-#employee-div{
-  display: none;
-}
-
-.list-item
-{
-  display: flex;
-  height: 30px;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.list-item .group-label
-{
-  text-align: right;
-  width: 23%;
-}
-
-.list-item .group-data {
-  width: 75%; }
-
+#employee-div {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */
