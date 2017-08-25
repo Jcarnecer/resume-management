@@ -5,7 +5,7 @@
     <h1>Add Employee</h1>
   </center>
     <div class="container">
-     <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('ApplicantController/add_employee'); ?>">
+     <form class="form-horizontal" id="add-form"  method="POST" action="<?= base_url('ApplicantController/add_employee'); ?>">
        <input type="hidden" name="id">
        <div class="form-group">
          <label  class="col-sm-3 control-label">Last Name:</label>
@@ -99,6 +99,16 @@
          <label  class="col-sm-3 control-label">Pagibig:</label>
          <div class="col-sm-9">
              <input type="text" name="pagibig" class="form-control" placeholder="PAGIBIG"/>
+         </div>
+       </div>
+
+       <div class="form-group">
+         <label  class="col-sm-3 control-label">Status:</label>
+         <div class="col-sm-9">
+             <select name="status" class="form-control">
+               <option value="1">Current</option>
+               <<option value="0">Former</option>
+             </select>
          </div>
        </div>
 
