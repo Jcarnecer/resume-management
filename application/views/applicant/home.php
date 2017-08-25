@@ -12,10 +12,12 @@
 
 
 <div class="container">
-  <button id="applicant" type="button" class="btn btn-default" >Applicants <br><?= $count;?></button>
-  <button id="employee" type="button" class="btn btn-default">Employees <br><?= $countemployee;?></button>
-
-
+  <div class="row">
+    <div class="col-md-6 tab-menu">
+        <button id="applicant" class="btn btn-applicant">Applicants <br><?= $count;?></button>
+        <button id="employee" class="btn btn-employees">Employees <br><?= $countemployee;?></button>
+    </div>
+  </div>
 
 
   <div class="container" id="applicant-div">
@@ -48,19 +50,3 @@
       </div>
   </div>
 </div>
-
-
-
-
- <script>
- $(document).ready(function(){
-     $("#applicant").click(function(){
-         $("#applicant-div").show();
-         $("#employee-div").hide();
-     });
-     $("#employee").click(function(){
-         $("#employee-div").show();
-         $("#applicant-div").hide();
-     });
- });
- </script>

@@ -1,5 +1,69 @@
 body {
   background-color: #ffffff; }
+:hover{
+  color:  #03b0d8;   
+}
+.btn-applicant {
+  background-color: #24cbf2;
+  color: white;
+  font-weight: bold;
+  border-radius: 0;
+  border-color: transparent;
+  width: 200px;
+  height: 100px;
+
+}
+.btn-applicant:hover {
+  background-color: #03b0d8; }
+
+.btn-applicant:after, .btn-applicant:before {
+  top: 100%;
+  left: 10%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.btn-applicant:hover::after {
+  border-color: rgba(142, 36, 213, 0);
+  border-top-color: #25cbf2;
+  border-width: 20px;
+  margin-left: -30px;
+
+}
+
+
+.btn-employees {
+  background-color: #24cbf2;
+  color: white;
+  font-weight: bold;
+  border-radius: 0;
+  border-color: transparent;
+  width: 200px;
+  height: 100px; }
+.btn-employees:hover {
+  background-color: #03b0d8; }
+
+.btn-employees:after, .btn-employees:before {
+  top: 100%;
+  left: 45%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+
+}
+
+.btn-employees:hover:after {
+  border-color: rgba(142, 36, 213, 0);
+  border-top-color: #25cbf2;
+  border-width: 20px;
+  margin-left: -30px; }
 
 #employee-div {
   display: none; }
