@@ -1,10 +1,11 @@
 $(document).ready(function(){
-    $("#applicant").click(function(){
-        $("#applicant-div").show();
-        $("#employee-div").hide();
-    });
-    $("#employee").click(function(){
-        $("#employee-div").show();
-        $("#applicant-div").hide();
-    });
+  $("div.tab-menu>div.list-group>a").click(function(e){
+    e.preventDefault();
+    $(this).siblings('a.active').removeClass("active");
+    $(this).addClass("active");
+    var index = $(this).index();
+    $("div.tab>div.tab-content>div.list-group>a").removeClass("active");
+    $("div.tab>div.tab-content").eq(index).addClass("active");
+  });
+
 });

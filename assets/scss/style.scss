@@ -1,68 +1,94 @@
-$white: #ffffff;
-
+$background: #f1f1f2;
+$black: #000000;
 body{
-  background-color: $white;
+  background-color: $background;
 }
-.btn-applicant{
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+  background-color: #24cbf2;
+  border-color: transparent;
+}
+a{
+  text-decoration: none;
+  text-align: center;
+  color: $black;
+  &:hover{
+    color: $black;
+    text-decoration: none;
+  }
+}
+a:active {
+    background-color: #24cbf2;
+}
+div.tab-menu div.list-group>a{
   background-color: #24cbf2;
   color: white;
   font-weight: bold;
+  text-align: left;
+  font-size: 150%;
   border-radius: 0;
   border-color: transparent;
   width: 200px;
   height: 100px;
-}
-
-.btn-applicant:after, .btn-applicant:before{
-  top: 100%;
-	left: 10%;
-	border: solid transparent;
-	content: "";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.btn-applicant:after {
-	border-color: rgba(142, 36, 213, 0);
-	border-top-color: #25cbf2;
-	border-width: 20px;
-	margin-left: -30px;
-}
-
-.btn-employees{
-  background-color: #24cbf2;
-  color: white;
-  font-weight: bold;
-  border-radius: 0;
-  border-color: transparent;
-  width: 200px;
-  height: 100px;
+  display: inline-block;
   &:hover{
     background-color: #03b0d8;
+    border-color: transparent;
   }
 }
 
-.btn-employees:after, .btn-employees:before{
-  top: 100%;
-	left: 45%;
+div.tab-menu> div.list-group>a.active:after{
+  top: 101%;
+	left: 25%;
 	border: solid transparent;
 	content: "";
 	height: 0;
 	width: 0;
 	position: absolute;
 	pointer-events: none;
+  border-top-color: #25cbf2;
+  border-width: 20px;
+  margin-left: -30px;
 
 }
 
-.btn-employees:after {
-	border-color: rgba(142, 36, 213, 0);
-	border-top-color: #25cbf2;
-	border-width: 20px;
-	margin-left: -30px;
+div.tab-content:not(.active){
+  display: none;
+}
+
+.page-header{
+  border-color: #d9d9d9;
 }
 
 #employee-div{
   display: none;
+}
+
+.grid-divider {
+      position: relative;
+      padding: 0;
+}
+.grid-divider>[class*='col-'] {
+    position: static;
+}
+.grid-divider>[class*='col-']:nth-child(n+2):before {
+    content: "";
+    border-left: 1px solid #DDD;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+.col-padding {
+    padding: 0 15px;
+}
+.panel{
+  width: 100%;
+  border-radius: 0;
+  background-color: white;
+
+}
+.panel-heading{
+  background-color: white;
+  color: #24cbf2;
+  font-weight: 700;
+  font-size: 200%;
 }
