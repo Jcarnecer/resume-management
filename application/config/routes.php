@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['applicant']['GET'] = 'ApplicantController';
+$route['applicants'] = 'ApplicantController/applicant';
 $route['applicant/create_applicant']['POST']= 'ApplicantController/create_applicant';
 $route['applicant/new']['GET'] = 'ApplicantController/new';
 $route['applicant/edit_view/(:num)']['GET'] = 'ApplicantController/edit_view/$1';
@@ -63,10 +64,11 @@ $route['addEmployee'] ='ApplicantController/view_add_employee';
 $route['applicant/add_employee']['POST'] = 'ApplicantController/add_employee';
 $route['add_result']['POST'] = 'ApplicantController/add_result';
 $route['view_employee']['GET'] = 'ApplicantController/view_employee';
-//Login
-$route['auth/login']  = "login/auth";
-$route['auth/logout'] = "login/logout";
 
-$route['default_controller'] = "login";
+//Login
+/*$route['auth/login']  = "login/auth";
+$route['auth/logout'] = "login/logout"; */
+
+$route['default_controller'] = "ApplicantController";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

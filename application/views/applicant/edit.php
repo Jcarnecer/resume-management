@@ -1,7 +1,12 @@
+
   <center>
     <h3><b>Edit Applicant</b></h3>
   </center>
     <div class="container">
+      <?php
+        echo $this->session->flashdata('email_sent');
+      ?>
+
      <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
 
@@ -36,6 +41,7 @@
             <option value="2">For Interview</option>
             <option value="3">Shortlist</option>
             <option value="4">Archived</option>
+            <option value="5">Hired</option>
           </select>
         </div>
       </div>
