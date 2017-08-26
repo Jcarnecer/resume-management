@@ -68,57 +68,87 @@
        </div>
 
        <div class="form-group">
-         <label  class="col-sm-3 control-label">Date Hired:</label>
+         <label  class="col-sm-3 control-label">Role:</label>
          <div class="col-sm-9">
-             <input type="date" name="date_hired" class="form-control" placeholder="Date Hired"/>
+           <select id='staff' class="form-control">
+              <option value="disabled selected">Select your option</option>
+             <option value="employee">Employee</option>
+             <option value="intern">Intern</option>
+             </select>
+
+             <div style='display:none;' id='emp_form'>
+               <div class="form-group"><br>
+                 <label  class="col-sm-3 control-label">Date Hired:</label>
+                 <div class="col-sm-9">
+                     <input type="date" name="date_hired" class="form-control" placeholder="Date Hired"/>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <label  class="col-sm-3 control-label">SSS Number:</label>
+                 <div class="col-sm-9">
+                     <input type="text" name="sss" class="form-control" placeholder="SSS Number"/>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <label  class="col-sm-3 control-label">TIN:</label>
+                 <div class="col-sm-9">
+                     <input type="text" name="tin" class="form-control" placeholder="TIN"/>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <label  class="col-sm-3 control-label">PhilHealth:</label>
+                 <div class="col-sm-9">
+                     <input type="text" name="philhealth" class="form-control" placeholder="PHILHEALTH"/>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <label  class="col-sm-3 control-label">Pagibig:</label>
+                 <div class="col-sm-9">
+                     <input type="text" name="pagibig" class="form-control" placeholder="PAGIBIG"/>
+                 </div>
+               </div>
+
+             </div>
          </div>
        </div>
 
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">SSS Number:</label>
-         <div class="col-sm-9">
-             <input type="text" name="sss" class="form-control" placeholder="SSS Number"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">TIN:</label>
-         <div class="col-sm-9">
-             <input type="text" name="tin" class="form-control" placeholder="TIN"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">PhilHealth:</label>
-         <div class="col-sm-9">
-             <input type="text" name="philhealth" class="form-control" placeholder="PHILHEALTH"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Pagibig:</label>
-         <div class="col-sm-9">
-             <input type="text" name="pagibig" class="form-control" placeholder="PAGIBIG"/>
-         </div>
-       </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Status:</label>
          <div class="col-sm-9">
              <select name="status" class="form-control">
                <option value="1">Current</option>
-               <<option value="0">Former</option>
+               <option value="0">Former</option>
              </select>
          </div>
        </div>
 
        <div class="form-group">
          <div class="col-sm-9 col-sm-offset-3">
-           <input type="submit" value="Add Employee" class="btn btn-primary" />
+           <input type="submit" value="Add Staff" class="btn btn-primary" />
          </div>
        </div>
 
     </form>
     </div>
+
+    <script>
+    $(document).ready(function(){
+        $('#staff').on('change', function() {
+          if ( this.value == 'employee')
+          {
+            $("#emp_form").show();
+          }
+          else
+          {
+            $("#emp_form").hide();
+          }
+        });
+    });
+  </script>
 </body>
 </html>

@@ -75,7 +75,11 @@
       <div class="tab-content">
         <a href="<?= base_url('view_employee?status=0');?>" type="button" class="btn btn-default" id="btn">Former <br><?= $countempformer;?></a>
         <a href="<?= base_url('view_employee?status=1');?>" type="button" class="btn btn-default" id="btn">Current <br><?= $countempcurrent;?></a>
-        <a href="<?= base_url('addEmployee')?>" id="addEmployee" type="button" class="btn btn-default">Add Employee</a><br>
+        <h2> Intern </h2>
+        <a href="<?= base_url('view_employee?status=0');?>" type="button" class="btn btn-default" id="btn">Former <br><?= $countempformer;?></a>
+        <a href="<?= base_url('view_employee?status=1');?>" type="button" class="btn btn-default" id="btn">Current <br><?= $countempcurrent;?></a>
+
+        <br><a href="<?= base_url('addEmployee')?>" id="addEmployee" type="button" class="btn btn-default">Add Staff</a>
       </div>
     </div>
   </div>
