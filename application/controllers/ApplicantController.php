@@ -14,7 +14,7 @@ class ApplicantController extends CI_Controller {
       $this->load->model('role');
       $this->load->model('applicant');
       $this->load->model('employee');
-      $title['title'] = "Astrid Technologies | New Applicant";
+      $data['title'] = "Astrid Technologies";
       $data['role'] = $this->role->view_role();
       $data['count'] = $this->applicant->count();
       $data['countemployee'] = $this->employee->count();
@@ -230,7 +230,7 @@ class ApplicantController extends CI_Controller {
    $this->role->name = $_POST['name'];
    $this->role->insert_role();
 
-   redirect('home');
+   redirect('');
  }
 
   public function view_add_employee(){
