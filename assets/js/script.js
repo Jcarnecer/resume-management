@@ -12,7 +12,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('#staff').on('change', function() {
-      if ( this.value == 'employee')
+      if ( this.value == '2')
       {
         $("#emp_form").show();
       }

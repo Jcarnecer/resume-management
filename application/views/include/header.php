@@ -17,6 +17,3 @@
     <script src="<?= base_url('assets/js/script.js') ?>"></script>
 </head>
 <body>
-
-
-    <a href="<?= base_url('home')?>"><img id="logo" src="assets/img/logo.png"></a>
