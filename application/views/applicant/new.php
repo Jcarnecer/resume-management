@@ -99,6 +99,55 @@
          </div>
 
          <div class="form-group">
+           <label  class="col-sm-3 control-label">Role:</label>
+           <div class="col-sm-9">
+             <select id='staff' class="form-control">
+                <option value="disabled selected">Select your option</option>
+               <option value="employee">Employee</option>
+               <option value="intern">Intern</option>
+               </select>
+
+               <div style='display:none;' id='emp_form'>
+                 <div class="form-group"><br>
+                   <label  class="col-sm-3 control-label">Date Hired:</label>
+                   <div class="col-sm-9">
+                       <input type="date" name="date_hired" class="form-control" placeholder="Date Hired"/>
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label  class="col-sm-3 control-label">SSS Number:</label>
+                   <div class="col-sm-9">
+                       <input type="text" name="sss" class="form-control" placeholder="SSS Number"/>
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label  class="col-sm-3 control-label">TIN:</label>
+                   <div class="col-sm-9">
+                       <input type="text" name="tin" class="form-control" placeholder="TIN"/>
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label  class="col-sm-3 control-label">PhilHealth:</label>
+                   <div class="col-sm-9">
+                       <input type="text" name="philhealth" class="form-control" placeholder="PHILHEALTH"/>
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label  class="col-sm-3 control-label">Pagibig:</label>
+                   <div class="col-sm-9">
+                       <input type="text" name="pagibig" class="form-control" placeholder="PAGIBIG"/>
+                   </div>
+                 </div>
+
+               </div>
+           </div>
+         </div>
+
+         <div class="form-group">
            <label class="col-sm-3 control-label">Comment:</label>
            <div class="col-sm-9">
              <textarea class="form-control" name="comment"></textarea>
