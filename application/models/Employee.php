@@ -6,8 +6,8 @@ class Employee extends CI_Model {
   public $first_name;
   public $middle_name;
   public $email_address;
-  public $address;
-  public $phone_no;
+  public $home_address;
+  public $phone_number;
   public $birth_date;
   public $position;
   public $date_hired;
@@ -18,8 +18,10 @@ class Employee extends CI_Model {
   public $status;
 
 
+
+
   public function insert(){
-    $this->db->insert('applicants', $this->employee);
+    $this->db->insert('employees', $this->employee);
   }
 
   public function view(){
