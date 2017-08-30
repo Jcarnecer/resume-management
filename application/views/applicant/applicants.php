@@ -28,7 +28,7 @@
         <tbody>
           <?php foreach ($applicants as $applicant) : ?>
           <tr>
-            <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td>
+            <td><img id="thumbnail" src="assets/uploads/><?= $applicant->images ?>"></td>
             <td><h4><?= $applicant->first_name;?> <?= $applicant->last_name;?></h4></td>
             <td><?= $applicant->salary;?></td>
             <td>

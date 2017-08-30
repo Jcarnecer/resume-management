@@ -105,11 +105,11 @@ class ApplicantController extends CI_Controller {
     $this->applicant->comment = $_POST['comment'];
     $this->applicant->phone_no = $_POST['phone_no'];
     $this->applicant->bdate = $_POST['bdate'];
-    $this->applicant->address = $_POST['address'];
-    $this->applicant->email_add = $_POST['email_add'];
-    $this->applicant->images = $image;
-    $this->applicant->file = $resume;
-    $this->applicant->interview_notes = $notes;
+    $this->applicant->home_address = $_POST['home_address'];
+    $this->applicant->email_address = $_POST['email_add'];
+  //  $this->applicant->images = $image;
+  //  $this->applicant->file = $resume;
+  //  $this->applicant->interview_notes = $notes;
     $this->applicant->application_status = 1;
     $this->applicant->category = 0;
 
@@ -150,18 +150,19 @@ class ApplicantController extends CI_Controller {
 
   public function edit()
   {
-    $to_email = $_POST['email_add'];
+  //  $to_email = $_POST['email_address'];
     $status = $_POST['status'];
+    $phone_no = $_POST['phone_no'];
 
     $this->load->model('applicant');
-    $this->applicant->email_add = $to_email;
-    $this->applicant->phone_no = $_POST['phone_no'];
-    $this->applicant->address = $_POST['address'];
+  //  $this->applicant->email_address = $to_email;
+    $this->applicant->phone_no = $phone_no;
+    $this->applicant->address = $_POST['home_address'];
     $this->applicant->id  = $_POST['id'];
     $this->applicant->application_status = $status;
     $this->applicant->edit();
 
-    $this->email->initialize(array(
+  /*  $this->email->initialize(array(
         'protocol' => 'mail',
         'smtp_user' => 'farrahdee24@gmail.com',
         'smtp_host' => 'localhost',
@@ -179,21 +180,22 @@ class ApplicantController extends CI_Controller {
     $this->email->from($from_email, 'Farrah Dee');
     $this->email->to($to_email);
     $this->email->subject('Astrid Technologies');
-
+*/
     $this->load->model('employee');
     $this->employee->last_name = $_POST['last_name'];
     $this->employee->first_name = $_POST['first_name'];
     $this->employee->middle_name = $_POST['middle_name'];
-    $this->employee->home_address = $_POST['address'];
+    $this->employee ->home_address = $_POST['home_address'];
+    $this->employee ->phone_number = $phone_no;
 
 
     if($status == 4):
-      $this->email->message('HAHAHA failed!!! Stupid ass nigg*!');
-      $this->email->send();
+    //  $this->email->message('HAHAHA failed!!! Stupid ass nigg*!');
+    //  $this->email->send();
     elseif($status == 5):
       $this->employee->insert();
-      $this->email->message('HAHAHA Yaaaay!!! Pasok ka na!');
-      $this->email->send();
+  //    $this->email->message('HAHAHA Yaaaay!!! Pasok ka na!');
+  //    $this->email->send();
     else:
       show_error($this->email->print_debugger());
 
