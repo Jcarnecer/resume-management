@@ -35,14 +35,29 @@ class Employee extends CI_Model {
      $query = $this->db->get('employees');
      return $query->num_rows();
   }
-  public function count_former(){
+  public function count_former_employees(){
     $this->db->where('status', 0);
+    $this->db->where('employment_type', 2);
     $query = $this->db->get('employees');
     return $query->num_rows();
   }
 
-  public function count_current(){
+  public function count_current_employees(){
     $this->db->where('status', 1);
+    $this->db->where('employment_type', 2);
+    $query = $this->db->get('employees');
+    return $query->num_rows();
+  }
+  public function count_former_intern(){
+    $this->db->where('status', 0);
+    $this->db->where('employment_type', 3);
+    $query = $this->db->get('employees');
+    return $query->num_rows();
+  }
+
+  public function count_current_intern(){
+    $this->db->where('status', 1);
+    $this->db->where('employment_type', 3);
     $query = $this->db->get('employees');
     return $query->num_rows();
   }

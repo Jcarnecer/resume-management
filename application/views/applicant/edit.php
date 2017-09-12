@@ -8,8 +8,13 @@
       ?>
 
      <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
-       <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
 
+       <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
+       <input type="hidden" name="first_name" value="<?= $applicant_data->first_name ?>">
+       <input type="hidden" name="last_name" value="<?= $applicant_data->last_name ?>">
+       <input type="hidden" name="middle_name" value="<?= $applicant_data->middle_name ?>">
+       <input type="hidden" name="home_address" value="<?= $applicant_data->address ?>">
+       <input type="hidden" name="email_address" value="<?= $applicant_data->email_add ?>">
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>

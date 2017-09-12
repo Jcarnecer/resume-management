@@ -18,8 +18,10 @@ class ApplicantController extends CI_Controller {
       $data['role'] = $this->role->view_role();
       $data['count'] = $this->applicant->count();
       $data['countemployee'] = $this->employee->count();
-      $data['countempformer'] = $this->employee->count_former();
-      $data['countempcurrent'] = $this->employee->count_current();
+      $data['countempformer'] = $this->employee->count_former_employees();
+      $data['countempcurrent'] = $this->employee->count_current_employees();
+      $data['countinternformer'] = $this->employee->count_former_intern();
+      $data['countinterncurrentemp'] = $this->employee->count_current_intern();
 
       $this->load->view('applicant/index', $data);
   }
@@ -29,7 +31,9 @@ class ApplicantController extends CI_Controller {
     $salary = $_GET["salary"] ?? null;
     $status = $_GET["status"] ?? null;
     $this->load->model('applicant');
+    $this->load->model('role');
     $data['title'] = "Astrid Technologies | Resume Management";
+    $data['role'] = $this->role->view_role();
 
     $query = [];
 
@@ -50,8 +54,6 @@ class ApplicantController extends CI_Controller {
      }
     $this->load->view('include/header',$data);
     $this->load->view('applicant/applicants',$data);
-
-
   }
 
 
