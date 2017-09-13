@@ -9,6 +9,7 @@
            <label  class="col-sm-3 control-label">Last Name:</label>
            <div class="col-sm-9">
                <input type="text" name="last_name" class="form-control" placeholder="Last Name"/>
+               <php echo form_error('last_name');?>
            </div>
          </div>
 
@@ -102,12 +103,13 @@
            <label  class="col-sm-3 control-label">Role:</label>
            <div class="col-sm-9">
              <select id='staff' class="form-control">
-                <option value="disabled selected">Select your option</option>
+               <option value="disabled selected">Select your option</option>
                <option value="employee">Employee</option>
                <option value="intern">Intern</option>
                </select>
 
                <div style='display:none;' id='emp_form'>
+
                  <div class="form-group"><br>
                    <label  class="col-sm-3 control-label">Date Hired:</label>
                    <div class="col-sm-9">
@@ -147,6 +149,7 @@
            </div>
          </div>
 
+
          <div class="form-group">
            <label class="col-sm-3 control-label">Comment:</label>
            <div class="col-sm-9">
@@ -178,3 +181,63 @@
       </div>
     </body>
   </html>
+
+
+  <script>
+  $(document).ready(function() {
+      $('#add-form').bootstrapValidator({
+      //    container: '#container',
+          fields: {
+              last_name: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The last name is required and cannot be empty'
+                      }
+                  }
+              },
+
+              first_name: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The first name is required and cannot be empty'
+                      }
+                  }
+              },
+
+              middle_name: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The Middle name is required and cannot be empty'
+                      },
+                  }
+              },
+
+              email_add: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The email address is required and cannot be empty'
+                      },
+                      emailAddress: {
+                          message: 'The email address is not valid'
+                      }
+                  }
+              },
+              comment: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The comment is required and cannot be empty'
+                      }
+                  }
+              },
+              phone_no: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The phone number is required and cannot be empty'
+                      }
+                  }
+              },
+          }
+      });
+  });
+
+  </script>
