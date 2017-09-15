@@ -5,7 +5,7 @@ class Applicant extends CI_Model {
   public $last_name;
   public $first_name;
   public $middle_name;
-  public $email_address;
+  public $email_add;
   public $degree;
   public $school;
   public $application_date;
@@ -13,7 +13,7 @@ class Applicant extends CI_Model {
   public $salary;
   public $position;
   public $comment;
-  public $home_address;
+  public $address;
   public $phone_no;
   public $bdate;
   public $file;
@@ -30,14 +30,9 @@ class Applicant extends CI_Model {
     $this->db->insert('employees', $this->applicant);
   }*/
 
-
-
-
   public function insert(){
     $this->db->insert('applicants', $this->applicant);
   }
-
-
 
   public function all()
   {
@@ -95,8 +90,8 @@ class Applicant extends CI_Model {
   {
     $this->db->set('comment', $this->applicant->comment);
     $this->db->set('phone_no', $this->applicant->phone_no);
-    $this->db->set('home_address', $this->applicant->home_address);
-    $this->db->set('email_address', $this->applicant->email_address);
+    $this->db->set('address', $this->applicant->address);
+    $this->db->set('email_add', $this->applicant->email_add);
     $this->db->set('application_status', $this->applicant->application_status);
     $this->db->where('id' ,$this->id);
     $query = $this->db->update('applicants');

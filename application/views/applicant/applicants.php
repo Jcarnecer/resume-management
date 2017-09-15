@@ -1,36 +1,21 @@
-<div class="panel panel-default">
   <div class="container-fluid">
-
-    <div class="col-sm-2">
-      <ul class="nav nav-pills nav-stacked">
-        <div class="list-group">
-          <li><a href="#">Expected Salary</a></li>
-          <div class="list-group">
-            <li class="list-group-item"><a href="<?= base_url('applicant?salary=asc') ?>">Ascending</a></li>
-            <li class="list-group-item"><a href="<?= base_url('applicant?salary=desc') ?>">Descending</a></li>
-          </div>
-        </div>
-        <li><a href="#">Expected Start</a></li>
-        <li><a href="#">Application date</a></li>
-      </ul>
-    </div>
 
     <div class="col-sm-10">
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Applicant</th>
+            <th></th>
             <th>Name</th>
-            <th>Expected Salary</th>
+            <th>Date of Application</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($applicants as $applicant) : ?>
           <tr>
-            <td><img id="thumbnail" src="assets/uploads/><?= $applicant->images ?>"></td>
+            <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td>
             <td><h4><?= $applicant->first_name;?> <?= $applicant->last_name;?></h4></td>
-            <td><?= $applicant->salary;?></td>
+            <td><?= $applicant->application_date;?></td>
             <td>
               <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
               <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" type="button" class="btn btn-warning" data-id="<?= $applicant->id;?>" >Edit</a>
@@ -42,7 +27,7 @@
     </div>
 
   </div>
-</div>
+
 
 <!-- View Modal -->
 <div id="viewmodal" class="modal fade" role="dialog">

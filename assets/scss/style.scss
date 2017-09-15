@@ -1,8 +1,11 @@
 $background: #f1f1f2;
 $black: #000000;
+
 body{
   background-color: $background;
+  color: $background;
 }
+
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
   background-color: #24cbf2;
   border-color: transparent;
@@ -90,4 +93,9 @@ div.tab-content:not(.active){
   color: #24cbf2;
   font-weight: 700;
   font-size: 200%;
+}
+
+#thumbnail{
+  width: 100px;
+  height: 100px;
 }

@@ -136,19 +136,21 @@
     </form>
     </div>
 
-    <script>
-    $(document).ready(function(){
-        $('#staff').on('change', function() {
-          if ( this.value == 'employee')
-          {
-            $("#emp_form").show();
-          }
-          else
-          {
-            $("#emp_form").hide();
-          }
-        });
-    });
-  </script>
+
 </body>
 </html>
+
+<script>
+$(document).ready(function(){
+    $('#staff').on('change', function() {
+      if ( this.value == 'employee')
+      {
+        $("#emp_form").show();
+      }
+      else
+      {
+        $("#emp_form").hide();
+      }
+    });
+});
+</script>
