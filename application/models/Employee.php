@@ -6,8 +6,8 @@ class Employee extends CI_Model {
   public $first_name;
   public $middle_name;
   public $email_address;
-  public $address;
-  public $phone_no;
+  public $home_address;
+  public $phone_number;
   public $birth_date;
   public $position;
   public $date_hired;
@@ -17,9 +17,8 @@ class Employee extends CI_Model {
   public $pagibig;
   public $status;
 
-
   public function insert(){
-    $this->db->insert('applicants', $this->employee);
+    $this->db->insert('employees', $this->employee);
   }
 
   public function view(){
@@ -36,14 +35,29 @@ class Employee extends CI_Model {
      $query = $this->db->get('employees');
      return $query->num_rows();
   }
-  public function count_former(){
+  public function count_former_employees(){
     $this->db->where('status', 0);
+    $this->db->where('employment_type', 2);
     $query = $this->db->get('employees');
     return $query->num_rows();
   }
 
-  public function count_current(){
+  public function count_current_employees(){
     $this->db->where('status', 1);
+    $this->db->where('employment_type', 2);
+    $query = $this->db->get('employees');
+    return $query->num_rows();
+  }
+  public function count_former_intern(){
+    $this->db->where('status', 0);
+    $this->db->where('employment_type', 3);
+    $query = $this->db->get('employees');
+    return $query->num_rows();
+  }
+
+  public function count_current_intern(){
+    $this->db->where('status', 1);
+    $this->db->where('employment_type', 3);
     $query = $this->db->get('employees');
     return $query->num_rows();
   }

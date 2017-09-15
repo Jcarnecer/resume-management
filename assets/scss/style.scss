@@ -1,8 +1,11 @@
 $background: #f1f1f2;
 $black: #000000;
+
 body{
   background-color: $background;
+  color: $background;
 }
+
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
   background-color: #24cbf2;
   border-color: transparent;
@@ -18,6 +21,9 @@ a{
 }
 a:active {
     background-color: #24cbf2;
+}
+.tab{
+  padding-top: 20px;
 }
 div.tab-menu div.list-group>a{
   background-color: #24cbf2;
@@ -59,10 +65,6 @@ div.tab-content:not(.active){
   border-color: #d9d9d9;
 }
 
-#employee-div{
-  display: none;
-}
-
 .grid-divider {
       position: relative;
       padding: 0;
@@ -91,4 +93,9 @@ div.tab-content:not(.active){
   color: #24cbf2;
   font-weight: 700;
   font-size: 200%;
+}
+
+#thumbnail{
+  width: 100px;
+  height: 100px;
 }

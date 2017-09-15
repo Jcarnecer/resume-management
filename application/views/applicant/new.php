@@ -1,9 +1,42 @@
 
     <center>
-      <h1>Add New Applicant</h1>
+      <h3>Add New Record</h3>
     </center>
       <div class="container">
        <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/create_applicant'); ?>">
+
+         <div class="form-group">
+           <label  class="col-sm-3 control-label">Role:</label>
+             <div class="col-sm-9">
+               <select id='staff' class="form-control" name="employment_type">
+                 <option value="disabled selected">Select your option</option>
+                 <option value="1">Applicant</option>
+                 <option value="2">Employee</option>
+                 <option value="3">Intern</option>
+               </select>
+             </div>
+          </div>
+
+          <div class="form-group">
+            <label  class="col-sm-3 control-label">Status:</label>
+            <div class="col-sm-9">
+                <select name="status" class="form-control">
+                  <option value="1">Current</option>
+                  <option value="0">Former</option>
+                </select>
+            </div>
+          </div>
+
+         <div class="form-group">
+           <label  class="col-sm-3 control-label">Position:</label>
+           <div class="col-sm-9">
+               <select name="position" class="form-control">
+                 <?php foreach ($roles as $role): ?>
+                  <option value="<?= $role->id; ?>"><?= $role->name; ?></option>
+                <?php endforeach; ?>
+               </select>
+           </div>
+         </div>
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Last Name:</label>
@@ -38,7 +71,7 @@
          <div class="form-group">
            <label  class="col-sm-3 control-label">Phone Number:</label>
            <div class="col-sm-9">
-               <input type="number" name="phone_no" class="form-control" placeholder="Phone Number"/>
+               <input type="text" name="phone_no" class="form-control" placeholder="Phone Number"/>
            </div>
          </div>
 
@@ -74,17 +107,6 @@
 
 
          <div class="form-group">
-           <label  class="col-sm-3 control-label">Position:</label>
-           <div class="col-sm-9">
-               <select name="position" class="form-control">
-                 <?php foreach ($roles as $role): ?>
-                  <option value="<?= $role->id; ?>"><?= $role->name; ?></option>
-                <?php endforeach; ?>
-               </select>
-           </div>
-         </div>
-
-         <div class="form-group">
            <label  class="col-sm-3 control-label">Application Date:</label>
            <div class="col-sm-9">
                <input type="date" name="application_date" class="form-control"/>
@@ -96,6 +118,44 @@
            <div class="col-sm-9">
                <input type="text" name="salary" class="form-control" placeholder="Expected Salary"/>
            </div>
+         </div>
+
+         <div style='display:none;' id='emp_form'>
+           <div class="form-group"><br>
+             <label  class="col-sm-3 control-label">Date Hired:</label>
+             <div class="col-sm-9">
+                 <input type="date" name="date_hired" class="form-control" placeholder="Date Hired"/>
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label  class="col-sm-3 control-label">SSS Number:</label>
+             <div class="col-sm-9">
+                 <input type="text" name="sss" class="form-control" placeholder="SSS Number"/>
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label  class="col-sm-3 control-label">TIN:</label>
+             <div class="col-sm-9">
+                 <input type="text" name="tin" class="form-control" placeholder="TIN"/>
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label  class="col-sm-3 control-label">PhilHealth:</label>
+             <div class="col-sm-9">
+                 <input type="text" name="philhealth" class="form-control" placeholder="PHILHEALTH"/>
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label  class="col-sm-3 control-label">Pagibig:</label>
+             <div class="col-sm-9">
+                 <input type="text" name="pagibig" class="form-control" placeholder="PAGIBIG"/>
+             </div>
+           </div>
+
          </div>
 
          <div class="form-group">
