@@ -9,6 +9,9 @@ class ApplicantController extends CI_Controller {
     }
   } */
 
+  // Function to Delete selected record from database.
+
+
   public function index(){
 
       $this->load->model('role');
@@ -205,6 +208,7 @@ class ApplicantController extends CI_Controller {
     $data['applicant_data']= $this->applicant->get($id);
     $this->load->view('include/header',$title);
     $this->load->view('applicant/edit', $data);
+
   }
 
   public function edit()
@@ -219,6 +223,7 @@ class ApplicantController extends CI_Controller {
     $this->applicant->id  = $_POST['id'];
     $this->applicant->application_status = $status;
     $this->applicant->edit();
+    redirect('');
 
     $this->email->initialize(array(
         'protocol' => 'mail',
@@ -249,9 +254,12 @@ class ApplicantController extends CI_Controller {
       $this->email->message('HAHAHA failed!!! Stupid ass nigg*!');
       $this->email->send();
     elseif($status == 5):
-    //  $this->employee->insert();
       $this->email->message('HAHAHA Yaaaay!!! Pasok ka na!');
       $this->email->send();
+      $this->employee->insert();
+            $this->load->model('employee','',TRUE);
+            $this->employee->insert_into();
+
     else:
       show_error($this->email->print_debugger());
 
@@ -260,6 +268,8 @@ class ApplicantController extends CI_Controller {
     die;
     // $this->session->set_flashdata("email_sent","Error in sending Email.");
     // $this->load->view('applicant/edit');
+
+
   }
 
   public function insert_role(){
@@ -268,6 +278,14 @@ class ApplicantController extends CI_Controller {
    $this->role->insert_role();
 
    redirect('');
+ }
+
+ public function delete_role() {
+   $this->load->model('role');
+   $id = (isset($_GET['id']) ? $_GET['id'] : '');
+   $this->role->delete_role($id);
+   redirect('');
+
  }
 
   public function view_add_employee(){

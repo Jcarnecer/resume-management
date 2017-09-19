@@ -29,6 +29,10 @@
       <div class="tab-content active">
         <?php foreach ($role as $role) :?>
           <div class="panel">
+            <form action="<?=base_url('ApplicantController/delete_role')?>">
+            <input type="hidden" name="id" value="<?= $role->id?>">
+            <a><input type="submit" Value="Delete" class="btn btn-danger"></a>
+          </form>
             <div class="panel-heading"><?php echo $role->name;?><hr></div>
             <div class="panel-body">
               <div class="row grid-divider">
