@@ -5,7 +5,7 @@
   </div>
 
   <div class="row">
-    <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New FAM</a>
+    <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
     <div class="input-group pull-right">
       <form method="POST" action="<?= base_url('applicant/insert_role');?>" >
         <input type="text" name="name" class="form-control">
