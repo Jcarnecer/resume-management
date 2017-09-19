@@ -3,7 +3,7 @@
       <h3>Add New Record</h3>
     </center>
       <div class="container">
-       <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/create_applicant'); ?>">
+       <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/addRecord'); ?>">
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Role:</label>
@@ -64,21 +64,21 @@
          <div class="form-group">
            <label  class="col-sm-3 control-label">Email Address:</label>
            <div class="col-sm-9">
-               <input type="email" name="email_add" class="form-control" placeholder="Email Address"/>
+               <input type="email" name="email_address" class="form-control" placeholder="Email Address"/>
            </div>
          </div>
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Phone Number:</label>
            <div class="col-sm-9">
-               <input type="text" name="phone_no" class="form-control" placeholder="Phone Number"/>
+               <input type="text" name="phone_number" class="form-control" placeholder="Phone Number"/>
            </div>
          </div>
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Home Address:</label>
            <div class="col-sm-9">
-               <input type="text" name="address" class="form-control" placeholder="Home Address"/>
+               <input type="text" name="home_address" class="form-control" placeholder="Home Address"/>
            </div>
          </div>
 
@@ -86,7 +86,7 @@
         <div class="form-group">
           <label  class="col-sm-3 control-label">Birth Date:</label>
           <div class="col-sm-9">
-              <input type="date" name="bdate" class="form-control"/>
+              <input type="date" name="birth_date" class="form-control"/>
           </div>
         </div>
 
@@ -116,7 +116,7 @@
          <div class="form-group">
            <label  class="col-sm-3 control-label">Expected Salary:</label>
            <div class="col-sm-9">
-               <input type="text" name="salary" class="form-control" placeholder="Expected Salary"/>
+               <input type="text" name="expected_salary" class="form-control" placeholder="Expected Salary"/>
            </div>
          </div>
 

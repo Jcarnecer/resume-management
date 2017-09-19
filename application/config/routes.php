@@ -60,12 +60,15 @@ $route['applicant/edit']['POST'] = 'Applicant/edit';
 
 $route['applicant/(:num)']['GET'] = 'Applicant/view/$1';
 
-$route['applicant/insert_role']['POST'] = 'Applicant/insert_role';
+$route['insert_role']['POST'] = 'Applicant/insert_role';
 $route['applicant/add'] = 'Applicant/add_applicant';
 
 $route['applicant/add_employee']['POST'] = 'Applicant/add_employee';
 $route['add_result']['POST'] = 'Applicant/add_result';
 $route['view_employee']['GET'] = 'Applicant/view_employee';
+
+//Delete Role
+$route['delete_role'] = 'Applicant/delete_role';
 
 
 $route['default_controller'] = "Applicant";

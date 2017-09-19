@@ -3,16 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Applicant extends CI_Controller {
 
- /*  private function check_session() {
-    if(!$this->session->userdata('hr_logged_in')){
-      redirect('');
-    }
-  } */
-
-  // Function to Delete selected record from database.
-
-
   public function index(){
+
     $this->load->model('Resume_model');
     $this->load->model('employee');
     $data['title'] = "Astrid Technologies";
@@ -22,25 +14,26 @@ class Applicant extends CI_Controller {
     $data['count'] = $this->Resume_model->count_applicant();
     $data['countemployee'] = $this->employee->count();
     $this->load->view('applicant/index', $data);
+
   }
+
   public function applicants() {
-    //  $this->check_session();
     $this->load->model('Resume_model');
-    $role = $_GET['role'];
-    $status = $_GET['status'];
+  //  $role = $_GET['role'];
+  //  $status = $_GET['status'];
     $data['title'] = "Astrid Technologies | Resume Management";
-    $data['role'] = $this->Resume_model->fetch('role','id='.$role);
+  //  $data['role'] = $this->Resume_model->fetch('role','id='.$role);
 
     $query = [];
 
-    if ($role != null) {
+  /*  if ($role != null) {
       $query["position"] = $role;
     }
 
     if ($status != null) {
       $query["application_status"] = $status;
-    }
-     else if (count($query) > 0) {
+    } */
+    if (count($query) > 0) {
        $data['applicants'] = $this->db->get_where('applicants', $query)->result();
      } else {
       $data['applicants'] = $this->Resume_model->fetch('applicants','');
@@ -52,13 +45,12 @@ class Applicant extends CI_Controller {
 
   public function add_applicant() {
     $data['title'] = "Astrid Technologies | New Applicant";
-    $this->load->model('role');
-    $data['roles'] = $this->role->view_role();
+    $this->load->model('Resume_model');
+    $data['roles'] = $this->Resume_model->fetch('role','');
 
     $this->load->view('include/header', $data);
 		$this->load->view('applicant/new');
 	}
-
 
   public function addRecord(){
     $this->load->helper('encryption');
@@ -171,8 +163,8 @@ class Applicant extends CI_Controller {
         redirect('');
   }
   public function view($id){
-    $this->load->model('applicant');
-    $applicant = $this->applicant->get($id);
+    $this->load->model('Resume_model');
+    $applicant = $this->Resume_model->get($id);
 
     header('Content-Type: application/json');
     header('Access-Control-Allow-Origin: *');
@@ -192,9 +184,9 @@ class Applicant extends CI_Controller {
     $this->load->helper('form');
     $id = $this->uri->segment(3);
     // print_r($id);die;
-    $this->load->model('applicant');
+    $this->load->model('Resume_model');
     $title['title'] = "Astrid Technologies | New Applicant";
-    $data['applicant_data']= $this->applicant->get($id);
+    $data['applicant_data']= $this->Resume_model->get($id);
     $this->load->view('include/header',$title);
     $this->load->view('applicant/edit', $data);
 
@@ -205,13 +197,13 @@ class Applicant extends CI_Controller {
     $to_email = $_POST['email_add'];
     $status = $_POST['status'];
 
-    $this->load->model('applicant');
-    $this->applicant->email_add = $to_email;
-    $this->applicant->phone_no = $_POST['phone_no'];
-    $this->applicant->address = $_POST['address'];
-    $this->applicant->id  = $_POST['id'];
-    $this->applicant->application_status = $status;
-    $this->applicant->edit();
+    $this->load->model('Resume_model');
+    $this->Resume_model->email_address = $to_email;
+    $this->Resume_model->phone_number = $_POST['phone_no'];
+    $this->Resume_model->home_address = $_POST['address'];
+    $this->Resume_model->id  = $_POST['id'];
+    $this->Resume_model->application_status = $status;
+    $this->Resume_model->edit();
     redirect('');
 
     $this->email->initialize(array(
@@ -233,17 +225,11 @@ class Applicant extends CI_Controller {
     $this->email->to($to_email);
     $this->email->subject('Astrid Technologies');
 
-    $this->load->model('employee');
-    $this->employee->last_name = $_POST['last_name'];
-    $this->employee->first_name = $_POST['first_name'];
-    $this->employee->middle_name = $_POST['middle_name'];
-    $this->employee->home_address = $_POST['address'];
-
     if($status == 4):
-      $this->email->message('HAHAHA failed!!! Stupid ass nigg*!');
+      $this->email->message('Failed!');
       $this->email->send();
     elseif($status == 5):
-      $this->email->message('HAHAHA Yaaaay!!! Pasok ka na!');
+      $this->email->message('Passed!');
       $this->email->send();
       $this->employee->insert();
             $this->load->model('employee','',TRUE);
@@ -262,19 +248,24 @@ class Applicant extends CI_Controller {
   }
 
   public function insert_role(){
-   $this->load->model('role');
-   $this->role->name = $_POST['name'];
-   $this->role->insert_role();
+
+   $this->load->helper('encryption');
+   $insert=[
+     'name' => clean_data(ucwords($this->input->post('role'))),
+     'type' => $this->input->post('type'),
+   ];
+
+   $this->load->model('Resume_model');
+   $this->Resume_model->insert('role',$insert);
 
    redirect('');
  }
 
  public function delete_role() {
-   $this->load->model('role');
-   $id = (isset($_GET['id']) ? $_GET['id'] : '');
-   $this->role->delete_role($id);
-   redirect('');
-
+  $this->load->model('Resume_model');
+  $id = (isset($_GET['id']) ? $_GET['id'] : '');
+  $this->Resume_model->delete('role',array('id' => $id));
+  redirect('');
  }
 
   public function view_add_employee(){
@@ -282,28 +273,6 @@ class Applicant extends CI_Controller {
     $this->load->view('include/header',$title);
     $this->load->view('applicant/addEmployee');
   }
-
-/*  public function add_employee(){
-  $this->load->model('employee');
-
-   $this->employee->last_name = $_POST['last_name'];
-   $this->employee->first_name = $_POST['first_name'];
-   $this->employee->middle_name = $_POST['middle_name'];
-   $this->employee->email_address = $_POST['email_address'];
-   $this->employee->phone_number = $_POST['phone_number'];
-   $this->employee->home_address = $_POST['home_address'];
-   $this->employee->birth_date = $_POST['birth_date'];
-   $this->employee->position = $_POST['position'];
-   $this->employee->date_hired = date("Y-m-d", strtotime($_POST['date_hired']));
-   $this->employee->sss = $_POST['sss'];
-   $this->employee->tin = $_POST['tin'];
-   $this->employee->philhealth = $_POST['philhealth'];
-   $this->employee->pagibig = $_POST['pagibig'];
-   $this->employee->status = $_POST['status'];
-   $this->employee->category = 1;
-   $this->employee->insert();
-   redirect('/home');
- } */
 
  public function view_employee(){
 
@@ -317,7 +286,6 @@ class Applicant extends CI_Controller {
    else{
      $data['employee'] = $this->employee->view();
    }
-
    $title['title'] = "Astrid Technologies | New Applicant";
    $this->load->view('include/header',$title);
    $this->load->view('applicant/ViewEmployee', $data);
@@ -341,13 +309,13 @@ class Applicant extends CI_Controller {
     else:
         echo "Nope!";
     endif;
-    $this->load->model('applicant');
-    $this->applicant->exam_result = $_POST['exam_result'];
-    $this->applicant->interviewer = $_POST['interviewer'];
-    $this->applicant->interview_result = $_POST['interview_result'];
-    $this->applicant->id  = $_POST['id'];
-    $this->applicant->interview_notes = $notes;
-    $this->applicant->addresult();
+    $this->load->model('Resume_model');
+    $this->Resume_model->exam_result = $_POST['exam_result'];
+    $this->Resume_model->interviewer = $_POST['interviewer'];
+    $this->Resume_model->interview_result = $_POST['interview_result'];
+    $this->Resume_model->id  = $_POST['id'];
+    $this->Resume_model->interview_notes = $notes;
+    $this->Resume_model->addresult();
     redirect('');
   }
 

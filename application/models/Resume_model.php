@@ -11,12 +11,7 @@ class Resume_model extends CI_Model {
 		}
 	}
 
-  public function all()
-  {
-    $query = $this->db->get('applicants');
-    return $query->result();
-  }
-
+  
   public function fetch($table,$where=""){
 		if (!empty($where)) {
 			$this->db->where($where);
@@ -29,6 +24,23 @@ class Resume_model extends CI_Model {
     }
 
   }
+
+  public function delete($table,$where=""){
+    if($where!=""){
+      $this->db->where($where);
+    }
+    $result = $this->db->delete($table);
+    if ($result) {
+      return TRUE;
+    }else{
+      return FALSE;
+    }
+  }
+
+  public function delete_role($id){
+   $this->db->delete('role', array('id' => $id));
+ }
+
 
 
   public function get($id)
