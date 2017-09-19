@@ -20,6 +20,7 @@
       <div class="list-group">
         <a href="#" class="list-group-item active" id="applicant">Applicants <br><?= $count;?></a>
         <a href="#" class="list-group-item" id="employee">Employees <br><?= $countemployee;?></a>
+        <a href="#" class="list-group-item" id="employee">Intern <br><?= $countemployee;?></a>
       </div>
     </div>
   </div>
@@ -27,7 +28,7 @@
   <div class="row">
     <div class="col-md-10 tab">
       <div class="tab-content active">
-        <?php foreach ($role as $role) :?>
+        <?php foreach ($role_applicant as $role) :?>
           <div class="panel">
             <form action="<?=base_url('ApplicantController/delete_role')?>">
             <input type="hidden" name="id" value="<?= $role->id?>">
@@ -39,28 +40,28 @@
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=1&role=' . $role->id); ?>">
-                      <div><?= $this->applicant->count($role->id,1); ?><br>Applicants</div>
+                      <div><?= $this->Resume_model->count($role->id,1); ?><br>Applicants</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=2&role=' . $role->id); ?>">
-                      <div><?= $this->applicant->count($role->id,2); ?><br>For Interview</div>
+                      <div><?= $this->Resume_model->count($role->id,2); ?><br>For Interview</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=3&role=' . $role->id); ?>">
-                      <div><?= $this->applicant->count($role->id,3); ?><br>Shortlist</div>
+                      <div><?= $this->Resume_model->count($role->id,3); ?><br>Shortlist</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=4&role=' . $role->id); ?>">
-                      <div><?= $this->applicant->count($role->id,4); ?><br>Rejected</div>
+                      <div><?= $this->Resume_model->count($role->id,4); ?><br>Rejected</div>
                     </a>
                   </div>
                 </div>

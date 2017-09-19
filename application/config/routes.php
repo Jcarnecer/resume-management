@@ -50,25 +50,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['applicant']['GET'] = 'ApplicantController';
-$route['applicants'] = 'ApplicantController/applicant';
-$route['applicant/create_applicant']['POST']= 'ApplicantController/create_applicant';
-$route['applicant/new']['GET'] = 'ApplicantController/new';
-$route['applicant/edit_view/(:num)']['GET'] = 'ApplicantController/edit_view/$1';
-$route['applicant/edit']['POST'] = 'ApplicantController/edit';
-$route['applicant/(:num)']['GET'] = 'ApplicantController/view/$1';
-$route['home']   ="ApplicantController/home";
-$route['applicant/insert_role']['POST'] = 'ApplicantController/insert_role';
-$route['applicant/add'] = 'applicantcontroller/add_applicant';
-$route['addEmployee'] ='ApplicantController/view_add_employee';
-$route['applicant/add_employee']['POST'] = 'ApplicantController/add_employee';
-$route['add_result']['POST'] = 'ApplicantController/add_result';
-$route['view_employee']['GET'] = 'ApplicantController/view_employee';
+$route['applicant']['GET'] = 'Applicant';
+$route['applicants'] = 'Applicant/applicants';
 
-//Login
-/*$route['auth/login']  = "login/auth";
-$route['auth/logout'] = "login/logout"; */
+$route['applicant/new']['GET'] = 'Applicant/new';
 
-$route['default_controller'] = "ApplicantController";
+$route['applicant/edit_view/(:num)']['GET'] = 'Applicant/edit_view/$1';
+$route['applicant/edit']['POST'] = 'Applicant/edit';
+
+$route['applicant/(:num)']['GET'] = 'Applicant/view/$1';
+
+$route['applicant/insert_role']['POST'] = 'Applicant/insert_role';
+$route['applicant/add'] = 'Applicant/add_applicant';
+
+$route['applicant/add_employee']['POST'] = 'Applicant/add_employee';
+$route['add_result']['POST'] = 'Applicant/add_result';
+$route['view_employee']['GET'] = 'Applicant/view_employee';
+
+
+$route['default_controller'] = "Applicant";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
