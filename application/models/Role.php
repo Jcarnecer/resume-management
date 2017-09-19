@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 class Role extends CI_Model {
 
@@ -15,4 +15,7 @@ class Role extends CI_Model {
 
   }
 
+  public function delete_role($id){
+    $this->db->delete('role', array('id' => $id));
+  }
 }
