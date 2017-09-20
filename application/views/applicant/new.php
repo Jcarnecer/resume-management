@@ -21,6 +21,7 @@
             <label  class="col-sm-3 control-label">Status:</label>
             <div class="col-sm-9">
                 <select name="status" class="form-control">
+                  <option value="disabled selected">Select Status</option>
                   <option value="1">Current</option>
                   <option value="0">Former</option>
                 </select>
