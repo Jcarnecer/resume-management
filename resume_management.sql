@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2017 at 06:32 PM
+-- Generation Time: Sep 19, 2017 at 10:48 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -37,32 +37,32 @@ CREATE TABLE `applicants` (
   `school` varchar(250) DEFAULT NULL,
   `application_status` tinyint(4) DEFAULT NULL,
   `application_date` date DEFAULT NULL,
-  `salary` varchar(50) DEFAULT NULL,
+  `expected_salary` varchar(50) DEFAULT NULL,
   `position` varchar(50) DEFAULT NULL,
   `comment` text,
-  `address` varchar(200) DEFAULT NULL,
-  `phone_no` varchar(50) DEFAULT NULL,
-  `bdate` date DEFAULT NULL,
+  `home_address` varchar(200) DEFAULT NULL,
+  `phone_number` varchar(50) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
   `date_hired` date DEFAULT NULL,
   `start_date` date DEFAULT NULL,
-  `email_add` varchar(50) DEFAULT NULL,
+  `email_address` varchar(50) DEFAULT NULL,
   `file` varchar(255) DEFAULT NULL,
   `images` varchar(255) DEFAULT NULL,
   `available_date` date DEFAULT NULL,
   `interview_result` tinyint(4) DEFAULT NULL,
   `exam_result` tinyint(4) DEFAULT NULL,
   `interviewer` varchar(200) DEFAULT NULL,
-  `category` tinyint(4) DEFAULT NULL,
-  `interview_notes` varchar(255) DEFAULT NULL
+  `interview_notes` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `applicants`
 --
 
-INSERT INTO `applicants` (`id`, `first_name`, `last_name`, `middle_name`, `degree`, `school`, `application_status`, `application_date`, `salary`, `position`, `comment`, `address`, `phone_no`, `bdate`, `date_hired`, `start_date`, `email_add`, `file`, `images`, `available_date`, `interview_result`, `exam_result`, `interviewer`, `category`, `interview_notes`) VALUES
-(65, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', 'University of Santo Tomas', 4, '1996-06-19', '1', '3', ' Beyonce ', '700 J.P Rizal St Makati City', '01211', '1996-09-24', NULL, NULL, 'farrahdee24@gmail.com', 'Basic_Curriculum_Vitae_example16.pdf', 'beyonce-2016-press-Parkwood-Entertainment-Lemonade-billboard-1548-650-439.jpg', NULL, NULL, NULL, 'Beyonce', 1, 'beyonce-2016-press-Parkwood-Entertainment-Lemonade-billboard-1548-650-440.jpg'),
-(66, 'Armani', 'Dee', 'Delos Santos', 'BS Information Systems', 'University of Santo Tomas', 1, '2017-06-19', '200', '1', 'dog', '700 J.P Rizal St Makati City', '09169497936', '1996-09-24', NULL, NULL, 'farrahdee24@gmail.com', 'Basic_Curriculum_Vitae_example18.pdf', 'beyonce-2016-press-Parkwood-Entertainment-Lemonade-billboard-1548-650-442.jpg', NULL, 1, 0, 'Beyonce', 1, 'beyonce-2016-press-Parkwood-Entertainment-Lemonade-billboard-1548-650-456.jpg');
+INSERT INTO `applicants` (`id`, `first_name`, `last_name`, `middle_name`, `degree`, `school`, `application_status`, `application_date`, `expected_salary`, `position`, `comment`, `home_address`, `phone_number`, `birth_date`, `date_hired`, `start_date`, `email_address`, `file`, `images`, `available_date`, `interview_result`, `exam_result`, `interviewer`, `interview_notes`, `status`) VALUES
+(73, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', 'University Of Santo Tomas', 3, '2017-06-19', '200', '13', 'Hello!', '700 J.P Rizal St Makati City', '63985', '1996-09-24', NULL, NULL, 'Farrahdee24@gmail.com', '20117372_1578945632155889_1325661114_n4.jpg', '20117372_1578945632155889_1325661114_n5.jpg', NULL, NULL, NULL, NULL, NULL, 0),
+(74, 'Farrah', 'Dionisio', 'Delos Santos', '', '', 1, '0000-00-00', '', '19', '', '700 J.P Rizal St Makati City', '7291660', '0000-00-00', NULL, NULL, 'Farrahdee24@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -85,16 +85,19 @@ CREATE TABLE `employees` (
   `tin` varchar(100) DEFAULT NULL,
   `philhealth` varchar(100) DEFAULT NULL,
   `pagibig` varchar(100) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL
+  `status` tinyint(4) DEFAULT NULL,
+  `employment_type` tinyint(4) NOT NULL,
+  `degree` varchar(100) DEFAULT NULL,
+  `school` varchar(100) DEFAULT NULL,
+  `comment` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `last_name`, `first_name`, `middle_name`, `home_address`, `email_address`, `phone_number`, `birth_date`, `position`, `date_hired`, `sss`, `tin`, `philhealth`, `pagibig`, `status`) VALUES
-(2, 'Dionisio', 'Farrah', 'Delos Santos', '700 J.P Rizal St Makati City', 'farrahdee24@gmail.com', '123456', '1996-06-24', 'intern', '2017-06-19', '12346789', '0926354', '6516561', '151521', 1),
-(3, 'Dionisio', 'Farrah', 'Delos Santos', '700 J.P Rizal St Makati City', 'farrahdee24@gmail.com', '123456', '1996-09-24', 'intern', '2017-06-19', '12346789', '0926354', '6516561', '151521', 1);
+INSERT INTO `employees` (`id`, `last_name`, `first_name`, `middle_name`, `home_address`, `email_address`, `phone_number`, `birth_date`, `position`, `date_hired`, `sss`, `tin`, `philhealth`, `pagibig`, `status`, `employment_type`, `degree`, `school`, `comment`) VALUES
+(15, 'Dionisio', 'Farrah', 'Delos Santos', '700 J.P Rizal St Makati City', 'Farrahdee24@gmail.com', '7291660', '2017-09-24', '20', '2017-06-19', '12346789', '0926354', '6516561', '151521', 1, 2, 'BS Information Systems', 'University Of Santo Tomas', '');
 
 -- --------------------------------------------------------
 
@@ -104,19 +107,18 @@ INSERT INTO `employees` (`id`, `last_name`, `first_name`, `middle_name`, `home_a
 
 CREATE TABLE `role` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) DEFAULT NULL
+  `name` varchar(100) DEFAULT NULL,
+  `type` tinyint(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'Java Developer'),
-(2, 'Web Developer'),
-(3, 'Intern'),
-(4, 'Front-End Developer'),
-(5, 'HR');
+INSERT INTO `role` (`id`, `name`, `type`) VALUES
+(18, 'President', 2),
+(19, 'Java Developer', 1),
+(20, 'PHP Developer', 1);
 
 --
 -- Indexes for dumped tables
@@ -148,17 +150,17 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
