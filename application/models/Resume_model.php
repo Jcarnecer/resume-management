@@ -11,6 +11,21 @@ class Resume_model extends CI_Model {
 		}
 	}
 
+
+  public function count($table,$data){
+
+    if(empty($data)){
+       $result=$this->db->get($table); 
+     
+    }
+
+    else{
+      $result=$this->db->get_where($table,$data);
+    }
+       return $result->num_rows();  
+    
+  }
+
   
   public function fetch($table,$where=""){
 		if (!empty($where)) {
@@ -95,6 +110,10 @@ class Resume_model extends CI_Model {
     }
       return $query->num_rows();
   }
+
+
+
+
 
   public function addresult(){
     $this->db->set('exam_result', $this->Resume_model->exam_result);

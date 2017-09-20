@@ -24,4 +24,9 @@ class Applicant extends CI_Controller {
      $this->load->view('include/header',$title);
      $this->load->view('applicant/ViewEmployee', $data);
     }
+
+
+     
+
+
 }

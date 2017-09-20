@@ -22,10 +22,10 @@
 
   <div class="row">
     <div class="col-md-6 tab-menu">
-      <div class="list-group">
-        <a href="#" class="list-group-item active" id="applicant">Applicants <br><?= $count;?></a>
-        <a href="#" class="list-group-item" id="employee">Employees <br><?= $countemployee;?></a>
-        <a href="#" class="list-group-item" id="employee">Intern <br><?= $countemployee;?></a>
+      <div class="list-group"> 
+        <a href="#" class="list-group-item active" id="applicant">Applicants <br><?= $this->Resume_model->count('applicants','');?></a>
+        <a href="#" class="list-group-item" id="employee">Employees <br><?= $this->Resume_model->count('employees','2');?></a>
+        <a href="#" class="list-group-item" id="employee">Intern <br><?=$this->Resume_model->count('employees','3')?></a>
       </div>
     </div>
   </div>
