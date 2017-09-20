@@ -65,7 +65,9 @@ $route['applicant/add'] = 'Applicant/add_applicant';
 
 $route['applicant/add_employee']['POST'] = 'Applicant/add_employee';
 $route['add_result']['POST'] = 'Applicant/add_result';
-$route['view_employee']['GET'] = 'Applicant/view_employee';
+
+//Employee
+$route['view_employee']['GET'] = 'Employee/index';
 
 //Delete Role
 $route['delete_role'] = 'Applicant/delete_role';
