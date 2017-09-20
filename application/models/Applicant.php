@@ -88,6 +88,9 @@ class Applicant extends CI_Model {
 
   public function edit()
   {
+    $this->db->set('first_name', $this->applicant->first_name);
+    $this->db->set('middle_name', $this->applicant->middle_name);
+    $this->db->set('last_name', $this->applicant->last_name);
     $this->db->set('comment', $this->applicant->comment);
     $this->db->set('phone_no', $this->applicant->phone_no);
     $this->db->set('address', $this->applicant->address);
@@ -118,6 +121,10 @@ class Applicant extends CI_Model {
     $this->db->where('id',$this->id);
     $query = $this->db->update('applicants');
 
+  }
+
+  public function delete() {
+    return $this->db->delete('applicants', ['id' => $this->applicant->id]);
   }
 
 

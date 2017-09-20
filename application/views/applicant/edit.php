@@ -10,11 +10,27 @@
      <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
 
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
-       <input type="hidden" name="first_name" value="<?= $applicant_data->first_name ?>">
-       <input type="hidden" name="last_name" value="<?= $applicant_data->last_name ?>">
-       <input type="hidden" name="middle_name" value="<?= $applicant_data->middle_name ?>">
-       <input type="hidden" name="home_address" value="<?= $applicant_data->address ?>">
-       <input type="hidden" name="email_address" value="<?= $applicant_data->email_add ?>">
+
+       <div class="form-group">
+         <label  class="col-sm-3 control-label">First Name</label>
+         <div class="col-sm-9">
+             <input type="type" name="first_name" class="form-control" value="<?= $applicant_data->first_name ?>" placeholder="First Name"/>
+         </div>
+       </div>
+
+       <div class="form-group">
+           <label  class="col-sm-3 control-label">Last Name</label>
+         <div class="col-sm-9">
+             <input type="type" name="last_name" class="form-control" value="<?= $applicant_data->last_name ?>" placeholder="Last Name"/>
+         </div>
+       </div>
+
+       <div class="form-group">
+           <label  class="col-sm-3 control-label">Middle Name</label>
+         <div class="col-sm-9">
+             <input type="type" name="middle_name" class="form-control" value="<?= $applicant_data->middle_name ?>" placeholder="Middle Name"/>
+         </div>
+       </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
@@ -73,7 +89,8 @@
           <label  class="col-sm-3 control-label">Exam Result:</label>
           <div class="col-sm-9">
             <select class="form-control" name="exam_result">
-              <option value="1">Pass</option>
+              <option selected="selected">Select Exam Result</option>
+              <option value="1">Passed</option>
               <option value="0">Failed</option>
             </select>
           </div>
@@ -83,7 +100,8 @@
           <label  class="col-sm-3 control-label">Interview Result:</label>
           <div class="col-sm-9">
             <select class="form-control" name="interview_result">
-              <option value="1">Pass</option>
+              <option selected="selected"value="3">Select Interview Result</option>
+              <option value="1">Passed</option>
               <option value="0">Failed</option>
             </select>
           </div>
