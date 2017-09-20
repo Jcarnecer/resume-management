@@ -13,27 +13,27 @@
        <input type="hidden" name="first_name" value="<?= $applicant_data->first_name ?>">
        <input type="hidden" name="last_name" value="<?= $applicant_data->last_name ?>">
        <input type="hidden" name="middle_name" value="<?= $applicant_data->middle_name ?>">
-       <input type="hidden" name="home_address" value="<?= $applicant_data->address ?>">
-       <input type="hidden" name="email_address" value="<?= $applicant_data->email_add ?>">
+       <input type="hidden" name="home_address" value="<?= $applicant_data->home_address ?>">
+       <input type="hidden" name="email_address" value="<?= $applicant_data->email_address ?>">
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
          <div class="col-sm-9">
-             <input type="email" name="email_add" class="form-control" value="<?= $applicant_data->email_add ?>" placeholder="Email Address"/>
+             <input type="email" name="email_add" class="form-control" value="<?= $applicant_data->email_address ?>" placeholder="Email Address"/>
          </div>
        </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Phone Number:</label>
          <div class="col-sm-9">
-             <input type="number" name="phone_no" value="<?= $applicant_data->phone_no ?>"  class="form-control" placeholder="Phone Number"/>
+             <input type="number" name="phone_no" value="<?= $applicant_data->phone_number ?>"  class="form-control" placeholder="Phone Number"/>
          </div>
        </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Home Address:</label>
          <div class="col-sm-9">
-             <input type="text" name="address" class="form-control" value="<?= $applicant_data->address ?>" placeholder="Home Address"/>
+             <input type="text" name="address" class="form-control" value="<?= $applicant_data->home_address ?>" placeholder="Home Address"/>
          </div>
        </div>
 

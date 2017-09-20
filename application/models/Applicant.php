@@ -2,30 +2,6 @@
 
 class Applicant extends CI_Model {
 
-  public $last_name;
-  public $first_name;
-  public $middle_name;
-  public $email_add;
-  public $degree;
-  public $school;
-  public $application_date;
-  public $application_status;
-  public $salary;
-  public $position;
-  public $comment;
-  public $address;
-  public $phone_no;
-  public $bdate;
-  public $file;
-  public $images;
-  public $id;
-  public $category;
-  public $date_hired;
-  public $exam_result;
-  public $interviewer;
-  public $interview_result;
-  public $interview_notes;
-
   /*public function insert_emp(){
     $this->db->insert('employees', $this->applicant);
   }*/
