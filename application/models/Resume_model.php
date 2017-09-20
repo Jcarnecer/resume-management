@@ -11,7 +11,6 @@ class Resume_model extends CI_Model {
 		}
 	}
 
-
   public function count($table,$data){
 
     if(empty($data)){
@@ -84,6 +83,10 @@ class Resume_model extends CI_Model {
     $this->db->set('phone_number', $this->Resume_model->phone_number);
     $this->db->set('home_address', $this->Resume_model->home_address);
     $this->db->set('email_address', $this->Resume_model->email_address);
+    $this->db->set('first_name', $this->Resume_model->first_name);
+    $this->db->set('last_name', $this->Resume_model->last_name);
+    $this->db->set('middle_name', $this->Resume_model->middle_name);
+
     $this->db->set('application_status', $this->Resume_model->application_status);
     $this->db->where('id' ,$this->id);
     $query = $this->db->update('applicants');
