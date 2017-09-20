@@ -215,15 +215,19 @@ class ApplicantController extends CI_Controller {
   {
     $to_email = $_POST['email_add'];
     $status = $_POST['status'];
+    $first_name = $_POST['last_name'];
 
     $this->load->model('applicant');
+    $this->applicant->first_name = $_POST['first_name'];
+    $this->applicant->last_name  = $_POST['last_name'];
+    $this->applicant->middle_name = $_POST['middle_name'];
     $this->applicant->email_add = $to_email;
     $this->applicant->phone_no = $_POST['phone_no'];
     $this->applicant->address = $_POST['address'];
     $this->applicant->id  = $_POST['id'];
+
     $this->applicant->application_status = $status;
     $this->applicant->edit();
-    redirect('');
 
     $this->email->initialize(array(
         'protocol' => 'mail',
@@ -244,32 +248,27 @@ class ApplicantController extends CI_Controller {
     $this->email->to($to_email);
     $this->email->subject('Astrid Technologies');
 
-    $this->load->model('employee');
-    $this->employee->last_name = $_POST['last_name'];
-    $this->employee->first_name = $_POST['first_name'];
-    $this->employee->middle_name = $_POST['middle_name'];
-    $this->employee->home_address = $_POST['address'];
-
-    if($status == 4):
+    if ($status == "4"):
       $this->email->message('HAHAHA failed!!! Stupid ass nigg*!');
       $this->email->send();
-    elseif($status == 5):
+
+    elseif ($status == "5"):
+
       $this->email->message('HAHAHA Yaaaay!!! Pasok ka na!');
       $this->email->send();
-      $this->employee->insert();
-            $this->load->model('employee','',TRUE);
-            $this->employee->insert_into();
 
-    else:
-      show_error($this->email->print_debugger());
-
+      $this->employee->last_name = $_POST['last_name'];
+      $this->employee->first_name = $_POST['first_name'];
+      $this->employee->middle_name = $_POST['middle_name'];
+      $this->employee->home_address = $_POST['address'];
+      $this->employee->insert_into();
+      $this->applicant->delete();
+      redirect('');
     endif;
-            redirect('');
-    die;
+
+    #return
     // $this->session->set_flashdata("email_sent","Error in sending Email.");
     // $this->load->view('applicant/edit');
-
-
   }
 
   public function insert_role(){
