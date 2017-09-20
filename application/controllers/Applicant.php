@@ -194,17 +194,24 @@ class Applicant extends CI_Controller {
 
   public function edit()
   {
-    $to_email = $_POST['email_add'];
+    $to_email = $_POST['email_address'];
     $status = $_POST['status'];
+    $first_name= $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $middle_name = $_POST['middle_name'];
+    $phone_number = $_POST['phone_number'];
+    $home_address = $_POST['home_address'];
+    $id = $_POST['id'];
 
-    $this->load->model('Resume_model');
+    $this->Resume_model->first_name = $first_name;
+    $this->Resume_model->last_name = $last_name;
+    $this->Resume_model->middle_name = $middle_name;
     $this->Resume_model->email_address = $to_email;
-    $this->Resume_model->phone_number = $_POST['phone_no'];
-    $this->Resume_model->home_address = $_POST['address'];
-    $this->Resume_model->id  = $_POST['id'];
+    $this->Resume_model->phone_number = $phone_number;
+    $this->Resume_model->home_address = $home_address;
+    $this->Resume_model->id  = $id;
     $this->Resume_model->application_status = $status;
     $this->Resume_model->edit();
-    redirect('');
 
     $this->email->initialize(array(
         'protocol' => 'mail',
@@ -225,26 +232,26 @@ class Applicant extends CI_Controller {
     $this->email->to($to_email);
     $this->email->subject('Astrid Technologies');
 
-    if($status == 4):
+    if($status == "4"):
       $this->email->message('Failed!');
       $this->email->send();
+
     elseif($status == 5):
       $this->email->message('Passed!');
       $this->email->send();
-      $this->employee->insert();
-            $this->load->model('employee','',TRUE);
-            $this->employee->insert_into();
-
-    else:
-      show_error($this->email->print_debugger());
-
+      $insert=[
+        'last_name' => $last_name,
+        'first_name' => $first_name,
+        'middle_name' => $middle_name,
+        'email_address' => $to_email,
+        'home_address' => $home_address,
+        'phone_number' => $phone_number,
+        'employment_type' => 2,
+      ];
+      $this->Resume_model->insert('employees', $insert);
+      $this->Resume_model->delete('applicants','id='.$id);
+      redirect('');
     endif;
-            redirect('');
-    die;
-    // $this->session->set_flashdata("email_sent","Error in sending Email.");
-    // $this->load->view('applicant/edit');
-
-
   }
 
   public function insert_role(){
