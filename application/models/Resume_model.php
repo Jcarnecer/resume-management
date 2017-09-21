@@ -122,4 +122,12 @@ class Resume_model extends CI_Model {
     $this->db->where('id',$this->id);
     $query = $this->db->update('applicants');
   }
+
+  public function join_applicants_roles(){
+      $this->db->select('*');
+      $this->db->from('applicants');
+      $this->db->join('roles', 'roles.role_id = applicant.roles_id','inner');
+      $query = $this->db->get();
+      return $query->result();
+  }
 }

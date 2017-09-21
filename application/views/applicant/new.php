@@ -1,3 +1,6 @@
+<?php $position = $this->Resume_model->fetch('position');
+// print_r($position);die;
+  ?>
     <center>
       <h3>Add New Record</h3>
     </center>
@@ -5,13 +8,13 @@
        <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/addRecord'); ?>">
 
          <div class="form-group">
-           <label  class="col-sm-3 control-label">Role:</label>
+           <label  class="col-sm-3 control-label">Position:</label>
              <div class="col-sm-9">
-               <select id='staff' class="form-control" name="employment_type">
+               <select id='pos-id' class="form-control" name="position">
                  <option value="disabled selected">Select your option</option>
-                 <option value="1">Applicant</option>
-                 <option value="2">Employee</option>
-                 <option value="3">Intern</option>
+                 <?php foreach($position as $row): ?>
+                   <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                 <?php endforeach; ?>
                </select>
              </div>
           </div>
@@ -28,12 +31,10 @@
           </div>
 
          <div class="form-group">
-           <label  class="col-sm-3 control-label">Position:</label>
+           <label  class="col-sm-3 control-label">Role:</label>
            <div class="col-sm-9">
-               <select name="position" class="form-control">
-                 <?php foreach ($roles as $role): ?>
-                  <option value="<?= $role->id; ?>"><?= $role->name; ?></option>
-                <?php endforeach; ?>
+               <select id="role" name="role" class="form-control">
+                 <!-- <option value=""></option> -->
                </select>
            </div>
          </div>

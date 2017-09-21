@@ -9,9 +9,9 @@ class Applicant extends CI_Controller {
     $this->load->model('employee');
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
-    $data['role_applicant'] = $this->Resume_model->fetch('role','type=1');
-    $data['role_employee'] = $this->Resume_model->fetch('role','type=2');
-    $data['role_intern'] = $this->Resume_model->fetch('role','type=3');
+    $data['role_applicant'] = $this->Resume_model->fetch('role','pos_id=3');
+    $data['role_employee'] = $this->Resume_model->fetch('role','pos_id=2');
+    $data['role_intern'] = $this->Resume_model->fetch('role','pos_id=1');
     $this->load->view('applicant/index', $data);
 
   }
@@ -43,24 +43,40 @@ class Applicant extends CI_Controller {
 
 
   public function add_applicant() {
+    // $where = [ 'type' => '1', '2', '3'];
+    $employment_type = $this->input->post('employment_type');
+    echo $employment_type;
     $data['title'] = "Astrid Technologies | New Applicant";
-    $this->load->model('Resume_model');
-    $data['roles'] = $this->Resume_model->fetch('role','');
-
+    // $data['roles'] = $this->Resume_model->fetch('role', $where);
     $this->load->view('include/header', $data);
 		$this->load->view('applicant/new');
 	}
 
+  public function get_pos_role($posid){
+    $where = ['pos_id' => $posid];
+    $role = $this->Resume_model->fetch('role',$where);
+    // print_r($role);die;
+    foreach($role as $row){
+      $r_name = $row->name;
+      $r_id = $row->role_id;
+
+      $roles[] = [
+          'id'  => $r_id,
+          'name'  => $r_name
+      ];
+    }
+    echo json_encode($roles);
+  }
+
   public function addRecord(){
     $this->load->helper('encryption');
-    $this->load->model('Resume_model');
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $middle_name = $_POST['middle_name'];
     $home_address = $_POST['home_address'];
     $email_address = $_POST['email_address'];
     $position = $_POST['position'];
-    $role = $_POST['employment_type'];
+    $role = $_POST['role'];
     $comment = $_POST['comment'];
     $phone_number = $_POST['phone_number'];
     $birth_date = $_POST['birth_date'];
@@ -69,8 +85,6 @@ class Applicant extends CI_Controller {
     $status = $_POST['status'];
     $date_hired = $_POST['date_hired'];
     $employment_type = $_POST['employment_type'];
-
-
 
     $config['upload_path'] = "assets/uploads";
     $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
@@ -115,6 +129,7 @@ class Applicant extends CI_Controller {
         'birth_date' => clean_data(ucwords($birth_date)),
         'email_address' => clean_data(ucwords($email_address)),
         'application_status' => 1,
+        'role_id' => 1,
         'file' => $resume,
         'images' => $image,
       ];
@@ -136,7 +151,7 @@ class Applicant extends CI_Controller {
         'philhealth' => clean_data(ucwords($this->input->post('philhealth'))),
         'pagibig' => clean_data(ucwords($this->input->post('pagibig'))),
         'status' => clean_data(ucwords($this->input->post('status'))),
-        'employment_type' => 2,
+        'role_id' => 2,
         'degree' => clean_data(ucwords($degree)),
         'school' => clean_data(ucwords($school)),
       ]; $this->Resume_model->insert('employees',$insert);
@@ -153,7 +168,7 @@ class Applicant extends CI_Controller {
         'position' => clean_data(ucwords($position)),
         'date_hired' => clean_data(ucwords($date_hired)),
         'status' => clean_data(ucwords($this->input->post('status'))),
-        'employment_type' => 3,
+        'role_id' => 3,
         'degree' => clean_data(ucwords($degree)),
         'school' => clean_data(ucwords($school)),
         ];
@@ -272,7 +287,7 @@ class Applicant extends CI_Controller {
    $this->load->helper('encryption');
    $insert=[
      'name' => clean_data(ucwords($this->input->post('role'))),
-     'type' => $this->input->post('type'),
+     'pos_id' => $this->input->post('pos_id'),
    ];
 
    $this->load->model('Resume_model');
@@ -284,7 +299,7 @@ class Applicant extends CI_Controller {
  public function delete_role() {
   $this->load->model('Resume_model');
   $id = (isset($_GET['id']) ? $_GET['id'] : '');
-  $this->Resume_model->delete('role',array('id' => $id));
+  $this->Resume_model->delete('role',array('role_id' => $id));
   redirect('');
  }
 
