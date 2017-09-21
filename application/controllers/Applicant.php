@@ -192,6 +192,9 @@ class Applicant extends CI_Controller {
 
   public function edit()
   {
+    $now = new DateTime();
+    $now->setTimezone(new DateTimezone('Asia/Manila'));
+    $date_now = $now->format('Y-m-d');
     $to_email = $_POST['email_address'];
     $status = $_POST['status'];
     $first_name= $_POST['first_name'];
@@ -199,6 +202,10 @@ class Applicant extends CI_Controller {
     $middle_name = $_POST['middle_name'];
     $phone_number = $_POST['phone_number'];
     $home_address = $_POST['home_address'];
+    $birth_date = $_POST['birth_date'];
+    $school = $_POST['school'];
+    $degree = $_POST['degree'];
+    $position = $_POST['position'];
     $id = $_POST['id'];
 
     $this->Resume_model->first_name = $first_name;
@@ -245,7 +252,12 @@ class Applicant extends CI_Controller {
         'home_address' => $home_address,
         'phone_number' => $phone_number,
         'employment_type' => 2,
-        'status' => 0,
+        'status' => 1,
+        'position' => $position,
+        'birth_date' => $birth_date,
+        'school' => $school,
+        'degree' => $degree,
+        'date_hired' => $date_now,
       ];
       $this->Resume_model->insert('employees', $insert);
       $this->Resume_model->delete('applicants','id='.$id);

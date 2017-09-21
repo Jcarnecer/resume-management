@@ -11,6 +11,10 @@
 
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
        <input type="hidden" name="school" value="<?= $applicant_data->school ?>">
+       <input type="hidden" name="position" value="<?= $applicant_data->position?>">
+       <input type="hidden" name="birth_date" value="<?= $applicant_data->birth_date?>">
+       <input type="hidden" name="degree" value="<?= $applicant_data->degree?>">
+       <input type="hidden" name="birth_date" value="<?= $applicant_data->birth_date?>">
        <div class="form-group">
          <label  class="col-sm-3 control-label">First Name</label>
          <div class="col-sm-9">
