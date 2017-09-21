@@ -111,7 +111,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>x
           <?php endforeach;?>
         </div>
       </div>
