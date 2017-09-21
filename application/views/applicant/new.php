@@ -1,4 +1,3 @@
-
     <center>
       <h3>Add New Record</h3>
     </center>
@@ -17,8 +16,8 @@
              </div>
           </div>
 
-          <div class="form-group">
-            <label  class="col-sm-3 control-label">Status:</label>
+          <div id="status" class="form-group">
+            <label class="col-sm-3 control-label">Status:</label>
             <div class="col-sm-9">
                 <select name="status" class="form-control">
                   <option value="disabled selected">Select Status</option>
@@ -107,14 +106,14 @@
          </div>
 
 
-         <div class="form-group">
+         <div id="application_date" class="form-group">
            <label  class="col-sm-3 control-label">Application Date:</label>
            <div class="col-sm-9">
                <input type="date" name="application_date" class="form-control"/>
            </div>
          </div>
 
-         <div class="form-group">
+         <div id="expected_salary" class="form-group">
            <label  class="col-sm-3 control-label">Expected Salary:</label>
            <div class="col-sm-9">
                <input type="text" name="expected_salary" class="form-control" placeholder="Expected Salary"/>
@@ -166,7 +165,7 @@
            </div>
          </div>
 
-         <div class="form-group">
+         <div id="resume" class="form-group">
            <label class="col-sm-3 control-label">Resume:</label>
            <div class="col-sm-9">
              <input type="file" name="resume">
