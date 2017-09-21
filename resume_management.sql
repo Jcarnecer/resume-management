@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2017 at 10:48 PM
+-- Generation Time: Sep 21, 2017 at 06:38 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -53,16 +53,16 @@ CREATE TABLE `applicants` (
   `exam_result` tinyint(4) DEFAULT NULL,
   `interviewer` varchar(200) DEFAULT NULL,
   `interview_notes` varchar(255) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL
+  `status` tinyint(4) NOT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `applicants`
 --
 
-INSERT INTO `applicants` (`id`, `first_name`, `last_name`, `middle_name`, `degree`, `school`, `application_status`, `application_date`, `expected_salary`, `position`, `comment`, `home_address`, `phone_number`, `birth_date`, `date_hired`, `start_date`, `email_address`, `file`, `images`, `available_date`, `interview_result`, `exam_result`, `interviewer`, `interview_notes`, `status`) VALUES
-(73, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', 'University Of Santo Tomas', 3, '2017-06-19', '200', '13', 'Hello!', '700 J.P Rizal St Makati City', '63985', '1996-09-24', NULL, NULL, 'Farrahdee24@gmail.com', '20117372_1578945632155889_1325661114_n4.jpg', '20117372_1578945632155889_1325661114_n5.jpg', NULL, NULL, NULL, NULL, NULL, 0),
-(74, 'Farrah', 'Dionisio', 'Delos Santos', '', '', 1, '0000-00-00', '', '19', '', '700 J.P Rizal St Makati City', '7291660', '0000-00-00', NULL, NULL, 'Farrahdee24@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+INSERT INTO `applicants` (`id`, `first_name`, `last_name`, `middle_name`, `degree`, `school`, `application_status`, `application_date`, `expected_salary`, `position`, `comment`, `home_address`, `phone_number`, `birth_date`, `date_hired`, `start_date`, `email_address`, `file`, `images`, `available_date`, `interview_result`, `exam_result`, `interviewer`, `interview_notes`, `status`, `role_id`) VALUES
+(81, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', 'University Of Santo Tomas', 1, '2017-06-19', '200', '21', 'Askfabslfkja', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', NULL, NULL, 'Farrahdee24@gmail.com', NULL, '20117372_1578945632155889_1325661114_n.jpg', NULL, NULL, NULL, NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,27 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `last_name`, `first_name`, `middle_name`, `home_address`, `email_address`, `phone_number`, `birth_date`, `position`, `date_hired`, `sss`, `tin`, `philhealth`, `pagibig`, `status`, `employment_type`, `degree`, `school`, `comment`) VALUES
-(15, 'Dionisio', 'Farrah', 'Delos Santos', '700 J.P Rizal St Makati City', 'Farrahdee24@gmail.com', '7291660', '2017-09-24', '20', '2017-06-19', '12346789', '0926354', '6516561', '151521', 1, 2, 'BS Information Systems', 'University Of Santo Tomas', '');
+(26, 'Dionisio', 'Farrah', 'Delos Santos', '700 J.P Rizal St Makati City', 'Farrahdee24@gmail.com', '7291660', '0000-00-00', '23', '2017-09-21', NULL, NULL, NULL, NULL, 1, 3, 'BS Information Systems', 'University Of Santo Tomas', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `position`
+--
+
+CREATE TABLE `position` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `position`
+--
+
+INSERT INTO `position` (`id`, `name`) VALUES
+(1, 'Intern'),
+(2, 'Employee'),
+(3, 'Applicant');
 
 -- --------------------------------------------------------
 
@@ -106,19 +126,22 @@ INSERT INTO `employees` (`id`, `last_name`, `first_name`, `middle_name`, `home_a
 --
 
 CREATE TABLE `role` (
-  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
-  `type` tinyint(11) DEFAULT NULL
+  `pos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`id`, `name`, `type`) VALUES
-(18, 'President', 2),
-(19, 'Java Developer', 1),
-(20, 'PHP Developer', 1);
+INSERT INTO `role` (`role_id`, `name`, `pos_id`) VALUES
+(24, 'President', 2),
+(25, 'HR', 2),
+(26, 'Java', 3),
+(28, 'Ruby on Rails', 1),
+(29, 'Android Developer', 1),
+(31, 'Hello', 1);
 
 --
 -- Indexes for dumped tables
@@ -137,10 +160,16 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `position`
+--
+ALTER TABLE `position`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -150,17 +179,22 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `position`
+--
+ALTER TABLE `position`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;COMMIT;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
