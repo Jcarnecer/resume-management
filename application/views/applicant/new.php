@@ -7,16 +7,28 @@
       <div class="container">
        <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/addRecord'); ?>">
 
+         <input id="checkBox" type="checkbox" value="1"> Applicant 
+
          <div class="form-group">
            <label  class="col-sm-3 control-label">Position:</label>
              <div class="col-sm-9">
-               <select id='pos-id' class="form-control" name="position">
+               <select id="pos-id" class="form-control" name="position">
                  <option value="disabled selected">Select your option</option>
                  <?php foreach($position as $row): ?>
                    <option value="<?= $row->id ?>"><?= $row->name ?></option>
                  <?php endforeach; ?>
                </select>
              </div>
+          </div>
+
+          <div id="applicant_type" class="form-group">
+            <label class="col-sm-3 control-label">Applicant Type:</label>
+            <div class="col-sm-9">
+                <select name="status" class="form-control">
+                  <option value="1">Employee</option>
+                  <option value="0">Intern</option>
+                </select>
+            </div>
           </div>
 
           <div id="status" class="form-group">
@@ -34,7 +46,7 @@
            <label  class="col-sm-3 control-label">Role:</label>
            <div class="col-sm-9">
                <select id="role" name="role" class="form-control">
-                 <!-- <option value=""></option> -->
+
                </select>
            </div>
          </div>

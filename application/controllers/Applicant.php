@@ -9,7 +9,7 @@ class Applicant extends CI_Controller {
     $this->load->model('employee');
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
-    $data['role_applicant'] = $this->Resume_model->fetch('role','pos_id=3');
+    $data['role_applicant'] = $this->Resume_model->fetch('role','name<>"President"');
     $data['role_employee'] = $this->Resume_model->fetch('role','pos_id=2');
     $data['role_intern'] = $this->Resume_model->fetch('role','pos_id=1');
     $this->load->view('applicant/index', $data);
@@ -77,6 +77,7 @@ class Applicant extends CI_Controller {
     $email_address = $_POST['email_address'];
     $position = $_POST['position'];
     $role = $_POST['role'];
+    $pos_id = $_POST['position'];
     $comment = $_POST['comment'];
     $phone_number = $_POST['phone_number'];
     $birth_date = $_POST['birth_date'];
@@ -84,7 +85,6 @@ class Applicant extends CI_Controller {
     $school = $_POST['school'];
     $status = $_POST['status'];
     $date_hired = $_POST['date_hired'];
-    $employment_type = $_POST['employment_type'];
 
     $config['upload_path'] = "assets/uploads";
     $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
@@ -112,7 +112,7 @@ class Applicant extends CI_Controller {
         echo "Error";
     endif;
 
-    if($role == 1){
+    if($pos_id == 1){
       $insert =[
         'first_name' => clean_data(ucwords($first_name)),
         'last_name' => clean_data(ucwords($last_name)),
@@ -126,16 +126,18 @@ class Applicant extends CI_Controller {
         'comment' => clean_data(ucwords($this->input->post('comment'))),
         'home_address' => clean_data(ucwords($home_address)),
         'phone_number' => clean_data(ucwords($phone_number)),
+        'role' => clean_data(ucwords($role)),
         'birth_date' => clean_data(ucwords($birth_date)),
         'email_address' => clean_data(ucwords($email_address)),
+        'applicant_type' => clean_data(ucwords($this->input->post('applicant_type'))),
         'application_status' => 1,
-        'role_id' => 1,
+
         'file' => $resume,
         'images' => $image,
       ];
         $this->Resume_model->insert('applicants',$insert);
     }
-    elseif ($role == 2){
+    elseif ($pos_id == 2){
       $insert=[
         'first_name' => clean_data(ucwords($first_name)),
         'last_name' => clean_data(ucwords($last_name)),
@@ -151,12 +153,13 @@ class Applicant extends CI_Controller {
         'philhealth' => clean_data(ucwords($this->input->post('philhealth'))),
         'pagibig' => clean_data(ucwords($this->input->post('pagibig'))),
         'status' => clean_data(ucwords($this->input->post('status'))),
-        'role_id' => 2,
+        'employment_type' => clean_data(ucwords($pos_id)),
+        'role' => clean_data(ucwords($date_hired)),
         'degree' => clean_data(ucwords($degree)),
         'school' => clean_data(ucwords($school)),
       ]; $this->Resume_model->insert('employees',$insert);
     }
-    elseif ($role == 3){
+    elseif ($pos_id == 3){
       $insert=[
         'first_name' => clean_data(ucwords($first_name)),
         'last_name' => clean_data(ucwords($last_name)),
@@ -168,7 +171,8 @@ class Applicant extends CI_Controller {
         'position' => clean_data(ucwords($position)),
         'date_hired' => clean_data(ucwords($date_hired)),
         'status' => clean_data(ucwords($this->input->post('status'))),
-        'role_id' => 3,
+        'role' => clean_data(ucwords($date_hired)),
+        'employment_type' => clean_data(ucwords($pos_id)),
         'degree' => clean_data(ucwords($degree)),
         'school' => clean_data(ucwords($school)),
         ];
@@ -208,6 +212,7 @@ class Applicant extends CI_Controller {
 
   public function edit()
   {
+
     $now = new DateTime();
     $now->setTimezone(new DateTimezone('Asia/Manila'));
     $date_now = $now->format('Y-m-d');
@@ -283,8 +288,7 @@ class Applicant extends CI_Controller {
   }
 
   public function insert_role(){
-
-   $this->load->helper('encryption');
+    $this->load->helper('encryption');
    $insert=[
      'name' => clean_data(ucwords($this->input->post('role'))),
      'pos_id' => $this->input->post('pos_id'),

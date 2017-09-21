@@ -12,7 +12,7 @@ $position = $this->Resume_model->fetch('position');
     <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
     <div class="input-group pull-right">
       <form method="POST" action="<?= base_url('insert_role');?>" >
-        <input type="text" name="role" class="form-control">
+        <input type="text" placeholder="Add Role" name="role" class="form-control">
         <select class="form-control" name="pos_id">
 
           <?php foreach($position as $row):?>
