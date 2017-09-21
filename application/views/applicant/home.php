@@ -95,7 +95,7 @@
                   <div class="col-sm-6">
                     <div class="col-padding">
                       <a href="<?= base_url('applicants?status=1&role=' . $role->id); ?>">
-                        <div><?= $this->Resume_model->count_applicant($role->id,1); ?><br>Current</div>
+                        <div><?= $this->Resume_model->count('employees',['status'=>1,'employment_type'=>2]); ?><br>Current</div>
                       </a>
                     </div>
                   </div>
@@ -103,7 +103,7 @@
                   <div class="col-sm-6">
                     <div class="col-padding">
                       <a href="<?= base_url('applicants?status=2&role=' . $role->id); ?>">
-                        <div><?= $this->Resume_model->count_applicant($role->id,0); ?><br>Former</div>
+                        <div><?= $this->Resume_model->count('employees',['status'=>0,'employment_type'=>2]); ?><br>Former</div>
                       </a>
                     </div>
                   </div>
@@ -131,17 +131,17 @@
                     <div class="col-sm-6">
                       <div class="col-padding">
                         <a href="<?= base_url('applicants?status=1&role=' . $role->id); ?>">
-                          <div><?= $this->Resume_model->count_applicant($role->id,1); ?><br>Current</div>
+                          <div><?= $this->Resume_model->count('employees',['status'=>1,'employment_type'=>3]); ?><br>Current</div>
                         </a>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="col-padding">
                         <a href="<?= base_url('applicants?status=2&role=' . $role->id); ?>">
-                          <div><?= $this->Resume_model->count_applicant($role->id,0); ?><br>Former</div>
+                          <div><?= $this->Resume_model->count('employees',['status'=>0,'employment_type'=>3]); ?><br>Former</div>
                         </a>
                       </div>
-                    </div>
+                    </div>  
                   </div>
                 </div>
               </div>
