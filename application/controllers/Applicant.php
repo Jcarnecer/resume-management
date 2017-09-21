@@ -11,8 +11,6 @@ class Applicant extends CI_Controller {
     $data['role_applicant'] = $this->Resume_model->fetch('role','type=1');
     $data['role_employee'] = $this->Resume_model->fetch('role','type=2');
     $data['role_intern'] = $this->Resume_model->fetch('role','type=3');
-    $data['count'] = $this->Resume_model->count_applicant();
-    $data['countemployee'] = $this->employee->count();
     $this->load->view('applicant/index', $data);
 
   }
@@ -247,11 +245,13 @@ class Applicant extends CI_Controller {
         'home_address' => $home_address,
         'phone_number' => $phone_number,
         'employment_type' => 2,
+        'status' => 0,
       ];
       $this->Resume_model->insert('employees', $insert);
       $this->Resume_model->delete('applicants','id='.$id);
-      redirect('');
+
     endif;
+    redirect('');
   }
 
   public function insert_role(){
