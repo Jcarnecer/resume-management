@@ -12,13 +12,24 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('#staff').on('change', function() {
-      if ( this.value == '2')
+      if(this.value == '1'){
+        $("#status").hide();
+      }
+      else if( this.value == '2')
       {
         $("#emp_form").show();
+        $("#status").show();
+        $("#expected_salary").hide();
+        $("#application_date").hide();
+        $("#resume").hide();
       }
       else
       {
         $("#emp_form").hide();
+        $("#status").show();
+        $("#expected_salary").hide();
+        $("#application_date").hide();
+        $("#resume").hide();
       }
     });
 });

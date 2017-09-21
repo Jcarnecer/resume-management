@@ -8,6 +8,7 @@ class Applicant extends CI_Controller {
     $this->load->model('Resume_model');
     $this->load->model('employee');
     $data['title'] = "Astrid Technologies";
+    $data['role'] = $this->Resume_model->fetch('role');
     $data['role_applicant'] = $this->Resume_model->fetch('role','type=1');
     $data['role_employee'] = $this->Resume_model->fetch('role','type=2');
     $data['role_intern'] = $this->Resume_model->fetch('role','type=3');
