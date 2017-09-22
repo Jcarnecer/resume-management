@@ -69,3 +69,18 @@ $(document).ready(function(){
     });
   });
 });
+
+$(document).ready(function(){
+  ("#checkBox").('checked', function(){
+    $.ajax({
+      type: 'POST',
+      url: base_url + "applicant/add",
+      data: $("#checkBox").serialize(),
+      success: function(data){
+        alert("Hello");
+      }
+  })
+
+
+  });
+});
