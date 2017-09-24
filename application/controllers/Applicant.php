@@ -9,11 +9,10 @@ class Applicant extends CI_Controller {
     $this->load->model('employee');
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
-    $data['role_applicant'] = $this->Resume_model->fetch('role','name<>"President"');
-    $data['role_employee'] = $this->Resume_model->fetch('role','pos_id=2');
-    $data['role_intern'] = $this->Resume_model->fetch('role','pos_id=1');
+    $data['role_applicant'] = $this->Resume_model->fetch('role','');
+    $data['role_employee'] = $this->Resume_model->fetch('role','pos_id=1');
+    $data['role_intern'] = $this->Resume_model->fetch('role','pos_id=2');
     $this->load->view('applicant/index', $data);
-
   }
 
   public function applicants() {
@@ -68,7 +67,44 @@ class Applicant extends CI_Controller {
     echo json_encode($roles);
   }
 
-  public function addRecord(){
+  public function validate_resume_file() {
+
+
+    if (isset($_FILES['resume_file']) && !empty($_FILES['resume_file']['name'])) {
+      if ($this->upload->do_upload('resume_file')) {
+        $this->session->resume =  $this->upload->data('file_name');
+        return true;
+      } else {
+        $this->form_validation->set_message('validate_resume_file', $this->upload->display_errors());
+        return false;
+      }
+    } else {
+      $this->form_validation->set_message('validate_resume_file', "You must upload an image!");
+        return false;
+    }
+  }
+
+  public function validate_images_file(){
+    if (isset($_FILES['image_file']) && !empty($_FILES['image_file']['name'])) {
+      if ($this->upload->do_upload('image_file')) {
+        $this->session->image =  $this->upload->data('file_name');
+        return true;
+      } else {
+        $this->form_validation->set_message('validate_images_file', $this->upload->display_errors());
+        return false;
+      }
+    } else {
+      $this->form_validation->set_message('validate_images_file', "You must upload an image!");
+        return false;
+    }
+  }
+
+  public function addRecord() {
+    $config['upload_path'] = "assets/uploads";
+    $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
+    $config['max_size'] = 2048;
+
+    $this->load->library('upload', $config);
     $this->load->helper('encryption');
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -77,109 +113,51 @@ class Applicant extends CI_Controller {
     $email_address = $_POST['email_address'];
     $position = $_POST['position'];
     $role = $_POST['role'];
-    $pos_id = $_POST['position'];
     $comment = $_POST['comment'];
     $phone_number = $_POST['phone_number'];
     $birth_date = $_POST['birth_date'];
     $degree = $_POST['degree'];
     $school = $_POST['school'];
-    $status = $_POST['status'];
     $date_hired = $_POST['date_hired'];
 
-    $config['upload_path'] = "assets/uploads";
-    $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
-    $config['max_size'] = 2048;
 
-    $this->load->library('upload', $config);
+    $this->form_validation->set_rules('resume_file','Resume','callback_validate_resume_file');
+    $this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
 
-    if (isset($_FILES['resume']) && !empty($_FILES['resume']['name'])):
-        if ($this->upload->do_upload('resume')):
-        $resume =  $this->upload->data('file_name');
-        else:
-            echo  $this->upload->display_errors();
-        endif;
-    else:
-      echo "Required";
-    endif;
-
-    if (isset($_FILES['image']) && !empty($_FILES['image']['name'])):
-      if ($this->upload->do_upload('image')):
-        $image = $this->upload->data('file_name');
-      else:
-        echo $this->upload->display_errors();
-      endif;
-    else:
-        echo "Error";
-    endif;
-
-    if($pos_id == 1){
-      $insert =[
-        'first_name' => clean_data(ucwords($first_name)),
-        'last_name' => clean_data(ucwords($last_name)),
-        'middle_name' => clean_data(ucwords($middle_name)),
-        'degree' => clean_data(ucwords($degree)),
-        'school' => clean_data(ucwords($school)),
-        'application_status' => clean_data(ucwords($this->input->post('application_status'))),
-        'application_date' => clean_data(ucwords($this->input->post('application_date'))),
-        'expected_salary' => clean_data(ucwords($this->input->post('expected_salary'))),
-        'position' => clean_data(ucwords($position)),
-        'comment' => clean_data(ucwords($this->input->post('comment'))),
-        'home_address' => clean_data(ucwords($home_address)),
-        'phone_number' => clean_data(ucwords($phone_number)),
-        'role' => clean_data(ucwords($role)),
-        'birth_date' => clean_data(ucwords($birth_date)),
-        'email_address' => clean_data(ucwords($email_address)),
-        'applicant_type' => clean_data(ucwords($this->input->post('applicant_type'))),
-        'application_status' => 1,
-
-        'file' => $resume,
-        'images' => $image,
+    if($this->form_validation->run()==FALSE){
+      echo json_encode(validation_errors());
+    }else{
+      // print_r();
+      // print_r($this->session->image);die;
+      $insert_data = [
+           'first_name' => clean_data(ucwords($first_name)),
+           'last_name'  => clean_data(ucwords($last_name)),
+           'middle_name' => clean_data(ucwords($middle_name)),
+           'degree' => clean_data(ucwords($degree)) ,
+           'role_id' => clean_data($this->input->post('role')), //java dev, rails dev etc.
+           'pos_id' => clean_data($this->input->post('position')), // employee, intern
+           'email' => clean_data($email_address),
+           'comment' => clean_data(ucwords($comment)),
+           'home_address' => clean_data(ucwords($home_address)),
+           'phone_number' => clean_data($phone_number),
+           'birthday' => clean_data($birth_date),
+           'date_hired'=> clean_data($this->input->post('date_hired')),
+           'file' =>$this->session->resume,
+           'images'=> $this->session->image,
+           'application_date' => clean_data($this->input->post('application_date')),
+           'available_date' => clean_data($this->input->post('available_date')),
+           'current_status' => clean_data(ucwords($this->input->post('current_status'))) //applicant, former, current
       ];
-        $this->Resume_model->insert('applicants',$insert);
+
+      // print_r($insert_data);die;
+      $this->Resume_model->insert('record',$insert_data);
+      // print_r($insert_data);die;
+      echo json_encode('success');
     }
-    elseif ($pos_id == 2){
-      $insert=[
-        'first_name' => clean_data(ucwords($first_name)),
-        'last_name' => clean_data(ucwords($last_name)),
-        'middle_name' => clean_data(ucwords($middle_name)),
-        'home_address' => clean_data(ucwords($home_address)),
-        'email_address' => clean_data(ucwords($email_address)),
-        'phone_number' => clean_data(ucwords($phone_number)),
-        'birth_date' => clean_data(ucwords($birth_date)),
-        'position' => clean_data(ucwords($position)),
-        'date_hired' => clean_data(ucwords($date_hired)),
-        'sss' => clean_data(ucwords($this->input->post('sss'))),
-        'tin' => clean_data(ucwords($this->input->post('tin'))),
-        'philhealth' => clean_data(ucwords($this->input->post('philhealth'))),
-        'pagibig' => clean_data(ucwords($this->input->post('pagibig'))),
-        'status' => clean_data(ucwords($this->input->post('status'))),
-        'employment_type' => clean_data(ucwords($pos_id)),
-        'role' => clean_data(ucwords($date_hired)),
-        'degree' => clean_data(ucwords($degree)),
-        'school' => clean_data(ucwords($school)),
-      ]; $this->Resume_model->insert('employees',$insert);
-    }
-    elseif ($pos_id == 3){
-      $insert=[
-        'first_name' => clean_data(ucwords($first_name)),
-        'last_name' => clean_data(ucwords($last_name)),
-        'middle_name' => clean_data(ucwords($middle_name)),
-        'home_address' => clean_data(ucwords($home_address)),
-        'email_address' => clean_data(ucwords($email_address)),
-        'phone_number' => clean_data(ucwords($phone_number)),
-        'birth_date' => clean_data(ucwords($birth_date)),
-        'position' => clean_data(ucwords($position)),
-        'date_hired' => clean_data(ucwords($date_hired)),
-        'status' => clean_data(ucwords($this->input->post('status'))),
-        'role' => clean_data(ucwords($date_hired)),
-        'employment_type' => clean_data(ucwords($pos_id)),
-        'degree' => clean_data(ucwords($degree)),
-        'school' => clean_data(ucwords($school)),
-        ];
-        $this->Resume_model->insert('employees',$insert);
-    }
-        redirect('');
+
   }
+
+
   public function view($id){
     $this->load->model('Resume_model');
     $applicant = $this->Resume_model->get($id);

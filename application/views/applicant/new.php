@@ -5,9 +5,7 @@
       <h3>Add New Record</h3>
     </center>
       <div class="container">
-       <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/addRecord'); ?>">
-
-         <input id="checkBox" type="checkbox" value="1"> Applicant 
+       <form class="form-horizontal" id="add-record-form" enctype="multipart/form-data"  method="POST">
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Position:</label>
@@ -21,23 +19,15 @@
              </div>
           </div>
 
-          <div id="applicant_type" class="form-group">
-            <label class="col-sm-3 control-label">Applicant Type:</label>
-            <div class="col-sm-9">
-                <select name="status" class="form-control">
-                  <option value="1">Employee</option>
-                  <option value="0">Intern</option>
-                </select>
-            </div>
-          </div>
-
           <div id="status" class="form-group">
-            <label class="col-sm-3 control-label">Status:</label>
+            <label class="col-sm-3 control-label">Current Status:</label>
             <div class="col-sm-9">
-                <select name="status" class="form-control">
+                <select name="current_status" class="form-control">
                   <option value="disabled selected">Select Status</option>
-                  <option value="1">Current</option>
-                  <option value="0">Former</option>
+                  <!-- <option value="applicant">Applicant</option> -->
+                  <option value="applicant">Applicant</option>
+                  <option value="current">Current</option>
+                  <option value="former">Former</option>
                 </select>
             </div>
           </div>
@@ -126,6 +116,13 @@
            </div>
          </div>
 
+         <div id="available_date" class="form-group">
+           <label  class="col-sm-3 control-label">Available Date:</label>
+           <div class="col-sm-9">
+               <input type="date" name="available_date" class="form-control"/>
+           </div>
+         </div>
+
          <div id="expected_salary" class="form-group">
            <label  class="col-sm-3 control-label">Expected Salary:</label>
            <div class="col-sm-9">
@@ -181,14 +178,14 @@
          <div id="resume" class="form-group">
            <label class="col-sm-3 control-label">Resume:</label>
            <div class="col-sm-9">
-             <input type="file" name="resume">
+             <input type="file" name="resume_file">
            </div>
          </div>
 
          <div class="form-group">
            <label class="col-sm-3 control-label">Image:</label>
            <div class="col-sm-9">
-             <input type="file" name="image">
+             <input type="file" name="image_file">
            </div>
          </div>
 

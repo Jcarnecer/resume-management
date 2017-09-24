@@ -36,7 +36,26 @@ $(document).ready(function(){
 
 //add new record
 $(document).ready(function(){
-
+  $("#add-record-form").on('submit',function(e){
+    var form = new FormData(document.getElementById("add-record-form"));
+    $.ajax({
+      url: base_url + 'applicant/addRecord',
+      type: "POST",
+      processData: false, // tell jQuery not to process the data
+      contentType: false, // tell jQuery not to set contentType
+      data:form,
+      success: function(data){
+        console.log(data);
+        var result = JSON.parse(data);
+        if(result==='success'){
+          alert('pasok');
+        }else{
+          alert('hindi pasok');
+        }
+      }
+    })
+    e.preventDefault();
+  })
 })
 
 $(document).ready(function(){
@@ -71,16 +90,15 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  ("#checkBox").('checked', function(){
+  ("#applicant_check").on('click', function(){
+    var check = $(this).val();
     $.ajax({
       type: 'POST',
       url: base_url + "applicant/add",
-      data: $("#checkBox").serialize(),
+      data: $("#applicant_check").serialize(),
       success: function(data){
         alert("Hello");
       }
-  })
-
-
+    });
   });
 });

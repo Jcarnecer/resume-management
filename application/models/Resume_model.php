@@ -26,7 +26,7 @@ class Resume_model extends CI_Model {
   }
 
 
-  public function fetch($table,$where=""){
+  public function fetch($table, $where=""){
 		if (!empty($where)) {
 			$this->db->where($where);
 		}
@@ -50,12 +50,6 @@ class Resume_model extends CI_Model {
       return FALSE;
     }
   }
-
-  public function delete_role($id){
-   $this->db->delete('role', array('id' => $id));
- }
-
-
 
   public function get($id)
   {
