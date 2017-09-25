@@ -63,7 +63,6 @@ $route['applicant/(:num)']['GET'] = 'Applicant/view/$1';
 $route['insert_role']['POST'] = 'Applicant/insert_role';
 $route['applicant/add'] = 'Applicant/add_applicant';
 
-$route['applicant/add_employee']['POST'] = 'Applicant/add_employee';
 $route['add_result']['POST'] = 'Applicant/add_result';
 
 //Employee

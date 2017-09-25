@@ -26,7 +26,7 @@ class Resume_model extends CI_Model {
   }
 
 
-  public function fetch($table,$where=""){
+  public function fetch($table, $where=""){
 		if (!empty($where)) {
 			$this->db->where($where);
 		}
@@ -50,12 +50,6 @@ class Resume_model extends CI_Model {
       return FALSE;
     }
   }
-
-  public function delete_role($id){
-   $this->db->delete('role', array('id' => $id));
- }
-
-
 
   public function get($id)
   {
@@ -121,5 +115,13 @@ class Resume_model extends CI_Model {
     $this->db->set('interview_notes', $this->Resume_model->interview_notens);
     $this->db->where('id',$this->id);
     $query = $this->db->update('applicants');
+  }
+
+  public function join_applicants_roles(){
+      $this->db->select('*');
+      $this->db->from('applicants');
+      $this->db->join('roles', 'roles.role_id = applicant.roles_id','inner');
+      $query = $this->db->get();
+      return $query->result();
   }
 }

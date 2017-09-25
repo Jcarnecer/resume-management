@@ -1,24 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Applicant extends CI_Controller {
-    public function view_add_employee(){
-      $title['title'] = "Astrid Technologies | New Applicant";
-      $this->load->view('include/header',$title);
-      $this->load->view('applicant/addEmployee');
-    }
+class Employee extends CI_Controller {
 
-    public function view_employee(){
+    public function index(){
 
      $status = $_GET['status'] ?? null;
 
-     $this->load->model('employee');
+
      if ($status != null){
        $query["status"] = $status;
        $data['employee'] = $this->db->get_where('employees', $query)->result();
      }
      else{
-       $data['employee'] = $this->employee->view();
+       $data['employee'] = $this->Resume_model->fetch('employees','');
      }
      $title['title'] = "Astrid Technologies | New Applicant";
      $this->load->view('include/header',$title);
@@ -26,7 +21,7 @@ class Applicant extends CI_Controller {
     }
 
 
-     
+
 
 
 }
