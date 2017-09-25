@@ -119,6 +119,7 @@ $(function(){
             "method": "GET",
             "success": function(response, status, http) {
                 if (http.status == 200) {
+                  console.log(response);
                     $('#first-name').html(response.first_name);
                     $('#last-name').html(response.last_name);
                     $('#middle-name').html(response.middle_name);

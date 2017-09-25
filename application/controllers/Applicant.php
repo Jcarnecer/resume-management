@@ -9,7 +9,7 @@ class Applicant extends CI_Controller {
     $this->load->model('employee');
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
-    $data['role_applicant'] = $this->Resume_model->fetch('role','');
+    $data['role_applicant'] = $this->Resume_model->fetch('role',['applicant' => 1]);
     $data['role_employee'] = $this->Resume_model->fetch('role','pos_id=1');
     $data['role_intern'] = $this->Resume_model->fetch('role','pos_id=2');
     $this->load->view('applicant/index', $data);
@@ -17,24 +17,24 @@ class Applicant extends CI_Controller {
 
   public function applicants() {
     $this->load->model('Resume_model');
-  //  $role = $_GET['role'];
-  //  $status = $_GET['status'];
+    $role = $_GET['role'];
+    $status = $_GET['status'];
     $data['title'] = "Astrid Technologies | Resume Management";
-  //  $data['role'] = $this->Resume_model->fetch('role','id='.$role);
+  //$data['role'] = $this->Resume_model->fetch('role','id='.$role);
 
     $query = [];
 
-  /*  if ($role != null) {
-      $query["position"] = $role;
+    if ($role != null) {
+      $query["role_id"] = $role;
     }
 
     if ($status != null) {
       $query["application_status"] = $status;
-    } */
+    }
     if (count($query) > 0) {
-       $data['applicants'] = $this->db->get_where('applicants', $query)->result();
+       $data['applicants'] = $this->db->get_where('record', $query)->result();
      } else {
-      $data['applicants'] = $this->Resume_model->fetch('applicants','');
+      $data['applicants'] = $this->Resume_model->fetch('record','');
      }
     $this->load->view('include/header',$data);
     $this->load->view('applicant/applicants',$data);
@@ -134,6 +134,7 @@ class Applicant extends CI_Controller {
            'last_name'  => clean_data(ucwords($last_name)),
            'middle_name' => clean_data(ucwords($middle_name)),
            'degree' => clean_data(ucwords($degree)) ,
+           'application_status' => 1,
            'role_id' => clean_data($this->input->post('role')), //java dev, rails dev etc.
            'pos_id' => clean_data($this->input->post('position')), // employee, intern
            'email' => clean_data($email_address),
@@ -153,6 +154,7 @@ class Applicant extends CI_Controller {
       $this->Resume_model->insert('record',$insert_data);
       // print_r($insert_data);die;
       echo json_encode('success');
+
     }
 
   }
@@ -160,7 +162,7 @@ class Applicant extends CI_Controller {
 
   public function view($id){
     $this->load->model('Resume_model');
-    $applicant = $this->Resume_model->get($id);
+    $applicant = $this->db->get_where('record', ['id' => $id])->row();
 
     header('Content-Type: application/json');
     header('Access-Control-Allow-Origin: *');
@@ -182,7 +184,7 @@ class Applicant extends CI_Controller {
     // print_r($id);die;
     $this->load->model('Resume_model');
     $title['title'] = "Astrid Technologies | New Applicant";
-    $data['applicant_data']= $this->Resume_model->get($id);
+    $data['applicant_data']= $this->db->get_where('record', ['id' => $id])->row();
     $this->load->view('include/header',$title);
     $this->load->view('applicant/edit', $data);
 
@@ -190,7 +192,6 @@ class Applicant extends CI_Controller {
 
   public function edit()
   {
-
     $now = new DateTime();
     $now->setTimezone(new DateTimezone('Asia/Manila'));
     $date_now = $now->format('Y-m-d');
@@ -206,6 +207,7 @@ class Applicant extends CI_Controller {
     $degree = $_POST['degree'];
     $position = $_POST['position'];
     $id = $_POST['id'];
+    $current_status = "current";
 
     $this->Resume_model->first_name = $first_name;
     $this->Resume_model->last_name = $last_name;
@@ -215,6 +217,7 @@ class Applicant extends CI_Controller {
     $this->Resume_model->home_address = $home_address;
     $this->Resume_model->id  = $id;
     $this->Resume_model->application_status = $status;
+    $this->Resume_model->current_status = $current_status;
     $this->Resume_model->edit();
 
     $this->email->initialize(array(
@@ -243,39 +246,21 @@ class Applicant extends CI_Controller {
     elseif($status == 5):
       $this->email->message('Passed!');
       $this->email->send();
-      $insert=[
-        'last_name' => $last_name,
-        'first_name' => $first_name,
-        'middle_name' => $middle_name,
-        'email_address' => $to_email,
-        'home_address' => $home_address,
-        'phone_number' => $phone_number,
-        'employment_type' => 2,
-        'status' => 1,
-        'position' => $position,
-        'birth_date' => $birth_date,
-        'school' => $school,
-        'degree' => $degree,
-        'date_hired' => $date_now,
-      ];
-      $this->Resume_model->insert('employees', $insert);
-      $this->Resume_model->delete('applicants','id='.$id);
 
     endif;
     redirect('');
   }
 
   public function insert_role(){
-    $this->load->helper('encryption');
+  $this->load->helper('encryption');
    $insert=[
      'name' => clean_data(ucwords($this->input->post('role'))),
      'pos_id' => $this->input->post('pos_id'),
+     'applicant' => $this->input->post('applicant'),
    ];
+   $this->Resume_model->insert('role', $insert);
+   echo json_encode('success');
 
-   $this->load->model('Resume_model');
-   $this->Resume_model->insert('role',$insert);
-
-   redirect('');
  }
 
  public function delete_role() {

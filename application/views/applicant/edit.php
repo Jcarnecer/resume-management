@@ -10,11 +10,11 @@
      <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
 
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
-       <input type="hidden" name="school" value="<?= $applicant_data->school ?>">
-       <input type="hidden" name="position" value="<?= $applicant_data->position?>">
-       <input type="hidden" name="birth_date" value="<?= $applicant_data->birth_date?>">
+       <input type="hidden" name="school" value="<?= $applicant_data->school?>">
+       <input type="hidden" name="position" value="<?= $applicant_data->pos_id?>">
+       <input type="hidden" name="birth_date" value="<?= $applicant_data->birthday ?>">
        <input type="hidden" name="degree" value="<?= $applicant_data->degree?>">
-       <input type="hidden" name="birth_date" value="<?= $applicant_data->birth_date?>">
+
        <div class="form-group">
          <label  class="col-sm-3 control-label">First Name</label>
          <div class="col-sm-9">
@@ -39,7 +39,7 @@
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
          <div class="col-sm-9">
-             <input type="email" name="email_address" class="form-control" value="<?= $applicant_data->email_address ?>" placeholder="Email Address"/>
+             <input type="email" name="email_address" class="form-control" value="<?= $applicant_data->email ?>" placeholder="Email Address"/>
          </div>
        </div>
 

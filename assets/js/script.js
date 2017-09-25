@@ -89,15 +89,16 @@ $(document).ready(function(){
   });
 });
 
-$(document).ready(function(){
-  ("#applicant_check").on('click', function(){
-    var check = $(this).val();
+$(function() {
+  $("#add-role-form").on('submit', function(e){
+    e.preventDefault();
+
     $.ajax({
+      url: base_url + "insert_role",
       type: 'POST',
-      url: base_url + "applicant/add",
-      data: $("#applicant_check").serialize(),
+      data: $('#add-role-form').serialize(),
       success: function(data){
-        alert("Hello");
+        
       }
     });
   });
