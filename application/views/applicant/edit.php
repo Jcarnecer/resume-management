@@ -10,11 +10,13 @@
      <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
 
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
-       <input type="hidden" name="school" value="<?= $applicant_data->school ?>">
+       <input type="hidden" name="school" value="<!?= $applicant_data->school?>">
        <input type="hidden" name="position" value="<?= $applicant_data->position?>">
        <input type="hidden" name="birth_date" value="<?= $applicant_data->birth_date?>">
        <input type="hidden" name="degree" value="<?= $applicant_data->degree?>">
-       <input type="hidden" name="birth_date" value="<?= $applicant_data->birth_date?>">
+       <input type="hidden" name="date_hired" value="<?= $applicant_data->date_hired?>">
+       <input type="hidden" name="start_date" value="<?= $applicant_data->start_date?>">
+
        <div class="form-group">
          <label  class="col-sm-3 control-label">First Name</label>
          <div class="col-sm-9">
@@ -56,6 +58,42 @@
              <input type="text" name="home_address" class="form-control" value="<?= $applicant_data->home_address ?>" placeholder="Home Address"/>
          </div>
        </div>
+
+       <div class="form-group">
+          <label  class="col-sm-3 control-label">Birth Date:</label>
+          <div class="col-sm-9">
+              <input type="date" name="birth_date" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+      <label  class="col-sm-3 control-label">Degree:</label>
+      <div class="col-sm-9">
+          <input type="text" name="degree" class="form-control" placeholder="Degree"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-sm-3 control-label">School:</label>
+      <div class="col-sm-9">
+          <input type="text" name="school" class="form-control" placeholder="School"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-sm-3 control-label">Application Date:</label>
+      <div class="col-sm-9">
+          <input type="date" name="application_date" class="form-control" placeholder="application_date"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Comment:</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" name="comment"></textarea>
+      </div>
+    </div>
+
 
 
       <div class="form-group">
