@@ -7,30 +7,20 @@ $(document).ready(function(){
     $("div.tab>div.tab-content").removeClass("active");
     $("div.tab>div.tab-content").eq(index).addClass("active");
   });
-
 });
 
 $(document).ready(function(){
-    $('#staff').on('change', function() {
+    $('#pos-id').on('change', function() {
+      var status = document.getElementById("current_status")
       if(this.value == '1'){
-        $("#status").hide();
+        $("#emp_form").show();
+
       }
       else if( this.value == '2')
       {
-        $("#emp_form").show();
-        $("#status").show();
-        $("#expected_salary").hide();
-        $("#application_date").hide();
-        $("#resume").hide();
-      }
-      else
-      {
         $("#emp_form").hide();
-        $("#status").show();
-        $("#expected_salary").hide();
-        $("#application_date").hide();
-        $("#resume").hide();
       }
+
     });
 });
 
@@ -98,7 +88,7 @@ $(function() {
       type: 'POST',
       data: $('#add-role-form').serialize(),
       success: function(data){
-        
+        alert("Oks na!");
       }
     });
   });
