@@ -9,8 +9,13 @@
     <title> <?= $title ?> </title>
     <link rel="stylesheet" href="<?php echo base_url("/assets/css/bootstrap.min.css"); ?>" />
     <link rel="stylesheet" href="<?php echo base_url("/assets/css/style.css"); ?>" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/css/bootstrapvalidator.min.css" rel="stylesheet" />
+
     <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>"></script>
     <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+
     <script type="text/javascript">
   		var base_url = window.location.origin+"/resume-management/";
   	</script>

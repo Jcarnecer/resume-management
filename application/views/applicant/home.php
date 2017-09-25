@@ -117,7 +117,7 @@ $position = $this->Resume_model->fetch('position');
                   <div class="col-sm-6">
                     <div class="col-padding">
                       <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
-                        <div><?= $this->Resume_model->count('employees',['status'=>1,'employment_type'=>2]); ?><br>Current</div>
+                          <div><?= $this->Resume_model->count('employees',['record','current_status=current']); ?><br>Current</div>
                       </a>
                     </div>
                   </div>
@@ -125,7 +125,7 @@ $position = $this->Resume_model->fetch('position');
                   <div class="col-sm-6">
                     <div class="col-padding">
                       <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
-                        <div><?= $this->Resume_model->count('employees',['status'=>0,'employment_type'=>2]); ?><br>Former</div>
+                        <div><?= $this->Resume_model->count('employees',['record','current_status=former']); ?><br>Former</div>
                       </a>
                     </div>
                   </div>
@@ -155,14 +155,14 @@ $position = $this->Resume_model->fetch('position');
                     <div class="col-sm-6">
                       <div class="col-padding">
                         <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
-                          <div><?= $this->Resume_model->count('employees',['status'=>1,'employment_type'=>3]); ?><br>Current</div>
+                          <div><?= $this->Resume_model->count('employees',['record','current_status=current']); ?><br>Current</div>
                         </a>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="col-padding">
                         <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
-                          <div><?= $this->Resume_model->count('employees',['status'=>0,'employment_type'=>3]); ?><br>Former</div>
+                          <div><?= $this->Resume_model->count('employees',['record','current_status=former']); ?><br>Former</div>
                         </a>
                       </div>
                     </div>

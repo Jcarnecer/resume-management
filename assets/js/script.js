@@ -10,6 +10,69 @@ $(document).ready(function(){
 
 });
 
+$(document).ready(function() {
+    $('#add-record-form').bootstrapValidator({
+    //    container: '#container',
+        fields: {
+            last_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Last name is required and cannot be empty'
+                    },
+                    regexp: {
+                     regexp: /^[a-zA-Z]+$/,
+                     message: 'The Last name can only consist of letters'
+                   },
+                }
+            },
+
+            first_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The First name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z]+$/,
+                       message: 'The First name can only consist of letters'
+                    },
+                }
+            },
+
+            middle_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Middle name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z]+$/,
+                       message: 'The Middle name can only consist of letters'
+                    },
+                }
+            },
+
+            email_add: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Email Address is required and cannot be empty'
+                    },
+                }
+            },
+
+            phone_number: {
+                validators: {
+                    notEmpty: {
+                        message: 'The phone number is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Phone number can only consist of numbers'
+                    },
+                }
+            },
+        }
+    });
+});
+
 $(document).ready(function(){
     $('#staff').on('change', function() {
       if(this.value == '1'){
@@ -34,6 +97,9 @@ $(document).ready(function(){
     });
 });
 
+
+
+/*
 //add new record
 $(document).ready(function(){
   $("#add-record-form").on('submit',function(e){
@@ -57,7 +123,7 @@ $(document).ready(function(){
     e.preventDefault();
   })
 })
-
+*/
 $(document).ready(function(){
   $("#pos-id").on('change', function(){
     var posid = $("#pos-id").val();
@@ -88,6 +154,8 @@ $(document).ready(function(){
     });
   });
 });
+
+
 
 $(document).ready(function(){
   ("#applicant_check").on('click', function(){

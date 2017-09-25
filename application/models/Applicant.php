@@ -68,7 +68,7 @@ class Applicant extends CI_Model {
     $this->db->set('middle_name', $this->applicant->middle_name);
     $this->db->set('last_name', $this->applicant->last_name);
     $this->db->set('comment', $this->applicant->comment);
-    $this->db->set('phone_no', $this->applicant->phone_no);
+    $this->db->set('phone_number', $this->applicant->phone_number);
     $this->db->set('address', $this->applicant->address);
     $this->db->set('email_add', $this->applicant->email_add);
     $this->db->set('application_status', $this->applicant->application_status);

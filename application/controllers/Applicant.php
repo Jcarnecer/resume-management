@@ -1,4 +1,4 @@
-<?php
+  <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Applicant extends CI_Controller {
@@ -192,30 +192,43 @@ class Applicant extends CI_Controller {
   {
 
     $now = new DateTime();
-    $now->setTimezone(new DateTimezone('Asia/Manila'));
-    $date_now = $now->format('Y-m-d');
-    $to_email = $_POST['email_address'];
-    $status = $_POST['status'];
-    $first_name= $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $middle_name = $_POST['middle_name'];
-    $phone_number = $_POST['phone_number'];
-    $home_address = $_POST['home_address'];
-    $birth_date = $_POST['birth_date'];
-    $school = $_POST['school'];
-    $degree = $_POST['degree'];
-    $position = $_POST['position'];
-    $id = $_POST['id'];
+     $now->setTimezone(new DateTimezone('Asia/Manila'));
+     $date_now = $now->format('Y-m-d');
+     $to_email = $_POST['email_address'];
+     $status = $_POST['status'];
+     $first_name= $_POST['first_name'];
+     $last_name = $_POST['last_name'];
+     $middle_name = $_POST['middle_name'];
+     $phone_number = $_POST['phone_number'];
+     $home_address = $_POST['home_address'];
+     $birth_date = $_POST['birth_date'];
+     $school = $_POST['school'];
+     $degree = $_POST['degree'];
+     $position = $_POST['position'];
+     $application_date = $_POST['application_date'];
+     $sss = $_POST['sss'];
+     $tin = $_POST['tin'];
+     $philhealth = $_POST['philhealth'];
+     $pagibig = $_POST['pagibig'];
+     $comment = $_POST['comment'];
+     $id = $_POST['id'];
 
-    $this->Resume_model->first_name = $first_name;
-    $this->Resume_model->last_name = $last_name;
-    $this->Resume_model->middle_name = $middle_name;
-    $this->Resume_model->email_address = $to_email;
-    $this->Resume_model->phone_number = $phone_number;
-    $this->Resume_model->home_address = $home_address;
-    $this->Resume_model->id  = $id;
-    $this->Resume_model->application_status = $status;
-    $this->Resume_model->edit();
+     $this->Resume_model->first_name = $first_name;
+     $this->Resume_model->last_name = $last_name;
+     $this->Resume_model->middle_name = $middle_name;
+     $this->Resume_model->degree = $degree;
+     $this->Resume_model->school = $school;
+     $this->Resume_model->email_address = $to_email;
+     $this->Resume_model->phone_number = $phone_number;
+     $this->Resume_model->home_address = $home_address;
+     $this->Resume_model->birth_date = $birth_date;
+     $this->Resume_model->application_date = $application_date;
+     $this->Resume_model->comment = $comment;
+
+     $this->Resume_model->id  = $id;
+     $this->Resume_model->application_status = $status;
+     $this->Resume_model->edit();
+
 
     $this->email->initialize(array(
         'protocol' => 'mail',
