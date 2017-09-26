@@ -1,39 +1,42 @@
-
+<?php $position = $this->Resume_model->fetch('position');
+// print_r($position);die;
+  ?>
     <center>
       <h3>Add New Record</h3>
     </center>
       <div class="container">
-       <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/create_applicant'); ?>">
+       <form class="form-horizontal" id="add-record-form" enctype="multipart/form-data"  method="POST">
 
          <div class="form-group">
-           <label  class="col-sm-3 control-label">Role:</label>
+           <label  class="col-sm-3 control-label">Position:</label>
              <div class="col-sm-9">
-               <select id='staff' class="form-control" name="employment_type">
+               <select id="pos-id" class="form-control" name="position">
                  <option value="disabled selected">Select your option</option>
-                 <option value="1">Applicant</option>
-                 <option value="2">Employee</option>
-                 <option value="3">Intern</option>
+                 <?php foreach($position as $row): ?>
+                   <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                 <?php endforeach; ?>
                </select>
              </div>
           </div>
 
-          <div class="form-group">
-            <label  class="col-sm-3 control-label">Status:</label>
+          <div id="status" class="form-group">
+            <label class="col-sm-3 control-label">Current Status:</label>
             <div class="col-sm-9">
-                <select name="status" class="form-control">
-                  <option value="1">Current</option>
-                  <option value="0">Former</option>
+                <select name="current_status" id="current_status" class="form-control">
+                  <option value="disabled selected">Select Status</option>
+                  <!-- <option value="applicant">Applicant</option> -->
+                  <option value="applicant">Applicant</option>
+                  <option value="current">Current</option>
+                  <option value="former">Former</option>
                 </select>
             </div>
           </div>
 
          <div class="form-group">
-           <label  class="col-sm-3 control-label">Position:</label>
+           <label  class="col-sm-3 control-label">Role:</label>
            <div class="col-sm-9">
-               <select name="position" class="form-control">
-                 <?php foreach ($roles as $role): ?>
-                  <option value="<?= $role->id; ?>"><?= $role->name; ?></option>
-                <?php endforeach; ?>
+               <select id="role" name="role" class="form-control">
+
                </select>
            </div>
          </div>
@@ -64,21 +67,21 @@
          <div class="form-group">
            <label  class="col-sm-3 control-label">Email Address:</label>
            <div class="col-sm-9">
-               <input type="email" name="email_add" class="form-control" placeholder="Email Address"/>
+               <input type="email" name="email_address" class="form-control" placeholder="Email Address"/>
            </div>
          </div>
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Phone Number:</label>
            <div class="col-sm-9">
-               <input type="text" name="phone_no" class="form-control" placeholder="Phone Number"/>
+               <input type="text" name="phone_number" class="form-control" placeholder="Phone Number"/>
            </div>
          </div>
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Home Address:</label>
            <div class="col-sm-9">
-               <input type="text" name="address" class="form-control" placeholder="Home Address"/>
+               <input type="text" name="home_address" class="form-control" placeholder="Home Address"/>
            </div>
          </div>
 
@@ -86,7 +89,7 @@
         <div class="form-group">
           <label  class="col-sm-3 control-label">Birth Date:</label>
           <div class="col-sm-9">
-              <input type="date" name="bdate" class="form-control"/>
+              <input type="date" name="birth_date" class="form-control"/>
           </div>
         </div>
 
@@ -105,22 +108,37 @@
            </div>
          </div>
 
+         <!--bawal to sa current pero pweds siya applicant -->
+         <div id= "applicant_div" hidden>
 
-         <div class="form-group">
+         <div id="application_date" class="form-group" >
            <label  class="col-sm-3 control-label">Application Date:</label>
            <div class="col-sm-9">
                <input type="date" name="application_date" class="form-control"/>
            </div>
          </div>
 
-         <div class="form-group">
-           <label  class="col-sm-3 control-label">Expected Salary:</label>
+        <!--bawal to sa current pero pweds siya applicant -->
+         <div id="available_date" class="form-group">
+           <label  class="col-sm-3 control-label">Available Date:</label>
            <div class="col-sm-9">
-               <input type="text" name="salary" class="form-control" placeholder="Expected Salary"/>
+               <input type="date" name="available_date" class="form-control"/>
            </div>
          </div>
 
-         <div style='display:none;' id='emp_form'>
+
+        <!--bawal to sa current pero pweds siya applicant -->
+         <div id="expected_salary" class="form-group">
+           <label  class="col-sm-3 control-label">Expected Salary:</label>
+           <div class="col-sm-9">
+               <input type="text" name="expected_salary" class="form-control" placeholder="Expected Salary"/>
+           </div>
+         </div>
+       </div>
+
+         <!-- Ito yung pang employee na part :)  -->
+
+         <div style='display:none;' id='emp_form' hidden>
            <div class="form-group"><br>
              <label  class="col-sm-3 control-label">Date Hired:</label>
              <div class="col-sm-9">
@@ -157,7 +175,7 @@
            </div>
 
          </div>
-
+<!--Hanggang Dito pang employee yan -->
          <div class="form-group">
            <label class="col-sm-3 control-label">Comment:</label>
            <div class="col-sm-9">
@@ -165,17 +183,18 @@
            </div>
          </div>
 
-         <div class="form-group">
+         <!--Bawal siya sa current -->
+         <div id="resume" class="form-group " hidden>
            <label class="col-sm-3 control-label">Resume:</label>
            <div class="col-sm-9">
-             <input type="file" name="resume">
+             <input type="file" name="resume_file">
            </div>
          </div>
 
          <div class="form-group">
            <label class="col-sm-3 control-label">Image:</label>
            <div class="col-sm-9">
-             <input type="file" name="image">
+             <input type="file" name="image_file">
            </div>
          </div>
 

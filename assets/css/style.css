@@ -27,7 +27,7 @@ div.tab-menu div.list-group > a {
   font-size: 150%;
   border-radius: 0;
   border-color: transparent;
-  width: 200px;
+  width: 175px;
   height: 100px;
   display: inline-block; }
   div.tab-menu div.list-group > a:hover {
@@ -85,5 +85,8 @@ div.tab-content:not(.active) {
   width: 100px;
   height: 100px;
 }
-
+#record-table{
+  padding-top: 150px;
+  padding-left: 200px;
+}
 /*# sourceMappingURL=style.css.map */

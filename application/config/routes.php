@@ -49,26 +49,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+//Applicant
+$route['applicant']['GET'] = 'Applicant';
+$route['applicants'] = 'Applicant/applicants';
 
-$route['applicant']['GET'] = 'ApplicantController';
-$route['applicants'] = 'ApplicantController/applicant';
-$route['applicant/create_applicant']['POST']= 'ApplicantController/create_applicant';
-$route['applicant/new']['GET'] = 'ApplicantController/new';
-$route['applicant/edit_view/(:num)']['GET'] = 'ApplicantController/edit_view/$1';
-$route['applicant/edit']['POST'] = 'ApplicantController/edit';
-$route['applicant/(:num)']['GET'] = 'ApplicantController/view/$1';
-$route['home']   ="ApplicantController/home";
-$route['applicant/insert_role']['POST'] = 'ApplicantController/insert_role';
-$route['applicant/add'] = 'applicantcontroller/add_applicant';
-$route['addEmployee'] ='ApplicantController/view_add_employee';
-$route['applicant/add_employee']['POST'] = 'ApplicantController/add_employee';
-$route['add_result']['POST'] = 'ApplicantController/add_result';
-$route['view_employee']['GET'] = 'ApplicantController/view_employee';
+$route['applicant/new']['GET'] = 'Applicant/new';
 
-//Login
-/*$route['auth/login']  = "login/auth";
-$route['auth/logout'] = "login/logout"; */
+$route['applicant/edit_view/(:num)']['GET'] = 'Applicant/edit_view/$1';
+$route['applicant/edit']['POST'] = 'Applicant/edit';
 
-$route['default_controller'] = "ApplicantController";
+$route['applicant/(:num)']['GET'] = 'Applicant/view/$1';
+
+$route['insert_role']['POST'] = 'Applicant/insert_role';
+$route['applicant/add'] = 'Applicant/add_applicant';
+
+$route['add_result']['POST'] = 'Applicant/add_result';
+
+//Employee
+$route['employee']['GET'] = 'Employee/index';
+$route['employee/edit/(:num)']['GET'] = 'Employee/edit/$1';
+
+//Intern
+$route['intern']['GET'] = 'Intern/index';
+
+//Delete Role
+$route['delete_role'] = 'Applicant/delete_role';
+
+
+$route['default_controller'] = "Applicant";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
