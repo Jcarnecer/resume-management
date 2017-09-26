@@ -37,8 +37,9 @@ $position = $this->Resume_model->fetch('position');
   <div class="row">
     <div class="col-md-6 tab-menu">
       <div class="list-group">
+
         <a href="#" class="list-group-item active" id="applicant">Applicants <br><?= $this->Resume_model->count('record', ['current_status'=>"applicant"]);?></a>
-        <a href="#" class="list-group-item" id="employee">Employees <br><?= $this->Resume_model->count('record', ['pos_id'=>1,'current_status'=>"current",'current_status' => "former"]);?></a>
+        <a href="#" class="list-group-item" id="employee">Employees <br><?= $this->Resume_model->count('record', ['pos_id' => 1, 'current_status' => "current"]);?></a>
         <a href="#" class="list-group-item" id="intern">Intern <br><?=$this->Resume_model->count('record', ['pos_id' => 2,'current_status'=>"current",'current_status'=>"former"])?></a>
       </div>
     </div>
@@ -61,28 +62,28 @@ $position = $this->Resume_model->fetch('position');
               <div class="row grid-divider">
                 <div class="col-sm-3">
                   <div class="col-padding">
-                    <a href="<?= base_url('applicants?status=1&role=' . $role->role_id .'&current_status=Applicant'); ?>">
+                    <a href="<?= base_url('applicants?status=1&role=' . $role->role_id .'&current_status=applicant'); ?>">
                       <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id,'application_status' => 1,'current_status' => "applicant"]);?><br>Applicants</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
-                    <a href="<?= base_url('applicants?status=2&role=' . $role->role_id .'&current_status=Applicant'); ?>">
+                    <a href="<?= base_url('applicants?status=2&role=' . $role->role_id .'&current_status=applicant'); ?>">
                       <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'application_status' => 2,'current_status' => "applicant"]); ?><br>For Interview</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
-                    <a href="<?= base_url('applicants?status=3&role=' . $role->role_id .'&current_status=Applicant'); ?>">
+                    <a href="<?= base_url('applicants?status=3&role=' . $role->role_id .'&current_status=applicant'); ?>">
                       <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'application_status' => 3,'current_status' => "applicant"]); ?><br>Shortlist</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
-                    <a href="<?= base_url('applicants?status=4&role=' . $role->role_id .'&current_status=Applicant'); ?>">
+                    <a href="<?= base_url('applicants?status=4&role=' . $role->role_id .'&current_status=applicant'); ?>">
                       <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'application_status' => 4, 'current_status' => "applicant"]); ?><br>Rejected</div>
                     </a>
                   </div>

@@ -7,8 +7,9 @@
         echo $this->session->flashdata('email_sent');
       ?>
 
-     <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('employee/edit'); ?>">
+     <form class="form-horizontal" id="edit-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('employee/edit'); ?>">
 
+       <input type="hidden" name="id" value="<?=$employee_data->id?>">
        <div class="form-group">
          <label  class="col-sm-3 control-label">First Name</label>
          <div class="col-sm-9">
@@ -48,6 +49,17 @@
          <label  class="col-sm-3 control-label">Home Address:</label>
          <div class="col-sm-9">
              <input type="text" name="home_address" class="form-control" value="<?= $employee_data->home_address ?>" placeholder="Home Address"/>
+         </div>
+       </div>
+
+       <div class="form-group">
+         <label  class="col-sm-3 control-label">Status:</label>
+         <div class="col-sm-9">
+           <select class="form-control" name="current_status" value="<?= $employee_data->current_status?>">
+             <option>Select Status</option>
+             <option value="Current">Current</option>
+             <option value="Former">Former</option>
+           </select>
          </div>
        </div>
 
