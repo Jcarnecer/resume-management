@@ -20,7 +20,6 @@ class Intern extends CI_Controller {
       if(count($query) > 0){
         $data['interns'] = $this->db->get_where('record', $query)->result();
       }
-
       else{
         $data['interns'] = $this->Resume_model->fetch('record','pos_id=2');
       }

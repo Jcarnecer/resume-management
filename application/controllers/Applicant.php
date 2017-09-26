@@ -31,7 +31,7 @@ class Applicant extends CI_Controller {
     }
     if ($status != null) {
       $query["application_status"] = $status;
-    }
+    } 
     if (count($query) > 0) {
        $data['applicants'] = $this->db->get_where('record', $query)->result();
      } else {
