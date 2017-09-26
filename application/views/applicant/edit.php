@@ -57,6 +57,42 @@
          </div>
        </div>
 
+       <div class="form-group">
+          <label  class="col-sm-3 control-label">Birth Date:</label>
+          <div class="col-sm-9">
+              <input type="date" name="birth_date" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+      <label  class="col-sm-3 control-label">Degree:</label>
+      <div class="col-sm-9">
+          <input type="text" name="degree" class="form-control" placeholder="Degree"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-sm-3 control-label">School:</label>
+      <div class="col-sm-9">
+          <input type="text" name="school" class="form-control" placeholder="School"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-sm-3 control-label">Application Date:</label>
+      <div class="col-sm-9">
+          <input type="date" name="application_date" class="form-control" placeholder="application_date"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Comment:</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" name="comment"></textarea>
+      </div>
+    </div>
+
+
 
       <div class="form-group">
         <label  class="col-sm-3 control-label">Status:</label>

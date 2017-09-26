@@ -9,6 +9,7 @@ $(document).ready(function(){
   });
 });
 
+
 $(document).ready(function(){
     $('#pos-id').on('change', function() {
       var status = document.getElementById("current_status")
@@ -24,7 +25,11 @@ $(document).ready(function(){
     });
 });
 
+
+
+
 //add new record
+
 $(document).ready(function(){
   $("#add-record-form").on('submit',function(e){
     var form = new FormData(document.getElementById("add-record-form"));
@@ -37,16 +42,83 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         var result = JSON.parse(data);
+
         if(result==='success'){
           window.history.back()
         }else{
           alert('Error');
         }
+
       }
     })
     e.preventDefault();
   })
 })
+
+$(document).ready(function() {
+    $('#add-record-form').bootstrapValidator({
+    //    container: '#container',
+        fields: {
+            last_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Last name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                     },
+                 }
+             },
+
+            first_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The First name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                    },
+                }
+            },
+
+            middle_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Middle name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The Middle name can only consist of letters'
+                    },
+                }
+            },
+
+            email_add: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Email Address is required and cannot be empty'
+                    },
+                }
+            },
+
+            phone_number: {
+                validators: {
+                    notEmpty: {
+                        message: 'The phone number is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Phone number can only consist of numbers'
+                    },
+                }
+            },
+        }
+    });
+});
+
+
 
 $(document).ready(function(){
   $("#pos-id").on('change', function(){
