@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-
+//Applicant
 $route['applicant']['GET'] = 'Applicant';
 $route['applicants'] = 'Applicant/applicants';
 
@@ -66,7 +66,11 @@ $route['applicant/add'] = 'Applicant/add_applicant';
 $route['add_result']['POST'] = 'Applicant/add_result';
 
 //Employee
-$route['view_employee']['GET'] = 'Employee/index';
+$route['employee']['GET'] = 'Employee/index';
+$route['employee/edit/(:num)']['GET'] = 'Employee/edit/$1';
+
+//Intern
+$route['intern']['GET'] = 'Intern/index';
 
 //Delete Role
 $route['delete_role'] = 'Applicant/delete_role';

@@ -15,9 +15,7 @@ class Resume_model extends CI_Model {
 
     if(empty($data)){
        $result=$this->db->get($table);
-
     }
-
     else{
       $result=$this->db->get_where($table,$data);
     }
@@ -72,41 +70,18 @@ class Resume_model extends CI_Model {
     return $query->result();
   }
 
-  public function edit()
-  {
-    $this->db->set('phone_number', $this->Resume_model->phone_number);
-    $this->db->set('home_address', $this->Resume_model->home_address);
-    $this->db->set('email', $this->Resume_model->email_address);
-    $this->db->set('first_name', $this->Resume_model->first_name);
-    $this->db->set('last_name', $this->Resume_model->last_name);
-    $this->db->set('middle_name', $this->Resume_model->middle_name);
-    $this->db->set('application_status', $this->Resume_model->application_status);
-    $this->db->set('current_status', $this->Resume_model->current_status);
-    $this->db->where('id' ,$this->id);
-    $query = $this->db->update('record');
+  public function update($table,$data,$where=""){
+    if($where!="") {
+        $this->db->where($where);
+    }
+
+    $result = $this->db->update($table,$data);
+    if ($result) {
+      return TRUE;
+    }else{
+      return FALSE;
+    }
   }
-
-
-/*  public function count_applicant($position = null, $application_status = null){
-    if($position == null && $application_status == null){
-      $query = $this->db->get('applicants');
-    }
-    else{
-      $query = $this->db->get_where('applicants', ['position'=> $position, 'application_status' => $application_status]);
-    }
-
-      return $query->num_rows();
-  }
-
-  public function count_employee($position = null, $status = null){
-    if($position == null && $status == null){
-      $query = $this->db->get('employees');
-    }
-    else{
-      $query = $this->db->get_where('employees', ['position'=> $position, 'status' => $status]);
-    }
-      return $query->num_rows();
-  } */
 
   public function addresult(){
     $this->db->set('exam_result', $this->Resume_model->exam_result);
@@ -117,6 +92,8 @@ class Resume_model extends CI_Model {
     $query = $this->db->update('applicants');
   }
 
+
+
   public function join_applicants_roles(){
       $this->db->select('*');
       $this->db->from('applicants');
@@ -124,5 +101,11 @@ class Resume_model extends CI_Model {
       $query = $this->db->get();
       return $query->result();
   }
-  
+
+  public function last_inserted_row($table,$data){
+    $this->db->insert($table, $data);
+    $last_id = $this->db->insert_id();
+    $query = $this->db->get_where($table,array('id'=>$last_id));
+    return $query->row();
+  }
 }

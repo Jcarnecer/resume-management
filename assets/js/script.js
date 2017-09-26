@@ -38,9 +38,9 @@ $(document).ready(function(){
         console.log(data);
         var result = JSON.parse(data);
         if(result==='success'){
-          alert('pasok');
+          window.history.back()
         }else{
-          alert('hindi pasok');
+          alert('Error');
         }
       }
     })
@@ -66,18 +66,30 @@ $(document).ready(function(){
           // console.log(roles.id);
         }
         $("#role").html(html);
-
-        // $("#role").val(result.name); //nosure
-        // var id = data[]['id'];
-        // var name = data[]['name'];
-        // console.log(id);
-        // console.log(data['','name']);
-        // $("#role").html("<option value="+'id'+">asdadsad</option>"); //not best way (try)
-        // "<option value='1'>NAME</option>"
+        // alert(posid);
+        if(posid == 1){
+          $("#emp_form").show();
+        }else{
+          $("#emp_form").hide();
+        }
       }
     });
   });
+  $("#current_status").on('change',function() {
+    var c_status = $("#current_status").val();
+
+    if(c_status == 'applicant'){
+      $("#applicant_div").show();
+      // $("#expected_salary").show();
+      $("#resume").show();
+    }else{
+      $("#applicant_div").hide();
+      $("#resume").hide();
+
+    }
+  })
 });
+
 
 $(function() {
   $("#add-role-form").on('submit', function(e){
@@ -88,8 +100,54 @@ $(function() {
       type: 'POST',
       data: $('#add-role-form').serialize(),
       success: function(data){
-        alert("Oks na!");
+        location.reload();
       }
     });
   });
+});
+
+
+//View Record's Information
+$(function(){
+
+  $('[data-name="button-view"]').click(function() {
+      var applicantId = $(this).attr('data-id');
+      var url = base_url + "applicant/" +  applicantId;
+
+      $.ajax({
+          "url": url,
+          "method": "GET",
+          "success": function(response, status, http) {
+              if (http.status == 200) {
+                console.log(response);
+                  $('#first-name').html(response.first_name);
+                  $('#last-name').html(response.last_name);
+                  $('#middle-name').html(response.middle_name);
+                  $('#position').html(response.position);
+                  $('#app_date').html(response.application_date);
+                  $('#comment').html(response.comment);
+                  $('#resume').attr("href", "<?php print base_url('assets/uploads'); ?>/" + response.file);
+                  $('#resume').html(response.file);
+                  $('#interviewer').html(response.interviewer);
+                  $('#interview-notes').attr("href", "<?php print base_url('assets/uploads'); ?>/" + response.interview_notes);
+                  $('#interview-notes').html(response.interview_notes);
+                  if(response.exam_result == 1){
+                    $('#exam-result').html("Passed");
+                  }
+                  else{
+                    $('#exam-result').html("Failed");
+                  }
+                  if(response.interview_result == 1){
+                    $('#interview-result').html("Passed");
+                  }
+                  else{
+                    $('#interview-result').html("Failed");
+                  }
+
+                  $('#viewmodal').modal('show');
+              }
+          }
+      });
+  });
+
 });

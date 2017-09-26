@@ -108,14 +108,17 @@
            </div>
          </div>
 
+         <!--bawal to sa current pero pweds siya applicant -->
+         <div id= "applicant_div" hidden>
 
-         <div id="application_date" class="form-group">
+         <div id="application_date" class="form-group" >
            <label  class="col-sm-3 control-label">Application Date:</label>
            <div class="col-sm-9">
                <input type="date" name="application_date" class="form-control"/>
            </div>
          </div>
 
+        <!--bawal to sa current pero pweds siya applicant -->
          <div id="available_date" class="form-group">
            <label  class="col-sm-3 control-label">Available Date:</label>
            <div class="col-sm-9">
@@ -123,14 +126,19 @@
            </div>
          </div>
 
+
+        <!--bawal to sa current pero pweds siya applicant -->
          <div id="expected_salary" class="form-group">
            <label  class="col-sm-3 control-label">Expected Salary:</label>
            <div class="col-sm-9">
                <input type="text" name="expected_salary" class="form-control" placeholder="Expected Salary"/>
            </div>
          </div>
+       </div>
 
-         <div style='display:none;' id='emp_form'>
+         <!-- Ito yung pang employee na part :)  -->
+
+         <div style='display:none;' id='emp_form' hidden>
            <div class="form-group"><br>
              <label  class="col-sm-3 control-label">Date Hired:</label>
              <div class="col-sm-9">
@@ -167,7 +175,7 @@
            </div>
 
          </div>
-
+<!--Hanggang Dito pang employee yan -->
          <div class="form-group">
            <label class="col-sm-3 control-label">Comment:</label>
            <div class="col-sm-9">
@@ -175,7 +183,8 @@
            </div>
          </div>
 
-         <div id="resume" class="form-group">
+         <!--Bawal siya sa current -->
+         <div id="resume" class="form-group " hidden>
            <label class="col-sm-3 control-label">Resume:</label>
            <div class="col-sm-9">
              <input type="file" name="resume_file">
