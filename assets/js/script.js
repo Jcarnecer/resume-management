@@ -10,6 +10,59 @@ $(document).ready(function(){
 
 });
 
+
+$(document).ready(function(){
+    $('#staff').on('change', function() {
+      if(this.value == '1'){
+        $("#status").hide();
+      }
+      else if( this.value == '2')
+      {
+        $("#emp_form").show();
+        $("#status").show();
+        $("#expected_salary").hide();
+        $("#application_date").hide();
+        $("#resume").hide();
+      }
+      else
+      {
+        $("#emp_form").hide();
+        $("#status").show();
+        $("#expected_salary").hide();
+        $("#application_date").hide();
+        $("#resume").hide();
+      }
+    });
+});
+
+
+
+
+//add new record
+
+$(document).ready(function(){
+  $("#add-record-form").on('submit',function(e){
+    var form = new FormData(document.getElementById("add-record-form"));
+    $.ajax({
+      url: base_url + 'applicant/addRecord',
+      type: "POST",
+      processData: false, // tell jQuery not to process the data
+      contentType: false, // tell jQuery not to set contentType
+      data:form,
+      success: function(data){
+        console.log(data);
+        var result = JSON.parse(data);
+      /*  if(result==='success'){
+          alert('pasok');
+        }else{
+          alert('hindi pasok');
+        }*/
+      }
+    })
+    e.preventDefault();
+  })
+})
+
 $(document).ready(function() {
     $('#add-record-form').bootstrapValidator({
     //    container: '#container',
@@ -18,13 +71,13 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: 'The Last name is required and cannot be empty'
-                    },
-                    regexp: {
-                     regexp: /^[a-zA-Z]+$/,
-                     message: 'The Last name can only consist of letters'
-                   },
-                }
-            },
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                     },
+                 }
+             },
 
             first_name: {
                 validators: {
@@ -32,7 +85,7 @@ $(document).ready(function() {
                         message: 'The First name is required and cannot be empty'
                       },
                       regexp: {
-                       regexp: /^[a-zA-Z]+$/,
+                       regexp: /^[a-zA-Z\s]+$/,
                        message: 'The First name can only consist of letters'
                     },
                 }
@@ -44,7 +97,7 @@ $(document).ready(function() {
                         message: 'The Middle name is required and cannot be empty'
                       },
                       regexp: {
-                       regexp: /^[a-zA-Z]+$/,
+                       regexp: /^[a-zA-Z\s]+$/,
                        message: 'The Middle name can only consist of letters'
                     },
                 }
@@ -73,57 +126,8 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function(){
-    $('#staff').on('change', function() {
-      if(this.value == '1'){
-        $("#status").hide();
-      }
-      else if( this.value == '2')
-      {
-        $("#emp_form").show();
-        $("#status").show();
-        $("#expected_salary").hide();
-        $("#application_date").hide();
-        $("#resume").hide();
-      }
-      else
-      {
-        $("#emp_form").hide();
-        $("#status").show();
-        $("#expected_salary").hide();
-        $("#application_date").hide();
-        $("#resume").hide();
-      }
-    });
-});
 
 
-
-/*
-//add new record
-$(document).ready(function(){
-  $("#add-record-form").on('submit',function(e){
-    var form = new FormData(document.getElementById("add-record-form"));
-    $.ajax({
-      url: base_url + 'applicant/addRecord',
-      type: "POST",
-      processData: false, // tell jQuery not to process the data
-      contentType: false, // tell jQuery not to set contentType
-      data:form,
-      success: function(data){
-        console.log(data);
-        var result = JSON.parse(data);
-        if(result==='success'){
-          alert('pasok');
-        }else{
-          alert('hindi pasok');
-        }
-      }
-    })
-    e.preventDefault();
-  })
-})
-*/
 $(document).ready(function(){
   $("#pos-id").on('change', function(){
     var posid = $("#pos-id").val();
