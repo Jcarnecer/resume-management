@@ -13,11 +13,11 @@ $position = $this->Resume_model->fetch('position');
 
   <div class="row">
     <div class="input-group pull-right">
-      <form class="form-inline" method="POST" id="add-role">
+      <form class="form-inline" method="POST" id="add-role-form">
         <div class="form-group">
           <input type="text" placeholder="Add Role" name="role" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group" id="position">
           <select class="form-control" name="pos_id">
             <?php foreach($position as $row):?>
               <option value="<?= $row->id ?>"><?= $row->name ?></option>
@@ -25,7 +25,7 @@ $position = $this->Resume_model->fetch('position');
           </select>
         </div>
         <div class="form-group checkbox">
-          <label><input type="checkbox" value="">Applicant</label>
+          <label><input type="checkbox" value="1" name="applicant">Applicant</label>
         </div>
         <input class="btn btn-default" type="submit" value="Add Role">
       </form>
@@ -37,22 +37,20 @@ $position = $this->Resume_model->fetch('position');
   <div class="row">
     <div class="col-md-6 tab-menu">
       <div class="list-group">
-        <a href="#" class="list-group-item active" id="applicant">Applicants <br><?= $this->Resume_model->count('applicants','');?></a>
+        <a href="#" class="list-group-item active" id="applicant">Applicants <br><?= $this->Resume_model->count('record','current_status="applicant"');?></a>
         <a href="#" class="list-group-item" id="employee">Employees <br><?= $this->Resume_model->count('record','pos_id=1');?></a>
         <a href="#" class="list-group-item" id="employee">Intern <br><?=$this->Resume_model->count('record','pos_id=2')?></a>
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" id="applicant">
     <div class="col-md-10 tab">
       <div class="tab-content active">
-
-
         <?php
         if($role_applicant == ''){} else{
-         foreach ($role_applicant as $role) :?>
-
+         foreach ($role_applicant as $role) :
+        ?>
           <div class="panel">
             <form method="get" action="<?= base_url('delete_role')?>">
               <input type="hidden" name="id" value="<?= $role->role_id?>">
@@ -64,28 +62,28 @@ $position = $this->Resume_model->fetch('position');
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
-                      <div><?= $this->Resume_model->count_applicant($role->role_id,1); ?><br>Applicants</div>
+                      <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id,'application_status' => 1]);?><br>Applicants</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
-                      <div><?= $this->Resume_model->count_applicant($role->role_id,2)  ; ?><br>For Interview</div>
+                      <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'application_status' => 2]); ?><br>For Interview</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=3&role=' . $role->role_id); ?>">
-                      <div><?= $this->Resume_model->count_applicant($role->role_id,3); ?><br>Shortlist</div>
+                      <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'application_status' => 3]); ?><br>Shortlist</div>
                     </a>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="col-padding">
                     <a href="<?= base_url('applicants?status=4&role=' . $role->role_id); ?>">
-                      <div><?= $this->Resume_model->count_applicant($role->role_id,4); ?><br>Rejected</div>
+                      <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'application_status' => 4]); ?><br>Rejected</div>
                     </a>
                   </div>
                 </div>
@@ -99,7 +97,7 @@ $position = $this->Resume_model->fetch('position');
   </div>
 
 
-    <div class="col-md-10 tab">
+    <div class="col-md-10 tab" id="employee">
       <div class="tab-content">
         <div class="panel">
 
@@ -108,7 +106,7 @@ $position = $this->Resume_model->fetch('position');
             <div class="panel">
               <form action="<?=base_url('delete_role')?>">
               <input type="hidden" name="id" value="<?= $role->role_id ?>">
-              <a><input type="submit" Value="Delete" class="btn btn-danger"></a>
+              <a><input type="submit" Value="Delete" class="btn btn-danger pull-right"></a>
             </form>
               <div class="panel-heading"><?= $role->name ?><hr></div>
               <div class="panel-body">
@@ -117,7 +115,7 @@ $position = $this->Resume_model->fetch('position');
                   <div class="col-sm-6">
                     <div class="col-padding">
                       <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
-                          <div><?= $this->Resume_model->count('employees',['record','current_status=current']); ?><br>Current</div>
+                        <div><?= $this->Resume_model->count('record', ['current_status' => 'current', 'pos_id' => 1]); ?><br>Current</div>
                       </a>
                     </div>
                   </div>
@@ -125,7 +123,7 @@ $position = $this->Resume_model->fetch('position');
                   <div class="col-sm-6">
                     <div class="col-padding">
                       <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
-                        <div><?= $this->Resume_model->count('employees',['record','current_status=former']); ?><br>Former</div>
+                        <div><?= $this->Resume_model->count('record', ['current_status' => 'former', 'pos_id' => 1]); ?><br>Former</div>
                       </a>
                     </div>
                   </div>
@@ -139,15 +137,15 @@ $position = $this->Resume_model->fetch('position');
         </div>
       </div>
 
-      <div class="col-md-10 tab">
+      <div class="col-md-10 tab" id="intern">
         <div class="tab-content">
           <div class="panel">
             <?php if($role_intern == ''){} else{
             foreach ($role_intern as $role) :?>
-              <div class="panel">
+
                 <form action="<?=base_url('delete_role')?>">
                 <input type="hidden" name="id" value="<?= $role->role_id?>">
-                <a><input type="submit" Value="Delete" class="btn btn-danger"></a>
+                <a><input type="submit" Value="Delete" class="btn btn-danger pull-right"></a>
               </form>
                 <div class="panel-heading"><?php echo $role->name;?><hr></div>
                 <div class="panel-body">
@@ -155,21 +153,21 @@ $position = $this->Resume_model->fetch('position');
                     <div class="col-sm-6">
                       <div class="col-padding">
                         <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
-                          <div><?= $this->Resume_model->count('employees',['record','current_status=current']); ?><br>Current</div>
+                          <div><?= $this->Resume_model->count('record', ['current_status' => 'current', 'pos_id' => 2]); ?><br>Current</div>
                         </a>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="col-padding">
                         <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
-                          <div><?= $this->Resume_model->count('employees',['record','current_status=former']); ?><br>Former</div>
+                          <div><?= $this->Resume_model->count('record', ['current_status' => 'former','pos_id' => 2]); ?><br>Former</div>
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+
             <?php endforeach;?>
           <?php } ?>
           </div>

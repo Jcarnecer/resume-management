@@ -76,23 +76,18 @@ class Resume_model extends CI_Model {
   {
     $this->db->set('phone_number', $this->Resume_model->phone_number);
     $this->db->set('home_address', $this->Resume_model->home_address);
-    $this->db->set('email_address', $this->Resume_model->email_address);
+    $this->db->set('email', $this->Resume_model->email_address);
     $this->db->set('first_name', $this->Resume_model->first_name);
     $this->db->set('last_name', $this->Resume_model->last_name);
     $this->db->set('middle_name', $this->Resume_model->middle_name);
-    $this->db->set('degree', $this->Resume_model->degree);
-    $this->db->set('school', $this->Resume_model->school);
-    $this->db->set('application_date', $this->Resume_model->application_date);
-    $this->db->set('birth_date', $this->Resume_model->birth_date);
-    $this->db->set('comment', $this->Resume_model->comment);
-    $this->db->set('phone_number', $this->Resume_model->phone_number);
     $this->db->set('application_status', $this->Resume_model->application_status);
+    $this->db->set('current_status', $this->Resume_model->current_status);
     $this->db->where('id' ,$this->id);
-    $query = $this->db->update('applicants');
+    $query = $this->db->update('record');
   }
 
 
-  public function count_applicant($position = null, $application_status = null){
+/*  public function count_applicant($position = null, $application_status = null){
     if($position == null && $application_status == null){
       $query = $this->db->get('applicants');
     }
@@ -111,7 +106,7 @@ class Resume_model extends CI_Model {
       $query = $this->db->get_where('employees', ['position'=> $position, 'status' => $status]);
     }
       return $query->num_rows();
-  }
+  } */
 
   public function addresult(){
     $this->db->set('exam_result', $this->Resume_model->exam_result);
