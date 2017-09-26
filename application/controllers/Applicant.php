@@ -119,6 +119,7 @@ class Applicant extends CI_Controller {
     $degree = $_POST['degree'];
     $school = $_POST['school'];
     $date_hired = $_POST['date_hired'];
+    $current_status = $_POST['current_status'];
 
 
     $this->form_validation->set_rules('resume_file','Resume','callback_validate_resume_file');
@@ -126,9 +127,8 @@ class Applicant extends CI_Controller {
 
     if($this->form_validation->run()==FALSE){
       echo json_encode(validation_errors());
-    }else{
-      // print_r();
-      // print_r($this->session->image);die;
+    }
+    elseif ($current_status == "applicant") {
       $insert_data = [
            'first_name' => clean_data(ucwords($first_name)),
            'last_name'  => clean_data(ucwords($last_name)),
@@ -154,7 +154,39 @@ class Applicant extends CI_Controller {
       $this->Resume_model->insert('record',$insert_data);
       // print_r($insert_data);die;
       echo json_encode('success');
+    }
+    else if($current_status = "current" || $current_status == "former"){
+      $insert_data = [
+           'first_name' => clean_data(ucwords($first_name)),
+           'last_name'  => clean_data(ucwords($last_name)),
+           'middle_name' => clean_data(ucwords($middle_name)),
+           'degree' => clean_data(ucwords($degree)) ,
+           'application_status' => NULL,
+           'role_id' => clean_data($this->input->post('role')), //java dev, rails dev etc.
+           'pos_id' => clean_data($this->input->post('position')), // employee, intern
+           'email' => clean_data($email_address),
+           'comment' => clean_data(ucwords($comment)),
+           'home_address' => clean_data(ucwords($home_address)),
+           'phone_number' => clean_data($phone_number),
+           'birthday' => clean_data($birth_date),
+           'date_hired'=> clean_data($this->input->post('date_hired')),
+           'file' =>$this->session->resume,
+           'images'=> $this->session->image,
+           'application_date' => clean_data($this->input->post('application_date')),
+           'available_date' => clean_data($this->input->post('available_date')),
+           'current_status' => clean_data(ucwords($this->input->post('current_status'))), //applicant, former, current
+      ];
+    /*  $insert_employee=[
+            'sss' => clean_data(ucwords($this->input->post('sss'))),
+            'tin' => clean_data(ucwords($this->input->post('tin'))),
 
+      ]; */
+
+
+      // print_r($insert_data);die;
+      $this->Resume_model->insert('record',$insert_data);
+      // print_r($insert_data);die;
+      echo json_encode('success');
     }
 
   }

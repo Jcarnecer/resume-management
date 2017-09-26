@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2017 at 07:46 PM
+-- Generation Time: Sep 25, 2017 at 11:15 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -78,19 +78,20 @@ CREATE TABLE `employees` (
   `sss` varchar(100) DEFAULT NULL,
   `tin` varchar(100) DEFAULT NULL,
   `philhealth` varchar(100) DEFAULT NULL,
-  `pagibig` varchar(100) DEFAULT NULL
+  `pagibig` varchar(100) DEFAULT NULL,
+  `record_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `sss`, `tin`, `philhealth`, `pagibig`) VALUES
-(26, NULL, NULL, NULL, NULL),
-(27, '', '', '', ''),
-(28, '', '', '', ''),
-(29, '', '', '', ''),
-(30, '', '', '', '');
+INSERT INTO `employees` (`id`, `sss`, `tin`, `philhealth`, `pagibig`, `record_id`) VALUES
+(26, NULL, NULL, NULL, NULL, 0),
+(27, '', '', '', '', 0),
+(28, '', '', '', '', 0),
+(29, '', '', '', '', 0),
+(30, '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ INSERT INTO `position` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `record` (
-  `id` int(11) NOT NULL,
+  `record_id` int(11) NOT NULL,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `middle_name` varchar(509) DEFAULT NULL,
@@ -138,33 +139,21 @@ CREATE TABLE `record` (
   `available_date` date DEFAULT NULL,
   `interviewer` varchar(100) DEFAULT NULL,
   `interview_note` text,
-  `current_status` varchar(50) DEFAULT NULL
+  `current_status` varchar(50) DEFAULT NULL,
+  `school` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `record`
 --
 
-INSERT INTO `record` (`id`, `first_name`, `last_name`, `middle_name`, `degree`, `application_status`, `application_date`, `role_id`, `pos_id`, `email`, `comment`, `home_address`, `phone_number`, `birthday`, `date_hired`, `file`, `images`, `available_date`, `interviewer`, `interview_note`, `current_status`) VALUES
-(1, 'Asdsadasdsad', 'Asdsad', 'Asdsad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, NULL, '37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, NULL, '37', 1, 'asdsad@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, NULL, '37', 1, 'asdsad@gmail.com', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, NULL, '37', 1, 'asdsad@gmail.com', '', '', '22222', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, NULL, '37', 1, 'asdsad@gmail.com', '', '', '22222', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, NULL, '37', 1, 'asdsad@gmail.com', '', '', '22222', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'Asdsadasdsad', 'Asdsad', 'Asdsad', '', NULL, '0000-00-00', '37', 1, 'asdsad@gmail.com', '', '', '22222', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'Asdsadsad', 'Asdadsad', 'Asdsad', '', NULL, '0000-00-00', '36', 1, 'asdsadasd@gmail.com', '', '', '', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'Asdsadsad', 'Asdadsad', 'Asdsad', '', NULL, '0000-00-00', '36', 1, 'asdsadasd@gmail.com', '', '', '', '0000-00-00', '0000-00-00', NULL, NULL, '0000-00-00', NULL, NULL, NULL),
-(12, 'Asdsadsad', 'Asdadsad', 'Asdsad', '', NULL, '0000-00-00', '36', 1, 'asdsadasd@gmail.com', '', '', '', '0000-00-00', '0000-00-00', NULL, NULL, '0000-00-00', NULL, NULL, 'Current'),
-(13, '', '', '', '', NULL, '0000-00-00', '', 0, '', '', '', '', '0000-00-00', '0000-00-00', NULL, NULL, '0000-00-00', NULL, NULL, 'Disabled Selected'),
-(14, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '36', 1, 'farrahdee24@gmail.com', ';mf;salmfsal', 'Asd', '7291660', '1996-09-24', '0000-00-00', '20117372_1578945632155889_1325661114_n30.jpg', '21272215_1820654874641235_5372675952941739769_n4.jpg', '2017-06-19', NULL, NULL, 'Current'),
-(15, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '36', 1, 'farrahdee24@gmail.com', 'Asca', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '0000-00-00', '20117372_1578945632155889_1325661114_n31.jpg', '20117372_1578945632155889_1325661114_n32.jpg', '2017-06-19', NULL, NULL, 'Applicant'),
-(16, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '36', 1, 'farrahdee24@gmail.com', 'Asca', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '0000-00-00', '20117372_1578945632155889_1325661114_n33.jpg', '20117372_1578945632155889_1325661114_n34.jpg', '2017-06-19', NULL, NULL, 'Applicant'),
-(17, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '36', 1, 'farrahdee24@gmail.com', 'Asca', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '0000-00-00', '20117372_1578945632155889_1325661114_n35.jpg', '20117372_1578945632155889_1325661114_n36.jpg', '2017-06-19', NULL, NULL, 'Applicant'),
-(18, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '36', 1, 'farrahdee24@gmail.com', 'Asca', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '0000-00-00', '20117372_1578945632155889_1325661114_n37.jpg', '20117372_1578945632155889_1325661114_n38.jpg', '2017-06-19', NULL, NULL, 'Applicant'),
-(19, 'Armani', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '35', 2, 'farrahdee24@gmail.com', 'Sal,asl', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '0000-00-00', '20117372_1578945632155889_1325661114_n39.jpg', '20117372_1578945632155889_1325661114_n40.jpg', '2017-06-19', NULL, NULL, 'Disabled Selected');
+INSERT INTO `record` (`record_id`, `first_name`, `last_name`, `middle_name`, `degree`, `application_status`, `application_date`, `role_id`, `pos_id`, `email`, `comment`, `home_address`, `phone_number`, `birthday`, `date_hired`, `file`, `images`, `available_date`, `interviewer`, `interview_note`, `current_status`, `school`) VALUES
+(22, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', 5, '2017-06-19', '46', 1, 'farrahdee24@gmail.com', 'Hello', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '0000-00-00', '20117372_1578945632155889_1325661114_n45.jpg', '20117372_1578945632155889_1325661114_n46.jpg', '2017-06-19', NULL, NULL, 'current', ''),
+(23, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '44', 1, 'farrahdee24@gmail.com', 'A.dfmdlfv,', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '2017-04-22', '20117372_1578945632155889_1325661114_n47.jpg', '21272215_1820654874641235_5372675952941739769_n5.jpg', '2017-09-09', NULL, NULL, 'Current', ''),
+(24, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-06-19', '44', 1, 'farrahdee24@gmail.com', 'A.dfmdlfv,', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '2017-04-22', '20117372_1578945632155889_1325661114_n48.jpg', '21272215_1820654874641235_5372675952941739769_n6.jpg', '2017-09-09', NULL, NULL, 'Current', ''),
+(25, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', NULL, '2017-02-19', '46', 1, 'farrahdee24@gmail.com', ',mfaks', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '2017-06-19', '21272215_1820654874641235_5372675952941739769_n7.jpg', '20117372_1578945632155889_1325661114_n49.jpg', '2017-09-19', NULL, NULL, 'Current', ''),
+(26, 'Farrah', 'Dionisio', 'Fasfafs', 'BS Information Systems', 1, '2017-06-19', '44', 1, 'farrahdee24@gmail.com', 'Aksjnsj', '700 J.P Rizal St Makati City', '7291660', '2017-06-19', '2017-06-19', '20117372_1578945632155889_1325661114_n50.jpg', '20117372_1578945632155889_1325661114_n51.jpg', '2017-06-19', NULL, NULL, 'Applicant', ''),
+(27, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', 1, '2017-06-19', '44', 1, 'farrahdee24@gmail.com', 'Svsdgs', '700 J.P Rizal St Makati City', '7291660', '2017-06-19', '2017-02-19', '20117372_1578945632155889_1325661114_n52.jpg', '21687624_1399134633538897_2319669677008062652_n.jpg', '2017-06-19', NULL, NULL, 'Applicant', '');
 
 -- --------------------------------------------------------
 
@@ -176,7 +165,7 @@ CREATE TABLE `role` (
   `role_id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `pos_id` int(11) NOT NULL,
-  `applicant` tinyint(1) NOT NULL
+  `applicant` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -184,9 +173,10 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`role_id`, `name`, `pos_id`, `applicant`) VALUES
-(37, 'President', 1, 0),
-(38, 'Java Developer', 1, 0),
-(39, 'PHP Developer', 2, 0);
+(44, 'President', 1, NULL),
+(46, 'Java', 1, 1),
+(48, 'HELLO', 2, NULL),
+(49, 'PHP Developer', 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -214,7 +204,7 @@ ALTER TABLE `position`
 -- Indexes for table `record`
 --
 ALTER TABLE `record`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`record_id`);
 
 --
 -- Indexes for table `role`
@@ -245,12 +235,12 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `record`
 --
 ALTER TABLE `record`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;COMMIT;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
