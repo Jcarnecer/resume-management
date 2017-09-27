@@ -29,10 +29,10 @@ $(document).ready(function(){
 
 
 //add new record
-
 $(document).ready(function(){
   $("#add-record-form").on('submit',function(e){
     var form = new FormData(document.getElementById("add-record-form"));
+    var link = base_url + 'applicant';
     $.ajax({
       url: base_url + 'applicant/addRecord',
       type: "POST",
@@ -42,9 +42,8 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         var result = JSON.parse(data);
-
         if(result==='success'){
-          window.history.back()
+          location.href = link;
         }else{
           alert('Error');
         }

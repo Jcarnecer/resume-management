@@ -7,11 +7,11 @@ class Employee extends CI_Controller {
 
      $status = $_GET['current_status'] ?? null;
      $role =  $_GET['role'] ?? null;
-     $position = $_GET['position'] ?? null;
+     $position = $_GET['pos_id'] ?? null;
 
 
-     if ($status != null){
-       $query["current_status"] = $status;
+     if ($role != null){
+       $query["role_id"] = $role;
      }
      if ($status != null){
        $query["current_status"] = $status;

@@ -8,8 +8,8 @@ class Applicant extends CI_Controller {
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
     $data['role_applicant'] = $this->Resume_model->fetch('role',['applicant' => 1]);
-    $data['role_employee'] = $this->Resume_model->fetch('role','pos_id=1');
-    $data['role_intern'] = $this->Resume_model->fetch('role','pos_id=2');
+    $data['role_employee'] = $this->Resume_model->fetch('role',['pos_id' => 1]);
+    $data['role_intern'] = $this->Resume_model->fetch('role',['pos_id' => 2]);
     $this->load->view('applicant/index', $data);
   }
 
@@ -180,7 +180,6 @@ class Applicant extends CI_Controller {
       echo json_encode('success');
     }
 
-
   }
 
 
@@ -311,7 +310,8 @@ class Applicant extends CI_Controller {
  public function delete_role() {
   $this->load->model('Resume_model');
   $id = (isset($_GET['id']) ? $_GET['id'] : '');
-  $this->Resume_model->delete('role',array('role_id' => $id));
+  $this->Resume_model->delete('role',['role_id' => $id]);
+  $this->Resume_model->delete('record',['role_id'=>$id]);
   redirect('');
  }
 
