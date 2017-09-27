@@ -4,32 +4,36 @@ $position = $this->Resume_model->fetch('position');
 <div class="container">
 
   <div class="page-header">
-    <h1>Welcome, Ma'am Tess <3</h1>
-  </div>
+    <!--h1>Welcome, Ma'am Tess <3</h1-->
 
-  <div class="row">
-    <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
-  </div>
 
-  <div class="row">
-    <div class="input-group pull-right">
-      <form class="form-inline" method="POST" id="add-role-form">
-        <div class="form-group">
-          <input type="text" placeholder="Add Role" name="role" class="form-control">
-        </div>
-        <div class="form-group" id="position">
-          <select class="form-control" name="pos_id">
-            <?php foreach($position as $row):?>
-              <option value="<?= $row->id ?>"><?= $row->name ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-        <div class="form-group checkbox">
-          <label><input type="checkbox" value="1" name="applicant">Applicant</label>
-        </div>
-        <input class="btn btn-default" type="submit" value="Add Role">
-      </form>
+    <div class="row">
+      <div class="input-group pull-right">
+        <form class="form-inline" method="POST" id="add-role-form">
+          <div class="form-group">
+            <input type="text" placeholder="Add Role" name="role" class="form-control">
+          </div>
+          <div class="form-group" id="position">
+            <select class="form-control" name="pos_id">
+              <?php foreach($position as $row):?>
+                <option value="<?= $row->id ?>"><?= $row->name ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="form-group checkbox">
+            <label><input type="checkbox" value="1" name="applicant">Applicant</label>
+          </div>
+          <input class="btn btn-default" type="submit" value="Add Role">
+          <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
+        </form>
+      </div>
+
     </div>
+  </div>
+
+
+  <div class="row">
+
   </div>
 
 
@@ -114,7 +118,7 @@ $position = $this->Resume_model->fetch('position');
 
                   <div class="col-sm-6">
                     <div class="col-padding">
-                      <a href="<?= base_url('employee?current_status=current&role=' . $role->role_id .'&position=1' ); ?>">
+                      <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
                         <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'current', 'pos_id' => 1]); ?><br>Current</div>
                       </a>
                     </div>
@@ -122,7 +126,7 @@ $position = $this->Resume_model->fetch('position');
 
                   <div class="col-sm-6">
                     <div class="col-padding">
-                      <a href="<?= base_url('employee?current_status=former&role=' . $role->role_id .'&position=1'  ); ?>">
+                      <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
                         <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'former', 'pos_id' => 1]); ?><br>Former</div>
                       </a>
                     </div>
@@ -153,15 +157,15 @@ $position = $this->Resume_model->fetch('position');
                   <div class="row grid-divider">
                     <div class="col-sm-6">
                       <div class="col-padding">
-                        <a href="<?= base_url('intern?current_status=current&role=' . $role->role_id .'&position=2'); ?>">
-                          <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'current', 'pos_id' => 2]); ?><br>Current</div>
+                        <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
+                          <div><?= $this->Resume_model->count('record', ['current_status' => 'current', 'pos_id' => 2]); ?><br>Current</div>
                         </a>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="col-padding">
-                        <a href="<?= base_url('intern?current_status=former&role=' . $role->role_id .'&position=2'); ?>">
-                          <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'former','pos_id' => 2]); ?><br>Former</div>
+                        <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
+                          <div><?= $this->Resume_model->count('record', ['current_status' => 'former','pos_id' => 2]); ?><br>Former</div>
                         </a>
                       </div>
                     </div>
