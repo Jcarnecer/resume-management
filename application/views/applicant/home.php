@@ -118,7 +118,7 @@ $position = $this->Resume_model->fetch('position');
 
                   <div class="col-sm-6">
                     <div class="col-padding">
-                      <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
+                      <a href="<?= base_url('applicants?status=1&role=' . $role->role_id ."&current_status=current"); ?>">
                         <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'current', 'pos_id' => 1]); ?><br>Current</div>
                       </a>
                     </div>
@@ -126,7 +126,7 @@ $position = $this->Resume_model->fetch('position');
 
                   <div class="col-sm-6">
                     <div class="col-padding">
-                      <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
+                      <a href="<?= base_url('applicants?status=2&role=' . $role->role_id ."&current_status=former"); ?>">
                         <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'former', 'pos_id' => 1]); ?><br>Former</div>
                       </a>
                     </div>

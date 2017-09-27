@@ -97,8 +97,9 @@ div.tab-content:not(.active) {
   height: 100px;
 }
 #record-table{
-  padding-top: 150px;
-  padding-left: 200px;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 120%;
 }
 
 h1{
@@ -116,10 +117,14 @@ h1{
 
 .list-group{
   display: flex;
-    flex-direction: row;
+  flex-direction: row;
 }
 
 select.form-control:not([size]):not([multiple]) {
     height: calc(3.2rem + 2px);
+}
+
+form#add-record-form.form-horizontal{
+  margin-left: 10px;
 }
 /*# sourceMappingURL=style.css.map */
