@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Applicant extends CI_Controller {
 
   public function index(){
-
     $this->load->model('Resume_model');
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
@@ -31,7 +30,7 @@ class Applicant extends CI_Controller {
     }
     if ($status != null) {
       $query["application_status"] = $status;
-    } 
+    }
     if (count($query) > 0) {
        $data['applicants'] = $this->db->get_where('record', $query)->result();
      } else {
@@ -43,11 +42,8 @@ class Applicant extends CI_Controller {
 
 
   public function add_applicant() {
-    // $where = [ 'type' => '1', '2', '3'];
-    $employment_type = $this->input->post('employment_type');
-    echo $employment_type;
+
     $data['title'] = "Astrid Technologies | New Applicant";
-    // $data['roles'] = $this->Resume_model->fetch('role', $where);
     $this->load->view('include/header', $data);
 		$this->load->view('applicant/new');
 	}
@@ -69,7 +65,6 @@ class Applicant extends CI_Controller {
   }
 
   public function validate_resume_file() {
-
 
     if (isset($_FILES['resume_file']) && !empty($_FILES['resume_file']['name'])) {
       if ($this->upload->do_upload('resume_file')) {
@@ -94,6 +89,19 @@ class Applicant extends CI_Controller {
     }
   }
 
+  public function validate_notes_file() {
+
+    if (isset($_FILES['notes_file']) && !empty($_FILES['notes_file']['name'])) {
+      if ($this->upload->do_upload('notes_file')) {
+        $this->session->notes =  $this->upload->data('file_name');
+        return true;
+      } else {
+        $this->form_validation->set_message('validate_notes_file', $this->upload->display_errors());
+        return false;
+      }
+    }
+  }
+
   public function addRecord() {
     $config['upload_path'] = "assets/uploads";
     $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
@@ -113,9 +121,7 @@ class Applicant extends CI_Controller {
     $birth_date = $_POST['birth_date'];
     $degree = $_POST['degree'];
     $school = $_POST['school'];
-    // $date_hired = $_POST['date_hired'];
     $current_status = $_POST['current_status'];
-
 
     $this->form_validation->set_rules('resume_file','Resume','callback_validate_resume_file');
     $this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
@@ -136,14 +142,14 @@ class Applicant extends CI_Controller {
         'phone_number' => clean_data($phone_number),
         'birthday' => clean_data($birth_date),
         'images'=> $this->session->image,
-         'current_status' => clean_data(ucwords($this->input->post('current_status')))
+        'current_status' => clean_data(ucwords($this->input->post('current_status')))
       ];
       $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
       // print_r($last_inserted->id);die;
       if($current_status == "applicant") {
         $insert_data = [
              'application_status' => 1,
-             'file' =>$this->session->resume,
+             'file' => $this->session->resume,
              'application_date' => clean_data($this->input->post('application_date')),
              'available_date' => clean_data($this->input->post('available_date')),
             //  'user_id'  => $last_inserted->id
@@ -193,13 +199,8 @@ class Applicant extends CI_Controller {
 
   public function edit_view()
   {
-
-    //segment1 = controller name;
-    //segment2 = method name
-    //segment3 = id
     $this->load->helper('form');
     $id = $this->uri->segment(3);
-    // print_r($id);die;
     $this->load->model('Resume_model');
     $title['title'] = "Astrid Technologies | New Applicant";
     $data['applicant_data']= $this->db->get_where('record', ['id' => $id])->row();
@@ -230,6 +231,7 @@ class Applicant extends CI_Controller {
       'birthday' => clean_data($this->input->post('birthday')),
       'school' => clean_data($this->input->post('school')),
       'degree' => clean_data($this->input->post('degree')),
+      'comment' =>  clean_data($this->input->post('comment')),
       'application_status' => $status,
     ];
     $this->Resume_model->update('record', $update, 'id='.$id);
@@ -260,8 +262,38 @@ class Applicant extends CI_Controller {
     elseif($status == 5):
       $this->email->message('Passed!');
       $this->email->send();
+      $update=[
+        'current_status' => "current",
+      ];
+      $this->Resume_model->update('record', $update, 'id='.$id);
+
     endif;
-    redirect('applicant/edit_view/'.$id);
+    redirect('');
+  }
+
+  public function add_result()
+  {
+    $this->load->helper('encryption');
+    $config['upload_path'] = "assets/uploads";
+    $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
+    $config['max_size'] = 2048;
+    $this->load->library('upload', $config);
+
+    $id = $_POST['id'];
+    $this->form_validation->set_rules('notes_file','Notes','callback_validate_notes_file');
+
+    if($this->form_validation->run()==FALSE){
+      echo json_encode(validation_errors());
+    }else{
+      $insert_result=[
+        'exam_result' => clean_data($this->input->post('exam_result')),
+        'interview_result' => clean_data($this->input->post('interview_result')),
+        'interviewer' => clean_data($this->input->post('interviewer')),
+        'interview_notes' => $this->session->notes,
+    ];
+      $this->Resume_model->update('record', $insert_result, 'id='.$id);
+    redirect('');
+    }
   }
 
   public function insert_role(){
@@ -282,57 +314,6 @@ class Applicant extends CI_Controller {
   $this->Resume_model->delete('role',array('role_id' => $id));
   redirect('');
  }
-
-  public function view_add_employee(){
-    $title['title'] = "Astrid Technologies | New Applicant";
-    $this->load->view('include/header',$title);
-    $this->load->view('applicant/addEmployee');
-  }
-
- public function view_employee(){
-
-   $status = $_GET['status'] ?? null;
-
-   $this->load->model('employee');
-   if ($status != null){
-     $query["status"] = $status;
-     $data['employee'] = $this->db->get_where('employees', $query)->result();
-   }
-   else{
-     $data['employee'] = $this->employee->view();
-   }
-   $title['title'] = "Astrid Technologies | New Applicant";
-   $this->load->view('include/header',$title);
-   $this->load->view('applicant/ViewEmployee', $data);
- }
-
-  public function add_result()
-  {
-
-    $config['upload_path'] = "assets/uploads";
-    $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
-    $config['max_size'] = 2048;
-
-    $this->load->library('upload', $config);
-
-    if (isset($_FILES['notes']) && !empty($_FILES['notes']['name'])):
-      if ($this->upload->do_upload('notes')):
-        $notes = $this->upload->data('file_name');
-      else:
-        echo $this->upload->display_errors();
-      endif;
-    else:
-        echo "Nope!";
-    endif;
-    $this->load->model('Resume_model');
-    $this->Resume_model->exam_result = $_POST['exam_result'];
-    $this->Resume_model->interviewer = $_POST['interviewer'];
-    $this->Resume_model->interview_result = $_POST['interview_result'];
-    $this->Resume_model->id  = $_POST['id'];
-    $this->Resume_model->interview_notes = $notes;
-    $this->Resume_model->addresult();
-    redirect('');
-  }
 
   public function upload(){
 

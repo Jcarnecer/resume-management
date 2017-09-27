@@ -62,12 +62,13 @@ $route['applicant/(:num)']['GET'] = 'Applicant/view/$1';
 
 $route['insert_role']['POST'] = 'Applicant/insert_role';
 $route['applicant/add'] = 'Applicant/add_applicant';
-
+ 
 $route['add_result']['POST'] = 'Applicant/add_result';
 
 //Employee
 $route['employee']['GET'] = 'Employee/index';
 $route['employee/edit/(:num)']['GET'] = 'Employee/edit/$1';
+$route['employee/edit']['POST'] = 'Employee/edit_data';
 
 //Intern
 $route['intern']['GET'] = 'Intern/index';

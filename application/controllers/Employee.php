@@ -45,9 +45,17 @@ class Employee extends CI_Controller {
 
     public function edit_data(){
       $this->load->helper('encryption');
-
+      $id = $_POST['id'];
       $update=[
-
+        'first_name' => clean_data($this->input->post('first_name')),
+        'last_name'  => clean_data($this->input->post('last_name')),
+        'middle_name' => clean_data($this->input->post('middle_name')),
+        'email' => clean_data($this->input->post('email_address')),
+        'phone_number' => clean_data($this->input->post('phone_number')),
+        'home_address' => clean_data($this->input->post('home_address')),
+        'current_status' => clean_data($this->input->post('current_status')),
       ];
+      $this->Resume_model->update('record', $update, 'id='.$id);
+      redirect('');
     }
 }
