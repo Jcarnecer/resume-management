@@ -10,10 +10,7 @@
      <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
 
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
-       <input type="hidden" name="school" value="<?= $applicant_data->school?>">
        <input type="hidden" name="position" value="<?= $applicant_data->pos_id?>">
-       <input type="hidden" name="birth_date" value="<?= $applicant_data->birthday ?>">
-       <input type="hidden" name="degree" value="<?= $applicant_data->degree?>">
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">First Name</label>
@@ -60,35 +57,35 @@
        <div class="form-group">
           <label  class="col-sm-3 control-label">Birth Date:</label>
           <div class="col-sm-9">
-              <input type="date" name="birth_date" class="form-control"/>
+              <input type="date" name="birth_date" class="form-control" value="<?= $applicant_data->birthday?>"/>
         </div>
       </div>
 
       <div class="form-group">
       <label  class="col-sm-3 control-label">Degree:</label>
       <div class="col-sm-9">
-          <input type="text" name="degree" class="form-control" placeholder="Degree"/>
+          <input type="text" name="degree" class="form-control" placeholder="Degree" value="<?= $applicant_data->degree?>"/>
       </div>
     </div>
 
     <div class="form-group">
       <label  class="col-sm-3 control-label">School:</label>
       <div class="col-sm-9">
-          <input type="text" name="school" class="form-control" placeholder="School"/>
+          <input type="text" name="school" class="form-control" placeholder="School" value="<?= $applicant_data->school?>"/>
       </div>
     </div>
 
     <div class="form-group">
       <label  class="col-sm-3 control-label">Application Date:</label>
       <div class="col-sm-9">
-          <input type="date" name="application_date" class="form-control" placeholder="application_date"/>
+          <input type="date" name="application_date" class="form-control" value="<?= $applicant_data->application_date?>"/>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-3 control-label">Comment:</label>
       <div class="col-sm-9">
-        <textarea class="form-control" name="comment"></textarea>
+        <textarea class="form-control" name="comment"><?= $applicant_data->comment?></textarea>
       </div>
     </div>
 
@@ -98,7 +95,7 @@
         <label  class="col-sm-3 control-label">Status:</label>
         <div class="col-sm-9">
           <select class="form-control" name="status" value="<?php $applicant_data->application_status;?>">
-            <option value="1" selected>Applicant</option>
+            <option value="1">Applicant</option>
             <option value="2">For Interview</option>
             <option value="3">Shortlist</option>
             <option value="4">Archived</option>
@@ -129,7 +126,7 @@
           <label  class="col-sm-3 control-label">Exam Result:</label>
           <div class="col-sm-9">
             <select class="form-control" name="exam_result">
-              <option selected="selected">Select Exam Result</option>
+              <option selected="selected" value="NULL">Select Exam Result</option>
               <option value="1">Passed</option>
               <option value="0">Failed</option>
             </select>
@@ -139,8 +136,8 @@
         <div class="form-group">
           <label  class="col-sm-3 control-label">Interview Result:</label>
           <div class="col-sm-9">
-            <select class="form-control" name="interview_result">
-              <option selected="selected"value="3">Select Interview Result</option>
+            <select class="form-control" name="interview_result" value="<?= $applicant_data->interview_result ?>" >
+              <option selected="selected">Select Interview Result</option>
               <option value="1">Passed</option>
               <option value="0">Failed</option>
             </select>
@@ -151,21 +148,21 @@
         <div class="form-group">
           <label  class="col-sm-3 control-label">Interviewer:</label>
           <div class="col-sm-9">
-              <input class="form-control" name="interviewer" placeholder="Interviewer"/>
+              <input class="form-control" name="interviewer" placeholder="Interviewer" value="<?= $applicant_data->interviewer ?>"/>
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-sm-3 control-label">Interview Notes:</label>
           <div class="col-sm-9">
-            <input type="file" name="notes">
+            <input type="file" name="notes_file">
           </div>
         </div>
 
          <div class="form-group">
            <label class="col-sm-3 control-label">Comments:</label>
            <div class="col-sm-9">
-             <textarea class="form-control" name="comment"> </textarea>
+             <textarea class="form-control" name="comment"><?=$applicant_data->comment?></textarea>
            </div>
          </div>
 
