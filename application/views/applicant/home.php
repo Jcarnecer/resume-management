@@ -4,33 +4,38 @@ $position = $this->Resume_model->fetch('position');
 <div class="container">
 
   <div class="page-header">
-    <h1>Welcome, Ma'am Tess <3</h1>
+    <!--h1>Welcome, Ma'am Tess <3</h1-->
   </div>
 
   <div class="row">
-    <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
-  </div>
+      <div class="input-group pull-right">
+        <form class="form-inline" method="POST" id="add-role-form">
+          <div class="form-group">
+            <input type="text" placeholder="Add Role" name="role" class="form-control">
+          </div>
+          <div class="form-group" id="position">
+            <select class="form-control" name="pos_id">
+              <?php foreach($position as $row):?>
+                <option value="<?= $row->id ?>"><?= $row->name ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="form-group checkbox">
+            <label><input type="checkbox" value="1" name="applicant">Applicant</label>
+          </div>
+          <input class="btn btn-default" type="submit" value="Add Role">
+          <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
+        </form>
+      </div>
 
-  <div class="row">
-    <div class="input-group pull-right">
-      <form class="form-inline" method="POST" id="add-role-form">
-        <div class="form-group">
-          <input type="text" placeholder="Add Role" name="role" class="form-control">
-        </div>
-        <div class="form-group" id="position">
-          <select class="form-control" name="pos_id">
-            <?php foreach($position as $row):?>
-              <option value="<?= $row->id ?>"><?= $row->name ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-        <div class="form-group checkbox">
-          <label><input type="checkbox" value="1" name="applicant">Applicant</label>
-        </div>
-        <input class="btn btn-default" type="submit" value="Add Role">
-      </form>
     </div>
   </div>
+
+
+  <div class="row">
+
+  </div>
+
 
 
 

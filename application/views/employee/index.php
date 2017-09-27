@@ -1,5 +1,4 @@
 <div class="container-fluid" id="record-table">
-  <center><h1>Record</h1>
   <div class="col-sm-10">
     <table class="table table-striped">
       <thead>

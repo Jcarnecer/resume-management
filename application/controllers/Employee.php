@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Employee extends CI_Controller {
 
     public function index(){
-
      $status = $_GET['current_status'] ?? null;
      $role =  $_GET['role'] ?? null;
      $position = $_GET['pos_id'] ?? null;
+
 
 
      if ($role != null){
@@ -28,6 +28,7 @@ class Employee extends CI_Controller {
      }
      $title['title'] = "Astrid Technologies | New Applicant";
      $this->load->view('include/header',$title);
+     $this->load->view('include/sidebar', $data);
      $this->load->view('employee/index', $data);
     }
 
