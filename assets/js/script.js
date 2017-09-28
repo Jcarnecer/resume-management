@@ -54,10 +54,11 @@ $(document).ready(function(){
 //add new record
 $(document).ready(function(){
   $("#add-record-form").on('submit',function(e){
+		e.preventDefault();
+		e.stopImmediatePropagation();
     var form = new FormData(document.getElementById("add-record-form"));
     var link = base_url + 'applicant';
     $.ajax({
-			async: false,
       url: base_url + 'applicant/addRecord',
       type: "POST",
       processData: false, // tell jQuery not to process the data
