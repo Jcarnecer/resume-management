@@ -200,7 +200,7 @@
 
          <div class="form-group">
            <div class="col-sm-9 col-sm-offset-3">
-             <input type="submit" value="Create" class="btn btn-primary" />
+             <input type="submit" value="Create"/>
            </div>
          </div>
 

@@ -14,13 +14,12 @@ class Applicant extends CI_Controller {
     $this->load->view('applicant/index', $data);
   }
 
-  public function applicants() {
+  public function applicants(){
     $role = $_GET['role'];
     $status = $_GET['status'];
     $current_status = $_GET['current_status'];
     $data['title'] = "Astrid Technologies | Resume Management";
     $this->load->view('include/sidebar', $data);
-  //$data['role'] = $this->Resume_model->fetch('role','id='.$role);
 
     $query = [];
 
@@ -46,7 +45,7 @@ class Applicant extends CI_Controller {
   public function add_applicant() {
 
     $data['title'] = "Astrid Technologies | New Applicant";
-    $this->load->view('include/sidebar', $data);
+    $this->load->view('include/sidebar');
     $this->load->view('include/header', $data);
 		$this->load->view('applicant/new');
 	}
