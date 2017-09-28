@@ -83,17 +83,6 @@ class Resume_model extends CI_Model {
     }
   }
 
-/*  public function addresult(){
-    $this->db->set('exam_result', $this->Resume_model->exam_result);
-    $this->db->set('interviewer', $this->Resume_model->interviewer);
-    $this->db->set('interview_result', $this->Resume_model->interview_result);
-    $this->db->set('interview_notes', $this->Resume_model->interview_notens);
-    $this->db->where('id',$this->id);
-    $query = $this->db->update('applicants');
-  } */
-
-
-
   public function join_applicants_roles(){
       $this->db->select('*');
       $this->db->from('applicants');
