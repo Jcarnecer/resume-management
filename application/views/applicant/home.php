@@ -5,9 +5,9 @@ $position = $this->Resume_model->fetch('position');
 
   <div class="page-header">
     <!--h1>Welcome, Ma'am Tess <3</h1-->
+  </div>
 
-
-    <div class="row">
+  <div class="row">
       <div class="input-group pull-right">
         <form class="form-inline" method="POST" id="add-role-form">
           <div class="form-group">
@@ -35,6 +35,7 @@ $position = $this->Resume_model->fetch('position');
   <div class="row">
 
   </div>
+
 
 
 
