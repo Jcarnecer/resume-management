@@ -1,11 +1,12 @@
 <?php $position = $this->Resume_model->fetch('position');
 // print_r($position);die;
   ?>
+
     <center>
       <h3>Add New Record</h3>
     </center>
-      <div class="container">
-       <form class="form-horizontal" id="add-record-form" enctype="multipart/form-data"  method="POST">
+      <div class="container pull-left">
+       <form class="form-horizontal pull" id="add-record-form" enctype="multipart/form-data"  method="POST">
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Position:</label>

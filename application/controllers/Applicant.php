@@ -17,8 +17,10 @@ class Applicant extends CI_Controller {
     $role = $_GET['role'];
     $status = $_GET['status'];
     $current_status = $_GET['current_status'];
+
     $data['title'] = "Astrid Technologies | Resume Management";
-  //$data['role'] = $this->Resume_model->fetch('role','id='.$role);
+    $data['role'] = $this->Resume_model->fetch('role','id='.$role);
+    $this->load->view('include/sidebar', $data);
 
     $query = [];
 
@@ -45,6 +47,7 @@ class Applicant extends CI_Controller {
 
     $data['title'] = "Astrid Technologies | New Applicant";
     $this->load->view('include/header', $data);
+    $this->load->view('include/sidebar', $data);
 		$this->load->view('applicant/new');
 	}
 
@@ -204,6 +207,7 @@ class Applicant extends CI_Controller {
     $title['title'] = "Astrid Technologies | New Applicant";
     $data['applicant_data']= $this->db->get_where('record', ['id' => $id])->row();
     $this->load->view('include/header',$title);
+    $this->load->view('include/sidebar', $data);
     $this->load->view('applicant/edit', $data);
 
   }
@@ -265,6 +269,7 @@ class Applicant extends CI_Controller {
         'current_status' => "current",
       ];
       $this->Resume_model->update('record', $update, 'id='.$id);
+
 
     endif;
     redirect('');
