@@ -157,15 +157,15 @@ $position = $this->Resume_model->fetch('position');
                   <div class="row grid-divider">
                     <div class="col-sm-6">
                       <div class="col-padding">
-                        <a href="<?= base_url('intern?current_status=current&role=' . $role->role_id .'&position=2'); ?>">
-                          <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'current', 'pos_id' => 2]); ?><br>Current</div>
+                        <a href="<?= base_url('applicants?status=1&role=' . $role->role_id); ?>">
+                          <div><?= $this->Resume_model->count('record', ['current_status' => 'current', 'pos_id' => 2]); ?><br>Current</div>
                         </a>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="col-padding">
-                        <a href="<?= base_url('intern?current_status=former&role=' . $role->role_id .'&position=2'); ?>">
-                          <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'former','pos_id' => 2]); ?><br>Former</div>
+                        <a href="<?= base_url('applicants?status=2&role=' . $role->role_id); ?>">
+                          <div><?= $this->Resume_model->count('record', ['current_status' => 'former','pos_id' => 2]); ?><br>Former</div>
                         </a>
                       </div>
                     </div>
