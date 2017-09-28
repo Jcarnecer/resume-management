@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2017 at 12:02 AM
+-- Generation Time: Sep 28, 2017 at 07:38 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -83,7 +83,27 @@ INSERT INTO `employees` (`id`, `sss`, `tin`, `philhealth`, `pagibig`, `record_id
 (3, '12346789', '0926354', '6516561', '151521', 60),
 (4, '12346789', '0926354', '6516561', '151521', 61),
 (5, '12346789', '0926354', '6516561', '151521', 62),
-(6, '12346789', '0926354', '6516561', '151521', 63);
+(6, '12346789', '0926354', '6516561', '151521', 63),
+(7, '12346789', '0926354', '6516561', '151521', 70),
+(8, '12346789', '0926354', '6516561', '151521', 71),
+(9, '12346789', '0926354', '6516561', '151521', 72),
+(10, '12346789', '0926354', '6516561', '151521', 73),
+(11, '12346789', '0926354', '6516561', '151521', 72),
+(12, '12346789', '0926354', '6516561', '151521', 73),
+(13, '12346789', '0926354', '6516561', '151521', 78),
+(14, '12346789', '0926354', '6516561', '151521', 79),
+(15, '', '', '', '', 80),
+(16, '', '', '', '', 81),
+(17, '', '', '', '', 82),
+(18, '', '', '', '', 83),
+(19, '12346789', '0926354', '6516561', '151521', 82),
+(20, '12346789', '0926354', '6516561', '151521', 83),
+(21, '12346789', '0926354', '6516561', '151521', 86),
+(22, '12346789', '0926354', '6516561', '151521', 87),
+(23, '', '', '', '', 88),
+(24, '', '', '', '', 89),
+(25, '123', '123', '123', '123', 92),
+(26, '123', '123', '123', '123', 93);
 
 -- --------------------------------------------------------
 
@@ -142,9 +162,8 @@ CREATE TABLE `record` (
 --
 
 INSERT INTO `record` (`id`, `first_name`, `last_name`, `middle_name`, `degree`, `school`, `application_status`, `application_date`, `role_id`, `pos_id`, `email`, `comment`, `home_address`, `phone_number`, `birthday`, `date_hired`, `file`, `images`, `available_date`, `interviewer`, `interview_notes`, `exam_result`, `interview_result`, `current_status`) VALUES
-(60, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', '', NULL, NULL, '68', 1, 'farrahdee24@gmail.com', 'Hello!!!!', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '2017-06-19', NULL, '21272215_1820654874641235_5372675952941739769_n3.jpg', NULL, NULL, NULL, 0, 0, 'Applicant'),
-(62, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', '', NULL, NULL, '68', 1, 'farrahdee24@gmail.com', 'Afsnfkaj', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '2017-06-19', NULL, '20117372_1578945632155889_1325661114_n6.jpg', NULL, NULL, NULL, 0, 0, 'Current'),
-(63, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', '', NULL, NULL, '68', 1, 'farrahdee24@gmail.com', 'Afsnfkaj', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', '2017-06-19', NULL, '20117372_1578945632155889_1325661114_n7.jpg', NULL, NULL, NULL, 0, 0, 'Former');
+(94, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', '', 1, '2015-09-30', '81', 1, 'farrahdee24@gmail.com', 'Cdsergtrfdsx', '700 J.P Rizal St Makati City', '7291660', '1996-09-24', NULL, '20117372_1578945632155889_1325661114_n28.jpg', '21272215_1820654874641235_5372675952941739769_n25.jpg', '1996-09-24', NULL, NULL, 0, 0, 'Applicant'),
+(95, 'Farrah', 'Dionisio', 'Delos Santos', 'BS Information Systems', '', 5, '2015-09-30', '81', 1, 'farrahdee24@gmail.com', 'Cdsergtrfdsx', '700 J.P Rizal St Makati City', '7291660', '0000-00-00', NULL, '20117372_1578945632155889_1325661114_n29.jpg', '21272215_1820654874641235_5372675952941739769_n26.jpg', '1996-09-24', NULL, NULL, 0, 0, 'current');
 
 -- --------------------------------------------------------
 
@@ -164,8 +183,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`role_id`, `name`, `pos_id`, `applicant`) VALUES
-(68, 'Java Developer', 1, 1),
-(70, 'President', 1, NULL);
+(81, 'Java Developer', 1, 1),
+(82, 'PHP Developer', 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -209,12 +228,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `position`
 --
@@ -224,12 +243,12 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `record`
 --
 ALTER TABLE `record`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;COMMIT;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
