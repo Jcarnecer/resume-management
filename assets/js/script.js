@@ -19,7 +19,7 @@ function toggle(){
     		hide = true;
     	}
 	});
-}   
+}
 
 $(document).ready(function(){
   $("div.tab-menu>div.list-group>a").click(function(e){
@@ -54,6 +54,8 @@ $(document).ready(function(){
 //add new record
 $(document).ready(function(){
   $("#add-record-form").on('submit',function(e){
+		e.preventDefault();
+		e.stopImmediatePropagation();
     var form = new FormData(document.getElementById("add-record-form"));
     var link = base_url + 'applicant';
     $.ajax({
@@ -171,13 +173,18 @@ $(document).ready(function(){
   });
   $("#current_status").on('change',function() {
     var c_status = $("#current_status").val();
-
-    if(c_status == 'applicant'){
+		var posid = $("#pos-id").val();
+    if(c_status == 'applicant' && posid == 1){
       $("#applicant_div").show();
-      // $("#expected_salary").show();
+      $("#emp_form").hide();
       $("#resume").show();
-    }else{
+    }
+		else if (posid == 2) {
+			$("#emp_form").show();
+		}
+		else{
       $("#applicant_div").hide();
+			$("#emp_form").show();
       $("#resume").hide();
 
     }
