@@ -95,8 +95,8 @@ $position = $this->Resume_model->fetch('position');
               </div>
             </div>
           </div>
-        <?php enddforeach;?>
-      <?php } ?>
+        <?php endforeach;?>
+      <?php }?>
       </div>
     </div>
   </div>
