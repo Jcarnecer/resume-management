@@ -33,32 +33,33 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">View Applicant</h4>
+        <h4 class="modal-title">View Employee</h4>
     </div>
+
 
     <div class="modal-body">
       <div class="list-item">
-        <label class="group-label">First Name:</label>
+        <b><label class="group-label">First Name:</label></b>
         <div class="group-data" id="first-name"></div>
       </div>
 
       <div class="list-item">
-        <label class="group-label">Last Name:</label>
+        <b><label class="group-label">Last Name:</label></b>
         <div class="group-data" id="last-name"></div>
       </div>
 
       <div class="list-item">
-        <label class="group-label">Middle Name:</label>
+        <b><label class="group-label">Middle Name:</label></b>
         <div class="group-data" id="middle-name"></div>
       </div>
 
       <div class="list-item">
-        <label class="group-label">Role:</label>
+        <b><label class="group-label">Role:</label></b>
         <div class="group-data" id="position"></div>
       </div>
 
       <div class="list-item">
-        <label class="group-label">Comments:</label>
+        <b><label class="group-label">Comments:</label></b>
         <div class="group-data" id="comment"></div>
       </div>
 

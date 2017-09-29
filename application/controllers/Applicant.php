@@ -49,7 +49,6 @@ class Applicant extends CI_Controller {
     $data['title'] = "Astrid Technologies | New Applicant";
     $this->load->view('include/sidebar', $data);
     $this->load->view('include/header', $data);
-    $this->load->view('include/sidebar', $data);
 		$this->load->view('applicant/new');
 	}
 
