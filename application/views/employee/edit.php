@@ -1,6 +1,6 @@
 
-  <center>
-    <h3><b>Edit Applicant</b></h3>
+    <center>
+    <h3>Edit Employee</h3>
   </center>
     <div class="container">
       <?php
@@ -49,6 +49,47 @@
          <label  class="col-sm-3 control-label">Home Address:</label>
          <div class="col-sm-9">
              <input type="text" name="home_address" class="form-control" value="<?= $employee_data->home_address ?>" placeholder="Home Address"/>
+         </div>
+       </div>
+
+       <div class="form-group">
+          <label  class="col-sm-3 control-label">Birth Date:</label>
+          <div class="col-sm-9">
+              <input type="date" name="birth_date" class="form-control" value="<?= $employee_data->birthday?>"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+      <label  class="col-sm-3 control-label">Degree:</label>
+      <div class="col-sm-9">
+          <input type="text" name="degree" class="form-control" placeholder="Degree" value="<?= $employee_data->degree?>"/>
+      </div>
+    </div>
+
+       <div class="form-group">
+         <label  class="col-sm-3 control-label">TIN:</label>
+         <div class="col-sm-9">
+             <input type="text" name="tin" class="form-control" value="<?= $employee_data->tin ?>" placeholder="TIN"/>
+         </div>
+       </div>
+
+       <div class="form-group">
+         <label  class="col-sm-3 control-label">SSS:</label>
+         <div class="col-sm-9">
+             <input type="text" name="sss" class="form-control" value="<?= $employee_data->sss ?>" placeholder="SSS"/>
+         </div>
+       </div>
+       <div class="form-group">
+         <label  class="col-sm-3 control-label">Philhealth:</label>
+         <div class="col-sm-9">
+             <input type="text" name="philhealth" class="form-control" value="<?= $employee_data->philhealth ?>" placeholder="Philhealth"/>
+         </div>
+       </div>
+
+       <div class="form-group">
+         <label  class="col-sm-3 control-label">Pagibig:</label>
+         <div class="col-sm-9">
+             <input type="text" name="pagibig" class="form-control" value="<?= $employee_data->sss ?>" placeholder="Pagibig"/>
          </div>
        </div>
 
