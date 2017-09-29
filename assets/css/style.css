@@ -128,4 +128,17 @@ select.form-control:not([size]):not([multiple]) {
 form#add-record-form.form-horizontal{
   margin-left: 10px;
 }
-/*# sourceMappingURL=style.css.map */
+
+div.group-data{
+    display:inline-block;
+}
+
+.modal-header .close {
+  color: red;
+  margin-left: 5%;
+}
+.modal-title {
+  margin: 0;
+  float: left;
+  line-height: 1.42857143;
+}

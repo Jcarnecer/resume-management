@@ -40,6 +40,7 @@ class Employee extends CI_Controller {
 
       $title['title'] = "Astrid Technologies | New Applicant";
       $this->load->view('include/header',$title);
+      $this->load->view('include/sidebar',$data);
       $this->load->view('employee/edit', $data);
 
     }
@@ -55,6 +56,13 @@ class Employee extends CI_Controller {
         'phone_number' => clean_data($this->input->post('phone_number')),
         'home_address' => clean_data($this->input->post('home_address')),
         'current_status' => clean_data($this->input->post('current_status')),
+        'birth_date' => clean_data($this->input->post('birth_date')),
+        'degree' => clean_data($this->input->post('degree')),
+        'tin' => clean_data($this->input->post('tin')),
+        'sss' => clean_data($this->input->post('sss')),
+        'philhealth' => clean_data($this->input->post('philhealth')),
+        'pagibig' => clean_data($this->input->post('pagibig')),
+
       ];
       $this->Resume_model->update('record', $update, 'id='.$id);
       redirect('');
