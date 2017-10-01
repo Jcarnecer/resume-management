@@ -7,7 +7,7 @@ $position = $this->Resume_model->fetch('position');
     <h3>Welcome, Ma'am Tess ♥</h3>
   </div>
 
-  <div class="row new_record">
+  <div class="row">
     <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
       <div class="input-group pull-right">
         <form class="form-inline" method="POST" id="add-role-form">
@@ -65,7 +65,7 @@ $position = $this->Resume_model->fetch('position');
 
                 <div class="col-sm-2">
                   <div class="col-padding">
-                    <a href="<?= base_url('appplicants?role=' . $role->role_id .'&current_status=interview'); ?>">
+                    <a href="<?= base_url('applicants?role=' . $role->role_id .'&current_status=interview'); ?>">
                       <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'interview', 'pos_id' => 1]); ?><br>For Interview</div>
                     </a>
                   </div>
@@ -73,7 +73,7 @@ $position = $this->Resume_model->fetch('position');
 
                 <div class="col-sm-2">
                   <div class="col-padding">
-                    <a href="<?= base_url('applicants?status=3&role=' . $role->role_id .'&current_status=shortlist'); ?>">
+                    <a href="<?= base_url('applicants?role=' . $role->role_id .'&current_status=shortlist'); ?>">
                       <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'shortlist', 'pos_id' => 1]); ?><br>Shortlist</div>
                     </a>
                   </div>
@@ -81,7 +81,7 @@ $position = $this->Resume_model->fetch('position');
 
                 <div class="col-sm-2">
                   <div class="col-padding">
-                    <a href="<?= base_url('applicants?status=4&role=' . $role->role_id .'&current_status=archived'); ?>">
+                    <a href="<?= base_url('applicants?role=' . $role->role_id .'&current_status=archived'); ?>">
                       <div><?= $this->Resume_model->count('record', ['role_id' => $role->role_id, 'current_status' => 'archived', 'pos_id' => 1]); ?><br>Rejected</div>
                     </a>
                   </div>

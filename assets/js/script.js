@@ -183,7 +183,7 @@ $(document).ready(function(){
 			$("#emp_form").hide();
 			$("#resume").show();
 		}
-		else if(posid ==2){
+		else if(posid == 2){
 			$("#emp_form").hide();
 			$("#resume").hide();
 		}
@@ -218,7 +218,6 @@ $(function(){
   $('[data-name="button-view"]').click(function() {
       var applicantId = $(this).attr('data-id');
       var url = base_url + "applicant/" +  applicantId;
-
       $.ajax({
           "url": url,
           "method": "GET",
@@ -228,26 +227,41 @@ $(function(){
                   $('#first-name').html(response.first_name);
                   $('#last-name').html(response.last_name);
                   $('#middle-name').html(response.middle_name);
-                  $('#position').html(response.position);
+									$('#home-address').html(response.home_address);
+									$('#phone_number').html(response.phone_number);
+									$('#birthday').html(response.birthday);
+									$('#degree').html(response.degree);
+									$('#school').html(response.school);
+                  $('#role').html(response.name);
+									$('#date_hired').html(response.date_hired);
                   $('#app_date').html(response.application_date);
+									$('#sss').html(response.sss);
+									$('#tin').html(response.tin);
+									$('#philhealth').html(response.philhealth);
+									$('#pagibig').html(response.pagibig);
                   $('#comment').html(response.comment);
-                  $('#resume').attr("href", "<?php print base_url('assets/uploads'); ?>/" + response.file);
+                  $('#resume').attr("href", base_url + 'assets/uploads/' + response.file);
                   $('#resume').html(response.file);
                   $('#interviewer').html(response.interviewer);
-                  $('#interview-notes').attr("href", "<?php print base_url('assets/uploads'); ?>/" + response.interview_notes);
+                  $('#interview-notes').attr("href", base_url + 'assets/uploads/' + response.interview_notes);
                   $('#interview-notes').html(response.interview_notes);
                   if(response.exam_result == 1){
                     $('#exam-result').html("Passed");
                   }
-                  else{
+                  else if (response.exam_result == 0){
                     $('#exam-result').html("Failed");
-                  }
+                  }else{
+										$('#interview-result').html("");
+									}
                   if(response.interview_result == 1){
                     $('#interview-result').html("Passed");
                   }
-                  else{
+                  else if (response.interview_result == 0){
                     $('#interview-result').html("Failed");
                   }
+									else {
+										$('#interview-result').html("");
+									}
 
                   $('#viewmodal').modal('show');
               }

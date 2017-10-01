@@ -89,7 +89,7 @@
        <div class="form-group">
          <label  class="col-sm-3 control-label">Pagibig:</label>
          <div class="col-sm-9">
-             <input type="text" name="pagibig" class="form-control" value="<?php $employee->pagibig ?>" placeholder="Pagibig"/>
+             <input type="text" name="pagibig" class="form-control" value="<?= $employee->pagibig ?>" placeholder="Pagibig"/>
          </div>
        </div>
 

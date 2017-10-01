@@ -145,3 +145,7 @@ h4.modal-title{
     padding: 15px;
     border-bottom: 1px solid #e9ecef;
 }
+
+.row{
+  padding-top: 10px;
+}

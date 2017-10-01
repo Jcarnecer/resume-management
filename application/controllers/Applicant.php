@@ -9,7 +9,7 @@ class Applicant extends CI_Controller {
     $data['role'] = $this->Resume_model->fetch('role');
     $data['role_employee'] = $this->Resume_model->fetch('role',['pos_id' => 1]);
     $data['role_intern'] = $this->Resume_model->fetch('role',['pos_id' => 2]);
-
+  
     //load view path
     $this->load->view('include/header',$data);
     $this->load->view('include/sidebar');
@@ -22,7 +22,6 @@ class Applicant extends CI_Controller {
     $current_status = $_GET['current_status'];
 
     $data['title'] = "Astrid Technologies | Resume Management";
-
 
     $query = [];
 
@@ -148,6 +147,7 @@ class Applicant extends CI_Controller {
         'home_address' => clean_data(ucwords($home_address)),
         'phone_number' => clean_data($phone_number),
         'birthday' => clean_data($birth_date),
+        'school' => clean_data($school),
         'images'=> $this->session->image,
         'current_status' => clean_data(ucwords($this->input->post('current_status')))
       ];
@@ -192,8 +192,12 @@ class Applicant extends CI_Controller {
 
   public function view($id){
     $this->load->model('Resume_model');
-    $applicant = $this->db->get_where('record', ['id' => $id])->row();
+    //$applicant = $this->db->get_where('record', ['id' => $id])->row();
 
+    $applicant = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
+    $join_where = ['employees.record_id' => $id];
+    $applicant = $this->Resume_model->join_employee_record($join_where);
+    //$applicant = $this->Resume_model->join_record_role();
     header('Content-Type: application/json');
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET');
@@ -236,11 +240,12 @@ class Applicant extends CI_Controller {
       'email' => clean_data($to_email),
       'home_address' => clean_data($this->input->post('home_address')),
       'phone_number' => clean_data($this->input->post('phone_number')),
-      'birthday' => clean_data($this->input->post('birthday')),
+      'birthday' => clean_data($this->input->post('birth_date')),
       'school' => clean_data($this->input->post('school')),
       'degree' => clean_data($this->input->post('degree')),
       'comment' =>  clean_data($this->input->post('comment')),
       'current_status' => $status,
+      'date_hired' => $date_now,
     ];
     $this->Resume_model->update('record', $update, 'id='.$id);
 

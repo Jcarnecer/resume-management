@@ -127,7 +127,7 @@
           <label  class="col-sm-3 control-label">Exam Result:</label>
           <div class="col-sm-9">
             <select class="form-control" name="exam_result">
-              <option selected="selected" value="NULL">Select Exam Result</option>
+              <option value="<?= $applicant_data->exam_result ?>">Select Exam Result</option>
               <option value="1">Passed</option>
               <option value="0">Failed</option>
             </select>
@@ -137,8 +137,8 @@
         <div class="form-group">
           <label  class="col-sm-3 control-label">Interview Result:</label>
           <div class="col-sm-9">
-            <select class="form-control" name="interview_result" value="<?= $applicant_data->interview_result ?>" >
-              <option selected="selected">Select Interview Result</option>
+            <select class="form-control" name="interview_result" >
+              <option value="<?= $applicant_data->interview_result ?>">Select Interview Result</option>
               <option value="1">Passed</option>
               <option value="0">Failed</option>
             </select>
@@ -156,7 +156,7 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">Interview Notes:</label>
           <div class="col-sm-9">
-            <input type="file" name="notes_file">
+            <input type="file" name="notes_file" value="<?= $applicant_data->interview_notes?>">
           </div>
         </div>
 
