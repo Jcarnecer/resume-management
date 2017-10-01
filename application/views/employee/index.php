@@ -36,32 +36,58 @@
         <h4 class="modal-title">View Employee</h4>
     </div>
 
-
     <div class="modal-body">
-      <div class="list-item">
-        <b><label class="group-label">First Name:</label></b>
-        <div class="group-data" id="first-name"></div>
-      </div>
+    <table class="table table-bordered table-responsive">
+<thead>
 
-      <div class="list-item">
-        <b><label class="group-label">Last Name:</label></b>
-        <div class="group-data" id="last-name"></div>
-      </div>
+</thead>
+<tbody>
+<tr>
+  <td>
+    <b><label class="group-label">First Name:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="first-name"></div>
+  </td>
+</tr>
+<tr>
+  <td>
+  <b><label class="group-label">Last Name: </label></b>
+  </td>
+  <td>
+    <div class="group-data" id="last-name"></div>
+  </td>
+</tr>
 
-      <div class="list-item">
-        <b><label class="group-label">Middle Name:</label></b>
-        <div class="group-data" id="middle-name"></div>
-      </div>
+<tr>
+  <td>
+    <b><label class="group-label">Middle Name:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="middle-name"></div>
+  </td>
+</tr>
 
-      <div class="list-item">
-        <b><label class="group-label">Role:</label></b>
-        <div class="group-data" id="position"></div>
-      </div>
+<tr>
+  <td>
+    <b><label class="group-label">Role:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="position"></div>
+  </td>
+</tr>
 
-      <div class="list-item">
-        <b><label class="group-label">Comments:</label></b>
-        <div class="group-data" id="comment"></div>
-      </div>
+<tr>
+  <td>
+    <b><label class="group-label">Comments:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="comment"></div>
+  </td>
+</tr>
+</tbody>
+</table>
+
 
     </div>
 
