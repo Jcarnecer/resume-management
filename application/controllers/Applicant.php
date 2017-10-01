@@ -273,9 +273,11 @@ class Applicant extends CI_Controller {
       $update=[
         'current_status' => "current",
       ];
+      $insert=[
+        'record_id' => $id,
+      ];
       $this->Resume_model->update('record', $update, 'id='.$id);
-
-
+      $this->Resume_model->insert('employees', $insert);
     endif;
     redirect('');
   }

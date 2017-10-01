@@ -94,7 +94,8 @@
       <div class="form-group">
         <label  class="col-sm-3 control-label">Status:</label>
         <div class="col-sm-9">
-          <select class="form-control" name="status" value="<?php $applicant_data->application_status;?>">
+          <select class="form-control" name="status">
+            <option value="<?= $applicant_data->current_status?>">Select Status</option>>
             <option value="applicant">Applicant</option>
             <option value="interview">For Interview</option>
             <option value="shortlist">Shortlist</option>
