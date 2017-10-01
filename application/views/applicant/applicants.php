@@ -37,62 +37,126 @@
       </div>
 
       <div class="modal-body">
-        <div class="list-item">
-          <label class="group-label">First Name:</label>
-          <div class="group-data" id="first-name"></div>
-        </div>
 
-        <div class="list-item">
-          <label class="group-label">Last Name:</label>
-          <div class="group-data" id="last-name"></div>
-        </div>
 
-        <div class="list-item">
-          <label class="group-label">Middle Name:</label>
-          <div class="group-data" id="middle-name"></div>
-        </div>
+        <div class="modal-body">
+        <table class="table table-bordered table-responsive">
+    <thead>
 
-        <div class="list-item">
-          <label class="group-label">Role:</label>
-          <div class="group-data" id="position"></div>
-        </div>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <b><label class="group-label">First Name:</label></b>
+      </td>
+      <td>
+        <div class="group-data" id="first-name"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <b><label class="group-label">Last Name: </label></b>
+      </td>
+      <td>
+        <div class="group-data" id="last-name"></div>
+      </td>
+    </tr>
 
-        <div class="list-item">
-          <label class="group-label">Application Date:</label>
-          <div class="group-data" id="app_date"></div>
-        </div>
+    <tr>
+      <td>
+        <b><label class="group-label">Middle Name:</label></b>
+      </td>
+      <td>
+        <div class="group-data" id="middle-name"></div>
+      </td>
+    </tr>
 
-        <div class="list-item">
-          <label class="group-label">Comments:</label>
-          <div class="group-data" id="comment"></div>
-        </div>
+    <tr>
+      <td>
+        <b><label class="group-label">Role:</label></b>
+      </td>
+      <td>
+        <div class="group-data" id="position"></div>
+      </td>
+    </tr>
 
-        <div class="list-item">
-          <label class="group-label">Resume:</label>
-          <div class="group-data"><a target="_blank" id="resume"></a></div>
-        </div>
+    <tr>
+      <td>
+        <b><label class="group-label">Application Date:</label></b>
+      </td>
+      <td>
+        <div class="group-data" id="app_date"></div>
+      </td>
+    </tr>
 
-        <b>Exam/Interview</b>
-          <div class="list-item">
-            <label class="group-label">Exam Result:</label>
-            <div class="group-data" id="exam-result"></div>
-          </div>
+    <tr>
+      <td>
+        <b><label class="group-label">Comments:</label></b>
+      </td>
+      <td>
+        <div class="group-data" id="comment"></div>
+      </td>
+    </tr>
 
-          <div class="list-item">
-            <label class="group-label">Interview Result:</label>
-            <div class="group-data" id="interview-result"></div>
-          </div>
+    <tr>
+      <td>
+        <b><label class="group-label">Resume:</label></b>
+      </td>
+      <td>
+        <div class="group-data"><a target="_blank" id="resume"></a></div>
+      </td>
+    </tr>
 
-          <div class="list-item">
-            <label class="group-label">Interviewer:</label>
-            <div class="group-data" id="interviewer"></div>
-          </div>
+<!--put divider here!-->
 
-          <div class="list-item">
-            <label class="group-label">interview notes:</label>
-            <div class="group-data"><a target="_blank" id="interview-notes"></a></div>
-          </div>
-      </div>
+        <tr>
+          <td class"border-right:none">
+            <b><label class="group-label">Exam/Interview Result:</label></b>
+          </td>
+          <td>
+          </td>
+        </tr>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Exam Result:</label></b>
+        </td>
+        <td>
+          <div class="group-data" id="exam-result"></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Interview Result:</label></b>
+        </td>
+        <td>
+          <div class="group-data" id="exam-result"></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Interviewer:</label></b>
+        </td>
+        <td>
+          <div class="group-data" id="interviewer"></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Interview Notes:</label></b>
+        </td>
+        <td>
+          <div class="group-data"><a target="_blank" id="interview-notes"></a></div>
+        </td>
+      </tr>
+
+
+
+    </tbody>
+    </table>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
