@@ -133,12 +133,15 @@ div.group-data{
     display:inline-block;
 }
 
-.modal-header .close {
-  color: red;
-  margin-left: 5%;
+
+h4.modal-title{
+  display: block;
 }
-.modal-title {
-  margin: 0;
-  float: left;
-  line-height: 1.42857143;
+
+.modal-header {
+    display: left;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
 }
