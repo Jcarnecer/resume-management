@@ -52,10 +52,10 @@ $position = $this->Resume_model->fetch('position');
   <div class="row" id="applicant">
     <div class="col-md-10 tab">
       <div class="tab-content active">
-        <?php
+		  <?php
         if($role_applicant == ''){} else{
          foreach ($role_applicant as $role) :
-        ?>
+        ?>	
           <div class="panel">
             <form method="get" action="<?= base_url('delete_role')?>">
               <input type="hidden" name="id" value="<?= $role->role_id?>">
@@ -95,16 +95,17 @@ $position = $this->Resume_model->fetch('position');
               </div>
             </div>
           </div>
-        <?php enddforeach;?>
-      <?php } ?>
+		  	<?php endforeach;?>
+			<?php }?>
       </div>
     </div>
-  </div>
+	
+	
+  
 
 
     <div class="col-md-10 tab" id="employee">
       <div class="tab-content">
-        <div class="panel">
           <?php if($role_employee == ''){} else{
            foreach ($role_employee as $role_emp) :?>
             <div class="panel">
@@ -135,16 +136,17 @@ $position = $this->Resume_model->fetch('position');
                 </div>
               </div>
             </div>
-          </div>
-          <?php endforeach;?>
-        <?php } ?>
-        </div>
+			  <?php endforeach;?>
+			<?php } ?>
+       
       </div>
-
+      </div> 
+		
+	
+	
       <div id="intern">
       <div class="col-md-10 tab">
         <div class="tab-content">
-          <div class="panel">
             <?php if($role_intern == ''){} else{
             foreach ($role_intern as $role) :?>
               <div class="panel">
@@ -172,10 +174,12 @@ $position = $this->Resume_model->fetch('position');
                   </div>
                 </div>
               </div>
-            </div>
             <?php endforeach;?>
           <?php } ?>
         </div>
     </div>
   </div>
-</div>
+  
+  
+  
+
