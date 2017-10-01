@@ -95,11 +95,11 @@
         <label  class="col-sm-3 control-label">Status:</label>
         <div class="col-sm-9">
           <select class="form-control" name="status" value="<?php $applicant_data->application_status;?>">
-            <option value="1">Applicant</option>
-            <option value="2">For Interview</option>
-            <option value="3">Shortlist</option>
-            <option value="4">Archived</option>
-            <option value="5">Hired</option>
+            <option value="applicant">Applicant</option>
+            <option value="interview">For Interview</option>
+            <option value="shortlist">Shortlist</option>
+            <option value="archived">Archived</option>
+            <option value="hired">Hired</option>
           </select>
         </div>
       </div>

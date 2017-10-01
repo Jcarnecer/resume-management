@@ -7,9 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title> <?= $title ?> </title>
-    <link rel="stylesheet" href="<?php echo base_url("/assets/css/bootstrap.min.css"); ?>" />
-    <link rel="stylesheet" href="<?php echo base_url("/assets/css/style.css"); ?>" />
-
+    <base href="<?=base_url('resume-management')?>" />
+    <!-- <link rel="stylesheet" href="<?php echo base_url("/assets/css/bootstrap.min.css"); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url("/assets/css/style.css"); ?>" /> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/flavored-reset-and-normalize.css" >
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
+		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css" >
+		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/css/bootstrapvalidator.min.css" rel="stylesheet" />
 
     <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>"></script>

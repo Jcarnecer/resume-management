@@ -142,3 +142,6 @@ div.group-data{
   float: left;
   line-height: 1.42857143;
 }
+.row{
+  padding-top: 20px;
+}

@@ -7,20 +7,22 @@ class Applicant extends CI_Controller {
     $this->load->model('Resume_model');
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
-    $data['role_applicant'] = $this->Resume_model->fetch('role',['applicant' => 1]);
     $data['role_employee'] = $this->Resume_model->fetch('role',['pos_id' => 1]);
     $data['role_intern'] = $this->Resume_model->fetch('role',['pos_id' => 2]);
+
+    //load view path
+    $this->load->view('include/header',$data);
     $this->load->view('include/sidebar');
     $this->load->view('applicant/index', $data);
+    $this->load->view('include/footer');
   }
 
   public function applicants(){
     $role = $_GET['role'];
-    $status = $_GET['status'];
     $current_status = $_GET['current_status'];
 
     $data['title'] = "Astrid Technologies | Resume Management";
-    $this->load->view('include/sidebar', $data);
+
 
     $query = [];
 
@@ -30,25 +32,27 @@ class Applicant extends CI_Controller {
     if($current_status != null){
       $query["current_status"] = $current_status;
     }
-    if ($status != null) {
-      $query["application_status"] = $status;
-    }
     if (count($query) > 0) {
        $data['applicants'] = $this->db->get_where('record', $query)->result();
      } else {
       $data['applicants'] = $this->Resume_model->fetch('record','');
      }
+
+     //load view path
     $this->load->view('include/header',$data);
+    $this->load->view('include/sidebar', $data);
     $this->load->view('applicant/applicants',$data);
+    $this->load->view('include/footer');
   }
 
 
   public function add_applicant() {
 
     $data['title'] = "Astrid Technologies | New Applicant";
-    //  $this->load->view('include/sidebar', $data);
     $this->load->view('include/header', $data);
+     $this->load->view('include/sidebar', $data);
 		$this->load->view('applicant/new');
+    $this->load->view('include/footer');
 	}
 
   public function get_pos_role($posid){
@@ -151,7 +155,7 @@ class Applicant extends CI_Controller {
       // print_r($last_inserted->id);die;
       if($current_status == "applicant") {
         $insert_data = [
-             'application_status' => 1,
+             'current_status' => 'applicant',
              'file' => $this->session->resume,
              'application_date' => clean_data($this->input->post('application_date')),
              'available_date' => clean_data($this->input->post('available_date')),
@@ -209,6 +213,7 @@ class Applicant extends CI_Controller {
     $this->load->view('include/header',$title);
     $this->load->view('include/sidebar', $data);
     $this->load->view('applicant/edit', $data);
+    $this->load->view('include/footer');
 
   }
 
@@ -235,7 +240,7 @@ class Applicant extends CI_Controller {
       'school' => clean_data($this->input->post('school')),
       'degree' => clean_data($this->input->post('degree')),
       'comment' =>  clean_data($this->input->post('comment')),
-      'application_status' => $status,
+      'current_status' => $status,
     ];
     $this->Resume_model->update('record', $update, 'id='.$id);
 
@@ -258,11 +263,11 @@ class Applicant extends CI_Controller {
     $this->email->to($to_email);
     $this->email->subject('Astrid Technologies');
 
-    if($status == "4"):
+    if($status == "archived"):
       $this->email->message('Failed!');
       $this->email->send();
 
-    elseif($status == 5):
+    elseif($status == "hired"):
       $this->email->message('Passed!');
       $this->email->send();
       $update=[

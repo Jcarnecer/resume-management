@@ -6,7 +6,6 @@
           <tr>
             <th></th>
             <th>Name</th>
-            <th>Date of Application</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -15,7 +14,6 @@
           <tr>
             <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td>
             <td><h4><?= $applicant->first_name;?> <?= $applicant->last_name;?></h4></td>
-            <td><?= $applicant->application_date;?></td>
             <td>
               <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
               <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" type="button" class="btn btn-warning" data-id="<?= $applicant->id;?>" >Edit</a>
