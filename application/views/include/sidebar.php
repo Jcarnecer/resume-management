@@ -23,7 +23,7 @@
 			<ul class="sidebar-menu">
 
 				<li class="">
-					<a class="" href="#">
+					<a class="" href="<?=base_url('applicant')?>">
 						<i class="fa fa-dashboard"></i>
 						<span>Dashboard</span>
 					</a>

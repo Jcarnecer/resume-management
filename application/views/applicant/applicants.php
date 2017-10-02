@@ -37,85 +37,136 @@
       </div>
 
       <div class="modal-body">
-
-
         <div class="modal-body">
-        <table class="table table-bordered table-responsive">
-    <thead>
+          <table class="table table-bordered table-responsive">
+            <thead> </thead>
+              <tbody>
+              <tr>
+                <td>
+                  <b><label class="group-label">First Name:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="first-name"></div>
+                </td>
+              </tr>
 
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        <b><label class="group-label">First Name:</label></b>
-      </td>
-      <td>
-        <div class="group-data" id="first-name"></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <b><label class="group-label">Last Name: </label></b>
-      </td>
-      <td>
-        <div class="group-data" id="last-name"></div>
-      </td>
-    </tr>
+              <tr>
+                <td>
+                <b><label class="group-label">Last Name: </label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="last-name"></div>
+                </td>
+              </tr>
 
-    <tr>
-      <td>
-        <b><label class="group-label">Middle Name:</label></b>
-      </td>
-      <td>
-        <div class="group-data" id="middle-name"></div>
-      </td>
-    </tr>
+              <tr>
+                <td>
+                  <b><label class="group-label">Middle Name:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="middle-name"></div>
+                </td>
+              </tr>
 
-    <tr>
-      <td>
-        <b><label class="group-label">Role:</label></b>
-      </td>
-      <td>
-        <div class="group-data" id="position"></div>
-      </td>
-    </tr>
+              <tr>
+                <td>
+                  <b><label class="group-label">Home Address:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="home-address"></div>
+                </td>
+              </tr>
 
-    <tr>
-      <td>
-        <b><label class="group-label">Application Date:</label></b>
-      </td>
-      <td>
-        <div class="group-data" id="app_date"></div>
-      </td>
-    </tr>
+              <tr>
+                <td>
+                  <b><label class="group-label">Phone Number:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="phone_number"></div>
+                </td>
+              </tr>
 
-    <tr>
-      <td>
-        <b><label class="group-label">Comments:</label></b>
-      </td>
-      <td>
-        <div class="group-data" id="comment"></div>
-      </td>
-    </tr>
+              <tr>
+                <td>
+                  <b><label class="group-label">Birthday:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="birthday"></div>
+                </td>
+              </tr>
 
-    <tr>
-      <td>
-        <b><label class="group-label">Resume:</label></b>
-      </td>
-      <td>
-        <div class="group-data"><a target="_blank" id="resume"></a></div>
-      </td>
-    </tr>
+              <tr>
+                <td>
+                  <b><label class="group-label">Degree:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="degree"></div>
+                </td>
+              </tr>
 
-<!--put divider here!-->
+              <tr>
+                <td>
+                  <b><label class="group-label">School:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="school"></div>
+                </td>
+              </tr>
 
-        <tr>
-          <td class"border-right:none">
-            <b><label class="group-label">Exam/Interview Result:</label></b>
-          </td>
-          <td>
-          </td>
-        </tr>
+              <tr>
+                <td>
+                  <b><label class="group-label">Date Hired:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="date_hired"></div>
+                </td>
+              </tr>
+ 
+              <tr>
+                <td>
+                  <b><label class="group-label">Role:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="role"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Application Date:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="app_date"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Comments:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="comment"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Resume:</label></b>
+                </td>
+                <td>
+                  <div class="group-data"><a target="_blank" id="resume"></a></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+    <!--put divider here!-->
+    <div class="row">
+      <h4>Exam/Interview Result</h4>
+    </div>
+    <table class="table table-bordered table-responsive">
+      <thead> </thead>
+        <tbody>
 
       <tr>
         <td>
@@ -131,7 +182,7 @@
           <b><label class="group-label">Interview Result:</label></b>
         </td>
         <td>
-          <div class="group-data" id="exam-result"></div>
+          <div class="group-data" id="interview-result"></div>
         </td>
       </tr>
 
@@ -152,16 +203,12 @@
           <div class="group-data"><a target="_blank" id="interview-notes"></a></div>
         </td>
       </tr>
-
-
-
     </tbody>
-    </table>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+  </table>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  </div>
   </div>
 </div>
 

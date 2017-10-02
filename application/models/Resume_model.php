@@ -112,18 +112,12 @@ class Resume_model extends CI_Model {
     }
   }
 
-  public function join_applicants_roles(){
-      $this->db->select('*');
-      $this->db->from('applicants');
-      $this->db->join('roles', 'roles.role_id = applicant.roles_id','inner');
-      $query = $this->db->get();
-      return $query->result();
-  }
   public function join_employee_record($where){
-      $this->db->select('employees.*,record.*');
+      $this->db->select('employees.*,record.*,role.*');
       $this->db->from('record');
       $this->db->where($where);
       $this->db->join('employees', 'record.id = employees.record_id','inner');
+      $this->db->join('role', 'record.role_id = role.role_id','inner');
       $query = $this->db->get();
       return $query->row();
   }

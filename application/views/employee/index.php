@@ -70,10 +70,87 @@
 
 <tr>
   <td>
+    <b><label class="group-label">Home Address:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="home-address"></div>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b><label class="group-label">Phone Number:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="phone_number"></div>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b><label class="group-label">Birthday:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="birthday"></div>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    <b><label class="group-label">Date Hired:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="date_hired"></div>
+  </td>
+</tr>
+
+<tr>
+  <td>
     <b><label class="group-label">Role:</label></b>
   </td>
   <td>
-    <div class="group-data" id="position"></div>
+    <div class="group-data" id="role"></div>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    <b><label class="group-label">SSS:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="sss"></div>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    <b><label class="group-label">TIN:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="tin"></div>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    <b><label class="group-label">Philhealth:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="philhealth"></div>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    <b><label class="group-label">Pagibig:</label></b>
+  </td>
+  <td>
+    <div class="group-data" id="pagibig"></div>
   </td>
 </tr>
 
