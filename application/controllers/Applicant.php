@@ -9,7 +9,7 @@ class Applicant extends CI_Controller {
     $data['role'] = $this->Resume_model->fetch('role');
     $data['role_employee'] = $this->Resume_model->fetch('role',['pos_id' => 1]);
     $data['role_intern'] = $this->Resume_model->fetch('role',['pos_id' => 2]);
-  
+
     //load view path
     $this->load->view('include/header',$data);
     $this->load->view('include/sidebar');
@@ -192,18 +192,29 @@ class Applicant extends CI_Controller {
 
   public function view($id){
     $this->load->model('Resume_model');
-    //$applicant = $this->db->get_where('record', ['id' => $id])->row();
-
+    // $applicant = $this->db->get_where('record', ['id' => $id])->row();
+//
     $applicant = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
-    $join_where = ['employees.record_id' => $id];
-    $applicant = $this->Resume_model->join_employee_record($join_where);
-    //$applicant = $this->Resume_model->join_record_role();
+    $join_where = $applicant->role_id;
+    // print_r($join_where);die;
+    $applicant->name = $this->Resume_model->get_role($join_where)->name;
+    $record_id = $applicant->id;
+    // print_r($record_id);die;
+  // $record_info = $this->Resume_model->fetch_tag_row('')
+  $where = ['record_id' => $record_id];
+  $join_employee_record =   $this->Resume_model->join_employee_record($where);
+  $join_employee_record->name =  $this->Resume_model->get_role($join_where)->name;
+
     header('Content-Type: application/json');
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET');
 
     http_response_code(200);
-    print json_encode($applicant);
+    $json = [
+      'fname' => $join_employee_record->first_name,
+      'role_name' => $applicant->name
+    ];
+    echo json_encode($join_employee_record);//$applicant);
   }
 
 
@@ -329,8 +340,8 @@ class Applicant extends CI_Controller {
 		$insert['shortlist']=$this->Resume_model->count('record', ['role_id' => $insert['id'],'current_status' => 'shortlist','pos_id' =>$this->input->post('pos_id')]);
 		$insert['archived']=$this->Resume_model->count('record', ['role_id' => $insert['id'],'current_status' => 'applicant','pos_id' =>$this->input->post('pos_id')]);
 		$insert['current']=$this->Resume_model->count('record', ['role_id' => $insert['id'], 'current_status' => 'current', 'pos_id' =>$this->input->post('pos_id')]);
-		$insert['former']=$this->Resume_model->count('record', ['role_id' => $insert['id'], 'current_status' => 'former', 'pos_id' =>$this->input->post('pos_id')]);	
-	
+		$insert['former']=$this->Resume_model->count('record', ['role_id' => $insert['id'], 'current_status' => 'former', 'pos_id' =>$this->input->post('pos_id')]);
+
   echo json_encode(array_merge($insert, ['pos_id' => $this->input->post('pos_id')]));
  }
 
