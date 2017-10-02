@@ -99,3 +99,47 @@ div.tab-content:not(.active){
   width: 100px;
   height: 100px;
 }
+
+h1{
+  padding-left: 5px;
+  float: left;
+  margin-top: 0px;
+  margin-bottom: 50px;
+}
+
+.pull-right{
+  margin-left: 50%;
+  display: inline-block;
+  justify-content: flex-start;
+   list-style: none;
+}
+
+.list-group{
+  display: flex;
+  flex-direction: row;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(3.2rem + 2px);
+}
+
+form#add-record-form.form-horizontal{
+  margin-left: 10px;
+}
+
+div.group-data{
+    display:inline-block;
+}
+
+
+h4.modal-title{
+  display: block;
+}
+
+.modal-header {
+    display: left;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+}

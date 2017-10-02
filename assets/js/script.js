@@ -179,8 +179,13 @@ $(document).ready(function(){
       $("#emp_form").hide();
       $("#resume").show();
     }
-		else if (posid == 2) {
-			$("#emp_form").show();
+		else if (posid == 2 && c_status == 'applicant' ) {
+			$("#emp_form").hide();
+			$("#resume").show();
+		}
+		else if(posid ==2){
+			$("#emp_form").hide();
+			$("#resume").hide();
 		}
 		else{
       $("#applicant_div").hide();
@@ -191,11 +196,10 @@ $(document).ready(function(){
   })
 });
 
-
 $(function() {
   $("#add-role-form").on('submit', function(e){
     e.preventDefault();
-
+		e.stopImmediatePropagation();
     $.ajax({
       url: base_url + "insert_role",
       type: 'POST',

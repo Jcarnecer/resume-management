@@ -69,35 +69,35 @@
        <div class="form-group">
          <label  class="col-sm-3 control-label">TIN:</label>
          <div class="col-sm-9">
-             <input type="text" name="tin" class="form-control" value="<?= $employee_data->tin ?>" placeholder="TIN"/>
+             <input type="text" name="tin" class="form-control" value="<?= $employee->tin ?>" placeholder="TIN"/>
          </div>
        </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">SSS:</label>
          <div class="col-sm-9">
-             <input type="text" name="sss" class="form-control" value="<?= $employee_data->sss ?>" placeholder="SSS"/>
+             <input type="text" name="sss" class="form-control" value="<?= $employee->sss ?>" placeholder="SSS"/>
          </div>
        </div>
        <div class="form-group">
          <label  class="col-sm-3 control-label">Philhealth:</label>
          <div class="col-sm-9">
-             <input type="text" name="philhealth" class="form-control" value="<?= $employee_data->philhealth ?>" placeholder="Philhealth"/>
+             <input type="text" name="philhealth" class="form-control" value="<?= $employee->philhealth ?>" placeholder="Philhealth"/>
          </div>
        </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Pagibig:</label>
          <div class="col-sm-9">
-             <input type="text" name="pagibig" class="form-control" value="<?= $employee_data->sss ?>" placeholder="Pagibig"/>
+             <input type="text" name="pagibig" class="form-control" value="<?= $employee->pagibig ?>" placeholder="Pagibig"/>
          </div>
        </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Status:</label>
          <div class="col-sm-9">
-           <select class="form-control" name="current_status" value="<?= $employee_data->current_status?>">
-             <option>Select Status</option>
+           <select class="form-control" name="current_status" >
+             <option value="<?= $employee_data->current_status?>">Select Status</option>
              <option value="Current">Current</option>
              <option value="Former">Former</option>
            </select>

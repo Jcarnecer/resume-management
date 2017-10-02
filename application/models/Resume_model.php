@@ -11,6 +11,31 @@ class Resume_model extends CI_Model {
 		}
 	}
 
+  public function fetch_tag_row($tag,$table,$where="",$limit="",$offset="",$order=""){
+		if (!empty($where)) {
+			$this->db->where($where);
+		}
+		if (!empty($limit)) {
+			if (!empty($offset)) {
+				$this->db->limit($limit, $offset);
+			}else{
+				$this->db->limit($limit);
+			}
+		}
+		if (!empty($order)) {
+			$this->db->order_by($order);
+		}
+		$this->db->select($tag);
+		$this->db->from($table);
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			return $query->row();
+		}else{
+			return FALSE;
+		}
+	}
+
   public function count($table,$data){
 
     if(empty($data)){
@@ -89,6 +114,14 @@ class Resume_model extends CI_Model {
       $this->db->join('roles', 'roles.role_id = applicant.roles_id','inner');
       $query = $this->db->get();
       return $query->result();
+  }
+  public function join_employee_record($where){
+      $this->db->select('employees.*,record.*');
+      $this->db->from('record');
+      $this->db->where($where);
+      $this->db->join('employees', 'record.id = employees.record_id','inner');
+      $query = $this->db->get();
+      return $query->row();
   }
 
   public function last_inserted_row($table,$data){

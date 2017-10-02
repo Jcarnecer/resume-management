@@ -132,6 +132,21 @@ form#add-record-form.form-horizontal{
 div.group-data{
     display:inline-block;
 }
+<<<<<<< HEAD
+
+.modal-header .close {
+  color: red;
+  margin-left: 5%;
+}
+.modal-title {
+  margin: 0;
+  float: left;
+  line-height: 1.42857143;
+}
+.row{
+  padding-top: 20px;
+}
+=======
 
 
 h4.modal-title{
@@ -145,3 +160,4 @@ h4.modal-title{
     padding: 15px;
     border-bottom: 1px solid #e9ecef;
 }
+>>>>>>> 881ea3b7c1fae8d05b7b011844a59326c2348c3b

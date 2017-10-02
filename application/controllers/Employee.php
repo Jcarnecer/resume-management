@@ -36,8 +36,9 @@ class Employee extends CI_Controller {
 
       $this->load->helper('form');
       $id = $this->uri->segment(3);
-      $data['employee_data'] = $this->db->get_where('record', ['id' => $id])->row();
-
+      $data['employee_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
+      $join_where = ['employees.id' => $id];
+      $data['employee'] = $this->Resume_model->join_employee_record($join_where);
       $title['title'] = "Astrid Technologies | New Applicant";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
@@ -56,15 +57,17 @@ class Employee extends CI_Controller {
         'phone_number' => clean_data($this->input->post('phone_number')),
         'home_address' => clean_data($this->input->post('home_address')),
         'current_status' => clean_data($this->input->post('current_status')),
-        'birth_date' => clean_data($this->input->post('birth_date')),
+        'birthday' => clean_data($this->input->post('birth_date')),
         'degree' => clean_data($this->input->post('degree')),
-        'tin' => clean_data($this->input->post('tin')),
-        'sss' => clean_data($this->input->post('sss')),
-        'philhealth' => clean_data($this->input->post('philhealth')),
-        'pagibig' => clean_data($this->input->post('pagibig')),
-
       ];
       $this->Resume_model->update('record', $update, 'id='.$id);
+      $update_employees=[
+        'sss' => clean_data($this->input->post('sss')),
+        'tin' => clean_data($this->input->post('tin')),
+        'philhealth' => clean_data($this->input->post('philhealth')),
+        'pagibig' => clean_data($this->input->post('pagibig')),
+      ];
+      $this->Resume_model->update('employees',$update_employees,'record_id='.$id);
       redirect('');
     }
 }
