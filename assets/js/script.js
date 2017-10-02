@@ -196,19 +196,91 @@ $(document).ready(function(){
   })
 });
 
+const baseUrl = "http://localhost/resume-management/";
+
 $(function() {
-  $("#add-role-form").on('submit', function(e){
-    e.preventDefault();
+	$("#add-role-form").on('submit', function(e){
+		e.preventDefault();
 		e.stopImmediatePropagation();
-    $.ajax({
-      url: base_url + "insert_role",
-      type: 'POST',
-      data: $('#add-role-form').serialize(),
-      success: function(data){
-        location.reload();
-      }
-    });
-  });
+		$.ajax({
+		  url: base_url + "insert_role",
+		  type: 'POST',
+		  data: $('#add-role-form').serialize(),
+		  dataType: 'json',
+		  success: function(data){
+			var $tab = null;
+			   if(data['pos_id']=='1'){
+					$tab = $('#employee_tab');		
+			   }
+			   else if(data['pos_id']=='2'){
+					$tab = $('#intern_tab');
+			   }
+			   console.log(data);
+			  
+			   $tab.append(`<div class="panel">
+             <form method="get" action="${baseUrl}delete_role">
+               <input type="hidden" name="id" value="${data['id']}">
+               <input type="submit" Value="Delete" class="btn btn-danger pull-right">
+             </form>
+             <div class="panel-heading">${data['name']}<hr></div>
+             <div class="panel-body">
+               <div class="row grid-divider">
+
+                 <div class="col-sm-2">
+                   <div class="col-padding">
+                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=applicant">
+                       <div>${data['applicants']}<br>Applicants</div>
+                     </a>
+                   </div>
+                 </div>
+
+                 <div class="col-sm-2">
+                   <div class="col-padding">
+                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=interview">
+                       <div>${data['for_interview']}<br>For Interview</div>
+                     </a>
+                   </div>
+                 </div>
+
+                 <div class="col-sm-2">
+                   <div class="col-padding">
+                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=shortlist">
+                       <div>${data['shortlist']}<br>Shortlist</div>
+                     </a>
+                   </div>
+                 </div>
+
+                 <div class="col-sm-2">
+                   <div class="col-padding">
+                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=archived">
+                       <div>${data['archived']}<br>Rejected</div>
+                     </a>
+                   </div>
+                 </div>
+
+                 <div class="col-sm-2">
+                   <div class="col-padding">
+                       <a href="${baseUrl}employee?current_status=current&role=' . $role->role_id .'&position=2'">
+                       <div>${data['current']}<br>Current</div>
+                     </a>
+                   </div>
+                 </div>
+
+                 <div class="col-sm-2">
+                   <div class="col-padding">
+                     <a href="${baseUrl}employee?current_status=former&role=' . $role->role_id .'&position=2'">
+                       <div>${data['former']}<br>Former</div>
+                     </a>
+                   </div>
+                 </div>
+
+               </div>
+             </div>
+           </div>`);
+			
+		  }
+		});
+	});
 });
 
 
@@ -256,3 +328,7 @@ $(function(){
   });
 
 });
+
+
+
+

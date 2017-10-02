@@ -306,15 +306,25 @@ class Applicant extends CI_Controller {
   }
 
   public function insert_role(){
+  $role = $this->Resume_model->fetch('role');
+   $role_employee = $this->Resume_model->fetch('role',['pos_id' => 1]);
+   $role_intern = $this->Resume_model->fetch('role',['pos_id' => 2]);
   $this->load->helper('encryption');
    $insert=[
      'name' => clean_data(ucwords($this->input->post('role'))),
      'pos_id' => $this->input->post('pos_id'),
-     'applicant' => $this->input->post('applicant'),
+     'applicant' => $this->input->post('applicant')
    ];
    $this->Resume_model->insert('role', $insert);
-   echo json_encode('success');
-
+   $insert['id'] = $this->Resume_model->get_insert_id();
+		$insert['applicants']=$this->Resume_model->count('record', ['role_id' => $insert['id'],'current_status' => 'applicant','pos_id' =>$this->input->post('pos_id')]);
+		$insert['for_interview']=$this->Resume_model->count('record', ['role_id' => $insert['id'],'current_status' => 'interview','pos_id' =>$this->input->post('pos_id')]);
+		$insert['shortlist']=$this->Resume_model->count('record', ['role_id' => $insert['id'],'current_status' => 'shortlist','pos_id' =>$this->input->post('pos_id')]);
+		$insert['archived']=$this->Resume_model->count('record', ['role_id' => $insert['id'],'current_status' => 'applicant','pos_id' =>$this->input->post('pos_id')]);
+		$insert['current']=$this->Resume_model->count('record', ['role_id' => $insert['id'], 'current_status' => 'current', 'pos_id' =>$this->input->post('pos_id')]);
+		$insert['former']=$this->Resume_model->count('record', ['role_id' => $insert['id'], 'current_status' => 'former', 'pos_id' =>$this->input->post('pos_id')]);	
+	
+  echo json_encode(array_merge($insert, ['pos_id' => $this->input->post('pos_id')]));
  }
 
  public function delete_role() {

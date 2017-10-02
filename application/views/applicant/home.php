@@ -41,7 +41,7 @@ $position = $this->Resume_model->fetch('position');
 
   <div class="row" id="employee">
     <div class="col-md-10 tab">
-      <div class="tab-content active">
+      <div class="tab-content active" id="employee_tab">
 		  <?php
         if($role_employee== ''){} else{
          foreach ($role_employee as $role) :
@@ -113,7 +113,7 @@ $position = $this->Resume_model->fetch('position');
 
 
     <div class="col-md-10 tab" id="intern">
-      <div class="tab-content">
+      <div class="tab-content" id="intern_tab">
           <?php if($role_intern == ''){} else{
            foreach ($role_intern as $role) :?>
            <div class="panel">

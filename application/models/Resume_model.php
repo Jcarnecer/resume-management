@@ -11,6 +11,10 @@ class Resume_model extends CI_Model {
 		}
 	}
 
+  public function get_insert_id(){
+    return $this->db->insert_id();
+  }
+
   public function fetch_tag_row($tag,$table,$where="",$limit="",$offset="",$order=""){
 		if (!empty($where)) {
 			$this->db->where($where);
