@@ -196,7 +196,7 @@ $(document).ready(function(){
   })
 });
 
-const baseUrl = "http://localhost/resume-management/";
+// const baseUrl = "http://localhost/resume-management/";
 
 $(function() {
 	$("#add-role-form").on('submit', function(e){
@@ -210,13 +210,13 @@ $(function() {
 		  success: function(data){
 			var $tab = null;
 			   if(data['pos_id']=='1'){
-					$tab = $('#employee_tab');		
+					$tab = $('#employee_tab');
 			   }
 			   else if(data['pos_id']=='2'){
 					$tab = $('#intern_tab');
 			   }
 			   console.log(data);
-			  
+
 			   $tab.append(`<div class="panel">
              <form method="get" action="${baseUrl}delete_role">
                <input type="hidden" name="id" value="${data['id']}">
@@ -244,7 +244,7 @@ $(function() {
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=shortlist">
+	                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=shortlist">
                        <div>${data['shortlist']}<br>Shortlist</div>
                      </a>
                    </div>
@@ -277,7 +277,7 @@ $(function() {
                </div>
              </div>
            </div>`);
-			
+
 		  }
 		});
 	});
@@ -290,12 +290,13 @@ $(function(){
   $('[data-name="button-view"]').click(function() {
       var applicantId = $(this).attr('data-id');
       var url = base_url + "applicant/" +  applicantId;
+			// console.log('click');
       $.ajax({
           "url": url,
           "method": "GET",
           "success": function(response, status, http) {
+						// console.log('click');
               if (http.status == 200) {
-                console.log(response);
                   $('#first-name').html(response.first_name);
                   $('#last-name').html(response.last_name);
                   $('#middle-name').html(response.middle_name);
@@ -342,7 +343,3 @@ $(function(){
   });
 
 });
-
-
-
-
