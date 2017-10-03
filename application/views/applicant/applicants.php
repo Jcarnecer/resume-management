@@ -113,15 +113,7 @@
                 </td>
               </tr>
 
-              <tr>
-                <td>
-                  <b><label class="group-label">Date Hired:</label></b>
-                </td>
-                <td>
-                  <div class="group-data" id="date_hired"></div>
-                </td>
-              </tr>
- 
+              
               <tr>
                 <td>
                   <b><label class="group-label">Role:</label></b>
