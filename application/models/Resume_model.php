@@ -14,7 +14,8 @@ class Resume_model extends CI_Model {
   public function get_insert_id(){
     return $this->db->insert_id();
   }
-
+		
+		
   public function fetch_tag_row($tag,$table,$where="",$limit="",$offset="",$order=""){
 		if (!empty($where)) {
 			$this->db->where($where);
@@ -40,6 +41,7 @@ class Resume_model extends CI_Model {
 		}
 	}
 
+	
   public function count($table,$data){
 
     if(empty($data)){
@@ -83,12 +85,17 @@ class Resume_model extends CI_Model {
     $query = $this->db->get_where('applicants', ["id" => $id]);
     return $query->row();
   }
+	public function get_record($id)
+  {
+    $query = $this->db->get_where('employees', ["record_id" => $id]);
+    return $query->row();
+  }
 
-
+  
   public function get_where($key, $value)
   {
     $query = $this->db->get_where('applicants', [$key => $value]);
-    return $query->result();
+    return $query->num_rows();
   }
 
   public function sort_by($key, $value)
@@ -131,7 +138,7 @@ class Resume_model extends CI_Model {
     $query = $this->db->get();
     return $query->row();
 }
-
+	
 
   public function last_inserted_row($table,$data){
     $this->db->insert($table, $data);
