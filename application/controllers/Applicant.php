@@ -202,8 +202,14 @@ class Applicant extends CI_Controller {
     // print_r($record_id);die;
   // $record_info = $this->Resume_model->fetch_tag_row('')
   $where = ['record_id' => $record_id];
-  $join_employee_record =   $this->Resume_model->join_employee_record($where);
-  $join_employee_record->name =  $this->Resume_model->get_role($join_where)->name;
+	$result=$this->Resume_model->get_record($record_id);
+	if($result){
+		$record =   $this->Resume_model->join_employee_record($where);
+	}
+	else{
+		$record = $this->db->get_where('record', ['id' => $id])->row();
+	}
+	$record->name =  $this->Resume_model->get_role($join_where)->name;
 
     header('Content-Type: application/json');
     header('Access-Control-Allow-Origin: *');
@@ -211,10 +217,10 @@ class Applicant extends CI_Controller {
 
     http_response_code(200);
     $json = [
-      'fname' => $join_employee_record->first_name,
+      'fname' => $record->first_name,
       'role_name' => $applicant->name
     ];
-    echo json_encode($join_employee_record);//$applicant);
+    echo json_encode($record);//$applicant);
   }
 
 
