@@ -347,8 +347,6 @@ $(function(){
   });
 
 });
-<<<<<<< HEAD
-=======
 
 
 $(document).on('click','#btn-update',function(){
@@ -388,4 +386,3 @@ $(document).on('click','#updateRole',function(){
   });
 });
 
->>>>>>> Update#50
