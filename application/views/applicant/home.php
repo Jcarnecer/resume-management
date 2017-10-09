@@ -1,7 +1,7 @@
 <?php
 $position = $this->Resume_model->fetch('position');
 ?>
-<div class="container">
+<div class="container-fluid">
 
   <div class="page-header">
     <h3>Welcome, Ma'am Tess ♥</h3>
@@ -9,10 +9,11 @@ $position = $this->Resume_model->fetch('position');
 
   <div class="row">
     <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
+    <a href="<?= base_url('roles') ?>" id="view-roles" type="button" class="btn btn-info pull-left">View Roles</a>
       <div class="input-group pull-right">
-        <form class="form-inline" method="POST" id="add-role-form">
+        <form class="form-inline" method="POST" id="update-role-form">
           <div class="form-group">
-            <input type="text" placeholder="Add Role" name="role" class="form-control">
+            <input type="text" name="role" class="form-control">
           </div>
           <div class="form-group" id="position">
             <select class="form-control" name="pos_id">
@@ -21,10 +22,6 @@ $position = $this->Resume_model->fetch('position');
               <?php endforeach; ?>
             </select>
           </div>
-          <div class="form-group checkbox">
-            <label><input type="checkbox" value="1" name="applicant">Applicant</label>
-          </div>
-          <input class="btn btn-default" type="submit" value="Add Role">
         </form>
       </div>
     </div>
@@ -33,8 +30,9 @@ $position = $this->Resume_model->fetch('position');
   <div class="row">
     <div class="col-md-6 tab-menu">
       <div class="list-group">
-        <a href="#" class="list-group-item" id="employee">Employees <br><?= $this->Resume_model->count('record', ['pos_id'=> 1]);?></a>
+        <a href="#" class="list-group-item active" id="employee">Employees <br><?= $this->Resume_model->count('record', ['pos_id'=> 1]);?></a>
         <a href="#" class="list-group-item" id="intern">Intern <br><?=$this->Resume_model->count('record', ['pos_id'=> 2])?></a>
+        <a href="#" class="list-group-item" id="freelance">Freelance <br><?=$this->Resume_model->count('record', ['pos_id'=> 3])?></a>
       </div>
     </div>
   </div>
