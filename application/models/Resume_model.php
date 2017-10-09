@@ -118,11 +118,21 @@ class Resume_model extends CI_Model {
       return FALSE;
     }
   }
+  public function get_pos_name($where){
+    $this->db->select('name');
+    $this->db->from('position');
+    // $this->db->join('employees', 'record.id = employees.record_id','inner');
+    // $this->db->join('role', 'record.role_id = role.role_id','inner');
+    $this->db->where('id', $where);
+    $query = $this->db->get();
+    return $query->row();
+  }
+
 
   public function get_position(){
-    $this->db->select('role.role_id,role.name,position.name as pos_name,role.status');
+    $this->db->select('role.role_id,role.name,position.name as pos_name,role.status,position.id as pos_id   ');
     $this->db->from('role');
-    $this->db->join('position', 'role.pos_id = position.id','inner');
+    $this->db->join('position', 'role.pos_id = position.id','inner'); 
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
     return $query->result();
