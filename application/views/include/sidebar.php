@@ -13,7 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
 	</head>
 	<body>
-		<div id="sidebar">
+		<div id="sidebar" style="margin-left: -210px;">
 			<!-- sidebar menu start-->
 			<div id="nav-icon-close" class="custom-toggle">
 				<span></span>
@@ -62,12 +62,27 @@
 		<div class="main-content">
 			<div class="topbar">
 				<nav class="navbar navbar-custom">
-				<div id="nav-icon-open" class="custom-toggle hidden-toggle">
-					<span></span>
-					<span></span>
-					<span></span>
+				
+
+				<div class="navbar navbar-header">
+					<!-- <a id="nav-icon-open" class="custom-toggle hidden-toggle navbar-brand btn btn-info btn-lg" >
+						<div id="nav-icon-open" class="custom-toggle hidden-toggle" style="display:block;">
+          			<span class ="glyphicon glyphicon-menu-hamburger" style="display: block; position: relative;"></span>
+          			</div>
+        			</a> -->
+
+					<a class="navbar-brand">
+						<div id="nav-icon-open" class="custom-toggle hidden-toggle" style="display:block;">
+								<span></span>
+								<span></span>
+								<span></span>
+						</div>
+					</a>
+
+					<a class="navbar-brand" href="<?= base_url(); ?>">HOME (Under Construction)</a>
+					<a class="navbar-brand" href="#">Navbar (Under Construction)</a>
 				</div>
-					<a class="navbar-brand" href="#">Navbar</a>
+				
 					<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>

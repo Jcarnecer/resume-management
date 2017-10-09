@@ -14,10 +14,12 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css" >
-		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
+        <link rel="stlyesheet" href="node_modules/datatables.net-dt/css/jquery.dataTables.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/css/bootstrapvalidator.min.css" rel="stylesheet" />
 
     <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>"></script>
+    <script src="<?php echo base_url("node_modules/datatables.net/js/jquery.dataTables.js")?>"
     <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
 

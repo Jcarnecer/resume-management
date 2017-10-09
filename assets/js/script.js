@@ -1,27 +1,31 @@
 $(document).ready(toggle());
 
 function toggle(){
-	var hide = true;
+  var hide = true;
     $('.custom-toggle').on('click', function (event){
-    	if (hide) {
+      if (hide) {
             $('#sidebar').css({'margin-left' : '-210px'});
             // $('#sidebar span').css({'margin-left' : '-210px'});
             $('.main-content').addClass('animation');
             $('.main-content').removeClass('reverse-animation');
             $('.hidden-toggle').css({'display' : 'block'});
-    		hide = false;
-    	} else {
+        hide = false;
+      } else {
             $('#sidebar').css({'margin-left' : '0px'});
             // $('#sidebar span').css({'margin-left' : '0px'});
             $('.main-content').removeClass('animation');
             $('.main-content').addClass('reverse-animation');
             $('.hidden-toggle').css({'display' : 'none'});
-    		hide = true;
-    	}
-	});
+        hide = true;
+      }
+  });
 }
 
+document.getElementsByClassName('custom-toggle')[0].click();
+
 $(document).ready(function(){
+
+
   $("div.tab-menu>div.list-group>a").click(function(e){
     e.preventDefault();
     $(this).siblings('a.active').removeClass("active");
@@ -54,8 +58,8 @@ $(document).ready(function(){
 //add new record
 $(document).ready(function(){
   $("#add-record-form").on('submit',function(e){
-		e.preventDefault();
-		e.stopImmediatePropagation();
+    e.preventDefault();
+    e.stopImmediatePropagation();
     var form = new FormData(document.getElementById("add-record-form"));
     var link = base_url + 'applicant';
     $.ajax({
@@ -173,23 +177,23 @@ $(document).ready(function(){
   });
   $("#current_status").on('change',function() {
     var c_status = $("#current_status").val();
-		var posid = $("#pos-id").val();
+    var posid = $("#pos-id").val();
     if(c_status == 'applicant' && posid == 1){
       $("#applicant_div").show();
       $("#emp_form").hide();
       $("#resume").show();
     }
-		else if (posid == 2 && c_status == 'applicant' ) {
-			$("#emp_form").hide();
-			$("#resume").show();
-		}
-		else if(posid == 2){
-			$("#emp_form").hide();
-			$("#resume").hide();
-		}
-		else{
+    else if (posid == 2 && c_status == 'applicant' ) {
+      $("#emp_form").hide();
+      $("#resume").show();
+    }
+    else if(posid == 2){
+      $("#emp_form").hide();
+      $("#resume").hide();
+    }
+    else{
       $("#applicant_div").hide();
-			$("#emp_form").show();
+      $("#emp_form").show();
       $("#resume").hide();
 
     }
@@ -199,25 +203,25 @@ $(document).ready(function(){
 // const baseUrl = "http://localhost/resume-management/";
 
 $(function() {
-	$("#add-role-form").on('submit', function(e){
-		e.preventDefault();
-		e.stopImmediatePropagation();
-		$.ajax({
-		  url: base_url + "insert_role",
-		  type: 'POST',
-		  data: $('#add-role-form').serialize(),
-		  dataType: 'json',
-		  success: function(data){
-			var $tab = null;
-			   if(data['pos_id']=='1'){
-					$tab = $('#employee_tab');
-			   }
-			   else if(data['pos_id']=='2'){
-					$tab = $('#intern_tab');
-			   }
-			   console.log(data);
+  $("#add-role-form").on('submit', function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    $.ajax({
+      url: base_url + "insert_role",
+      type: 'POST',
+      data: $('#add-role-form').serialize(),
+      dataType: 'json',
+      success: function(data){
+      var $tab = null;
+         if(data['pos_id']=='1'){
+          $tab = $('#employee_tab');
+         }
+         else if(data['pos_id']=='2'){
+          $tab = $('#intern_tab');
+         }
+         console.log(data);
 
-			   $tab.append(`<div class="panel">
+         $tab.append(`<div class="panel">
              <form method="get" action="${baseUrl}delete_role">
                <input type="hidden" name="id" value="${data['id']}">
                <input type="submit" Value="Delete" class="btn btn-danger pull-right">
@@ -244,7 +248,7 @@ $(function() {
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-	                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=shortlist">
+                       <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=shortlist">
                        <div>${data['shortlist']}<br>Shortlist</div>
                      </a>
                    </div>
@@ -278,9 +282,9 @@ $(function() {
              </div>
            </div>`);
 
-		  }
-		});
-	});
+      }
+    });
+  });
 });
 
 
@@ -290,28 +294,28 @@ $(function(){
   $('[data-name="button-view"]').click(function() {
       var applicantId = $(this).attr('data-id');
       var url = base_url + "applicant/" +  applicantId;
-			// console.log('click');
+      // console.log('click');
       $.ajax({
           "url": url,
           "method": "GET",
           "success": function(response, status, http) {
-						// console.log('click');
+            // console.log('click');
               if (http.status == 200) {
                   $('#first-name').html(response.first_name);
                   $('#last-name').html(response.last_name);
                   $('#middle-name').html(response.middle_name);
-									$('#home-address').html(response.home_address);
-									$('#phone_number').html(response.phone_number);
-									$('#birthday').html(response.birthday);
-									$('#degree').html(response.degree);
-									$('#school').html(response.school);
+                  $('#home-address').html(response.home_address);
+                  $('#phone_number').html(response.phone_number);
+                  $('#birthday').html(response.birthday);
+                  $('#degree').html(response.degree);
+                  $('#school').html(response.school);
                   $('#role').html(response.name);
-									$('#date_hired').html(response.date_hired);
+                  $('#date_hired').html(response.date_hired);
                   $('#app_date').html(response.application_date);
-									$('#sss').html(response.sss);
-									$('#tin').html(response.tin);
-									$('#philhealth').html(response.philhealth);
-									$('#pagibig').html(response.pagibig);
+                  $('#sss').html(response.sss);
+                  $('#tin').html(response.tin);
+                  $('#philhealth').html(response.philhealth);
+                  $('#pagibig').html(response.pagibig);
                   $('#comment').html(response.comment);
                   $('#resume').attr("href", base_url + 'assets/uploads/' + response.file);
                   $('#resume').html(response.file);
@@ -324,17 +328,17 @@ $(function(){
                   else if (response.exam_result == 0){
                     $('#exam-result').html("Failed");
                   }else{
-										$('#interview-result').html("");
-									}
+                    $('#interview-result').html("");
+                  }
                   if(response.interview_result == 1){
                     $('#interview-result').html("Passed");
                   }
                   else if (response.interview_result == 0){
                     $('#interview-result').html("Failed");
                   }
-									else {
-										$('#interview-result').html("");
-									}
+                  else {
+                    $('#interview-result').html("");
+                  }
 
                   $('#viewmodal').modal('show');
               }
