@@ -347,3 +347,45 @@ $(function(){
   });
 
 });
+<<<<<<< HEAD
+=======
+
+
+$(document).on('click','#btn-update',function(){
+  
+  var role_name=$(this).closest('tr').find('td[data-role="role_name"]').html();
+  var position_name=$(this) .attr('data-value');
+  console.log(role_name);
+  console.log(position_name);
+  var roleId = $(this).attr('data-id'); 
+  $('#role_name').val(role_name); 
+  $("#roleModal").find("#updateRole").attr("data-id",roleId);
+  $('#position_name').val(position_name); 
+
+});
+
+
+
+$(document).on('click','#updateRole',function(){
+  var roleId = $(this).attr('data-id');
+  var url = base_url + "roles/edit/"+ roleId;
+  var posId= $('#position_name option:selected').val();
+  console.log(posId);
+  $.ajax({
+      "url":url,
+      "method":"POST",
+     data:{
+         'role_name':$("#role_name").val(),
+          'pos_id':$('#position_name').val()
+      },
+      success: function(data){
+        if(data.error){
+          console.log(1);
+        }
+        else{location.reload();}
+        
+      }
+  });
+});
+
+>>>>>>> Update#50

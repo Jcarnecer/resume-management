@@ -11,7 +11,7 @@ $position = $this->Resume_model->fetch('position');
     <a href="<?= base_url('applicant/add') ?>" id="add-button" type="button" class="btn btn-info pull-left">New Record</a>
     <a href="<?= base_url('roles') ?>" id="view-roles" type="button" class="btn btn-info pull-left">View Roles</a>
       <div class="input-group pull-right">
-        <form class="form-inline" method="POST" id="update-role-form">
+        <form class="form-inline" method="POST" id="add-role-form">
           <div class="form-group">
             <input type="text" name="role" class="form-control">
           </div>
@@ -22,6 +22,7 @@ $position = $this->Resume_model->fetch('position');
               <?php endforeach; ?>
             </select>
           </div>
+          <input class="btn btn-default" type="submit" value="Add Role">
         </form>
       </div>
     </div>

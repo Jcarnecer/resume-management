@@ -23,9 +23,8 @@ $position = $this->Resume_model->fetch('position');
           <td data-role="role_status"><?=$role->status=1?"Activated":"Deactivated"?></td>
 
         <td>
-            <button class="btn btn-warning" id="btn-update"data-id="<?= $role->role_id;?>"data-toggle="modal"data-target="#roleModal">Edit</a>
+            <button class="btn btn-warning" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id?>" data-toggle="modal"data-target="#roleModal">Edit</a>
             <button class="btn btn-danger" data-id="<?= $role->role_id;?>" >Deactivate</a>
-            
           </td>
         </tr>
         <?php endforeach; ?>
@@ -53,7 +52,7 @@ $position = $this->Resume_model->fetch('position');
           <div class="form-group" id="position">
             <select class="form-control" name="pos_id" id="position_name">
               <?php foreach($position as $row):?>
-                <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>
               <?php endforeach; ?>
             </select>
           </div>
