@@ -40,6 +40,13 @@ class Roles extends CI_Controller {
      }
 
 
+     public function get_roles(){
+       $this->load->model('Resume_model');
+       $roles=$this->Resume_model->get_position();
+       echo json_encode($roles);
+     }
+
+
 
     
 

@@ -12,10 +12,10 @@ $position = $this->Resume_model->fetch('position');
           <th>Name</th>
           <th>Position</th>
           <th>Status</th>
-          <th>Actions</th>
+          <th>Actions</th>  
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody-role">
         <?php foreach ($roles as $role) : ?>
         <tr data-role="role_id" class="<?=$role->role_id?>">
           <td data-role="role_name"><?= $role->name?></td>
