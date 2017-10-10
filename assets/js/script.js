@@ -53,7 +53,9 @@ $(document).ready(function(){
 });
 
 
-
+$(document).ready(function(){
+      $('#table-role').DataTable();
+});
 
 //add new record
 $(document).ready(function(){
@@ -417,34 +419,3 @@ $(document).on('click','#updateRole',function(){
       }
   });
 });
-<<<<<<< HEAD
-
-
-$(document).on('click','#btn-status',function(){
-  var roleId = $(this).attr('data-id')
-  var url=base_url + "roles/update_status/"+ roleId;
-  console.log(roleId)
-    $.ajax({
-      "url":url,
-      "method":"POST",
-    data:{
-        'id':roleId
-      },
-      success: function(data){
-        if(data.error){
-            console.log(data.error);
-        }
-        else{location.reload();}
-        
-      }
-    });
-});  
-
-
-
-
-
-
-
-=======
->>>>>>> 1aa3e75f818cb5e6e5ab7cbb68b913c2773a8808
