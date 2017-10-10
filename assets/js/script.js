@@ -143,6 +143,38 @@ $(document).ready(function() {
                     },
                 }
             },
+            tin: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'TIN can only consist of numbers'
+                    },
+                }
+            },
+            sss: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'SSS can only consist of numbers'
+                    },
+                }
+            },
+            philhealth: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'PhilHealth can only consist of numbers'
+                    },
+                }
+            },
+            pagibig: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Pag-IBIG can only consist of numbers'
+                    },
+                }
+            },
         }
     });
 });
@@ -350,15 +382,15 @@ $(function(){
 
 
 $(document).on('click','#btn-update',function(){
-  
+
   var role_name=$(this).closest('tr').find('td[data-role="role_name"]').html();
   var position_name=$(this) .attr('data-value');
   console.log(role_name);
   console.log(position_name);
-  var roleId = $(this).attr('data-id'); 
-  $('#role_name').val(role_name); 
+  var roleId = $(this).attr('data-id');
+  $('#role_name').val(role_name);
   $("#roleModal").find("#updateRole").attr("data-id",roleId);
-  $('#position_name').val(position_name); 
+  $('#position_name').val(position_name);
 
 });
 
@@ -381,10 +413,11 @@ $(document).on('click','#updateRole',function(){
 
         }
         else{location.reload();}
-        
+
       }
   });
 });
+<<<<<<< HEAD
 
 
 $(document).on('click','#btn-status',function(){
@@ -413,3 +446,5 @@ $(document).on('click','#btn-status',function(){
 
 
 
+=======
+>>>>>>> 1aa3e75f818cb5e6e5ab7cbb68b913c2773a8808
