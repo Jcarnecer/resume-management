@@ -52,11 +52,6 @@ $(document).ready(function(){
     });
 });
 
-
-$(document).ready(function(){
-      $('#table-role').DataTable();
-});
-
 //add new record
 $(document).ready(function(){
   $("#add-record-form").on('submit',function(e){
@@ -403,19 +398,75 @@ $(document).on('click','#updateRole',function(){
   var url = base_url + "roles/edit/"+ roleId;
   var posId= $('#position_name option:selected').val();
   console.log(posId);
-  $.ajax({
-      "url":url,
-      "method":"POST",
-     data:{
-         'role_name':$("#role_name").val(),
-          'pos_id':$('#position_name').val()
-      },
-      success: function(data){
-        if(data.error){
+      $.ajax({
+          "url":url,
+          "method":"POST",
+        data:{
+            'role_name':$("#role_name").val(),
+              'pos_id':$('#position_name').val()
+          },
+          success: function(data){
+            if(data.error){
 
-        }
-        else{location.reload();}
+            }
+            else{
+              $(document).getRoles().done(function(data){
+                $(document).displayRoles(data);
+                });
 
-      }
+
+
+            }
+
+          }
+      });
+});
+
+
+$.fn.getRoles=function(){
+  var $url = base_url + "roles/get_roles";
+ return $.ajax({
+    url:$url,
+    type:"GET",
+    dataType: 'JSON'
+  });
+};
+
+
+$.fn.displayRoles=function(items){
+
+    $("#tbody-role").html('');
+
+    $.each(items,function(i,item){
+        $('#tbody-role').append(`
+                    
+                  <tr data-role="role_id" class=${item['role_id']}>
+                  <td data-role="role_name">${item['name']}</td>
+                  <td data-role="position_name">${item['pos_name']}</td>
+                  <td data-role="role_status">${item['status']==0?'Deactivated':'Activated'}</td>
+                <td>
+                    <button class="btn btn-warning" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
+                    <button class="btn btn-danger" data-id="${item['role_id']}"data-function="${item['status']==0?'Deactivated':'Activated'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
+                  </td>
+                 </tr>`);
+                 $('[data-function="Activated"]').removeClass();
+                 $('[data-function="Deactivated"]').removeClass();
+                $('[data-function="Activated"]').addClass("btn btn-danger");
+                $('[data-function="Deactivated"]').addClass("btn btn-success");
+       
+               
+    });
+
+
+
+
+};
+
+
+$(document).ready(function(){
+  $('#table-role').DataTable();
+
+  $(document).getRoles().done(function(data){
+      $(document).displayRoles(data);
   });
 });
