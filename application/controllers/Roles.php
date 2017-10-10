@@ -31,6 +31,15 @@ class Roles extends CI_Controller {
     }
 
 
+    public function update_status() {
+      $this->load->model('Resume_model');
+      $id =$this->input->post('id');
+      $record=$this->Resume_model->update('role',['status'=>0],['role_id' => $id]);
+      echo json_encode($record);
+      
+     }
+
+
 
     
 

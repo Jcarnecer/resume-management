@@ -73,6 +73,7 @@ $(document).ready(function(){
         var result = JSON.parse(data);
         if(result==='success'){
           location.href = link;
+
         }else{
           alert('Error');
         }
@@ -219,20 +220,19 @@ $(function() {
          else if(data['pos_id']=='2'){
           $tab = $('#intern_tab');
          }
+         else if (data['pos_id']=='3'){
+          $tab = $('#freelance_tab');
+         }
          console.log(data);
 
          $tab.append(`<div class="panel">
-             <form method="get" action="${baseUrl}delete_role">
-               <input type="hidden" name="id" value="${data['id']}">
-               <input type="submit" Value="Delete" class="btn btn-danger pull-right">
-             </form>
              <div class="panel-heading">${data['name']}<hr></div>
              <div class="panel-body">
                <div class="row grid-divider">
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=applicant">
+                     <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=applicant">
                        <div>${data['applicants']}<br>Applicants</div>
                      </a>
                    </div>
@@ -240,7 +240,7 @@ $(function() {
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=interview">
+                     <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=interview">
                        <div>${data['for_interview']}<br>For Interview</div>
                      </a>
                    </div>
@@ -248,7 +248,7 @@ $(function() {
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-                       <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=shortlist">
+                       <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=shortlist">
                        <div>${data['shortlist']}<br>Shortlist</div>
                      </a>
                    </div>
@@ -256,7 +256,7 @@ $(function() {
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=archived">
+                     <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=archived">
                        <div>${data['archived']}<br>Rejected</div>
                      </a>
                    </div>
@@ -264,7 +264,7 @@ $(function() {
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-                       <a href="${baseUrl}employee?current_status=current&role=' . $role->role_id .'&position=2'">
+                       <a href="${base_url}employee?current_status=current&role=' . $role->role_id .'&position=2'">
                        <div>${data['current']}<br>Current</div>
                      </a>
                    </div>
@@ -272,7 +272,7 @@ $(function() {
 
                  <div class="col-sm-2">
                    <div class="col-padding">
-                     <a href="${baseUrl}employee?current_status=former&role=' . $role->role_id .'&position=2'">
+                     <a href="${base_url}employee?current_status=former&role=' . $role->role_id .'&position=2'">
                        <div>${data['former']}<br>Former</div>
                      </a>
                    </div>
@@ -378,11 +378,38 @@ $(document).on('click','#updateRole',function(){
       },
       success: function(data){
         if(data.error){
-          console.log(1);
+
         }
         else{location.reload();}
         
       }
   });
 });
+
+
+$(document).on('click','#btn-status',function(){
+  var roleId = $(this).attr('data-id')
+  var url=base_url + "roles/update_status/"+ roleId;
+  console.log(roleId)
+    $.ajax({
+      "url":url,
+      "method":"POST",
+    data:{
+        'id':roleId
+      },
+      success: function(data){
+        if(data.error){
+            console.log(data.error);
+        }
+        else{location.reload();}
+        
+      }
+    });
+});  
+
+
+
+
+
+
 

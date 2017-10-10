@@ -50,7 +50,7 @@ class Resume_model extends CI_Model {
     else{
       $result=$this->db->get_where($table,$data);
     }
-       return $result->num_rows();
+       return $result->num_rows();  
 
   }
 

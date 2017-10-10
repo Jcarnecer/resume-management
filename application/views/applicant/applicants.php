@@ -1,7 +1,7 @@
   <div class="container-fluid" id="record-table">
 
     <div class="col-sm-10">
-      <table class="table table-striped">
+      <table class="table table-striped" id="applicant_table">
         <thead>
           <tr>
             <th></th>
