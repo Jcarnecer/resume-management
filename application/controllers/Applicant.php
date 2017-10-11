@@ -7,8 +7,9 @@ class Applicant extends CI_Controller {
     $this->load->model('Resume_model');
     $data['title'] = "Astrid Technologies";
     $data['role'] = $this->Resume_model->fetch('role');
-    $data['role_employee'] = $this->Resume_model->fetch('role',['pos_id' => 1]);
-    $data['role_intern'] = $this->Resume_model->fetch('role',['pos_id' => 2]);
+    $data['role_employee'] = $this->Resume_model->fetch('role',['pos_id' => 1,'status'=>1]);
+    $data['role_intern'] = $this->Resume_model->fetch('role',['pos_id' => 2,'status'=>1]);
+    $data['role_freelance'] = $this->Resume_model->fetch('role',['pos_id' => 3,'status'=>1]);
 
     //load view path
     $this->load->view('include/header',$data);
@@ -337,6 +338,7 @@ class Applicant extends CI_Controller {
    $insert=[
      'name' => clean_data(ucwords($this->input->post('role'))),
      'pos_id' => $this->input->post('pos_id'),
+      'status'=>'1',
      'applicant' => $this->input->post('applicant')
    ];
    $this->Resume_model->insert('role', $insert);

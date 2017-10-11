@@ -413,7 +413,7 @@ $(document).on('click','#updateRole',function(){
               $(document).getRoles().done(function(data){
                 $(document).displayRoles(data);
                 });
-
+                $('#roleModal').modal('toggle'); 
 
 
             }
@@ -446,13 +446,13 @@ $.fn.displayRoles=function(items){
                   <td data-role="role_status">${item['status']==0?'Deactivated':'Activated'}</td>
                 <td>
                     <button class="btn btn-warning" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
-                    <button class="btn btn-danger" data-id="${item['role_id']}"data-function="${item['status']==0?'Deactivated':'Activated'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
+                    <button class="btn btn-danger" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
                   </td>
                  </tr>`);
-                 $('[data-function="Activated"]').removeClass();
-                 $('[data-function="Deactivated"]').removeClass();
-                $('[data-function="Activated"]').addClass("btn btn-danger");
-                $('[data-function="Deactivated"]').addClass("btn btn-success");
+                 $('[data-function="Activate"]').removeClass();
+                 $('[data-function="Deactivate"]').removeClass();
+                $('[data-function="Deactivate"]').addClass("btn btn-danger");
+                $('[data-function="Activate"]').addClass("btn btn-success");
        
                
     });
@@ -463,10 +463,44 @@ $.fn.displayRoles=function(items){
 };
 
 
+
 $(document).ready(function(){
   $('#table-role').DataTable();
 
   $(document).getRoles().done(function(data){
       $(document).displayRoles(data);
   });
+});
+
+
+
+
+
+$(document).on('click','#btn-status',function(){
+  var url=base_url + "roles/update_status";
+  var $id=$(this).attr('data-id');
+  var $status =$(this).attr('data-function');   
+  $.ajax({
+    "url":url,
+    "method":"POST",
+  data:{
+      'id':$id,
+      'status':$status
+    },
+    success: function(data){
+      if(data.error){
+
+      }
+      else{
+        $(document).getRoles().done(function(data){
+          $(document).displayRoles(data);
+          });
+
+
+
+      }
+
+    }
+});
+  
 });
