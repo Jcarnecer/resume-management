@@ -23,18 +23,18 @@ function toggle(){
 
 document.getElementsByClassName('custom-toggle')[0].click();
 
-$(document).ready(function(){
+//$(document).ready(function(){
 
 
-  $("div.tab-menu>div.list-group>a").click(function(e){
-    e.preventDefault();
-    $(this).siblings('a.active').removeClass("active");
-    $(this).addClass("active");
-    var index = $(this).index();
-    $("div.tab>div.tab-content").removeClass("active");
-    $("div.tab>div.tab-content").eq(index).addClass("active");
-  });
-});
+  //$("div.tab-menu>div.list-group>a").click(function(e){
+   // e.preventDefault();
+   // $(this).siblings('a.active').removeClass("active");
+   // $(this).addClass("active");
+   // var index = $(this).index();
+    //$("div.tab>div.tab-content").removeClass("active");
+    //$("div.tab>div.tab-content").eq(index).addClass("active");
+ // });
+//});
 
 
 $(document).ready(function(){
@@ -60,7 +60,7 @@ $(document).ready(function(){
     var form = new FormData(document.getElementById("add-record-form"));
     var link = base_url + 'applicant';
     $.ajax({
-      url: base_url + 'applicant/addRecord',
+       url: base_url + 'applicant/addRecord',
       type: "POST",
       processData: false, // tell jQuery not to process the data
       contentType: false, // tell jQuery not to set contentType
@@ -76,10 +76,10 @@ $(document).ready(function(){
         }
 
       }
-    })
+    });
     e.preventDefault();
-  })
-})
+  });
+});
 
 $(document).ready(function() {
     $('#add-record-form').bootstrapValidator({
@@ -176,59 +176,182 @@ $(document).ready(function() {
     });
 });
 
-
-
+//add new employee
 $(document).ready(function(){
-  $("#pos-id").on('change', function(){
-    var posid = $("#pos-id").val();
+  $("#add-employee-form").on('submit',function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var form = new FormData(document.getElementById("add-employee-form"));
+    var link = base_url + 'employee';
     $.ajax({
-      url: base_url + "applicant/get_pos_role/" +posid,
-      type: "POST",
-      data: $("#pos-id").serialize(),//for now
+      url: base_url + 'employee/addRecord',
+      method: 'POST',
+      processData: false, // tell jQuery not to process the data
+      contentType: false, // tell jQuery not to set contentType
+      data:form,
       success: function(data){
-        // alert("Hello");
+        console.log(data);
         var result = JSON.parse(data);
-        var html = "",roles;
-        for(var i = 0; i < result.length; i++) {
-          roles = result[i];
+        if(result==='success'){
+          location.href = link;
 
-          html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
-          // console.log(roles.id);
-        }
-        $("#role").html(html);
-        // alert(posid);
-        if(posid == 1){
-          $("#emp_form").show();
         }else{
-          $("#emp_form").hide();
+          alert('Error');
         }
-      }
-    });
-  });
-  $("#current_status").on('change',function() {
-    var c_status = $("#current_status").val();
-    var posid = $("#pos-id").val();
-    if(c_status == 'applicant' && posid == 1){
-      $("#applicant_div").show();
-      $("#emp_form").hide();
-      $("#resume").show();
-    }
-    else if (posid == 2 && c_status == 'applicant' ) {
-      $("#emp_form").hide();
-      $("#resume").show();
-    }
-    else if(posid == 2){
-      $("#emp_form").hide();
-      $("#resume").hide();
-    }
-    else{
-      $("#applicant_div").hide();
-      $("#emp_form").show();
-      $("#resume").hide();
 
-    }
+      }
+    })
+    e.preventDefault();  
   })
+})
+
+$(document).ready(function() {
+    $('#add-employee-form').bootstrapValidator({
+    //    container: '#container',
+        fields: {
+            last_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Last name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                     },
+                 }
+             },
+
+            first_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The First name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                    },
+                }
+            },
+
+            middle_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Middle name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The Middle name can only consist of letters'
+                    },
+                }
+            },
+
+            email_add: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Email Address is required and cannot be empty'
+                    },
+                }
+            },
+
+            phone_number: {
+                validators: {
+                    notEmpty: {
+                        message: 'The phone number is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Phone number can only consist of numbers'
+                    },
+                }
+            },
+            tin: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'TIN can only consist of numbers'
+                    },
+                }
+            },
+            sss: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'SSS can only consist of numbers'
+                    },
+                }
+            },
+            philhealth: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'PhilHealth can only consist of numbers'
+                    },
+                }
+            },
+            pagibig: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Pag-IBIG can only consist of numbers'
+                    },
+                }
+            },
+        }
+    });
 });
+
+
+
+  $(document).ready(function(){
+   $("#pos-id").on('change', function(){
+      var posid = $("#pos-id").val();
+     $.ajax({
+        url: base_url + "applicant/get_pos_role/" +posid,
+        type: "POST",
+        data: $("#pos-id").serialize(),//for now
+        success: function(data){
+          // alert("Hello");
+          var result = JSON.parse(data);
+          var html = "",roles;
+          for(var i = 0; i < result.length; i++) {
+            roles = result[i];
+            html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
+            // console.log(roles.id);
+          }
+          $("#role").html(html);
+          // alert(posid);
+          if(posid == 1){
+           $("#emp_form").show();
+          }else{
+           $("#emp_form").hide();
+          }
+        }
+      });
+    });
+    $("#current_status").on('change',function() {
+      var c_status = $("#current_status").val();
+      var posid = $("#pos-id").val();
+      if(c_status == 'applicant' && posid == 1){
+        $("#applicant_div").show();
+        $("#emp_form").hide();
+        $("#resume").show();
+     }
+      else if (posid == 2 && c_status == 'applicant' ) {
+               $("#emp_form").hide();
+       $("#resume").show();
+      }
+      else if(posid == 2){
+        $("#emp_form").hide();
+        $("#resume").hide();
+     }
+     else{
+              $("#applicant_div").hide();
+        $("#emp_form").show();
+       $("#resume").hide();
+
+      }
+    })
+  });
 
 // const baseUrl = "http://localhost/resume-management/";
 
@@ -466,7 +589,9 @@ $.fn.displayRoles=function(items){
 
 $(document).ready(function(){
   $('#table-role').DataTable();
-
+  $('#applicant_table').DataTable();
+  $('#intern_table').DataTable();
+  $('#employee_table').DataTable();
   $(document).getRoles().done(function(data){
       $(document).displayRoles(data);
   });

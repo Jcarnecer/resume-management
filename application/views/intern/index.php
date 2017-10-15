@@ -1,30 +1,35 @@
 <div class="container-fluid" id="record-table">
-  <center><h1>Record</h1>
+
   <div class="col-sm-10">
-    <table class="table table-striped">
+  <a href="<?= base_url('intern/add') ?>" id="add-button" type="button" class="btn btn-info pull-right">New Record</a>
+    <table class="table table-striped" id="intern_table">
       <thead>
         <tr>
           <th></th>
           <th>Name</th>
+          <th>Role</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($interns as $intern) : ?>
+        
+        <?php 
+        if($interns== ''){ } else{
+          foreach ($interns as $intern) : ?>
         <tr>
           <td><img id="thumbnail" src="assets/uploads/<?= $intern->images ?>"></td>
-          <td><h4><?= $intern->first_name;?> <?= $intern->last_name;?></h4></td>
-
+          <td><h4><?= $intern->first_name;?> <?= $intern->last_name;?></h4></td>  
           <td>
             <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $intern->id; ?>">View</button>
             <a href="<?= base_url('employee/edit/'.$intern->id) ?>" type="button" class="btn btn-warning" data-id="<?= $intern->id;?>" >Edit</a>
           </td>
         </tr>
         <?php endforeach; ?>
+    <?php }?>
       </tbody>
     </table>
   </div>
-</center>
+
 </div>
 
 

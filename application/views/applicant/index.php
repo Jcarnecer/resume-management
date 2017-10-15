@@ -1,27 +1,218 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title> <?= $title ?> </title>
-    <link rel="stylesheet" href="<?php echo base_url("/assets/css/bootstrap.min.css"); ?>" />
-    <link rel="stylesheet" href="<?php echo base_url("/assets/css/style.css"); ?>" />
-    <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>"></script>
-    <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
-    <script type="text/javascript">
-  		var base_url = window.location.origin+"/resume-management/";
-  	</script>
-    <script src="<?= base_url('assets/js/script.js') ?>"></script>
-</head>
-<body>
+<div class="container-fluid" id="record-table">
+        
+    <div class="col-sm-10">
+    <a href="<?= base_url('applicants/add') ?>" id="add-button" type="button" class="btn btn-info pull-right">New Record</a>
+      <table class="table table-striped" id="applicant_table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+           if($applicants==''){}else{
+          foreach ($applicants as $applicant) : ?>
+          <tr>
+            <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td>
+            <td><h4><?= $applicant->first_name;?> <?= $applicant->last_name;?></h4></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
+              <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" type="button" class="btn btn-warning" data-id="<?= $applicant->id;?>" >Edit</a>
+            </td>
+          </tr>
+          <?php endforeach; ?>
+           <?php }?>
+        </tbody>
+      </table>
+    </div>
 
-  <?php
-  //include 'application\views\applicant\home.php';
-  $this->load->view('applicant/home');
-  ?>
+  </div>
+
+
+<!-- View Modal -->
+<div id="viewmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">View Applicant</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body">
+          <table class="table table-bordered table-responsive">
+            <thead> </thead>
+              <tbody>
+              <tr>
+                <td>
+                  <b><label class="group-label">First Name:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="first-name"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                <b><label class="group-label">Last Name: </label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="last-name"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Middle Name:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="middle-name"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Home Address:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="home-address"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Phone Number:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="phone_number"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Birthday:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="birthday"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Degree:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="degree"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">School:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="school"></div>
+                </td>
+              </tr>
+
+              
+              <tr>
+                <td>
+                  <b><label class="group-label">Role:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="role"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Application Date:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="app_date"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Comments:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="comment"></div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><label class="group-label">Resume:</label></b>
+                </td>
+                <td>
+                  <div class="group-data"><a target="_blank" id="resume"></a></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+    <!--put divider here!-->
+    <div class="row">
+      <h4>Exam/Interview Result</h4>
+    </div>
+    <table class="table table-bordered table-responsive">
+      <thead> </thead>
+        <tbody>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Exam Result:</label></b>
+        </td>
+        <td>
+          <div class="group-data" id="exam-result"></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Interview Result:</label></b>
+        </td>
+        <td>
+          <div class="group-data" id="interview-result"></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Interviewer:</label></b>
+        </td>
+        <td>
+          <div class="group-data" id="interviewer"></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <b><label class="group-label">Interview Notes:</label></b>
+        </td>
+        <td>
+          <div class="group-data"><a target="_blank" id="interview-notes"></a></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  </div>
+  </div>
+</div>
 
 
 </body>

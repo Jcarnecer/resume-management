@@ -13,7 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
 	</head>
 	<body>
-		<div id="sidebar" style="margin-left: -210px;">
+		<div id="sidebar">
 			<!-- sidebar menu start-->
 			<div id="nav-icon-close" class="custom-toggle">
 				<span></span>
