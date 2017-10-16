@@ -1,5 +1,5 @@
 <?php $position = $this->Resume_model->fetch('position');
-     $role=$this->Resume_model->fetch('role',['pos_id'=>2]);
+     $role=$this->Resume_model->fetch('role',['pos_id'=>3]);
 
 // print_r($position);die;
   ?>
@@ -8,7 +8,7 @@
       <h3>Add New Record</h3>
     </center>
       <div class="container pull-left">
-       <form class="form-horizontal pull" id="add-intern-form" enctype="multipart/form-data"  method="POST">
+       <form class="form-horizontal pull" id="add-freelance-form" enctype="multipart/form-data"  method="POST">
     
           <div id="status" class="form-group">
             <label class="col-sm-3 control-label">Current Status:</label>

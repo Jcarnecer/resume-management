@@ -39,7 +39,7 @@ class Employee extends CI_Controller {
       $birth_date = $_POST['birth_date'];
       $degree = $_POST['degree'];
       $school = $_POST['school'];
-     
+     $current_status=$_POST['current_status'];
   
     
       $this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
@@ -61,17 +61,19 @@ class Employee extends CI_Controller {
           'birthday' => clean_data($birth_date),
           'school' => clean_data($school),
           'images'=> $this->session->image,
-          'current_status' =>'Active'
+          'current_status' =>clean_data($current_status)
           
         ];
         $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
         // print_r($last_inserted->id);die;
            $insert_empdata = [
   
-                'application_status' => NULL,
+                //  'application_status' => NULL,
                 'date_hired'=> clean_data($this->input->post('date_hired')),
                 'images'=> $this->session->image,
            ];
+
+           
            $where_employee = ['id'  => $last_inserted->id];
            $this->Resume_model->update('record',$insert_empdata,$where_employee); 
            
@@ -82,7 +84,7 @@ class Employee extends CI_Controller {
                  'pagibig' => clean_data(ucwords($this->input->post('pagibig'))),
                  'record_id' => $last_inserted->id
            ];
-           // $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
+          
           
            $this->Resume_model->insert('employees', $insert_employee);
            // print_r($insert_data);die;
@@ -116,7 +118,9 @@ class Employee extends CI_Controller {
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
       $this->load->view('employee/edit', $data);
+      $this->load->view('include/footer');
 
+     
     }
 
     public function edit_data(){

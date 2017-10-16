@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //Applicant
 $route['applicant']['GET'] = 'Applicant';
-$route['applicants'] = 'Applicant/index';
+$route['applicant'] = 'Applicant/index';
 $route['applicant/new']['GET'] = 'Applicant/new';
 
 $route['applicant/edit_view/(:num)']['GET'] = 'Applicant/edit_view/$1';
@@ -71,10 +71,13 @@ $route['employee/add'] = 'employee/add_employee';
 //Intern
 $route['intern']['GET'] = 'Intern/index';
 $route['intern/add'] = 'intern/add_intern';
-
+$route['intern/edit/(:num)']['GET'] = 'Intern/edit/$1';
 //Freelancers
+$route['freelance']['GET'] = 'Freelance/index';
+$route['freelance/add'] = 'freelance/add_freelance';
+$route['freelance/edit/(:num)']['GET'] = 'Freelance/edit/$1';
 
-//Delete Role
+//role
 $route['delete_role'] = 'Applicant/delete_role';
 
 

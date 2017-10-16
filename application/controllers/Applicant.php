@@ -6,7 +6,7 @@ class Applicant extends CI_Controller {
   public function index(){
     $this->load->model('Resume_model');
     $data['title'] = "Astrid Technologies | Resume Management";
-    $data['applicants'] = $this->Resume_model->show_record(['current_status'=>'Applicant']);
+    $data['applicants'] = $this->Resume_model->show_applicant_record(['record.current_status'=>'Applicant']);
     $this->load->view('include/header',$data);
     $this->load->view('include/sidebar', $data);
     $this->load->view('applicant/index',$data);

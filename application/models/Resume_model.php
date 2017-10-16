@@ -170,7 +170,16 @@ class Resume_model extends CI_Model {
         return $query->result();
     }
 
-   
+    public function show_applicant_record($where){
+      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status');
+      $this->db->from('record');
+      $this->db->where($where);
+      $this->db->join('role', 'record.role_id = role.role_id','inner');
+      $this->db->join('position', 'record.pos_id = position.id','inner');  
+
+      $query = $this->db->get();
+      return $query->result();
+    }
   
   
   public function last_inserted_row($table,$data){

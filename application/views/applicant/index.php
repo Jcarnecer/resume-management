@@ -1,5 +1,5 @@
 <div class="container-fluid" id="record-table">
-        
+      
     <div class="col-sm-10">
     <a href="<?= base_url('applicants/add') ?>" id="add-button" type="button" class="btn btn-info pull-right">New Record</a>
       <table class="table table-striped" id="applicant_table">
@@ -20,9 +20,9 @@
           <tr>
             <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td>
             <td><h4><?= $applicant->first_name;?> <?= $applicant->last_name;?></h4></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><?= $applicant->pos_name?></td>
+            <td><?= $applicant->name?></td>
+            <td><?= $applicant->current_status?></td>
             <td>
               <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
               <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" type="button" class="btn btn-warning" data-id="<?= $applicant->id;?>" >Edit</a>

@@ -175,6 +175,7 @@ $(document).ready(function() {
         }
     });
 });
+//
 
 //add new employee
 $(document).ready(function(){
@@ -200,10 +201,10 @@ $(document).ready(function(){
         }
 
       }
-    })
+    });
     e.preventDefault();  
-  })
-})
+  });
+});
 
 $(document).ready(function() {
     $('#add-employee-form').bootstrapValidator({
@@ -299,9 +300,258 @@ $(document).ready(function() {
         }
     });
 });
+//
 
+//add Intern
+$(document).ready(function(){
+  $("#add-intern-form").on('submit',function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var form = new FormData(document.getElementById("add-intern-form"));
+    var link = base_url + 'intern';
+    $.ajax({
+      url: base_url + 'intern/addRecord',
+      method: 'POST',
+      processData: false, // tell jQuery not to process the data
+      contentType: false, // tell jQuery not to set contentType
+      data:form,
+      success: function(data){
+        console.log(data);
+        var result = JSON.parse(data);
+        if(result==='success'){
+          location.href = link;
 
+        }else{
+          alert('Error');
+        }
 
+      }
+    });
+    e.preventDefault();  
+  });
+});
+
+$(document).ready(function() {
+    $('#add-intern-form').bootstrapValidator({
+    //    container: '#container',
+        fields: {
+            last_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Last name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                     },
+                 }
+             },
+
+            first_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The First name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                    },
+                }
+            },
+
+            middle_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Middle name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The Middle name can only consist of letters'
+                    },
+                }
+            },
+
+            email_add: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Email Address is required and cannot be empty'
+                    },
+                }
+            },
+
+            phone_number: {
+                validators: {
+                    notEmpty: {
+                        message: 'The phone number is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Phone number can only consist of numbers'
+                    },
+                }
+            },
+            tin: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'TIN can only consist of numbers'
+                    },
+                }
+            },
+            sss: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'SSS can only consist of numbers'
+                    },
+                }
+            },
+            philhealth: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'PhilHealth can only consist of numbers'
+                    },
+                }
+            },
+            pagibig: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Pag-IBIG can only consist of numbers'
+                    },
+                }
+            },
+        }
+    });
+});
+
+//
+//Add freelance
+
+$(document).ready(function(){
+    $("#add-freelance-form").on('submit',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var form = new FormData(document.getElementById("add-freelance-form"));
+      var link = base_url + 'freelance';
+      $.ajax({
+         url: base_url + 'freelance/addRecord',
+        type: "POST",
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        data:form,
+        success: function(data){
+          console.log(data);
+          var result = JSON.parse(data);
+          if(result==='success'){
+            location.href = link;
+  
+          }else{
+            alert('Error');
+          }
+  
+        }
+      });
+      e.preventDefault();
+    });
+  });
+  
+  $(document).ready(function() {
+      $('#add-freelance-form').bootstrapValidator({
+      //    container: '#container',
+          fields: {
+              last_name: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The Last name is required and cannot be empty'
+                        },
+                        regexp: {
+                         regexp: /^[a-zA-Z\s]+$/,
+                         message: 'The First name can only consist of letters'
+                       },
+                   }
+               },
+  
+              first_name: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The First name is required and cannot be empty'
+                        },
+                        regexp: {
+                         regexp: /^[a-zA-Z\s]+$/,
+                         message: 'The First name can only consist of letters'
+                      },
+                  }
+              },
+  
+              middle_name: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The Middle name is required and cannot be empty'
+                        },
+                        regexp: {
+                         regexp: /^[a-zA-Z\s]+$/,
+                         message: 'The Middle name can only consist of letters'
+                      },
+                  }
+              },
+  
+              email_add: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The Email Address is required and cannot be empty'
+                      },
+                  }
+              },
+  
+              phone_number: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The phone number is required and cannot be empty'
+                        },
+                        regexp: {
+                         regexp: /^[-+]?[0-9]+$/,
+                         message: 'Phone number can only consist of numbers'
+                      },
+                  }
+              },
+              tin: {
+                  validators: {
+                        regexp: {
+                         regexp: /^[-+]?[0-9]+$/,
+                         message: 'TIN can only consist of numbers'
+                      },
+                  }
+              },
+              sss: {
+                  validators: {
+                        regexp: {
+                         regexp: /^[-+]?[0-9]+$/,
+                         message: 'SSS can only consist of numbers'
+                      },
+                  }
+              },
+              philhealth: {
+                  validators: {
+                        regexp: {
+                         regexp: /^[-+]?[0-9]+$/,
+                         message: 'PhilHealth can only consist of numbers'
+                      },
+                  }
+              },
+              pagibig: {
+                  validators: {
+                        regexp: {
+                         regexp: /^[-+]?[0-9]+$/,
+                         message: 'Pag-IBIG can only consist of numbers'
+                      },
+                  }
+              },
+          }
+      });
+  });
+//
   $(document).ready(function(){
    $("#pos-id").on('change', function(){
       var posid = $("#pos-id").val();
@@ -545,7 +795,7 @@ $(document).on('click','#updateRole',function(){
       });
 });
 
-
+//Roles
 $.fn.getRoles=function(){
   var $url = base_url + "roles/get_roles";
  return $.ajax({
@@ -554,8 +804,6 @@ $.fn.getRoles=function(){
     dataType: 'JSON'
   });
 };
-
-
 $.fn.displayRoles=function(items){
 
     $("#tbody-role").html('');
@@ -586,11 +834,12 @@ $.fn.displayRoles=function(items){
 };
 
 
-
+//Datatables
 $(document).ready(function(){
   $('#table-role').DataTable();
   $('#applicant_table').DataTable();
   $('#intern_table').DataTable();
+  $('#employee_table').DataTable();
   $('#employee_table').DataTable();
   $(document).getRoles().done(function(data){
       $(document).displayRoles(data);
