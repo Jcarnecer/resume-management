@@ -165,7 +165,7 @@ class Resume_model extends CI_Model {
         $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,record.current_status');
         $this->db->from('record');
         $this->db->where($where);
-        $this->db->join('role', 'record.role_id = role.role_id','inner'); 
+        $this->db->join('role','record.role_id = role.role_id','inner'); 
         $query = $this->db->get();
         return $query->result();
     }

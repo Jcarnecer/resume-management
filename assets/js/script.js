@@ -750,6 +750,7 @@ $(function(){
 
 });
 
+//Roles
 
 $(document).on('click','#btn-update',function(){
 
@@ -763,8 +764,6 @@ $(document).on('click','#btn-update',function(){
   $('#position_name').val(position_name);
 
 });
-
-
 
 $(document).on('click','#updateRole',function(){
   var roleId = $(this).attr('data-id');
@@ -794,8 +793,6 @@ $(document).on('click','#updateRole',function(){
           }
       });
 });
-
-//Roles
 $.fn.getRoles=function(){
   var $url = base_url + "roles/get_roles";
  return $.ajax({
@@ -832,7 +829,35 @@ $.fn.displayRoles=function(items){
 
 
 };
-
+   
+$(document).on('click','#btn-status',function(){
+    var url=base_url + "roles/update_status";
+    var $id=$(this).attr('data-id');
+    var $status =$(this).attr('data-function');   
+    $.ajax({
+      "url":url,
+      "method":"POST",
+    data:{
+        'id':$id,
+        'status':$status
+      },
+        success: function(data){
+                    if(data.error){
+            
+                    }
+                    else{
+                    $(document).getRoles().done(function(data){
+                        $(document).displayRoles(data);
+                    });
+            
+            
+            
+                    }
+            
+                } 
+     });
+    
+  });
 
 //Datatables
 $(document).ready(function(){
@@ -840,7 +865,7 @@ $(document).ready(function(){
   $('#applicant_table').DataTable();
   $('#intern_table').DataTable();
   $('#employee_table').DataTable();
-  $('#employee_table').DataTable();
+  $('#freelance_table').DataTable();
   $(document).getRoles().done(function(data){
       $(document).displayRoles(data);
   });
@@ -850,31 +875,3 @@ $(document).ready(function(){
 
 
 
-$(document).on('click','#btn-status',function(){
-  var url=base_url + "roles/update_status";
-  var $id=$(this).attr('data-id');
-  var $status =$(this).attr('data-function');   
-  $.ajax({
-    "url":url,
-    "method":"POST",
-  data:{
-      'id':$id,
-      'status':$status
-    },
-    success: function(data){
-      if(data.error){
-
-      }
-      else{
-        $(document).getRoles().done(function(data){
-          $(document).displayRoles(data);
-          });
-
-
-
-      }
-
-    }
-});
-  
-});

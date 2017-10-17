@@ -72,10 +72,12 @@ $route['employee/add'] = 'employee/add_employee';
 $route['intern']['GET'] = 'Intern/index';
 $route['intern/add'] = 'intern/add_intern';
 $route['intern/edit/(:num)']['GET'] = 'Intern/edit/$1';
+$route['intern/edit']['POST'] = 'Intern/edit_data';
 //Freelancers
 $route['freelance']['GET'] = 'Freelance/index';
 $route['freelance/add'] = 'freelance/add_freelance';
 $route['freelance/edit/(:num)']['GET'] = 'Freelance/edit/$1';
+$route['freelance/edit']['POST'] = 'freelance/edit_data';
 
 //role
 $route['delete_role'] = 'Applicant/delete_role';

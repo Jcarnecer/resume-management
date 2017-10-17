@@ -5,7 +5,7 @@
       <table class="table table-striped" id="applicant_table">
         <thead>
           <tr>
-            <th></th>
+            <!-- <th></th> -->
             <th>Name</th>
             <th>Position</th>
             <th>Role</th>
@@ -18,7 +18,7 @@
            if($applicants==''){}else{
           foreach ($applicants as $applicant) : ?>
           <tr>
-            <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td>
+            <!-- <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td> -->
             <td><h4><?= $applicant->first_name;?> <?= $applicant->last_name;?></h4></td>
             <td><?= $applicant->pos_name?></td>
             <td><?= $applicant->name?></td>

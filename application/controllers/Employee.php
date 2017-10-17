@@ -5,11 +5,13 @@ class Employee extends CI_Controller {
 
     public function index(){
      $this->load->model('Resume_model'); 
-     $data['employees'] = $this->Resume_model->show_record(['record.pos_id'=>1,'record.current_status'=>'Active']);
+     $data['employees'] = $this->Resume_model->show_record(['record.pos_id'=>1,'record.current_status'=>"Active"]);
      $title['title'] = "Astrid Technologies | New Applicant";
      $this->load->view('include/header',$title);
      $this->load->view('include/sidebar', $data); 
      $this->load->view('employee/index', $data);
+     $this->load->view('include/footer');
+
     }
 
     public function add_employee(){

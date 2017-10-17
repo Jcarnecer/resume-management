@@ -101,7 +101,31 @@ class Intern extends CI_Controller {
       $this->load->view('include/sidebar',$data);
       $this->load->view('intern/edit', $data);
       $this->load->view('include/footer');     
-}
+      }
+
+
+      public function edit_data(){
+        $this->load->helper('encryption');
+        $id = $_POST['id'];
+        $status =$_POST['current_status'];
+        $role=$_POST['role'];
+        $update=[
+          'first_name' => clean_data($this->input->post('first_name')),
+          'last_name'  => clean_data($this->input->post('last_name')),
+          'middle_name' => clean_data($this->input->post('middle_name')),
+          'email' => clean_data($this->input->post('email_address')),
+          'phone_number' => clean_data($this->input->post('phone_number')),
+          'home_address' => clean_data($this->input->post('home_address')),
+          'birthday' => clean_data($this->input->post('birth_date')),
+          'degree' => clean_data($this->input->post('degree')),
+          'role_id'=>clean_data($this->input->post('role')),
+          'current_status' => clean_data($status),
+
+        ];
+        $result=$this->Resume_model->update('record', $update, 'id='.$id);
+        echo json_encode($result);
+        redirect('/intern');
+      }
 
 
   }

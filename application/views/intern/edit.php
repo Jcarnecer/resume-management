@@ -1,3 +1,4 @@
+<?php $role=$this->Resume_model->fetch('role',['pos_id'=>2])?>
 <center>
     <h3><b>Edit Intern</b></h3>
   </center>
@@ -6,10 +7,10 @@
         echo $this->session->flashdata('email_sent');
       ?>
 
-     <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
+     <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('intern/edit'); ?>">
 
-       <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
-       <input type="hidden" name="position" value="<?= $applicant_data->pos_id?>">
+       <input type="hidden" name="id" value="<?= $applicant_data->id ?>"/>
+       <input type="hidden" name="position" value="<?= $applicant_data->pos_id?>"/>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">First Name</label>
@@ -33,11 +34,44 @@
        </div>
 
        <div class="form-group">
+        <label  class="col-sm-3 control-label">Status:</label>
+        <div class="col-sm-9">
+          <select class="form-control" name="current_status">
+          <?php if($applicant_data->current_status=='Active'){?>
+            <option value="<?= $applicant_data->current_status?>"><?= $applicant_data->current_status?></option>
+            <option value="Inactive">Inactive</option>
+          <?php } elseif($applicant_data->current_status=='Inactive'){?>
+            <option value="<?= $applicant_data->current_status?>"><?= $applicant_data->current_status?></option>
+            <option value="Inactive">Active</option>
+          <?php }?>  
+          </select>
+        </div>
+      </div>
+
+
+      
+       <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
          <div class="col-sm-9">
              <input type="email" name="email_address" class="form-control" value="<?= $applicant_data->email ?>" placeholder="Email Address"/>
          </div>
        </div>
+
+       <div class="form-group">
+           <label  class="col-sm-3 control-label">Role:</label>
+           <div class="col-sm-9">
+               <select id="role" name="role" class="form-control">
+               <?php 
+               if($role->role_id==$applicant_data->role_id){?>
+                    <option value="<?= $role->role_id ?>" selected="selected"><?=$role->name?></option>
+              <?php }?>
+                   <?php foreach($role as $row): ?>
+                   <option value="<?= $row->role_id ?>"><?= $row->name ?></option>
+                 <?php endforeach; ?>
+               </select>
+           </div>
+         </div>
+
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Phone Number:</label>
@@ -91,6 +125,10 @@
     
     <div class="form-group">
           <div class="col-sm-9 col-sm-offset-3">
-            <input type="submit" value="Submit" class="btn btn-primary" />
+            <input type="submit" value="Submit" class="btn btn-primary"/>
           </div>
+        </div>
+
+
+        </form>
         </div>

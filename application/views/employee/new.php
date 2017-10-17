@@ -16,7 +16,7 @@
                 <select name="current_status" id="current_status" class="form-control">
                   <option value="disabled selected">Select Status</option>
                   <!-- <option value="applicant">Applicant</option> -->
-                  <option value="Acitve">Active</option>
+                  <option value="Active">Active</option>
                   <option value="Inactive">Inactive</option>
                 </select>
             </div>

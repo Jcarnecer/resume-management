@@ -220,7 +220,6 @@ class Applicant extends CI_Controller {
 
     $status = $_POST['status'];
     $id = $_POST['id'];
-    $current_status = "Active";
     $to_email = $_POST['email_address'];
 
     $update=[
