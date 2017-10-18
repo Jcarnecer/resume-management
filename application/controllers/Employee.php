@@ -45,7 +45,16 @@ class Employee extends CI_Controller {
   
     
       $this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
-  
+      $this->form_validation->set_rules('email_address','Email Address','Is_unique[record.email]');
+      $this->form_validation->set_rules('phone_number','Phone Number','Is_unique[record.phone_number]');
+      $this->form_validation->set_rules('last_name','Last Name','required');
+      $this->form_validation->set_rules('first_name','First Name','required');
+    
+      $this->form_validation->set_rules('sss','SSS Number','Is_unique[record.email]');
+      $this->form_validation->set_rules('tin','TIN Number','Is_unique[record.phone_number]');
+      $this->form_validation->set_rules('philhealth','PhilHealth Number','required');
+      $this->form_validation->set_rules('pagibig','Pagibig Number','required');
+
       if($this->form_validation->run()==FALSE){
         echo json_encode(validation_errors());
       }else{

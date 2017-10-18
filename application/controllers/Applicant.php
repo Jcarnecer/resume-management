@@ -102,7 +102,10 @@ class Applicant extends CI_Controller {
 
     $this->form_validation->set_rules('resume_file','Resume','callback_validate_resume_file');
     //$this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
-    
+    $this->form_validation->set_rules('email_address','Email Address','Is_unique[record.email]');
+    $this->form_validation->set_rules('phone_number','Phone Number','Is_unique[record.phone_number]');
+    $this->form_validation->set_rules('last_name','Last Name','required');
+    $this->form_validation->set_rules('first_name','First Name','required');
     if($this->form_validation->run()==FALSE){
       echo json_encode(validation_errors());
     }else{

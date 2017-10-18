@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php
+          <?php 
            if($applicants==''){}else{
           foreach ($applicants as $applicant) : ?>
           <tr>
