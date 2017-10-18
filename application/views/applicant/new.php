@@ -20,18 +20,6 @@
              </div>
           </div>
 
-          <div id="status" class="form-group">
-            <label class="col-sm-3 control-label">Current Status:</label>
-            <div class="col-sm-9">
-                <select name="current_status" id="current_status" class="form-control">
-                  <option value="disabled selected">Select Status</option>
-                  <!-- <option value="applicant">Applicant</option> -->
-                  <option value="applicant">Applicant</option>
-                  <option value="current">Current</option>
-                  <option value="former">Former</option>
-                </select>
-            </div>
-          </div>
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Role:</label>

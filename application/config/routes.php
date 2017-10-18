@@ -80,6 +80,7 @@ $route['freelance/edit/(:num)']['GET'] = 'Freelance/edit/$1';
 $route['freelance/edit']['POST'] = 'freelance/edit_data';
 
 //role
+$route['roles/add']['POST']='roles/insert_role';
 $route['delete_role'] = 'Applicant/delete_role';
 
 

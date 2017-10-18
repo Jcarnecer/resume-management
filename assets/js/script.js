@@ -751,7 +751,6 @@ $(function(){
 });
 
 //Roles
-
 $(document).on('click','#btn-update',function(){
 
   var role_name=$(this).closest('tr').find('td[data-role="role_name"]').html();
@@ -760,12 +759,24 @@ $(document).on('click','#btn-update',function(){
   console.log(position_name);
   var roleId = $(this).attr('data-id');
   $('#role_name').val(role_name);
-  $("#roleModal").find("#updateRole").attr("data-id",roleId);
+  $("#roleModal").find("#btn-save").attr("data-id",roleId);
+  $("#roleModal").find(".modal-title").html("Update Role");
+  $("#roleModal").find("#btn-save").attr("data-function","update");     
   $('#position_name').val(position_name);
 
 });
 
-$(document).on('click','#updateRole',function(){
+$(document).on('click','#btn-add',function(){
+    
+        
+         $("#roleModal").find(".modal-title").html("Add Role");
+        $("#roleModal").find("#btn-save").attr("data-function","add");             
+            
+    
+    });
+    
+
+$(document).on('click',"button[data-function='update']",function(){
   var roleId = $(this).attr('data-id');
   var url = base_url + "roles/edit/"+ roleId;
   var posId= $('#position_name option:selected').val();
@@ -793,6 +804,35 @@ $(document).on('click','#updateRole',function(){
           }
       });
 });
+
+$(document).on('click',"button[data-function='add']",function(){
+    var url = base_url + "roles/insert_role";
+    console.log(posId);
+        $.ajax({
+            "url":url,
+            "method":"POST",
+          data:{
+              'role_name':$("#role_name").val(),
+               'pos_id':$('#position_name').val(),
+               
+            },
+            success: function(data){
+              if(data.error){
+  
+              }
+              else{
+                $(document).getRoles().done(function(data){
+                  $(document).displayRoles(data);
+                  });
+                  $('#roleModal').modal('toggle'); 
+  
+  
+              }
+  
+            }
+        });
+  });
+
 $.fn.getRoles=function(){
   var $url = base_url + "roles/get_roles";
  return $.ajax({

@@ -4,7 +4,8 @@ $position = $this->Resume_model->fetch('position');
 ?>
 
 <div class="container-fluid" id="record-table">
-    <h2>Roles</h2>
+<button class="btn btn-info" id="btn-add" data-toggle="modal"data-target="#roleModal">Add New Role</button>
+   <center> <h2>Roles</h2></center>
   <div class="col-sm-10">
     <table class="table table-striped" id="table-role">
       <thead>
@@ -37,7 +38,7 @@ $position = $this->Resume_model->fetch('position');
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Update Role</h3>
+        <h3 class="modal-title" id="exampleModalLabel"></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -58,7 +59,7 @@ $position = $this->Resume_model->fetch('position');
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="updateRole" data-id="">Save changes</button>
+        <button type="button" class="btn btn-primary" id="btn-save" data-id="" data-function="">Submit</button>
       </div>
     </div>
   </div>

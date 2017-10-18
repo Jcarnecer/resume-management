@@ -100,7 +100,7 @@ class Applicant extends CI_Controller {
     $current_status = 'Applicant';
 
     $this->form_validation->set_rules('resume_file','Resume','callback_validate_resume_file');
-    $this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
+    //$this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
 
     if($this->form_validation->run()==FALSE){
       echo json_encode(validation_errors());
@@ -123,9 +123,9 @@ class Applicant extends CI_Controller {
       ];
       $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
       // print_r($last_inserted->id);die;
-      if($current_status == "applicant") {
+      if($current_status == "Applicant") {
         $insert_data = [
-             'current_status' => 'applicant',
+             'current_status' => 'Applicant',
              'file' => $this->session->resume,
              'application_date' => clean_data($this->input->post('application_date')),
              'available_date' => clean_data($this->input->post('available_date')),
