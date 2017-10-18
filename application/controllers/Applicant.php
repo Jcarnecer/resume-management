@@ -82,6 +82,7 @@ class Applicant extends CI_Controller {
     $config['upload_path'] = "assets/uploads";
     $config['allowed_types'] = 'doc|pdf|docx|jpg|jpeg|png';
     $config['max_size'] = 2048;
+  
 
     $this->load->library('upload', $config);
     $this->load->helper('encryption');
@@ -101,7 +102,7 @@ class Applicant extends CI_Controller {
 
     $this->form_validation->set_rules('resume_file','Resume','callback_validate_resume_file');
     //$this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
-
+    
     if($this->form_validation->run()==FALSE){
       echo json_encode(validation_errors());
     }else{
@@ -123,10 +124,12 @@ class Applicant extends CI_Controller {
       ];
       $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
       // print_r($last_inserted->id);die;
+
+
       if($current_status == "Applicant") {
         $insert_data = [
              'current_status' => 'Applicant',
-             'file' => $this->session->resume,
+             'file' =>$this->session->resume,
              'application_date' => clean_data($this->input->post('application_date')),
              'available_date' => clean_data($this->input->post('available_date')),
             //  'user_id'  => $last_inserted->id
@@ -157,7 +160,8 @@ class Applicant extends CI_Controller {
       //   $this->Resume_model->insert('employees', $insert_employee);
       //   // print_r($insert_data);die;
      // }
-      echo json_encode('success');
+    echo json_encode('success');
+       
     }
 
   }
@@ -308,6 +312,7 @@ class Applicant extends CI_Controller {
     $config['allowed_types'] = 'doc|pdf';
     $config['max_size'] = 200;
 
+
     $this->load->library('upload', $config);
 
     if(! $this->upload->do_upload('resume'))
@@ -320,6 +325,8 @@ class Applicant extends CI_Controller {
           $data = array('upload_data' =>$this->upload->data());
           $this->load->view('index', $data);
     }
+
+     return $data; 
 
   }
 

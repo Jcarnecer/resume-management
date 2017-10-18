@@ -25,7 +25,9 @@
             <td><?= $applicant->current_status?></td>
             <td>
               <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
+              <!-- <a href="<?= base_url('assets/uploads/'.$applicant->file) ?>" type="button" class="btn btn-info" data-id="<?= $applicant->id;?>" >View Resume</a> -->
               <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" type="button" class="btn btn-warning" data-id="<?= $applicant->id;?>" >Edit</a>
+             
             </td>
           </tr>
           <?php endforeach; ?>

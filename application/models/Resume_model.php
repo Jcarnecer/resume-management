@@ -171,7 +171,7 @@ class Resume_model extends CI_Model {
     }
 
     public function show_applicant_record($where){
-      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status');
+      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file');
       $this->db->from('record');
       $this->db->where($where);
       $this->db->join('role', 'record.role_id = role.role_id','inner');
