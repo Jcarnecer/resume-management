@@ -69,8 +69,24 @@ $(document).ready(function(){
         console.log(data);
         var result = JSON.parse(data);
         if(result==='success'){
-          location.href = link;
-
+            $('[name="position"]').val('');
+            $('[name="role"]').val('');        
+            $('[name="last_name"]').val('');                
+            $('[name="first_name"]').val('');
+            $('[name="middle_name"]').val('');
+            $('[name="email_address"]').val('');       
+            $('[name="home_address"]').val('');       
+            $('[name="phone_number"]').val('');         
+            $('[name="birth_date"]').val('');       
+            $('[name="degree"]').val('');       
+            $('[name="school"]').val('');       
+            $('[name="application_date"]').val('');       
+            $('[name="available_date"]').val('');       
+            $('[name="expected_salary"]').val(''); 
+            $('[name="comment"]').val('');       
+            $('[name="resume_file"]').val('');
+            $('html, body').animate({ scrollTop: 0  }, "slow");
+            bs_notify("<strong>Successfully Added Record</strong>","success","top","right");                  
         }else{
           alert('Error');
         }
@@ -194,7 +210,24 @@ $(document).ready(function(){
         console.log(data);
         var result = JSON.parse(data);
         if(result==='success'){
-          location.href = link;
+            $('[name="position"]').val('');
+            $('[name="role"]').val('');        
+            $('[name="last_name"]').val('');                
+            $('[name="first_name"]').val('');
+            $('[name="middle_name"]').val('');
+            $('[name="email_address"]').val('');       
+            $('[name="home_address"]').val('');       
+            $('[name="phone_number"]').val('');         
+            $('[name="birth_date"]').val('');       
+            $('[name="degree"]').val('');       
+            $('[name="school"]').val('');       
+            $('[name="application_date"]').val('');       
+            $('[name="available_date"]').val('');       
+            $('[name="expected_salary"]').val(''); 
+            $('[name="comment"]').val('');       
+            $('[name="resume_file"]').val('');
+            $('html, body').animate({ scrollTop: 0  }, "slow");
+            bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
 
         }else{
           alert('Error');
@@ -319,7 +352,24 @@ $(document).ready(function(){
         console.log(data);
         var result = JSON.parse(data);
         if(result==='success'){
-          location.href = link;
+            $('[name="position"]').val('');
+            $('[name="role"]').val('');        
+            $('[name="last_name"]').val('');                
+            $('[name="first_name"]').val('');
+            $('[name="middle_name"]').val('');
+            $('[name="email_address"]').val('');       
+            $('[name="home_address"]').val('');       
+            $('[name="phone_number"]').val('');         
+            $('[name="birth_date"]').val('');       
+            $('[name="degree"]').val('');       
+            $('[name="school"]').val('');       
+            $('[name="application_date"]').val('');       
+            $('[name="available_date"]').val('');       
+            $('[name="expected_salary"]').val(''); 
+            $('[name="comment"]').val('');       
+            $('[name="resume_file"]').val('');
+            $('html, body').animate({ scrollTop: 0  }, "slow");
+            bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
 
         }else{
           alert('Error');
@@ -445,7 +495,24 @@ $(document).ready(function(){
           console.log(data);
           var result = JSON.parse(data);
           if(result==='success'){
-            location.href = link;
+            $('[name="position"]').val('');
+            $('[name="role"]').val('');        
+            $('[name="last_name"]').val('');                
+            $('[name="first_name"]').val('');
+            $('[name="middle_name"]').val('');
+            $('[name="email_address"]').val('');       
+            $('[name="home_address"]').val('');       
+            $('[name="phone_number"]').val('');         
+            $('[name="birth_date"]').val('');       
+            $('[name="degree"]').val('');       
+            $('[name="school"]').val('');       
+            $('[name="application_date"]').val('');       
+            $('[name="available_date"]').val('');       
+            $('[name="expected_salary"]').val(''); 
+            $('[name="comment"]').val('');       
+            $('[name="resume_file"]').val('');
+            $('html, body').animate({ scrollTop: 0  }, "slow");
+            bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
   
           }else{
             alert('Error');
@@ -604,91 +671,6 @@ $(document).ready(function(){
   });
 
 // const baseUrl = "http://localhost/resume-management/";
-
-$(function() {
-  $("#add-role-form").on('submit', function(e){
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    $.ajax({
-      url: base_url + "insert_role",
-      type: 'POST',
-      data: $('#add-role-form').serialize(),
-      dataType: 'json',
-      success: function(data){
-      var $tab = null;
-         if(data['pos_id']=='1'){
-          $tab = $('#employee_tab');
-         }
-         else if(data['pos_id']=='2'){
-          $tab = $('#intern_tab');
-         }
-         else if (data['pos_id']=='3'){
-          $tab = $('#freelance_tab');
-         }
-         console.log(data);
-
-         $tab.append(`<div class="panel">
-             <div class="panel-heading">${data['name']}<hr></div>
-             <div class="panel-body">
-               <div class="row grid-divider">
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=applicant">
-                       <div>${data['applicants']}<br>Applicants</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=interview">
-                       <div>${data['for_interview']}<br>For Interview</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                       <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=shortlist">
-                       <div>${data['shortlist']}<br>Shortlist</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${base_url}applicants?role=' . $role->role_id .'&current_status=archived">
-                       <div>${data['archived']}<br>Rejected</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                       <a href="${base_url}employee?current_status=current&role=' . $role->role_id .'&position=2'">
-                       <div>${data['current']}<br>Current</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${base_url}employee?current_status=former&role=' . $role->role_id .'&position=2'">
-                       <div>${data['former']}<br>Former</div>
-                     </a>
-                   </div>
-                 </div>
-
-               </div>
-             </div>
-           </div>`);
-
-      }
-    });
-  });
-});
-
 
 //View Record's Information
 $(function(){
