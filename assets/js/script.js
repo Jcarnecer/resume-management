@@ -21,7 +21,7 @@ function toggle(){
   });
 }
 
-document.getElementsByClassName('custom-toggle')[0].click();
+// document.getElementsByClassName('custom-toggle')[0].click();
 
 //$(document).ready(function(){
 
