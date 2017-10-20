@@ -8,7 +8,7 @@
         echo $this->session->flashdata('email_sent');
       ?>
 
-     <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('freelance/edit_data'); ?>">
+     <form class="form-horizontal" id="freelance-edit-form" enctype="multipart/form-data"  method="POST">
 
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
        <input type="hidden" name="position" value="<?= $applicant_data->pos_id?>">
@@ -34,21 +34,21 @@
          </div>
        </div>      
        
-
        <div class="form-group">
         <label  class="col-sm-3 control-label">Status:</label>
         <div class="col-sm-9">
           <select class="form-control" name="current_status">
           <?php if($applicant_data->current_status=='Active'){?>
-            <option value="<?= $applicant_data->current_status?>"><?= $applicant_data->current_status?></option>
+            <option value="<?= $applicant_data->current_status?>" selected="selected"><?= $applicant_data->current_status?></option>
             <option value="Inactive">Inactive</option>
           <?php } elseif($applicant_data->current_status=='Inactive'){?>
-            <option value="<?= $applicant_data->current_status?>"><?= $applicant_data->current_status?></option>
-            <option value="Inactive">Active</option>
+            <option value="Active">Active</option>
+            <option value="<?= $applicant_data->current_status?>" selected="selected"><?= $applicant_data->current_status?></option>
           <?php }?>  
           </select>
         </div>
       </div>
+
 
        
        <div class="form-group">

@@ -890,6 +890,255 @@ $(document).ready(function(){
   });
 });
 
+//Edit Applicant
+$(document).ready(function(){
+    $("#edit-form").on('submit',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var form = new FormData(document.getElementById('edit-form'));
+      var link = base_url + 'applicant';
+      $.ajax({
+        url: base_url + 'applicant/edit',
+        method: 'POST',
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        data:form,
+        success: function(data){
+          console.log(data);
+          var result = JSON.parse(data);
+          if(result=='success'){     
+              bs_notify("<strong>Successfully Updated Applicant Record</strong>","success","top","right");
+              location.href=link;                
+  
+          }else{
+              bs_notify("<strong>Unable to Update Applicant</strong>","danger","top","right"); 
+          }
+  
+        }
+      });
+     
+    });
+  });
+  $(document).ready(function(){
+    $("#add_result").on('submit',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var form = new FormData(document.getElementById('add_result'));
+      var link = base_url + 'applicant';
+      $.ajax({
+        url: base_url + 'applicant/add_result',
+        method: 'POST',
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        data:form,
+        success: function(data){
+          console.log(data);
+          var result = JSON.parse(data);
+          if(result==='success'){     
+              //bs_notify("<strong>Successfully Updated Applicant Record</strong>","success","top","right");
+              location.href=link;                
+  
+          }else{
+              bs_notify("<strong>Unable to Update Applicant</strong>","danger","top","right"); 
+          }
+  
+        }
+      });
+      e.preventDefault();  
+    });
+  });
+$(document).ready(function() {
+    $('#edit-form').bootstrapValidator({
+    //    container: '#container',
+        fields: {
+            last_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Last name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                     },
+                 }
+             },
+
+            first_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The First name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The First name can only consist of letters'
+                    },
+                }
+            },
+
+            middle_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Middle name is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[a-zA-Z\s]+$/,
+                       message: 'The Middle name can only consist of letters'
+                    },
+                }
+            },
+
+            email_add: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Email Address is required and cannot be empty'
+                    },
+                }
+            },
+
+            phone_number: {
+                validators: {
+                    notEmpty: {
+                        message: 'The phone number is required and cannot be empty'
+                      },
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Phone number can only consist of numbers'
+                    },
+                }
+            },
+            tin: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'TIN can only consist of numbers'
+                    },
+                }
+            },
+            sss: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'SSS can only consist of numbers'
+                    },
+                }
+            },
+            philhealth: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'PhilHealth can only consist of numbers'
+                    },
+                }
+            },
+            pagibig: {
+                validators: {
+                      regexp: {
+                       regexp: /^[-+]?[0-9]+$/,
+                       message: 'Pag-IBIG can only consist of numbers'
+                    },
+                }
+            },
+        }
+    });
+});
+
+
+//Edit Intern 
+$(document).ready(function(){
+    $("#intern-edit-form").on('submit',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var form = new FormData(document.getElementById('intern-edit-form'));
+      var link = base_url + 'intern';
+      $.ajax({
+        url: base_url + 'intern/edit',
+        method: 'POST',
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        data:form,
+        success: function(data){
+          console.log(data);
+          var result = JSON.parse(data);
+          if(result=='success'){     
+              bs_notify("<strong>Successfully Updated Intern Record</strong>","success","top","right");
+              location.href=link;                
+  
+          }else{
+              bs_notify("<strong>Unable to Update Intern</strong>","danger","top","right"); 
+          }
+  
+        }
+      });
+     
+    });
+  });
+
+
+
+
+
+//Edit Employee
+  $(document).ready(function(){
+    $("#employee-edit-form").on('submit',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var form = new FormData(document.getElementById('employee-edit-form'));
+      var link = base_url + 'employee';
+      $.ajax({
+        url: base_url + 'employee/edit',
+        method: 'POST',
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        data:form,
+        success: function(data){
+          console.log(data);
+          var result = JSON.parse(data);
+          if(result=='success'){     
+              bs_notify("<strong>Successfully Updated Employee Record</strong>","success","top","right");
+              location.href=link;                
+  
+          }else{
+              bs_notify("<strong>Unable to Employee Applicant</strong>","danger","top","right"); 
+          }
+  
+        }
+      });
+     
+    });
+  });
+
+  //Edit Freelance
+  $(document).ready(function(){
+    $("#freelance-edit-form").on('submit',function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var form = new FormData(document.getElementById('freelance-edit-form'));
+      var link = base_url + 'freelance';
+      $.ajax({
+        url: base_url + 'freelance/edit',
+        method: 'POST',
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        data:form,
+        success: function(data){
+          console.log(data);
+          var result = JSON.parse(data);
+          if(result=='success'){     
+              bs_notify("<strong>Successfully Updated Applicant Record</strong>","success","top","right");
+              location.href=link;                
+  
+          }else{
+              bs_notify("<strong>Unable to Update Applicant</strong>","danger","top","right"); 
+          }
+  
+        }
+      });
+     
+    });
+  });
+
+
+
 
 
 

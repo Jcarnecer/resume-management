@@ -203,7 +203,6 @@ class Applicant extends CI_Controller {
     $now = new DateTime();
     $now->setTimezone(new DateTimezone('Asia/Manila'));
     $date_now = $now->format('Y-m-d');
-
     $status = $_POST['status'];
     $id = $_POST['id'];
     $to_email = $_POST['email_address'];
@@ -243,11 +242,11 @@ class Applicant extends CI_Controller {
     $this->email->to($to_email);
     $this->email->subject('Astrid Technologies');
 
-    if($status == "archived"):
+    if($status == "archived"){
       $this->email->message('Failed!');
       $this->email->send();
-
-    elseif($status == "hired"):
+    }
+    elseif($status == "hired"){
       $this->email->message('Passed!');
       $this->email->send();
       $update=[
@@ -258,8 +257,8 @@ class Applicant extends CI_Controller {
       ];
       $this->Resume_model->update('record', $update, 'id='.$id);
       $this->Resume_model->insert('employees', $insert);
-    endif;
-    redirect('');
+    }
+    echo json_encode('success');
   }
 
   public function add_result()
@@ -283,7 +282,7 @@ class Applicant extends CI_Controller {
         'interview_notes' => $this->session->notes,
     ];
       $this->Resume_model->update('record', $insert_result, 'id='.$id);
-    redirect('');
+      echo json_encode('success');
     }
   }
 

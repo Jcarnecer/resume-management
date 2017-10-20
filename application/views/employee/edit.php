@@ -7,7 +7,7 @@
         echo $this->session->flashdata('email_sent');
       ?>
 
-     <form class="form-horizontal" id="edit-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('employee/edit'); ?>">
+     <form class="form-horizontal" id="employee-edit-form" enctype="multipart/form-data"  method="POST">
 
        <input type="hidden" name="id" value="<?=$employee_data->id?>">
        <div class="form-group">
@@ -30,6 +30,24 @@
              <input type="type" name="middle_name" class="form-control" value="<?= $employee_data->middle_name ?>" placeholder="Middle Name"/>
          </div>
        </div>
+
+       <div class="form-group">
+        <label  class="col-sm-3 control-label">Status:</label>
+        <div class="col-sm-9">
+          <select class="form-control" name="current_status">
+          <?php if($employee_data->current_status=='Active'){?>
+            <option value="<?= $employee_data->current_status?>"><?= $employee_data->current_status?></option>
+            <option value="Inactive">Inactive</option>
+          <?php } elseif($employee_data->current_status=='Inactive'){?>
+            <option value="Active">Active</option>
+            <option value="<?= $employee_data->current_status?>" selected="selected"><?= $employee_data->current_status?></option>
+          <?php }?>  
+          </select>
+        </div>
+      </div>
+
+
+
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
@@ -90,17 +108,6 @@
          <label  class="col-sm-3 control-label">Pagibig:</label>
          <div class="col-sm-9">
              <input type="text" name="pagibig" class="form-control" value="<?= $employee->pagibig ?>" placeholder="Pagibig"/>
-         </div>
-       </div>
-
-       <div class="form-group">
-         <label  class="col-sm-3 control-label">Status:</label>
-         <div class="col-sm-9">
-           <select class="form-control" name="current_status" >
-             <option value="<?= $employee_data->current_status?>">Select Status</option>
-             <option value="Current">Current</option>
-             <option value="Former">Former</option>
-           </select>
          </div>
        </div>
 
