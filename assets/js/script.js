@@ -88,7 +88,7 @@ $(document).ready(function(){
             $('html, body').animate({ scrollTop: 0  }, "slow");
             bs_notify("<strong>Successfully Added Record</strong>","success","top","right");                  
         }else{
-          alert('Error');
+            bs_notify("<strong>Unable to Add new Record</strong>","danger","top","right"); 
         }
 
       }
@@ -230,7 +230,7 @@ $(document).ready(function(){
             bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
 
         }else{
-          alert('Error');
+            bs_notify("<strong>Unable to Add New Employee Record</strong>","danger","top","right"); 
         }
 
       }
@@ -372,7 +372,7 @@ $(document).ready(function(){
             bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
 
         }else{
-          alert('Error');
+            bs_notify("<strong>Unable to Add New Intern Record</strong>","danger","top","right"); 
         }
 
       }
@@ -515,7 +515,7 @@ $(document).ready(function(){
             bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
   
           }else{
-            alert('Error');
+            bs_notify("<strong>Unable to Add New Freelance Record</strong>","danger","top","right"); 
           }
   
         }
@@ -734,9 +734,9 @@ $(function(){
 
 //Roles
 $(document).on('click','#btn-update',function(){
-
+  
   var role_name=$(this).closest('tr').find('td[data-role="role_name"]').html();
-  var position_name=$(this) .attr('data-value');
+  var position_name=$(this).attr('data-value');
   console.log(role_name);
   console.log(position_name);
   var roleId = $(this).attr('data-id');
@@ -744,17 +744,16 @@ $(document).on('click','#btn-update',function(){
   $("#roleModal").find("#btn-save").attr("data-id",roleId);
   $("#roleModal").find(".modal-title").html("Update Role");
   $("#roleModal").find("#btn-save").attr("data-function","update");     
+
   $('#position_name').val(position_name);
 
+  
 });
 
-$(document).on('click','#btn-add',function(){
-    
-        
-         $("#roleModal").find(".modal-title").html("Add Role");
+$(document).on('click','#btn-add',function(){ 
+        $("#roleModal").find(".modal-title").html("Add Role");
         $("#roleModal").find("#btn-save").attr("data-function","add");             
-            
-    
+ 
     });
     
 
@@ -762,26 +761,25 @@ $(document).on('click',"button[data-function='update']",function(){
   var roleId = $(this).attr('data-id');
   var url = base_url + "roles/edit/"+ roleId;
   var posId= $('#position_name option:selected').val();
+  var form=$('#role-form').serialize();
   console.log(posId);
       $.ajax({
           "url":url,
           "method":"POST",
-        data:{
-            'role_name':$("#role_name").val(),
-              'pos_id':$('#position_name').val()
-          },
+         data:form,
           success: function(data){
-            if(data.error){
-
-            }
-            else{
-              $(document).getRoles().done(function(data){
-                $(document).displayRoles(data);
-                });
-                $('#roleModal').modal('toggle'); 
-
-
-            }
+            var result = JSON.parse(data);
+            if(result=='success'){
+                $(document).getRoles().done(function(data){
+                    $(document).displayRoles(data);
+                    });
+                    bs_notify("<strong>Successfully Updated a Role</strong>","success","top","center");
+                    $('#roleModal').modal('toggle');   
+              }
+              else{
+                bs_notify("<strong>Role cannot be Updated</strong>","danger","top","center"); 
+                $('#roleModal').modal('toggle');    
+              }
 
           }
       });
@@ -789,26 +787,24 @@ $(document).on('click',"button[data-function='update']",function(){
 
 $(document).on('click',"button[data-function='add']",function(){
     var url = base_url + "roles/insert_role";
-    console.log(posId);
+    var form=$('#role-form').serialize();
         $.ajax({
             "url":url,
             "method":"POST",
-          data:{
-              'role_name':$("#role_name").val(),
-               'pos_id':$('#position_name').val(),
-               
-            },
+             data:form,
             success: function(data){
-              if(data.error){
-  
+                var result = JSON.parse(data);
+              if(result=='success'){
+                $(document).getRoles().done(function(data){
+                    $(document).displayRoles(data);
+                    });
+                    bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
+                    $('#roleModal').modal('toggle'); 
+    
+    
               }
               else{
-                $(document).getRoles().done(function(data){
-                  $(document).displayRoles(data);
-                  });
-                  $('#roleModal').modal('toggle'); 
-  
-  
+                bs_notify("<strong>Role Already Exist</strong>","danger","top","center");  
               }
   
             }
@@ -836,7 +832,7 @@ $.fn.displayRoles=function(items){
                   <td data-role="role_status">${item['status']==0?'Deactivated':'Activated'}</td>
                 <td>
                     <button class="btn btn-warning" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
-                    <button class="btn btn-danger" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
+                    <button class="btn btn-danger" data-pos="${item['pos_id']}" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
                   </td>
                  </tr>`);
                  $('[data-function="Activate"]').removeClass();
@@ -855,28 +851,29 @@ $.fn.displayRoles=function(items){
 $(document).on('click','#btn-status',function(){
     var url=base_url + "roles/update_status";
     var $id=$(this).attr('data-id');
-    var $status =$(this).attr('data-function');   
+    var $status =$(this).attr('data-function'); 
+    var $pos=$(this).attr('data-pos');
+    console.log($pos); 
     $.ajax({
       "url":url,
       "method":"POST",
-    data:{
-        'id':$id,
-        'status':$status
-      },
+        data:{'id':$id,
+        'status':$status,
+        'pos_id':$pos},
         success: function(data){
-                    if(data.error){
-            
-                    }
-                    else{
-                    $(document).getRoles().done(function(data){
-                        $(document).displayRoles(data);
+            console.log(data);
+            var result=JSON.parse(data);      
+            if(result=='success'){
+                $(document).getRoles().done(function(data){
+                    $(document).displayRoles(data);
                     });
-            
-            
-            
-                    }
-            
-                } 
+                    bs_notify("<strong>Successfully Updated Role</strong>","success","top","center");  
+                  
+              }
+            else{
+                bs_notify("<strong>Role cannot be Updated</strong>","danger","top","center");  
+                }
+            } 
      });
     
   });

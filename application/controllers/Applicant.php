@@ -141,28 +141,7 @@ class Applicant extends CI_Controller {
         $this->Resume_model->update('record',$insert_data,$where_applicant);
       }
       
-      
-      // else if($current_status = "current" || $current_status == "former"){
-      //   $insert_empdata = [
-
-      //        'application_status' => NULL,
-      //        'date_hired'=> clean_data($this->input->post('date_hired')),
-      //        'images'=> $this->session->image,
-      //     ];
-
-      //   $insert_employee=[
-      //         'sss' => clean_data(ucwords($this->input->post('sss'))),
-      //         'tin' => clean_data(ucwords($this->input->post('tin'))),
-      //         'philhealth' => clean_data(ucwords($this->input->post('philhealth'))),
-      //         'pagibig' => clean_data(ucwords($this->input->post('pagibig'))),
-      //         'record_id' => $last_inserted->id
-      //   ];
-      //   // $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
-      //   $where_employee = ['id'  => $last_inserted->id];
-      //   $this->Resume_model->update('record',$insert_empdata,$where_employee);
-      //   $this->Resume_model->insert('employees', $insert_employee);
-      //   // print_r($insert_data);die;
-     // }
+   
     echo json_encode('success');
        
     }
@@ -329,7 +308,7 @@ class Applicant extends CI_Controller {
           $this->load->view('index', $data);
     }
 
-     return $data; 
+     //return $data; 
 
   }
 

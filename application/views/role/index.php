@@ -5,6 +5,8 @@ $position = $this->Resume_model->fetch('position');
 
 <div class="container-fluid" id="record-table">
 <button class="btn btn-info" id="btn-add" data-toggle="modal"data-target="#roleModal">Add New Role</button>
+
+  <h5 id="alert-role"></h5>
    <center> <h2>Roles</h2></center>
   <div class="col-sm-10">
     <table class="table table-striped" id="table-role">
@@ -23,8 +25,8 @@ $position = $this->Resume_model->fetch('position');
           <td data-role="position_name"><?=$role->pos_name?></td>
           <td data-role="role_status"><?=$role->status==1?"Activated":"Deactivated"?></td>
         <td>
-            <button class="btn btn-warning" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id?>" data-toggle="modal"data-target="#roleModal">Edit</a>
-            <button class="btn btn-danger" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</a>
+            <button class="btn btn-warning" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</button>
+            <button class="btn btn-danger"  data-value="<?=$role->pos_id;?>" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</button>
           </td>
         </tr>
         <?php endforeach; ?>
@@ -44,9 +46,9 @@ $position = $this->Resume_model->fetch('position');
         </button>
       </div>
       <div class="modal-body">
-      <form class="form-inline" method="POST" id="update-role-form">
+      <form class="form-inline" method="POST" id="role-form">
           <div class="form-group">
-            <input type="text" id="role_name" class="form-control">
+            <input type="text" id="role_name" class="form-control" name="role_name">
           </div>
           <div class="form-group" id="position">
             <select class="form-control" name="pos_id" id="position_name">

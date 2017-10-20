@@ -20,7 +20,7 @@
 
     <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>"></script>
     <script src="<?php echo base_url("node_modules/datatables.net/js/jquery.dataTables.js")?>"></script>
-    <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+    <!-- <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script> -->
     <script src="<?php echo base_url("assets/js/bootstrap-notify.min.js");?>"></script>
     <script src="<?php echo base_url("assets/js/bs_notify.js");?>"></script>
         
