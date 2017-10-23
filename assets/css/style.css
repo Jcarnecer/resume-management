@@ -174,7 +174,7 @@ body {
     color: #ffffff !important; }
   .dataTables_wrapper .dataTables_paginate a.paginate_button:focus {
     outline: none; }
-  .dataTables_wrapper .dataTables_paginate a#timesheet-table_next:hover, .dataTables_wrapper .dataTables_paginate a#timesheet-table_previous:hover {
+  .dataTables_wrapper .dataTables_paginate a.next:hover, .dataTables_wrapper .dataTables_paginate a.previous:hover {
     background: none;
     border: 1px solid transparent;
     color: #15BBE8 !important;

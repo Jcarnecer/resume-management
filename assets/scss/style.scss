@@ -248,7 +248,7 @@ body {
                 }
             }
 
-            &#timesheet-table_next, &#timesheet-table_previous {
+            &.next, &.previous {
                 &:hover {
                     background: none;
                     border: 1px solid transparent;

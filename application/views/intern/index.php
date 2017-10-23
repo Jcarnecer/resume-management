@@ -1,38 +1,36 @@
 <div class="container-fluid" id="record-table">
-
-  <div class="col-sm-10">
-  <a href="<?= base_url('intern/add') ?>" id="add-button" type="button" class="btn btn-info pull-right">New Record</a>
-    <table class="table table-striped" id="intern_table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Role</th> 
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <?php 
-        if($interns== ''){ } else{
-          foreach ($interns as $intern) : ?>
-        <tr>
-          <td><img id="thumbnail" src="assets/uploads/<?= $intern->images ?>"></td>
-          <td><h4><?= $intern->first_name;?> <?= $intern->last_name;?></h4></td>  
-          <td><?=$intern->name?></td>
-          <td><?=$intern->current_status?></td>
-          <td>
-            <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $intern->id; ?>">View</button>
-            <a href="<?= base_url('intern/edit/'.$intern->id) ?>" type="button" class="btn btn-warning" data-id="<?= $intern->id;?>" >Edit</a>
-          </td>
-        </tr>
-        <?php endforeach; ?>
-    <?php }?>
-      </tbody>
-    </table>
-  </div>
-
+  <a href="<?= base_url('intern/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
+  <h3 class="title">Interns</h3>
+  <hr>
+  <table class="table table-striped" id="intern_table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Role</th> 
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <?php 
+      if($interns== ''){ } else{
+        foreach ($interns as $intern) : ?>
+      <tr>
+        <td><img id="thumbnail" src="assets/uploads/<?= $intern->images ?>"></td>
+        <td><h4><?= $intern->first_name;?> <?= $intern->last_name;?></h4></td>  
+        <td><?=$intern->name?></td>
+        <td><?=$intern->current_status?></td>
+        <td>
+          <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $intern->id; ?>">View</button>
+          <a href="<?= base_url('intern/edit/'.$intern->id) ?>" type="button" class="btn btn-warning" data-id="<?= $intern->id;?>" >Edit</a>
+        </td>
+      </tr>
+      <?php endforeach; ?>
+  <?php }?>
+    </tbody>
+  </table>
 </div>
 
 

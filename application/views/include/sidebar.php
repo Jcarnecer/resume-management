@@ -13,7 +13,7 @@
 				</a>
 			</li>
 
-			<li class="">
+			<!-- <li class="">
 				<a class="" href="#">
 					<i class="fa fa-dashboard"></i>
 					<span>Chat Module</span>
@@ -30,7 +30,7 @@
 					<li><a  href="buttons.html">Buttons</a></li>
 					<li><a  href="panels.html">Panels</a></li>
 				</ul>
-			</li>
+			</li> -->
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
