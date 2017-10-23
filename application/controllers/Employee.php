@@ -137,6 +137,7 @@ class Employee extends CI_Controller {
     public function edit_data(){
       $this->load->helper('encryption');
       $id = $_POST['id'];
+      $current_status=$_POST['current_status'];
       $update=[
         'first_name' => clean_data($this->input->post('first_name')),
         'last_name'  => clean_data($this->input->post('last_name')),
@@ -144,7 +145,7 @@ class Employee extends CI_Controller {
         'email' => clean_data($this->input->post('email_address')),
         'phone_number' => clean_data($this->input->post('phone_number')),
         'home_address' => clean_data($this->input->post('home_address')),
-        'current_status' => clean_data($this->input->post('current_status')),
+        'current_status' => clean_data($current_status),
         'birthday' => clean_data($this->input->post('birth_date')),
         'degree' => clean_data($this->input->post('degree')),
       ];
@@ -156,6 +157,6 @@ class Employee extends CI_Controller {
         'pagibig' => clean_data($this->input->post('pagibig')),
       ];
       $this->Resume_model->update('employees',$update_employees,'record_id='.$id);
-      redirect('');
+      echo json_encode('success');
     }
 }

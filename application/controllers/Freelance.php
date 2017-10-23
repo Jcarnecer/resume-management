@@ -130,7 +130,7 @@ class Freelance extends CI_Controller {
       ];
       $this->Resume_model->update('record', $update, 'id='.$id);
     
-      redirect('/freelance');
+        echo json_encode('success');
     }
 
 

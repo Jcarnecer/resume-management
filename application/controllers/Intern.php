@@ -126,8 +126,8 @@ class Intern extends CI_Controller {
 
         ];
         $result=$this->Resume_model->update('record', $update, 'id='.$id);
-        echo json_encode($result);
-        redirect('/intern');
+        echo json_encode('success');
+        
       }
 
 

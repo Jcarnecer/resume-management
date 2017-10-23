@@ -5,10 +5,6 @@ class Roles extends CI_Controller {
 
     public function index(){
     $this->load->model('Resume_model'); 
-
-        
-
-
       $data['roles'] = $this->Resume_model->get_role_position();    
       $data['title'] = "Astrid Technologies | Roles";
       $this->load->view('include/header',$data);
