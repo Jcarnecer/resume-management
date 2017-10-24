@@ -70,6 +70,7 @@ $(document).on('click','#btn-update',function(){
                 }
                 else{
                   bs_notify("<strong>Role Already Exist</strong>","danger","top","center");  
+                  $('#roleModal').modal('toggle'); 
                 }
     
               }

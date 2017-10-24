@@ -61,7 +61,7 @@ class Roles extends CI_Controller {
 
      public function insert_role(){ 
       $this->load->helper('encryption');
-      $this->form_validation->set_rules('role_name','Role Name','callback_checkrole');
+      $this->form_validation->set_rules('role_name','Role Name','callback_check_role');
       if($this->form_validation->run()==FALSE){
         echo json_encode(validation_errors());
       }
@@ -83,10 +83,12 @@ class Roles extends CI_Controller {
           'name' => clean_data(ucwords($this->input->post('role_name'))),
           'pos_id' => $this->input->post('pos_id'),
         ];
+
        $result=$this->Resume_model->count('role', $check);
        if($result>0){
         $this->form_validation->set_message('Role', 'Role Already exists.');
         return FALSE;
+        
        } 
        else{
         return TRUE;
