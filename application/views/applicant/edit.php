@@ -7,7 +7,7 @@
         echo $this->session->flashdata('email_sent');
       ?>
 
-     <form class="form-horizontal" id="add-form" enctype="multipart/form-data"  method="POST" action="<?= base_url('applicant/edit'); ?>">
+     <form class="form-horizontal" id="edit-form" enctype="multipart/form-data"  method="POST">
 
        <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
        <input type="hidden" name="position" value="<?= $applicant_data->pos_id?>">
@@ -32,6 +32,9 @@
              <input type="type" name="middle_name" class="form-control" value="<?= $applicant_data->middle_name ?>" placeholder="Middle Name"/>
          </div>
        </div>
+
+
+       
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
@@ -120,14 +123,14 @@
         <h3><b>Exam/Interview</b></h3>
       </center>
 
-       <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="<?= base_url('add_result'); ?>">
+       <form class="form-horizontal" method="POST" enctype="multipart/form-data" id="add_result">
          <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
 
         <div class="form-group">
           <label  class="col-sm-3 control-label">Exam Result:</label>
           <div class="col-sm-9">
             <select class="form-control" name="exam_result">
-              <option value="<?= $applicant_data->exam_result ?>">Select Exam Result</option>
+              <option value="<?= $applicant_data->exam_result ?>"><?=$applicant_data->exam_result==1?"Passed":"Failed"?></option>
               <option value="1">Passed</option>
               <option value="0">Failed</option>
             </select>
@@ -172,9 +175,7 @@
             <input type="submit" value="Submit" class="btn btn-primary" />
           </div>
         </div>
-
-      </form>
-
+    </form>
     </div>
 </body>
 </html>

@@ -4,34 +4,36 @@ $position = $this->Resume_model->fetch('position');
 ?>
 
 <div class="container-fluid" id="record-table">
-    <h2>Roles</h2>
-  <div class="col-sm-10">
-    <table class="table table-striped" id="table-role">
+<button class="btn custom-button float-right" id="btn-add" data-toggle="modal"data-target="#roleModal">Add New Role</button>
+
+  <h5 id="alert-role"></h5>
+  <h3 class="title">Roles</h3>
+  <hr>
+  <!-- <div class="col-md-12"> -->
+    <table class="table table-bordered table-responsive-xl" id="table-role">
       <thead>
         <tr>
           <th>Name</th>
           <th>Position</th>
           <th>Status</th>
-          <th>Actions</th>
+          <th>Actions</th>  
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody-role">
         <?php foreach ($roles as $role) : ?>
         <tr data-role="role_id" class="<?=$role->role_id?>">
           <td data-role="role_name"><?= $role->name?></td>
           <td data-role="position_name"><?=$role->pos_name?></td>
-          <td data-role="role_status"><?=$role->status=1?"Activated":"Deactivated"?></td>
-
+          <td data-role="role_status"><?=$role->status==1?"Activated":"Deactivated"?></td>
         <td>
-            <button class="btn btn-warning" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id?>" data-toggle="modal"data-target="#roleModal">Edit</a>
-            <button class="btn btn-danger" data-id="<?= $role->role_id;?>" >Deactivate</a>
+            <button class="btn custom-button" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</button>
+            <button class="btn btn-secondary" data-value="<?=$role->pos_id;?>" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</button>
           </td>
         </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
-  </div>
-
+  <!-- </div> -->
 </div>
 
 
@@ -39,28 +41,28 @@ $position = $this->Resume_model->fetch('position');
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Update Role</h3>
+        <h3 class="modal-title" id="exampleModalLabel"></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <form class="form-inline" method="POST" id="update-role-form">
-          <div class="form-group">
-            <input type="text" id="role_name" class="form-control">
-          </div>
-          <div class="form-group" id="position">
-            <select class="form-control" name="pos_id" id="position_name">
-              <?php foreach($position as $row):?>
-                <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-        </form>
+        <form class="form-inline" method="POST" id="role-form">
+            <div class="form-group">
+              <input type="text" id="role_name" class="form-control" name="role_name">
+            </div>
+            <div class="form-group" id="position">
+              <select class="form-control" name="pos_id" id="position_name">
+                <?php foreach($position as $row):?>
+                  <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="updateRole" data-id="">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn custom-button" id="btn-save" data-id="" data-function="">Save</button>
+        </form>
       </div>
     </div>
   </div>

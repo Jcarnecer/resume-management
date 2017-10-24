@@ -50,7 +50,7 @@ class Resume_model extends CI_Model {
     else{
       $result=$this->db->get_where($table,$data);
     }
-       return $result->num_rows();
+       return $result->num_rows();  
 
   }
 
@@ -129,8 +129,8 @@ class Resume_model extends CI_Model {
   }
 
 
-  public function get_position(){
-    $this->db->select('role.role_id,role.name,position.name as pos_name,role.status,position.id as pos_id   ');
+  public function get_role_position(){
+    $this->db->select('role.role_id,role.name,position.name as pos_name,role.status,position.id as pos_id');
     $this->db->from('role');
     $this->db->join('position', 'role.pos_id = position.id','inner'); 
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
@@ -148,6 +148,8 @@ class Resume_model extends CI_Model {
       return $query->row();
   }
 
+  
+
   public function join_employee_record($where){
     $this->db->select('employees.*,record.*');
     $this->db->from('record');
@@ -156,9 +158,30 @@ class Resume_model extends CI_Model {
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
     return $query->row();
-}
-	
+    }
 
+    
+  public function show_record($where){
+        $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,record.current_status');
+        $this->db->from('record');
+        $this->db->where($where);
+        $this->db->join('role','record.role_id = role.role_id','inner'); 
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function show_applicant_record($where){
+      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file');
+      $this->db->from('record');
+      $this->db->where($where);
+      $this->db->join('role', 'record.role_id = role.role_id','inner');
+      $this->db->join('position', 'record.pos_id = position.id','inner');  
+
+      $query = $this->db->get();
+      return $query->result();
+    }
+  
+  
   public function last_inserted_row($table,$data){
     $this->db->insert($table, $data);
     $last_id = $this->db->insert_id();

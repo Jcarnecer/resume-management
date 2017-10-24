@@ -21,20 +21,20 @@ function toggle(){
   });
 }
 
-document.getElementsByClassName('custom-toggle')[0].click();
+// document.getElementsByClassName('custom-toggle')[0].click();
 
-$(document).ready(function(){
+//$(document).ready(function(){
 
 
-  $("div.tab-menu>div.list-group>a").click(function(e){
-    e.preventDefault();
-    $(this).siblings('a.active').removeClass("active");
-    $(this).addClass("active");
-    var index = $(this).index();
-    $("div.tab>div.tab-content").removeClass("active");
-    $("div.tab>div.tab-content").eq(index).addClass("active");
-  });
-});
+  //$("div.tab-menu>div.list-group>a").click(function(e){
+   // e.preventDefault();
+   // $(this).siblings('a.active').removeClass("active");
+   // $(this).addClass("active");
+   // var index = $(this).index();
+    //$("div.tab>div.tab-content").removeClass("active");
+    //$("div.tab>div.tab-content").eq(index).addClass("active");
+ // });
+//});
 
 
 $(document).ready(function(){
@@ -52,241 +52,72 @@ $(document).ready(function(){
     });
 });
 
-
-
-
 //add new record
-$(document).ready(function(){
-  $("#add-record-form").on('submit',function(e){
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    var form = new FormData(document.getElementById("add-record-form"));
-    var link = base_url + 'applicant';
-    $.ajax({
-      url: base_url + 'applicant/addRecord',
-      type: "POST",
-      processData: false, // tell jQuery not to process the data
-      contentType: false, // tell jQuery not to set contentType
-      data:form,
-      success: function(data){
-        console.log(data);
-        var result = JSON.parse(data);
-        if(result==='success'){
-          location.href = link;
-        }else{
-          alert('Error');
+
+//
+
+//add new employee
+
+//
+
+//add Intern
+
+//
+//Add freelance
+
+//
+  $(document).ready(function(){
+   $("#pos-id").on('change', function(){
+      var posid = $("#pos-id").val();
+     $.ajax({
+        url: base_url + "applicant/get_pos_role/" +posid,
+        type: "POST",
+        data: $("#pos-id").serialize(),//for now
+        success: function(data){
+          // alert("Hello");
+          var result = JSON.parse(data);
+          var html = "",roles;
+          for(var i = 0; i < result.length; i++) {
+            roles = result[i];
+            html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
+            // console.log(roles.id);
+          }
+          $("#role").html(html);
+          // alert(posid);
+          if(posid == 1){
+           $("#emp_form").show();
+          }else{
+           $("#emp_form").hide();
+          }
         }
+      });
+    });
+    $("#current_status").on('change',function() {
+      var c_status = $("#current_status").val();
+      var posid = $("#pos-id").val();
+      if(c_status == 'applicant' && posid == 1){
+        $("#applicant_div").show();
+        $("#emp_form").hide();
+        $("#resume").show();
+     }
+      else if (posid == 2 && c_status == 'applicant' ) {
+               $("#emp_form").hide();
+       $("#resume").show();
+      }
+      else if(posid == 2){
+        $("#emp_form").hide();
+        $("#resume").hide();
+     }
+     else{
+              $("#applicant_div").hide();
+        $("#emp_form").show();
+       $("#resume").hide();
 
       }
     })
-    e.preventDefault();
-  })
-})
-
-$(document).ready(function() {
-    $('#add-record-form').bootstrapValidator({
-    //    container: '#container',
-        fields: {
-            last_name: {
-                validators: {
-                    notEmpty: {
-                        message: 'The Last name is required and cannot be empty'
-                      },
-                      regexp: {
-                       regexp: /^[a-zA-Z\s]+$/,
-                       message: 'The First name can only consist of letters'
-                     },
-                 }
-             },
-
-            first_name: {
-                validators: {
-                    notEmpty: {
-                        message: 'The First name is required and cannot be empty'
-                      },
-                      regexp: {
-                       regexp: /^[a-zA-Z\s]+$/,
-                       message: 'The First name can only consist of letters'
-                    },
-                }
-            },
-
-            middle_name: {
-                validators: {
-                    notEmpty: {
-                        message: 'The Middle name is required and cannot be empty'
-                      },
-                      regexp: {
-                       regexp: /^[a-zA-Z\s]+$/,
-                       message: 'The Middle name can only consist of letters'
-                    },
-                }
-            },
-
-            email_add: {
-                validators: {
-                    notEmpty: {
-                        message: 'The Email Address is required and cannot be empty'
-                    },
-                }
-            },
-
-            phone_number: {
-                validators: {
-                    notEmpty: {
-                        message: 'The phone number is required and cannot be empty'
-                      },
-                      regexp: {
-                       regexp: /^[-+]?[0-9]+$/,
-                       message: 'Phone number can only consist of numbers'
-                    },
-                }
-            },
-        }
-    });
-});
-
-
-
-$(document).ready(function(){
-  $("#pos-id").on('change', function(){
-    var posid = $("#pos-id").val();
-    $.ajax({
-      url: base_url + "applicant/get_pos_role/" +posid,
-      type: "POST",
-      data: $("#pos-id").serialize(),//for now
-      success: function(data){
-        // alert("Hello");
-        var result = JSON.parse(data);
-        var html = "",roles;
-        for(var i = 0; i < result.length; i++) {
-          roles = result[i];
-
-          html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
-          // console.log(roles.id);
-        }
-        $("#role").html(html);
-        // alert(posid);
-        if(posid == 1){
-          $("#emp_form").show();
-        }else{
-          $("#emp_form").hide();
-        }
-      }
-    });
   });
-  $("#current_status").on('change',function() {
-    var c_status = $("#current_status").val();
-    var posid = $("#pos-id").val();
-    if(c_status == 'applicant' && posid == 1){
-      $("#applicant_div").show();
-      $("#emp_form").hide();
-      $("#resume").show();
-    }
-    else if (posid == 2 && c_status == 'applicant' ) {
-      $("#emp_form").hide();
-      $("#resume").show();
-    }
-    else if(posid == 2){
-      $("#emp_form").hide();
-      $("#resume").hide();
-    }
-    else{
-      $("#applicant_div").hide();
-      $("#emp_form").show();
-      $("#resume").hide();
-
-    }
-  })
-});
 
 // const baseUrl = "http://localhost/resume-management/";
-
-$(function() {
-  $("#add-role-form").on('submit', function(e){
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    $.ajax({
-      url: base_url + "insert_role",
-      type: 'POST',
-      data: $('#add-role-form').serialize(),
-      dataType: 'json',
-      success: function(data){
-      var $tab = null;
-         if(data['pos_id']=='1'){
-          $tab = $('#employee_tab');
-         }
-         else if(data['pos_id']=='2'){
-          $tab = $('#intern_tab');
-         }
-         console.log(data);
-
-         $tab.append(`<div class="panel">
-             <form method="get" action="${baseUrl}delete_role">
-               <input type="hidden" name="id" value="${data['id']}">
-               <input type="submit" Value="Delete" class="btn btn-danger pull-right">
-             </form>
-             <div class="panel-heading">${data['name']}<hr></div>
-             <div class="panel-body">
-               <div class="row grid-divider">
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=applicant">
-                       <div>${data['applicants']}<br>Applicants</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=interview">
-                       <div>${data['for_interview']}<br>For Interview</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                       <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=shortlist">
-                       <div>${data['shortlist']}<br>Shortlist</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${baseUrl}applicants?role=' . $role->role_id .'&current_status=archived">
-                       <div>${data['archived']}<br>Rejected</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                       <a href="${baseUrl}employee?current_status=current&role=' . $role->role_id .'&position=2'">
-                       <div>${data['current']}<br>Current</div>
-                     </a>
-                   </div>
-                 </div>
-
-                 <div class="col-sm-2">
-                   <div class="col-padding">
-                     <a href="${baseUrl}employee?current_status=former&role=' . $role->role_id .'&position=2'">
-                       <div>${data['former']}<br>Former</div>
-                     </a>
-                   </div>
-                 </div>
-
-               </div>
-             </div>
-           </div>`);
-
-      }
-    });
-  });
-});
-
 
 //View Record's Information
 $(function(){
@@ -348,41 +179,30 @@ $(function(){
 
 });
 
+//Roles
 
-$(document).on('click','#btn-update',function(){
-  
-  var role_name=$(this).closest('tr').find('td[data-role="role_name"]').html();
-  var position_name=$(this) .attr('data-value');
-  console.log(role_name);
-  console.log(position_name);
-  var roleId = $(this).attr('data-id'); 
-  $('#role_name').val(role_name); 
-  $("#roleModal").find("#updateRole").attr("data-id",roleId);
-  $('#position_name').val(position_name); 
 
+//Datatables
+$(document).ready(function(){
+  $('#table-role').DataTable();
+  $('#applicant_table').DataTable();
+  $('#intern_table').DataTable();
+  $('#employee_table').DataTable();
+  $('#freelance_table').DataTable();
 });
 
 
 
-$(document).on('click','#updateRole',function(){
-  var roleId = $(this).attr('data-id');
-  var url = base_url + "roles/edit/"+ roleId;
-  var posId= $('#position_name option:selected').val();
-  console.log(posId);
-  $.ajax({
-      "url":url,
-      "method":"POST",
-     data:{
-         'role_name':$("#role_name").val(),
-          'pos_id':$('#position_name').val()
-      },
-      success: function(data){
-        if(data.error){
-          console.log(1);
-        }
-        else{location.reload();}
-        
-      }
-  });
-});
+
+
+//Edit Employee
+ 
+  //Edit Freelance
+ 
+
+
+
+
+
+
 

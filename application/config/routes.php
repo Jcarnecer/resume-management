@@ -51,17 +51,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //Applicant
 $route['applicant']['GET'] = 'Applicant';
-$route['applicants'] = 'Applicant/applicants';
-
+$route['applicant'] = 'Applicant/index';
 $route['applicant/new']['GET'] = 'Applicant/new';
 
 $route['applicant/edit_view/(:num)']['GET'] = 'Applicant/edit_view/$1';
 $route['applicant/edit']['POST'] = 'Applicant/edit';
-
 $route['applicant/(:num)']['GET'] = 'Applicant/view/$1';
-
 $route['insert_role']['POST'] = 'Applicant/insert_role';
-$route['applicant/add'] = 'Applicant/add_applicant';
+$route['applicants/add'] = 'Applicant/add_applicant';
  
 $route['add_result']['POST'] = 'Applicant/add_result';
 
@@ -69,14 +66,24 @@ $route['add_result']['POST'] = 'Applicant/add_result';
 $route['employee']['GET'] = 'Employee/index';
 $route['employee/edit/(:num)']['GET'] = 'Employee/edit/$1';
 $route['employee/edit']['POST'] = 'Employee/edit_data';
+$route['employee/add'] = 'employee/add_employee';
 
 //Intern
 $route['intern']['GET'] = 'Intern/index';
+$route['intern/add'] = 'intern/add_intern';
+$route['intern/edit/(:num)']['GET'] = 'Intern/edit/$1';
+$route['intern/edit']['POST'] = 'Intern/edit_data';
+//Freelancers
+$route['freelance']['GET'] = 'Freelance/index';
+$route['freelance/add'] = 'freelance/add_freelance';
+$route['freelance/edit/(:num)']['GET'] = 'Freelance/edit/$1';
+$route['freelance/edit']['POST'] = 'freelance/edit_data';
 
-//Delete Role
+//role
+$route['roles/add']['POST']='roles/insert_role';
 $route['delete_role'] = 'Applicant/delete_role';
 
 
-$route['default_controller'] = "Applicant";
+$route['default_controller'] = "Home";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

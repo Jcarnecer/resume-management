@@ -20,18 +20,6 @@
              </div>
           </div>
 
-          <div id="status" class="form-group">
-            <label class="col-sm-3 control-label">Current Status:</label>
-            <div class="col-sm-9">
-                <select name="current_status" id="current_status" class="form-control">
-                  <option value="disabled selected">Select Status</option>
-                  <!-- <option value="applicant">Applicant</option> -->
-                  <option value="applicant">Applicant</option>
-                  <option value="current">Current</option>
-                  <option value="former">Former</option>
-                </select>
-            </div>
-          </div>
 
          <div class="form-group">
            <label  class="col-sm-3 control-label">Role:</label>
@@ -110,7 +98,7 @@
          </div>
 
          <!--bawal to sa current pero pweds siya applicant -->
-         <div id= "applicant_div" hidden>
+     
 
          <div id="application_date" class="form-group" >
            <label  class="col-sm-3 control-label">Application Date:</label>
@@ -135,11 +123,11 @@
                <input type="text" name="expected_salary" class="form-control" placeholder="Expected Salary"/>
            </div>
          </div>
-       </div>
+       
 
          <!-- Ito yung pang employee na part :)  -->
 
-         <div style='display:none;' id='emp_form' hidden>
+         <!-- <div style='display:none;' id='emp_form' hidden>
            <div class="form-group"><br>
              <label  class="col-sm-3 control-label">Date Hired:</label>
              <div class="col-sm-9">
@@ -175,9 +163,10 @@
              </div>
            </div>
 
-         </div>
-<!--Hanggang Dito pang employee yan -->
-         <div class="form-group">
+         </div> -->
+        <!--Hanggang Dito pang employee yan -->
+         
+          <div class="form-group">
            <label class="col-sm-3 control-label">Comment:</label>
            <div class="col-sm-9">
              <textarea class="form-control" name="comment"></textarea>
@@ -185,19 +174,19 @@
          </div>
 
          <!--Bawal siya sa current -->
-         <div id="resume" class="form-group " hidden>
+         <div  class="form-group " >
            <label class="col-sm-3 control-label">Resume:</label>
            <div class="col-sm-9">
              <input type="file" name="resume_file">
            </div>
          </div>
 
-         <div class="form-group">
+         <!-- <div class="form-group">
            <label class="col-sm-3 control-label">Image:</label>
            <div class="col-sm-9">
              <input type="file" name="image_file">
            </div>
-         </div>
+         </div> -->
 
          <div class="form-group">
            <div class="col-sm-9 col-sm-offset-3">

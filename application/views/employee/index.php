@@ -1,29 +1,35 @@
 <div class="container-fluid" id="record-table">
-  <div class="col-sm-10">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($employees as $employee) : ?>
-        <tr>
-          <td><img id="thumbnail" src="assets/uploads/<?= $employee->images ?>"></td>
-          <td><h4><?= $employee->first_name;?> <?= $employee->last_name;?></h4></td>
-
-          <td>
-            <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $employee->id; ?>">View</button>
-            <a href="<?= base_url('employee/edit/'.$employee->id) ?>" type="button" class="btn btn-warning" data-id="<?= $employee->id;?>" >Edit</a>
-          </td>
-        </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
-</center>
+  <a href="<?= base_url('employee/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
+  <h3 class="title">Employees</h3>
+  <hr>
+  <table class="table table-bordered table-responsive-xl" id='employee_table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php 
+        if($employees== ''){ } else{
+        foreach ($employees as $employee) : ?>
+      <tr>
+        <td><img id="thumbnail" src="assets/uploads/<?= $employee->images ?>"></td>
+        <td><?= $employee->first_name;?> <?= $employee->last_name;?></td>
+        <td><?=$employee->name?></td>
+        <td><?=$employee->current_status?></td>
+        <td>
+          <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $employee->id; ?>">View</button>
+          <a href="<?= base_url('employee/edit/'.$employee->id) ?>" type="button" class="btn btn-warning" data-id="<?= $employee->id;?>" >Edit</a>
+        </td>
+      </tr>
+      <?php endforeach; ?>
+        <?php }?>
+    </tbody>
+  </table>
 </div>
 
 
@@ -37,7 +43,7 @@
     </div>
 
     <div class="modal-body">
-    <table class="table table-bordered table-responsive">
+    <table class="table table-bordered table-responsive-xl">
 <thead>
 
 </thead>
@@ -175,11 +181,3 @@
   </div>
 </div>
 </div>
-
-
-</body>
-</html>
-
-<script>
-
-</script>
