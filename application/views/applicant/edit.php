@@ -34,7 +34,26 @@
        </div>
 
 
-       
+       <div class="form-group">
+        <label  class="col-sm-3 control-label">Status:</label>
+        <div class="col-sm-9">
+          <select class="form-control" name="pos_id">
+          <?php if($applicant_data->pos_id=='1'){?>
+            <option value=1 selected="selected">Employee</option>
+            <option value=2>Intern</option>
+            <option value=3>Freelance</option>
+          <?php } elseif($applicant_data->pos_id=='2'){?>
+            <option value="1">Employee</option>
+            <option value="2" selected="selected">Intern</option>
+            <option value="3">Freelance</option>
+          <?php } elseif($applicant_data->pos_id=='3'){?>
+            <option value="1">Employee</option>
+            <option value="2">Intern</option>
+            <option value="3" selected="selected">Freelance</option>  
+            <?php }?>
+          </select>
+        </div>
+      </div>
 
        <div class="form-group">
          <label  class="col-sm-3 control-label">Email Address:</label>
@@ -130,9 +149,17 @@
           <label  class="col-sm-3 control-label">Exam Result:</label>
           <div class="col-sm-9">
             <select class="form-control" name="exam_result">
-              <option value="<?= $applicant_data->exam_result ?>"><?=$applicant_data->exam_result==1?"Passed":"Failed"?></option>
-              <option value="1">Passed</option>
-              <option value="0">Failed</option>
+          <?php if($applicant_data->exam_result=='Passed'){?>
+            <option value="<?= $applicant_data->exam_result?>"><?=$applicant_data->exam_result?></option>
+            <option value="Failed">Failed</option>
+          <?php } elseif($applicant_data->exam_result=='Failed'){?>
+            <option value="Passed">Passed</option>
+            <option value="<?= $applicant_data->exam_result?>" selected="selected"><?= $applicant_data->exam_result?></option>
+          <?php }else {?>
+            <option value="" selected="selected">Select Exam Result</option>  
+            <option value="Passed">Passed</option>
+            <option value="Failed">Failed</option>
+          <?php }?>
             </select>
           </div>
         </div>

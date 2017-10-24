@@ -206,7 +206,7 @@ class Applicant extends CI_Controller {
     $status = $_POST['status'];
     $id = $_POST['id'];
     $to_email = $_POST['email_address'];
-
+    $pos_id=$_POST['pos_id'];
     $update=[
       'first_name' => clean_data($this->input->post('first_name')),
       'last_name' => clean_data($this->input->post('last_name')),
@@ -220,6 +220,7 @@ class Applicant extends CI_Controller {
       'comment' =>  clean_data($this->input->post('comment')),
       'current_status' => $status,
       'date_hired' => $date_now,
+      'pos_id'=>$pos_id
     ];
     $this->Resume_model->update('record', $update, 'id='.$id);
 
