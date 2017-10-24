@@ -10,7 +10,7 @@ $position = $this->Resume_model->fetch('position');
   <h3 class="title">Roles</h3>
   <hr>
   <!-- <div class="col-md-12"> -->
-    <table class="table table-bordered table-responsive" id="table-role">
+    <table class="table table-bordered table-responsive-xl" id="table-role">
       <thead>
         <tr>
           <th>Name</th>

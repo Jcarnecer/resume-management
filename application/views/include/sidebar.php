@@ -13,14 +13,14 @@
 				</a>
 			</li>
 
-			<!-- <li class="">
-				<a class="" href="#">
+			<li class="">
+				<a class="" href="<?= base_url('roles')?>">
 					<i class="fa fa-dashboard"></i>
-					<span>Chat Module</span>
+					<span>Roles</span>
 				</a>
 			</li>
 
-			<li class="sub-menu">
+			<!-- <li class="sub-menu">
 				<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 					<i class="fa fa-desktop"></i>
 					<span>UI Elements</span>

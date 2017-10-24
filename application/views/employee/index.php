@@ -2,7 +2,7 @@
   <a href="<?= base_url('employee/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
   <h3 class="title">Employees</h3>
   <hr>
-  <table class="table table-striped" id='employee_table'>
+  <table class="table table-bordered table-responsive-xl" id='employee_table'>
     <thead>
       <tr>
         <th></th>
@@ -18,7 +18,7 @@
         foreach ($employees as $employee) : ?>
       <tr>
         <td><img id="thumbnail" src="assets/uploads/<?= $employee->images ?>"></td>
-        <td><h4><?= $employee->first_name;?> <?= $employee->last_name;?></h4></td>
+        <td><?= $employee->first_name;?> <?= $employee->last_name;?></td>
         <td><?=$employee->name?></td>
         <td><?=$employee->current_status?></td>
         <td>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="modal-body">
-    <table class="table table-bordered table-responsive">
+    <table class="table table-bordered table-responsive-xl">
 <thead>
 
 </thead>

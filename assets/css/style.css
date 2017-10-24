@@ -184,12 +184,3 @@ body {
   background-color: #15BBE8;
   color: #ffffff;
   width: auto; }
-
-#DateTime {
-  display: block;
-  text-align: center; }
-  #DateTime .time {
-    font-size: 3em;
-    font-weight: bold; }
-  #DateTime .date {
-    font-size: 1.5em; }

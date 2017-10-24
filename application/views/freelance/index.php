@@ -2,7 +2,7 @@
   <a href="<?= base_url('freelance/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
   <h3 class="title">Freelancers</h3>
   <hr>
-  <table class="table table-striped" id="freelance_table">
+  <table class="table table-bordered table-responsive-xl" id="freelance_table">
     <thead>
       <tr>
         <th></th>
@@ -19,7 +19,7 @@
         foreach ($freelance as $freelance) : ?>
       <tr>
         <td><img id="thumbnail" src="assets/uploads/<?= $freelance->images ?>"></td>
-        <td><h4><?= $freelance->first_name;?> <?= $freelance->last_name;?></h4></td>  
+        <td><?= $freelance->first_name;?> <?= $freelance->last_name;?></td>  
         <td><?=$freelance->name?></td>
         <td><?=$freelance->current_status?></td>
         <td>

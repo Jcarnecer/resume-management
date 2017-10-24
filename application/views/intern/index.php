@@ -2,7 +2,7 @@
   <a href="<?= base_url('intern/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
   <h3 class="title">Interns</h3>
   <hr>
-  <table class="table table-striped" id="intern_table">
+  <table class="table table-bordered table-responsive-xl" id="intern_table">
     <thead>
       <tr>
         <th></th>
@@ -19,7 +19,7 @@
         foreach ($interns as $intern) : ?>
       <tr>
         <td><img id="thumbnail" src="assets/uploads/<?= $intern->images ?>"></td>
-        <td><h4><?= $intern->first_name;?> <?= $intern->last_name;?></h4></td>  
+        <td><?= $intern->first_name;?> <?= $intern->last_name;?></td>  
         <td><?=$intern->name?></td>
         <td><?=$intern->current_status?></td>
         <td>
@@ -78,10 +78,3 @@
   </div>
 </div>
 </div>
-
-</body>
-</html>
-
-<script>
-
-</script>

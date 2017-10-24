@@ -2,10 +2,9 @@
   <a href="<?= base_url('applicants/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
   <h3 class="title">Applicants</h3>
   <hr>
-  <table class="table table-striped" id="applicant_table">
+  <table class="table table-bordered table-responsive-xl" id="applicant_table">
     <thead>
       <tr>
-        <!-- <th></th> -->
         <th>Name</th>
         <th>Position</th>
         <th>Role</th>
@@ -19,7 +18,7 @@
       foreach ($applicants as $applicant) : ?>
       <tr>
         <!-- <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td> -->
-        <td><h4><?= $applicant->first_name;?> <?= $applicant->last_name;?></h4></td>
+        <td><?= $applicant->first_name;?> <?= $applicant->last_name;?></td>
         <td><?= $applicant->pos_name?></td>
         <td><?= $applicant->name?></td>
         <td><?= $applicant->current_status?></td>
@@ -48,7 +47,7 @@
 
       <div class="modal-body">
         <div class="modal-body">
-          <table class="table table-bordered table-responsive">
+          <table class="table table-bordered table-responsive-xl">
             <thead> </thead>
               <tbody>
               <tr>
