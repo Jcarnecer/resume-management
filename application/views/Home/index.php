@@ -6,7 +6,7 @@
 </div> -->
 
   <div class="row align-items-center">
-  <a href="<?= base_url('roles')?>" class="btn btn-info" id="Roles"> View Roles</a>
+  <!-- <a href="<?= base_url('roles')?>" class="btn custom-button" id="Roles"> View Roles</a> -->
     <div class="col-md-6 tab-menu">
       <div class="list-group">
         <a href="<?= base_url('employee')?>" class="list-group-item active" id="employee">Employees <br><?= $this->Resume_model->count('record', ['pos_id'=> 1,'current_status'=>'Active']);?></a>

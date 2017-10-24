@@ -1,37 +1,36 @@
 <div class="container-fluid" id="record-table">
-
-  <div class="col-sm-10">
-  <a href="<?= base_url('freelance/add') ?>" id="add-button" type="button" class="btn btn-info pull-right">New Record</a>
-    <table class="table table-striped" id="freelance_table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Role</th> 
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <?php 
-        if($freelance== ''){ } else{
-          foreach ($freelance as $freelance) : ?>
-        <tr>
-          <td><img id="thumbnail" src="assets/uploads/<?= $freelance->images ?>"></td>
-          <td><h4><?= $freelance->first_name;?> <?= $freelance->last_name;?></h4></td>  
-          <td><?=$freelance->name?></td>
-          <td><?=$freelance->current_status?></td>
-          <td>
-            <button type="button" class="btn btn-info" data-name="button-view" data-id="<?=$freelance->id; ?>">View</button>
-            <a href="<?= base_url('freelance/edit/'.$freelance->id) ?>" type="button" class="btn btn-warning" data-id="<?= $freelance->id;?>" >Edit</a>
-          </td>
-        </tr>
-        <?php endforeach; ?>
-    <?php }?>
-      </tbody>
-    </table>
-  </div>
+  <a href="<?= base_url('freelance/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
+  <h3 class="title">Freelancers</h3>
+  <hr>
+  <table class="table table-bordered table-responsive-xl" id="freelance_table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Role</th> 
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <?php 
+      if($freelance== ''){ } else{
+        foreach ($freelance as $freelance) : ?>
+      <tr>
+        <td><img id="thumbnail" src="assets/uploads/<?= $freelance->images ?>"></td>
+        <td><?= $freelance->first_name;?> <?= $freelance->last_name;?></td>  
+        <td><?=$freelance->name?></td>
+        <td><?=$freelance->current_status?></td>
+        <td>
+          <button type="button" class="btn btn-info" data-name="button-view" data-id="<?=$freelance->id; ?>">View</button>
+          <a href="<?= base_url('freelance/edit/'.$freelance->id) ?>" type="button" class="btn btn-warning" data-id="<?= $freelance->id;?>" >Edit</a>
+        </td>
+      </tr>
+      <?php endforeach; ?>
+  <?php }?>
+    </tbody>
+  </table>
 
 </div>
 
@@ -80,10 +79,3 @@
   </div>
 </div>
 </div>
-
-</body>
-</html>
-
-<script>
-
-</script>

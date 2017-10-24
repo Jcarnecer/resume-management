@@ -14,13 +14,13 @@
 			</li>
 
 			<li class="">
-				<a class="" href="#">
+				<a class="" href="<?= base_url('roles')?>">
 					<i class="fa fa-dashboard"></i>
-					<span>Chat Module</span>
+					<span>Roles</span>
 				</a>
 			</li>
 
-			<li class="sub-menu">
+			<!-- <li class="sub-menu">
 				<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 					<i class="fa fa-desktop"></i>
 					<span>UI Elements</span>
@@ -30,7 +30,7 @@
 					<li><a  href="buttons.html">Buttons</a></li>
 					<li><a  href="panels.html">Panels</a></li>
 				</ul>
-			</li>
+			</li> -->
 		</ul>
 		<!-- sidebar menu end-->
 	</div>

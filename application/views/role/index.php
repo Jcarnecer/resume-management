@@ -4,12 +4,13 @@ $position = $this->Resume_model->fetch('position');
 ?>
 
 <div class="container-fluid" id="record-table">
-<button class="btn btn-info" id="btn-add" data-toggle="modal"data-target="#roleModal">Add New Role</button>
+<button class="btn custom-button float-right" id="btn-add" data-toggle="modal"data-target="#roleModal">Add New Role</button>
 
   <h5 id="alert-role"></h5>
-   <center> <h2>Roles</h2></center>
-  <div class="col-sm-10">
-    <table class="table table-striped" id="table-role">
+  <h3 class="title">Roles</h3>
+  <hr>
+  <!-- <div class="col-md-12"> -->
+    <table class="table table-bordered table-responsive-xl" id="table-role">
       <thead>
         <tr>
           <th>Name</th>
@@ -25,14 +26,14 @@ $position = $this->Resume_model->fetch('position');
           <td data-role="position_name"><?=$role->pos_name?></td>
           <td data-role="role_status"><?=$role->status==1?"Activated":"Deactivated"?></td>
         <td>
-            <button class="btn btn-warning" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</button>
-            <button class="btn btn-danger"  data-value="<?=$role->pos_id;?>" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</button>
+            <button class="btn custom-button" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</button>
+            <button class="btn btn-secondary" data-value="<?=$role->pos_id;?>" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</button>
           </td>
         </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
-  </div>
+  <!-- </div> -->
 </div>
 
 
@@ -46,22 +47,22 @@ $position = $this->Resume_model->fetch('position');
         </button>
       </div>
       <div class="modal-body">
-      <form class="form-inline" method="POST" id="role-form">
-          <div class="form-group">
-            <input type="text" id="role_name" class="form-control" name="role_name">
-          </div>
-          <div class="form-group" id="position">
-            <select class="form-control" name="pos_id" id="position_name">
-              <?php foreach($position as $row):?>
-                <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-        </form>
+        <form class="form-inline" method="POST" id="role-form">
+            <div class="form-group">
+              <input type="text" id="role_name" class="form-control" name="role_name">
+            </div>
+            <div class="form-group" id="position">
+              <select class="form-control" name="pos_id" id="position_name">
+                <?php foreach($position as $row):?>
+                  <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btn-save" data-id="" data-function="">Submit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn custom-button" id="btn-save" data-id="" data-function="">Save</button>
+        </form>
       </div>
     </div>
   </div>

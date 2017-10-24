@@ -248,7 +248,7 @@ body {
                 }
             }
 
-            &#timesheet-table_next, &#timesheet-table_previous {
+            &.next, &.previous {
                 &:hover {
                     background: none;
                     border: 1px solid transparent;
@@ -266,19 +266,6 @@ body {
         background-color: $secondary-color;
         color: $white;
         width: auto;
-    }
-}
-
-#DateTime {
-    display: block;
-    text-align: center;
-    .time {
-        font-size: 3em;
-        font-weight: bold;
-    }
-    
-    .date {
-        font-size: 1.5em;
     }
 }
 
