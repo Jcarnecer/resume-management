@@ -175,9 +175,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById('add_result'));
-      var link = base_url + 'applicant';
+      var link = 'applicant';
       $.ajax({
-        url: base_url + 'applicant/add_result',
+        url: 'applicant/add_result',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -198,3 +198,34 @@ $(document).ready(function(){
       e.preventDefault();  
     });
   });
+
+
+
+$(document).ready(function(){
+    $("#pos-id").on('change', function(){
+      var posid = $("#pos-id").val();
+      $.ajax({
+        url:"applicant/get_pos_role/" +posid,
+        type: "POST",
+        data: $("#pos-id").serialize(),//for now
+        success: function(data){
+          // alert("Hello");
+          var result = JSON.parse(data);
+          var html = "",roles;
+          for(var i = 0; i < result.length; i++) {
+            roles = result[i];
+  
+            html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
+            // console.log(roles.id);
+          }
+          $("#role").html(html);
+          // alert(posid);
+          if(posid == 1){
+            $("#emp_form").show();
+          }else{
+            $("#emp_form").hide();
+          }
+        }
+      });
+    });
+  
