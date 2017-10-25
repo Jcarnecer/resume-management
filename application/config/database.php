@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	
+	'dsn'   => '',
 	'hostname' =>'us-cdbr-iron-east-05.cleardb.net',
 	'username' => 'b1d5f8a10f4b0f',
 	'password' => '3cb2c655',
