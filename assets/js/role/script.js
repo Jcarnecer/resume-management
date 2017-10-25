@@ -144,5 +144,7 @@ $(document).on('click','#btn-update',function(){
       
     });
 
-  
+    $(document).getRoles().done(function(data){
+        $(document).displayRoles(data);
+        });
 
