@@ -42,7 +42,7 @@
 					<span></span>
 					<span></span>
 				</div>
-				<a class="navbar-brand mr-auto" href="#">Navbar</a>
+				<a class="navbar-brand mr-auto" href="<?= base_url(); ?>">Payak Apps</a>
 				<a class="nav-text" href="users/logout">Logout</a>
 			</nav>
 		</div>
