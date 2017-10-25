@@ -39,6 +39,8 @@ class Roles extends CI_Controller {
       else{
           $role_id =$this->input->post('id');
           $status=$this->input->post('status');
+
+          $status_id=null;
           if($status=="Deactivate"){
               $status_id=0;
 

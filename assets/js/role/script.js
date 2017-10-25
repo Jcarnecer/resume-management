@@ -51,7 +51,7 @@ $(document).on('click','#btn-update',function(){
   });
   
   $(document).on('click',"button[data-function='add']",function(){
-      var url = base_url + "roles/insert_role";
+      var url = "roles/insert_role";
       var form=$('#role-form').serialize();
           $.ajax({
               "url":url,
@@ -78,7 +78,7 @@ $(document).on('click','#btn-update',function(){
     });
   
   $.fn.getRoles=function(){
-    var $url = base_url + "roles/get_roles";
+    var $url = "roles/get_roles";
    return $.ajax({
       url:$url,
       type:"GET",
