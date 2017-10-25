@@ -3,9 +3,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById("add-freelance-form"));
-      var link = base_url + 'freelance';
+      var link = 'freelance';
       $.ajax({
-         url: base_url + 'freelance/addRecord',
+         url: 'freelance/addRecord',
         type: "POST",
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -144,9 +144,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById('freelance-edit-form'));
-      var link = base_url + 'freelance';
+      var link ='freelance';
       $.ajax({
-        url: base_url + 'freelance/edit',
+        url: 'freelance/edit',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType

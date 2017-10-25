@@ -3,9 +3,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById("add-intern-form"));
-      var link = base_url + 'intern';
+      var link = 'intern';
       $.ajax({
-        url: base_url + 'intern/addRecord',
+        url: 'intern/addRecord',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -144,9 +144,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById('intern-edit-form'));
-      var link = base_url + 'intern';
+      var link ='intern';
       $.ajax({
-        url: base_url + 'intern/edit',
+        url:'intern/edit',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType

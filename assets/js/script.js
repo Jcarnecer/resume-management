@@ -124,7 +124,7 @@ $(function(){
 
   $('[data-name="button-view"]').click(function() {
       var applicantId = $(this).attr('data-id');
-      var url = base_url + "applicant/" +  applicantId;
+      var url =  "applicant/" +  applicantId;
       // console.log('click');
       $.ajax({
           "url": url,
