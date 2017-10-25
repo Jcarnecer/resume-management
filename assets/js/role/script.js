@@ -115,7 +115,7 @@ $(document).on('click','#btn-update',function(){
   };
      
   $(document).on('click','#btn-status',function(){
-      var url=base_url + "roles/update_status";
+      var url="roles/update_status";
       var $id=$(this).attr('data-id');
       var $status =$(this).attr('data-function'); 
       var $pos=$(this).attr('data-pos');
