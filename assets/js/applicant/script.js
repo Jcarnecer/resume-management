@@ -201,6 +201,10 @@ $(document).ready(function(){
 
 
 
+
+
+
+
 $(document).ready(function(){
     $("#pos-id").on('change', function(){
       var posid = $("#pos-id").val();
@@ -228,4 +232,5 @@ $(document).ready(function(){
         }
       });
     });
+});
   
