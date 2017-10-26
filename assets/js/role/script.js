@@ -16,6 +16,8 @@ $(document).on('click','#btn-update',function(){
   });
   
   $(document).on('click','#btn-add',function(){ 
+
+            $('#role-form').reset();
           $("#roleModal").find(".modal-title").html("Add Role");
           $("#roleModal").find("#btn-save").attr("data-function","add");             
    
@@ -69,7 +71,7 @@ $(document).on('click','#btn-update',function(){
       
                 }
                 else{
-                  bs_notify("<strong>Role Already Exist</strong>","danger","top","center");  
+                    bs_notify("<strong>"+result+"</strong>","danger","top","right");  
                   $('#roleModal').modal('toggle'); 
                 }
     
@@ -134,7 +136,7 @@ $(document).on('click','#btn-update',function(){
                     
                 }
               else{
-                  bs_notify("<strong>Role cannot be Updated</strong>","danger","top","center");  
+                bs_notify("<strong>"+result+"</strong>","danger","top","right");;  
                   }
               } 
        });
