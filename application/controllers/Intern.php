@@ -5,7 +5,7 @@ class Intern extends CI_Controller {
 
     public function index(){
     
-      $data['interns'] = $this->Resume_model->show_record(['record.pos_id'=>2,'record.current_status'=>'Active']);
+      $data['interns'] = $this->Resume_model->show_record(['record.pos_id'=>2]);
       $title['title'] = "Astrid Technologies | New Applicant";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar', $data);  
