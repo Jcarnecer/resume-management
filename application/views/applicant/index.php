@@ -12,7 +12,7 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tbody_applicant">
       <?php 
         if($applicants==''){}else{
       foreach ($applicants as $applicant) : ?>

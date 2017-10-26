@@ -14,25 +14,25 @@ $(document).ready(function(){
           console.log(data);
           var result = JSON.parse(data);
           if(result==='success'){
-            //   $('[name="position"]').val('');
-            //   $('[name="role"]').val('');        
-            //   $('[name="last_name"]').val('');                
-            //   $('[name="first_name"]').val('');
-            //   $('[name="middle_name"]').val('');
-            //   $('[name="email_address"]').val('');       
-            //   $('[name="home_address"]').val('');       
-            //   $('[name="phone_number"]').val('');         
-            //   $('[name="birth_date"]').val('');       
-            //   $('[name="degree"]').val('');       
-            //   $('[name="school"]').val('');       
-            //   $('[name="application_date"]').val('');       
-            //   $('[name="available_date"]').val('');       
-            //   $('[name="expected_salary"]').val(''); 
-            //   $('[name="comment"]').val('');       
-            //   $('[name="resume_file"]').val('');
-            //   $('html, body').animate({ scrollTop: 0  }, "slow");
-            //   bs_notify("<strong>Successfully Added Record</strong>","success","top","right");
-            location.href=link;                  
+              $('[name="position"]').val('');
+              $('[name="role"]').val('');        
+              $('[name="last_name"]').val('');                
+              $('[name="first_name"]').val('');
+              $('[name="middle_name"]').val('');
+              $('[name="email_address"]').val('');       
+              $('[name="home_address"]').val('');       
+              $('[name="phone_number"]').val('');         
+              $('[name="birth_date"]').val('');       
+              $('[name="degree"]').val('');       
+              $('[name="school"]').val('');       
+              $('[name="application_date"]').val('');       
+              $('[name="available_date"]').val('');       
+              $('[name="expected_salary"]').val(''); 
+              $('[name="comment"]').val('');       
+              $('[name="resume_file"]').val('');
+              $('html, body').animate({ scrollTop: 0  }, "slow");
+              bs_notify("<strong>Successfully Added Record</strong>","success","top","right");
+            //location.href=link;                  
           }else{
             bs_notify("<strong>"+result+"</strong>","danger","top","right"); 
           }
@@ -201,11 +201,6 @@ $(document).ready(function(){
   });
 
 
-
-
-
-
-
 $(document).ready(function(){
     $("#pos-id").on('change', function(){
       var posid = $("#pos-id").val();
@@ -235,3 +230,38 @@ $(document).ready(function(){
     });
 });
   
+
+
+$(document).getApplicants().done(function(data){
+    $(document).displayApplicants(data);
+    });
+$.fn.getApplicants=function(){
+    var $url = "Applicant/getApplicants";
+   return $.ajax({
+      url:$url,
+      type:"GET",
+      dataType: 'JSON'
+    });
+  };
+  $.fn.displayApplicants=function(items){
+  
+    $("#tbody_applicant").html('');
+  
+        $.each(items,function(i,item){
+            $('#tbody_applicant').append(`
+                      
+                    <tr>
+
+                    <td>${item['first_name']}${item['last_name']}</td>
+                    <td>${item['pos_name']}</td>
+                    <td>${item['name']}></td>
+                    <td>${item['current_status']}</td>
+                    <td>    
+                    <button type="button" class="btn custom-button" data-name="button-view" data-id=${item['id']}>View</button>
+                    <a href="<?= base_url('applicant/edit_view/'.${item['id']}) ?>" class="btn custom-button" data-id=${item['id']}>Edit</a>
+                    </td>
+                    </tr>`    
+            );
+            
+        });
+  };

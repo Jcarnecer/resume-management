@@ -7,7 +7,6 @@ class Applicant extends CI_Controller {
     $this->load->model('Resume_model');
     $data['title'] = "Astrid Technologies | Resume Management";
     $data['applicants'] = $this->Resume_model->show_applicant_record();
-    $result=$this->Resume_model->show_applicant_record(['record.current_status'=>'Applicant']);
     $this->load->view('include/header',$data);
     $this->load->view('include/sidebar', $data);
     $this->load->view('applicant/index',$data);
@@ -171,7 +170,7 @@ class Applicant extends CI_Controller {
 		$record = $this->db->get_where('record', ['id' => $id])->row();
 	}
 	$record->name =  $this->Resume_model->get_role($join_where)->name;
-
+  
     header('Content-Type: application/json');
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET');
@@ -311,6 +310,13 @@ class Applicant extends CI_Controller {
     }
 
      //return $data; 
+
+  }
+
+
+  public function getApplicants(){
+    $result=$this->Resume_model->show_applicant_record(['record.current_status'=>'Applicant']);
+    echo json_encode($result);
 
   }
 
