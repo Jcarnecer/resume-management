@@ -33,9 +33,9 @@ $(document).ready(function(){
             //   $('html, body').animate({ scrollTop: 0  }, "slow");
             //   bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
             location.href=link;
-          }else{
-            bs_notify("<strong>"+result+"</strong>","danger","top","right");
-        }
+            }else{
+                bs_notify("<strong>"+result+"</strong>","danger","top","right");
+            }
         }
       });
       e.preventDefault();  
