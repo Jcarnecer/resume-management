@@ -12,7 +12,6 @@ class Employee extends CI_Controller {
      $this->load->view('include/sidebar', $data); 
      $this->load->view('employee/index', $data);
      $this->load->view('include/footer');
-      echo json_encode($result);
     }
 
     public function add_employee(){
