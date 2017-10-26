@@ -231,10 +231,6 @@ $(document).ready(function(){
 });
   
 
-
-$(document).getApplicants().done(function(data){
-    $(document).displayApplicants(data);
-    });
 $.fn.getApplicants=function(){
     var $url = "Applicant/getApplicants";
    return $.ajax({
@@ -263,3 +259,8 @@ $.fn.getApplicants=function(){
             
         });
   };
+
+
+  $(document).getApplicants().done(function(data){
+    $(document).displayApplicants(data);
+    });

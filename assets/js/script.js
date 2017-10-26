@@ -193,9 +193,7 @@ $(document).ready(function(){
 
 
 
-$(document).getApplicants().done(function(data){
-  $(document).displayApplicants(data);
-  });
+
 
 
 
