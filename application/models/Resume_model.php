@@ -5,7 +5,6 @@ class Resume_model extends CI_Model {
   public function __construct()
     {
         parent::__construct();
-        $this->db->database();
         $this->db->reconnect();
     }
 
