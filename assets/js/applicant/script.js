@@ -248,10 +248,8 @@ $.fn.getApplicants=function(){
     $("#tbody_applicant").html('');
   
         $.each(items,function(i,item){
-            $('#tbody_applicant').append(`
-                      
+            $('#tbody_applicant').append(`   
                     <tr>
-
                     <td>${item['first_name']}${item['last_name']}</td>
                     <td>${item['pos_name']}</td>
                     <td>${item['name']}></td>
