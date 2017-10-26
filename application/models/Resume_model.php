@@ -2,6 +2,12 @@
 
 class Resume_model extends CI_Model {
 
+    public function __construct()
+    {
+        parent::__construct;
+        $this->db->reconnect();
+    }
+
   public function insert($table,$data){
 		$result = $this->db->insert($table,$data);
 		if ($result) {
@@ -189,3 +195,5 @@ class Resume_model extends CI_Model {
     return $query->row();
   }
 }
+
+
