@@ -248,7 +248,7 @@ $.fn.getApplicants=function(){
                     <tr>
                     <td>${item['first_name']}${item['last_name']}</td>
                     <td>${item['pos_name']}</td>
-                    <td>${item['name']}></td>
+                    <td>${item['name']}</td>
                     <td>${item['current_status']}</td>
                     <td>    
                     <button type="button" class="btn custom-button" data-name="button-view" data-id=${item['id']}>View</button>
