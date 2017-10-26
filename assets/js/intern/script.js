@@ -13,7 +13,7 @@ $(document).ready(function(){
         success: function(data){
           console.log(data);
           var result = JSON.parse(data);
-          if(result==='success'){
+          if(result=='success'){
             //   $('[name="position"]').val('');
             //   $('[name="role"]').val('');        
             //   $('[name="last_name"]').val('');                
@@ -35,12 +35,13 @@ $(document).ready(function(){
             location.href=link;
           }else{
             bs_notify("<strong>"+result+"</strong>","danger","top","right");
-  
+        }
         }
       });
       e.preventDefault();  
     });
   });
+
   
   $(document).ready(function() {
       $('#add-intern-form').bootstrapValidator({
