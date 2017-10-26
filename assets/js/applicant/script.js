@@ -252,7 +252,7 @@ $.fn.getApplicants=function(){
                     <td>${item['current_status']}</td>
                     <td>    
                     <button type="button" class="btn custom-button" data-name="button-view" data-id=${item['id']}>View</button>
-                    <a href="<?= base_url('applicant/edit_view/'.${item['id']}) ?>" class="btn custom-button" data-id=${item['id']}>Edit</a>
+                    <a href="applicant/edit_view/'.${item['id']}" class="btn custom-button" data-id=${item['id']}>Edit</a>
                     </td>
                     </tr>`    
             );
