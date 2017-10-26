@@ -2,6 +2,7 @@
 
 html, body {
     width: 100%;
+    height: 100%;
 }
 
 body {
@@ -35,6 +36,10 @@ body {
     }
 }
 
+a:hover {
+    color: $white;
+}
+
 .edit-button {
     display: block;
     margin-top: 10px;
@@ -44,8 +49,18 @@ body {
 .navbar-custom {
     background-color: $white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
+    color: $primary-color;
     justify-content: left;
     margin-bottom: 20px;
+
+    a {
+        color: $dark-gray;
+
+        &:hover {
+            color: $secondary-color;
+            text-decoration: none;
+        }
+    }
 }
 
 #sidebar {
@@ -116,6 +131,11 @@ body {
 .main-content {
     margin-left: 210px;
     overflow: hidden;
+}
+
+.dashboard-margin {
+    margin-bottom: 10%;
+    margin-top: 10%;
 }
 
 .animation { 
@@ -193,6 +213,49 @@ body {
     transform: rotate(-45deg);
 }
 
+.button-group {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+
+    li {
+        flex: 1;
+    }
+
+    .button-group-item {
+        background: $primary-color;
+        border-radius: .25rem;
+        border: none;
+        color: $white;
+        display: block;
+        font-size: 1.75em;
+        font-weight: bold;
+        height: auto;
+        line-height: 60px;
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+
+        &:hover {
+            background: $secondary-color;
+            text-decoration: none;
+        }
+
+        .number {
+            font-size: 2.5em;
+        }
+
+    }
+}
+
 .custom-responsive {
     display: block;
     overflow: auto;
@@ -200,6 +263,11 @@ body {
 
 #prof_pic {
     max-height: 200px;
+}
+
+.thumb {
+    height: 80px;
+    width: auto;
 }
 
 .table {

@@ -1,5 +1,5 @@
 <div class="container-fluid" id="record-table">
-  <a href="<?= base_url('employee/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
+  <a href="<?= base_url('employee/add') ?>" id="add-button" class="btn custom-button float-right">New Record</a>
   <h3 class="title">Employees</h3>
   <hr>
   <table class="table table-bordered table-responsive-xl" id='employee_table'>
@@ -17,13 +17,13 @@
         if($employees== ''){ } else{
         foreach ($employees as $employee) : ?>
       <tr>
-        <td><img id="thumbnail" src="assets/uploads/<?= $employee->images ?>"></td>
+        <td><img class="thumb" id="thumbnail" src="assets/uploads/<?= $employee->images ?>"></td>
         <td><?= $employee->first_name;?> <?= $employee->last_name;?></td>
         <td><?=$employee->name?></td>
         <td><?=$employee->current_status?></td>
         <td>
-          <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $employee->id; ?>">View</button>
-          <a href="<?= base_url('employee/edit/'.$employee->id) ?>" type="button" class="btn btn-warning" data-id="<?= $employee->id;?>" >Edit</a>
+          <button type="button" class="btn custom-button" data-name="button-view" data-id="<?= $employee->id; ?>">View</button>
+          <a href="<?= base_url('employee/edit/'.$employee->id) ?>" class="btn custom-button" data-id="<?= $employee->id;?>" >Edit</a>
         </td>
       </tr>
       <?php endforeach; ?>
@@ -38,8 +38,8 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
+      <h4 class="modal-title">Employee</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">View Employee</h4>
     </div>
 
     <div class="modal-body">

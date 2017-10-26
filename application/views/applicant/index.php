@@ -1,5 +1,5 @@
 <div class="container-fluid" id="record-table">
-  <a href="<?= base_url('applicants/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
+  <a href="<?= base_url('applicants/add') ?>" id="add-button" class="btn custom-button float-right">New Record</a>
   <h3 class="title">Applicants</h3>
   <hr>
   <table class="table table-bordered table-responsive-xl" id="applicant_table">
@@ -17,7 +17,7 @@
         if($applicants==''){}else{
       foreach ($applicants as $applicant) : ?>
       <tr>
-        <!-- <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td> -->
+        <!-- <td><img class="thumb" id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td> -->
         <td><?= $applicant->first_name;?> <?= $applicant->last_name;?></td>
         <td><?= $applicant->pos_name?></td>
         <td><?= $applicant->name?></td>
@@ -25,7 +25,7 @@
         <td>
           <button type="button" class="btn custom-button" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
           <!-- <a href="<?= base_url('assets/uploads/'.$applicant->file) ?>" type="button" class="btn btn-info" data-id="<?= $applicant->id;?>" >View Resume</a> -->
-          <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" type="button" class="btn custom-button" data-id="<?= $applicant->id;?>" >Edit</a>
+          <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" class="btn custom-button" data-id="<?= $applicant->id;?>" >Edit</a>
           
         </td>
       </tr>
@@ -41,8 +41,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">Applicant</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">View Applicant</h4>
       </div>
 
       <div class="modal-body">

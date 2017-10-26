@@ -1,5 +1,5 @@
 <div class="container-fluid" id="record-table">
-  <a href="<?= base_url('freelance/add') ?>" id="add-button" type="button" class="btn custom-button float-right">New Record</a>
+  <a href="<?= base_url('freelance/add') ?>" id="add-button" class="btn custom-button float-right">New Record</a>
   <h3 class="title">Freelancers</h3>
   <hr>
   <table class="table table-bordered table-responsive-xl" id="freelance_table">
@@ -18,13 +18,13 @@
       if($freelance== ''){ } else{
         foreach ($freelance as $freelance) : ?>
       <tr>
-        <td><img id="thumbnail" src="assets/uploads/<?= $freelance->images ?>"></td>
+        <td><img class="thumb" id="thumbnail" src="assets/uploads/<?= $freelance->images ?>"></td>
         <td><?= $freelance->first_name;?> <?= $freelance->last_name;?></td>  
         <td><?=$freelance->name?></td>
         <td><?=$freelance->current_status?></td>
         <td>
-          <button type="button" class="btn btn-info" data-name="button-view" data-id="<?=$freelance->id; ?>">View</button>
-          <a href="<?= base_url('freelance/edit/'.$freelance->id) ?>" type="button" class="btn btn-warning" data-id="<?= $freelance->id;?>" >Edit</a>
+          <button type="button" class="btn custom-button" data-name="button-view" data-id="<?=$freelance->id; ?>">View</button>
+          <a href="<?= base_url('freelance/edit/'.$freelance->id) ?>" class="btn custom-button" data-id="<?= $freelance->id;?>" >Edit</a>
         </td>
       </tr>
       <?php endforeach; ?>
@@ -40,8 +40,8 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
+      <h4 class="modal-title">Freelance</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">View Applicant</h4>
     </div>
 
     <div class="modal-body">
