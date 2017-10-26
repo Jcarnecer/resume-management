@@ -198,6 +198,10 @@ a:hover {
 #prof_pic {
   max-height: 200px; }
 
+.thumb {
+  height: 80px;
+  width: auto; }
+
 .table {
   background: #ffffff; }
   .table thead tr th {
