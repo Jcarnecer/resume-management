@@ -315,7 +315,7 @@ class Applicant extends CI_Controller {
 
 
   public function getApplicants(){
-    $result=$this->Resume_model->show_applicant_record(['record.current_status'=>'Applicant']);
+    $result=$this->Resume_model->show_applicant_record();
     echo json_encode($result);
 
   }
