@@ -6,7 +6,7 @@ class Freelance extends CI_Controller {
     
         public function index(){
             $data['freelance'] = $this->Resume_model->show_record(['record.pos_id'=>3]);
-            $title['title'] = "Astrid Technologies | New Applicant";
+            $title['title'] = "Astrid Technologies | Freelancers";
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar', $data);  
             $this->load->view('freelance/index', $data);
@@ -15,7 +15,7 @@ class Freelance extends CI_Controller {
 
         public function add_freelance(){
                 
-            $data['title'] = "Astrid Technologies | New Applicant";
+            $data['title'] = "Astrid Technologies | Add Freelancer";
             $this->load->view('include/header', $data);
             $this->load->view('include/sidebar', $data);
             $this->load->view('freelance/new');
@@ -98,7 +98,7 @@ class Freelance extends CI_Controller {
             $this->load->helper('form');
             $id = $this->uri->segment(3);
             $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
-            $title['title'] = "Astrid Technologies | New Applicant";
+            $title['title'] = "Astrid Technologies | Edit Freelancer";
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar',$data);
             $this->load->view('freelance/edit', $data);

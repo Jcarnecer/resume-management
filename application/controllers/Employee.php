@@ -7,7 +7,7 @@ class Employee extends CI_Controller {
      $this->load->model('Resume_model'); 
      $data['employees'] = $this->Resume_model->show_record(['record.pos_id'=>1]);
      $result=$this->Resume_model->show_record(['record.pos_id'=>1]);
-     $title['title'] = "Astrid Technologies | New Applicant";
+     $title['title'] = "Astrid Technologies | Employee";
      $this->load->view('include/header',$title);
      $this->load->view('include/sidebar', $data); 
      $this->load->view('employee/index', $data);
@@ -15,7 +15,7 @@ class Employee extends CI_Controller {
     }
 
     public function add_employee(){
-      $data['title'] = "Astrid Technologies | New Applicant";
+      $data['title'] = "Astrid Technologies | New Employee";
       $this->load->view('include/header', $data);
       $this->load->view('include/sidebar', $data);
       $this->load->view('employee/new');
@@ -125,7 +125,7 @@ class Employee extends CI_Controller {
       $data['employee_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
       $join_where = ['employees.record_id' => $id];
       $data['employee'] = $this->Resume_model->join_employee_record($join_where);
-      $title['title'] = "Astrid Technologies | New Applicant";
+      $title['title'] = "Astrid Technologies | Edit Employee";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
       $this->load->view('employee/edit', $data);

@@ -189,7 +189,7 @@ class Applicant extends CI_Controller {
     $this->load->helper('form');
     $id = $this->uri->segment(3);
     $this->load->model('Resume_model');
-    $title['title'] = "Astrid Technologies | New Applicant";
+    $title['title'] = "Astrid Technologies | Edit Applicant";
     $data['applicant_data']= $this->db->get_where('record', ['id' => $id])->row();
     $this->load->view('include/header',$title);
     $this->load->view('include/sidebar', $data);

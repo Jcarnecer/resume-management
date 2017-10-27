@@ -6,7 +6,7 @@ class Intern extends CI_Controller {
     public function index(){
     
       $data['interns'] = $this->Resume_model->show_record(['record.pos_id'=>2]);
-      $title['title'] = "Astrid Technologies | New Applicant";
+      $title['title'] = "Astrid Technologies | Intern";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar', $data);  
       $this->load->view('intern/index', $data);
@@ -17,7 +17,7 @@ class Intern extends CI_Controller {
 
     public function add_intern(){
 
-      $data['title'] = "Astrid Technologies | New Applicant";
+      $data['title'] = "Astrid Technologies | New Intern";
       $this->load->view('include/header', $data);
       $this->load->view('include/sidebar', $data);
       $this->load->view('intern/new');
@@ -99,7 +99,7 @@ class Intern extends CI_Controller {
       $this->load->helper('form');
       $id = $this->uri->segment(3);
       $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
-      $title['title'] = "Astrid Technologies | New Applicant";
+      $title['title'] = "Astrid Technologies | Edit Intern";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
       $this->load->view('intern/edit', $data);
