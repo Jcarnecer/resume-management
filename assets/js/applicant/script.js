@@ -260,6 +260,4 @@ $.fn.getApplicants=function(){
         });
   };
 
-  $(document).getApplicants().done(function(data){
-    $(document).displayApplicants(data);
-    });
+
