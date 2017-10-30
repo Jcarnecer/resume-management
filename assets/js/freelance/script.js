@@ -3,9 +3,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById("add-freelance-form"));
-      var link = base_url + 'freelance';
+      var link = 'freelance';
       $.ajax({
-         url: base_url + 'freelance/addRecord',
+         url: 'freelance/addRecord',
         type: "POST",
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -32,9 +32,9 @@ $(document).ready(function(){
             $('[name="resume_file"]').val('');
             $('html, body').animate({ scrollTop: 0  }, "slow");
             bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
-  
+            //location.href=link;
           }else{
-            bs_notify("<strong>Unable to Add New Freelance Record</strong>","danger","top","right"); 
+            bs_notify("<strong>"+result+"</strong>","danger","top","right");
           }
   
         }
@@ -144,9 +144,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById('freelance-edit-form'));
-      var link = base_url + 'freelance';
+      var link ='freelance';
       $.ajax({
-        url: base_url + 'freelance/edit',
+        url: 'freelance/edit',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -155,11 +155,11 @@ $(document).ready(function(){
           console.log(data);
           var result = JSON.parse(data);
           if(result=='success'){     
-              bs_notify("<strong>Successfully Updated Applicant Record</strong>","success","top","right");
+              //bs_notify("<strong>Successfully Updated Applicant Record</strong>","success","top","right");
               location.href=link;                
   
           }else{
-              bs_notify("<strong>Unable to Update Applicant</strong>","danger","top","right"); 
+            bs_notify("<strong>"+result+"</strong>","danger","top","right"); 
           }
   
         }

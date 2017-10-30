@@ -12,12 +12,12 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tbody_applicant">
       <?php 
         if($applicants==''){}else{
       foreach ($applicants as $applicant) : ?>
       <tr>
-        <!-- <td><img id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td> -->
+        <!-- <td><img class="thumb" id="thumbnail" src="assets/uploads/<?= $applicant->images ?>"></td> -->
         <td><?= $applicant->first_name;?> <?= $applicant->last_name;?></td>
         <td><?= $applicant->pos_name?></td>
         <td><?= $applicant->name?></td>

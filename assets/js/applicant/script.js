@@ -3,9 +3,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById("add-record-form"));
-      var link = base_url + 'applicant';
+      var link = 'applicant';
       $.ajax({
-         url: base_url + 'applicant/addRecord',
+         url: 'applicant/addRecord',
         type: "POST",
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -31,9 +31,10 @@ $(document).ready(function(){
               $('[name="comment"]').val('');       
               $('[name="resume_file"]').val('');
               $('html, body').animate({ scrollTop: 0  }, "slow");
-              bs_notify("<strong>Successfully Added Record</strong>","success","top","right");                  
+              bs_notify("<strong>Successfully Added Record</strong>","success","top","right");
+            //location.href=link;                  
           }else{
-              bs_notify("<strong>Unable to Add new Record</strong>","danger","top","right"); 
+            bs_notify("<strong>"+result+"</strong>","danger","top","right"); 
           }
   
         }
@@ -147,9 +148,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById('edit-form'));
-      var link = base_url + 'applicant';
+      var link = 'applicant';
       $.ajax({
-        url: base_url + 'applicant/edit',
+        url:'applicant/edit',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -158,11 +159,11 @@ $(document).ready(function(){
           console.log(data);
           var result = JSON.parse(data);
           if(result=='success'){     
-              bs_notify("<strong>Successfully Updated Applicant Record</strong>","success","top","right");
+              //bs_notify("<stro  ng>Successfully Updated Applicant Record</strong>","success","top","right");
               location.href=link;                
   
           }else{
-              bs_notify("<strong>Unable to Update Applicant</strong>","danger","top","right"); 
+              bs_notify("<strong>"+result+"</strong>","danger","top","right"); 
           }
   
         }
@@ -175,9 +176,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById('add_result'));
-      var link = base_url + 'applicant';
+      var link = 'applicant';
       $.ajax({
-        url: base_url + 'applicant/add_result',
+        url: 'applicant/add_result',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -190,7 +191,7 @@ $(document).ready(function(){
               location.href=link;                
   
           }else{
-              bs_notify("<strong>Unable to Update Applicant</strong>","danger","top","right"); 
+            bs_notify("<strong>"+result+"</strong>","danger","top","right");
           }
   
         }
@@ -198,3 +199,65 @@ $(document).ready(function(){
       e.preventDefault();  
     });
   });
+
+
+$(document).ready(function(){
+    $("#pos-id").on('change', function(){
+      var posid = $("#pos-id").val();
+      $.ajax({
+        url:"applicant/get_pos_role/" +posid,
+        type: "POST",
+        data: $("#pos-id").serialize(),//for now
+        success: function(data){
+          // alert("Hello");
+          var result = JSON.parse(data);
+          var html = "",roles;
+          for(var i = 0; i < result.length; i++) {
+            roles = result[i];
+  
+            html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
+            // console.log(roles.id);
+          }
+          $("#role").html(html);
+          // alert(posid);
+          if(posid == 1){
+            $("#emp_form").show();
+          }else{
+            $("#emp_form").hide();
+          }
+        }
+      });
+    });
+});
+  
+
+$.fn.getApplicants=function(){
+    var $url = "Applicant/getApplicants";
+   return $.ajax({
+      url:$url,
+      type:"GET",
+      dataType: 'JSON'
+    });
+  };
+  $.fn.displayApplicants=function(items){
+  
+    $("#tbody_applicant").html('');
+  
+        $.each(items,function(i,item){
+            $('#tbody_applicant').append(`   
+                    <tr>
+                    <td>${item['first_name']}${item['last_name']}</td>
+                    <td>${item['pos_name']}</td>
+                    <td>${item['name']}</td>
+                    <td>${item['current_status']}</td>
+                    <td>    
+                    <button type="button" class="btn custom-button" data-name="button-view" data-id=${item['id']}>View</button>
+                    <a href="applicant/edit_view/${item['id']}" class="btn custom-button" data-id=${item['id']}>Edit</a>
+                    </td>
+                    </tr>`    
+            );
+            
+        });
+  };
+
+

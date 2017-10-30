@@ -3,6 +3,11 @@
 class User_model extends CI_Model {
 	
 
+    public function __construct()
+    {
+        parent::__construct;
+        $this->db->reconnect();
+    }
     public function insertUser($user_details){
     
         $this->db->insert('users', $user_details);

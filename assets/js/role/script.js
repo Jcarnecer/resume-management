@@ -16,6 +16,8 @@ $(document).on('click','#btn-update',function(){
   });
   
   $(document).on('click','#btn-add',function(){ 
+
+            $('#role-form').reset();
           $("#roleModal").find(".modal-title").html("Add Role");
           $("#roleModal").find("#btn-save").attr("data-function","add");             
    
@@ -51,7 +53,7 @@ $(document).on('click','#btn-update',function(){
   });
   
   $(document).on('click',"button[data-function='add']",function(){
-      var url = base_url + "roles/insert_role";
+      var url = "roles/insert_role";
       var form=$('#role-form').serialize();
           $.ajax({
               "url":url,
@@ -69,7 +71,7 @@ $(document).on('click','#btn-update',function(){
       
                 }
                 else{
-                  bs_notify("<strong>Role Already Exist</strong>","danger","top","center");  
+                    bs_notify("<strong>"+result+"</strong>","danger","top","right");  
                   $('#roleModal').modal('toggle'); 
                 }
     
@@ -78,7 +80,7 @@ $(document).on('click','#btn-update',function(){
     });
   
   $.fn.getRoles=function(){
-    var $url = base_url + "roles/get_roles";
+    var $url = "roles/get_roles";
    return $.ajax({
       url:$url,
       type:"GET",
@@ -112,7 +114,7 @@ $(document).on('click','#btn-update',function(){
   };
      
   $(document).on('click','#btn-status',function(){
-      var url=base_url + "roles/update_status";
+      var url="roles/update_status";
       var $id=$(this).attr('data-id');
       var $status =$(this).attr('data-function'); 
       var $pos=$(this).attr('data-pos');
@@ -134,14 +136,15 @@ $(document).on('click','#btn-update',function(){
                     
                 }
               else{
-                  bs_notify("<strong>Role cannot be Updated</strong>","danger","top","center");  
+                bs_notify("<strong>"+result+"</strong>","danger","top","right");;  
                   }
               } 
        });
       
     });
 
-  
     $(document).getRoles().done(function(data){
         $(document).displayRoles(data);
-    });
+        });
+
+

@@ -2,6 +2,12 @@
 
 class Resume_model extends CI_Model {
 
+  public function __construct()
+    {
+        parent::__construct();
+        $this->db->reconnect();
+    }
+
   public function insert($table,$data){
 		$result = $this->db->insert($table,$data);
 		if ($result) {
@@ -48,6 +54,7 @@ class Resume_model extends CI_Model {
        $result=$this->db->get($table);
     }
     else{
+
       $result=$this->db->get_where($table,$data);
     }
        return $result->num_rows();  
@@ -162,21 +169,23 @@ class Resume_model extends CI_Model {
 
     
   public function show_record($where){
+      $status=array('Active','Inactive');
         $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,record.current_status');
         $this->db->from('record');
         $this->db->where($where);
+        $this->db->where_in('record.current_status',$status);
         $this->db->join('role','record.role_id = role.role_id','inner'); 
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function show_applicant_record($where){
+    public function show_applicant_record(){
+      $status=array('Active','Inactive');
       $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file');
       $this->db->from('record');
-      $this->db->where($where);
       $this->db->join('role', 'record.role_id = role.role_id','inner');
-      $this->db->join('position', 'record.pos_id = position.id','inner');  
-
+      $this->db->join('position', 'record.pos_id = position.id','inner');
+      $this->db->where_not_in('record.current_status',$status); 
       $query = $this->db->get();
       return $query->result();
     }
@@ -189,3 +198,5 @@ class Resume_model extends CI_Model {
     return $query->row();
   }
 }
+
+

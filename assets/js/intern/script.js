@@ -3,9 +3,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById("add-intern-form"));
-      var link = base_url + 'intern';
+      var link = 'intern';
       $.ajax({
-        url: base_url + 'intern/addRecord',
+        url: 'intern/addRecord',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -13,7 +13,7 @@ $(document).ready(function(){
         success: function(data){
           console.log(data);
           var result = JSON.parse(data);
-          if(result==='success'){
+          if(result=='success'){
               $('[name="position"]').val('');
               $('[name="role"]').val('');        
               $('[name="last_name"]').val('');                
@@ -32,16 +32,16 @@ $(document).ready(function(){
               $('[name="resume_file"]').val('');
               $('html, body').animate({ scrollTop: 0  }, "slow");
               bs_notify("<strong>Successfully Added Record</strong>","success","top","right");         
-  
-          }else{
-              bs_notify("<strong>Unable to Add New Intern Record</strong>","danger","top","right"); 
-          }
-  
+            //location.href=link;
+            }else{
+                bs_notify("<strong>"+result+"</strong>","danger","top","right");
+            }
         }
       });
       e.preventDefault();  
     });
   });
+
   
   $(document).ready(function() {
       $('#add-intern-form').bootstrapValidator({
@@ -144,9 +144,9 @@ $(document).ready(function(){
       e.preventDefault();
       e.stopImmediatePropagation();
       var form = new FormData(document.getElementById('intern-edit-form'));
-      var link = base_url + 'intern';
+      var link ='intern';
       $.ajax({
-        url: base_url + 'intern/edit',
+        url:'intern/edit',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
@@ -155,11 +155,11 @@ $(document).ready(function(){
           console.log(data);
           var result = JSON.parse(data);
           if(result=='success'){     
-              bs_notify("<strong>Successfully Updated Intern Record</strong>","success","top","right");
+              //bs_notify("<strong>Successfully Updated Intern Record</strong>","success","top","right");
               location.href=link;                
   
           }else{
-              bs_notify("<strong>Unable to Update Intern</strong>","danger","top","right"); 
+            bs_notify("<strong>"+result+"</strong>","danger","top","right");
           }
   
         }
@@ -167,3 +167,7 @@ $(document).ready(function(){
      
     });
   });
+
+
+
+  

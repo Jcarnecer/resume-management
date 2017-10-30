@@ -18,7 +18,7 @@
       if($freelance== ''){ } else{
         foreach ($freelance as $freelance) : ?>
       <tr>
-        <td><img id="thumbnail" src="assets/uploads/<?= $freelance->images ?>"></td>
+        <td><img class="thumb" id="thumbnail" src="assets/uploads/<?= $freelance->images ?>"></td>
         <td><?= $freelance->first_name;?> <?= $freelance->last_name;?></td>  
         <td><?=$freelance->name?></td>
         <td><?=$freelance->current_status?></td>
