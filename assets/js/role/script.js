@@ -17,7 +17,7 @@ $(document).on('click','#btn-update',function(){
   
   $(document).on('click','#btn-add',function(){ 
 
-            $('#role-form').reset();
+            
           $("#roleModal").find(".modal-title").html("Add Role");
           $("#roleModal").find("#btn-save").attr("data-function","add");             
    
@@ -99,17 +99,18 @@ $(document).on('click','#btn-update',function(){
                         <td data-role="position_name">${item['pos_name']}</td>
                         <td data-role="role_status">${item['status']==0?'Deactivated':'Activated'}</td>
                         <td>
-                        <button class="btn custom-button" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
-                        <button class="btn btn-danger" data-pos="${item['pos_id']}" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                          </button>
+                            <div class="dropdown-menu">
+                            <a class="dropdown-item" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
+                            <a class="dropdown-item" data-pos="${item['pos_id']}" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
+                            </div>
+                        </div>  
                         </td>
                     </tr>`    
             );
-            
-            $('[data-function="Activate"]').removeClass('btn-danger');
-            $('[data-function="Deactivate"]').removeClass('btn-success');
-            $('[data-function="Deactivate"]').addClass("btn-danger");
-            $('[data-function="Activate"]').addClass("btn-success");
-            
         });
   };
      
