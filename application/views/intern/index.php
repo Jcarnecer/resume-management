@@ -28,8 +28,8 @@
               Action
             </button>
               <div class="dropdown-menu">
-                  <a class="dropdown-item" data-name="button-view" data-id="<?= $employee->id; ?>">View</a>
-                  <a href="<?= base_url('intern/edit/'.$employee->id) ?>" class="dropdown-item" data-id="<?= $employee->id;?>" >Edit</a>
+                  <a class="dropdown-item" data-name="button-view" data-id="<?= $intern->id; ?>">View</a>
+                  <a href="<?= base_url('intern/edit/'.$intern->id) ?>" class="dropdown-item" data-id="<?= $intern->id;?>" >Edit</a>
               </div>
            </div> 
 
