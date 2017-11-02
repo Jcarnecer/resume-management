@@ -270,6 +270,13 @@ a:hover {
     width: auto;
 }
 
+.form-horizontal {
+    .control-label {
+        font-weight: bold;
+        text-align: right;
+    }    
+}
+
 .table {
     background: $white;
     thead {
