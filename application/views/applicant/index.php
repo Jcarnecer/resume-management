@@ -23,9 +23,20 @@
         <td><?= $applicant->name?></td>
         <td><?= $applicant->current_status?></td>
         <td>
-          <button type="button" class="btn custom-button" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </button>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" data-name="button-view" data-id="<?= $applicant->id; ?>">View</a>
           <!-- <a href="<?= base_url('assets/uploads/'.$applicant->file) ?>" type="button" class="btn btn-info" data-id="<?= $applicant->id;?>" >View Resume</a> -->
-          <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" class="btn custom-button" data-id="<?= $applicant->id;?>" >Edit</a>
+          <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" class="dropdown-item" data-id="<?= $applicant->id;?>" >Edit</a>
+            </div>
+
+          </div>
+          <!-- <button type="button" class="btn custom-button" data-name="button-view" data-id="<?= $applicant->id; ?>">View</button>
+          <a href="<?= base_url('assets/uploads/'.$applicant->file) ?>" type="button" class="btn btn-info" data-id="<?= $applicant->id;?>" >View Resume</a> 
+          <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" class="btn custom-button" data-id="<?= $applicant->id;?>" >Edit</a> -->
           
         </td>
       </tr>

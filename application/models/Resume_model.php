@@ -61,6 +61,28 @@ class Resume_model extends CI_Model {
 
   }
 
+  public function count_applicant(){
+    $status=array('Active','Inactive');
+    $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file');
+    $this->db->from('record');
+    $this->db->join('role', 'record.role_id = role.role_id','inner');
+    $this->db->join('position', 'record.pos_id = position.id','inner');
+    $this->db->where_not_in('record.current_status',$status); 
+    $result = $this->db->get();
+    return $result->num_rows();  
+
+}
+public function count_record($data){
+      $status=array('Active','Inactive');
+      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,record.current_status');
+      $this->db->from('record');
+      $this->db->where($data);
+      $this->db->where_in('record.current_status',$status);
+      $this->db->join('role','record.role_id = role.role_id','inner'); 
+      $result = $this->db->get();
+      return $result->num_rows();  
+  }
+
 
   public function fetch($table, $where=""){
 		if (!empty($where)) {

@@ -23,9 +23,20 @@
         <td><?=$intern->name?></td>
         <td><?=$intern->current_status?></td>
         <td>
-          <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $intern->id; ?>">View</button>
+        <div class="btn-group">
+           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </button>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" data-name="button-view" data-id="<?= $employee->id; ?>">View</a>
+                  <a href="<?= base_url('intern/edit/'.$employee->id) ?>" class="dropdown-item" data-id="<?= $employee->id;?>" >Edit</a>
+              </div>
+           </div> 
+
+
+          <!-- <button type="button" class="btn btn-info" data-name="button-view" data-id="<?= $intern->id; ?>">View</button>
           <a href="<?= base_url('intern/edit/'.$intern->id) ?>" class="btn btn-warning" data-id="<?= $intern->id;?>" >Edit</a>
-        </td>
+        </td> -->
       </tr>
       <?php endforeach; ?>
   <?php }?>
