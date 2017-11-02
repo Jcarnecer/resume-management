@@ -23,8 +23,19 @@
         <td><?=$freelance->name?></td>
         <td><?=$freelance->current_status?></td>
         <td>
-          <button type="button" class="btn custom-button" data-name="button-view" data-id="<?=$freelance->id; ?>">View</button>
-          <a href="<?= base_url('freelance/edit/'.$freelance->id) ?>" class="btn custom-button" data-id="<?= $freelance->id;?>" >Edit</a>
+        <div class="btn-group">
+           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </button>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" data-name="button-view" data-id="<?= $employee->id; ?>">View</a>
+                  <a href="<?= base_url('freelance/edit/'.$employee->id) ?>" class="dropdown-item" data-id="<?= $employee->id;?>" >Edit</a>
+              </div>
+           </div> 
+
+
+          <!-- <button type="button" class="btn custom-button" data-name="button-view" data-id="<?=$freelance->id; ?>">View</button>
+          <a href="<?= base_url('freelance/edit/'.$freelance->id) ?>" class="btn custom-button" data-id="<?= $freelance->id;?>" >Edit</a> -->
         </td>
       </tr>
       <?php endforeach; ?>
