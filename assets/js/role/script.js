@@ -26,7 +26,7 @@ $(document).on('click','#btn-update',function(){
   
   $(document).on('click',"button[data-function='update']",function(){
     var roleId = $(this).attr('data-id');
-    var url = base_url + "roles/edit/"+ roleId;
+    var url = "roles/edit/"+ roleId;
     var posId= $('#position_name option:selected').val();
     var form=$('#role-form').serialize();
     console.log(posId);
