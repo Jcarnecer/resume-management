@@ -291,7 +291,7 @@ class Applicant extends CI_Controller {
   
   public function upload(){
 
-    $config['upload_path'] = "assets/uploads";
+    $config['upload_path'] = get_cwd()."assets/uploads";
     $config['allowed_types'] = 'doc|pdf';
     $config['max_size'] = 200;
 
