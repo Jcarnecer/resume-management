@@ -146,7 +146,7 @@ $(document).ready(function(){
       var form = new FormData(document.getElementById('intern-edit-form'));
       var link ='intern';
       $.ajax({
-        url:'intern/edit',
+        url:'intern/edit_data',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType

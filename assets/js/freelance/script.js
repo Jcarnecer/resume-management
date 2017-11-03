@@ -146,7 +146,7 @@ $(document).ready(function(){
       var form = new FormData(document.getElementById('freelance-edit-form'));
       var link ='freelance';
       $.ajax({
-        url: 'freelance/edit',
+        url: 'freelance/edit_data',
         method: 'POST',
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
