@@ -244,11 +244,11 @@ class Applicant extends CI_Controller {
     $this->email->to($to_email);
     $this->email->subject('Astrid Technologies');
 
-    if($status == "archived"){
+    if($status == "Archived"){
       $this->email->message('Failed!');
       $this->email->send();
     }
-    elseif($status == "hired"){
+    elseif($status == "Hired"){
       $this->email->message('Passed!');
       $this->email->send();
       $update=[
