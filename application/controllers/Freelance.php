@@ -5,13 +5,12 @@ class Freelance extends CI_Controller {
 
     
         public function index(){
-            $data['freelance'] = $this->Resume_model->show_record(['record.pos_id'=>'3']);
+            $data['freelance'] = $this->Resume_model->show_record(['record.pos_id'=>3]);
             $title['title'] = "Astrid Technologies | New Applicant";
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar', $data);  
             $this->load->view('freelance/index', $data);
             $this->load->view('include/footer');   
-            echo json_encode($data); 
         }
 
         public function add_freelance(){
