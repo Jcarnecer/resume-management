@@ -225,32 +225,32 @@ class Applicant extends CI_Controller {
     ];
     $this->Resume_model->update('record', $update, 'id='.$id);
 
-    $this->email->initialize(array(
-        'protocol' => 'mail',
-        'smtp_user' => 'farrahdee24@gmail.com',
-        'smtp_host' => 'localhost',
-        'smtp_pass' => 'Chr!sBrown24',
-        'smtp_port' => '25',
-        'wordwrap' => TRUE,
-        'mailtype' => 'html',
-        'charset' => 'utf-8',
-        'crlf' => "\r\n",
-        'newline' => "\r\n"
-    ));
+    // $this->email->initialize(array(
+    //     'protocol' => 'mail',
+    //     'smtp_user' => 'farrahdee24@gmail.com',
+    //     'smtp_host' => 'localhost',
+    //     'smtp_pass' => 'Chr!sBrown24',
+    //     'smtp_port' => '25',
+    //     'wordwrap' => TRUE,
+    //     'mailtype' => 'html',
+    //     'charset' => 'utf-8',
+    //     'crlf' => "\r\n",
+    //     'newline' => "\r\n"
+    // ));
 
     $from_email ="farrahdee24@gmail.com";
 
-    $this->email->from($from_email, 'Farrah Dee');
-    $this->email->to($to_email);
-    $this->email->subject('Astrid Technologies');
+    // $this->email->from($from_email, 'Farrah Dee');
+    // $this->email->to($to_email);
+    // $this->email->subject('Astrid Technologies');
 
-    if($status == "archived"){
-      $this->email->message('Failed!');
-      $this->email->send();
+    if($status == "Archived"){
+      // $this->email->message('Failed!');
+      // $this->email->send();
     }
-    elseif($status == "hired"){
-      $this->email->message('Passed!');
-      $this->email->send();
+    elseif($status == "Hired"){
+      // $this->email->message('Passed!');
+      // $this->email->send();
       $update=[
         'current_status' => "Active",
       ];
