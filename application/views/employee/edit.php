@@ -7,7 +7,7 @@
 
   <form class="form-horizontal" id="employee-edit-form" enctype="multipart/form-data"  method="POST">
 
-    <!-- <input type="hidden" name="id" value="<?=$employee_data->id?>"> -->
+    <input type="hidden" name="id" value="<?=$employee_data->id?>">
     <div class="form-group row">
       <label  class="col-sm-2 control-label">First Name:</label>
       <div class="col-sm-8">
