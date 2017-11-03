@@ -17,7 +17,7 @@ $(document).on('click','#btn-update',function(){
   
   $(document).on('click','#btn-add',function(){ 
 
-            
+          $('#role-form')[0].reset();      
           $("#roleModal").find(".modal-title").html("Add Role");
           $("#roleModal").find("#btn-save").attr("data-function","add");             
    
