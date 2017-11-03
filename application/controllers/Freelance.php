@@ -10,7 +10,11 @@ class Freelance extends CI_Controller {
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar', $data);  
             $this->load->view('freelance/index', $data);
+<<<<<<< HEAD
             $this->load->view('include/footer');
+=======
+            $this->load->view('include/footer');   
+>>>>>>> 80b0e662ee03df53c532f4178a687c00049732ee
         }
 
         public function add_freelance(){

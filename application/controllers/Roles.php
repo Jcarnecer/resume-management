@@ -20,7 +20,7 @@ class Roles extends CI_Controller {
         
         $id = $this->uri->segment(3);
         $update=[
-          'name'=>$this->input->post('role_name')
+          'name'=>strip_tags($this->input->post('role_name'))
         ];
         $record=$this->Resume_model->update('role', $update, 'role_id='.$id);   
         echo json_encode('success');
@@ -72,7 +72,7 @@ class Roles extends CI_Controller {
       else{
 
           $insert=[
-            'name' => clean_data(ucwords($this->input->post('role_name'))),
+            'name' => strip_tags(clean_data(ucwords($this->input->post('role_name')))),
             'pos_id' => $this->input->post('pos_id'),
             'status'=>'1',
           ];
