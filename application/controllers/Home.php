@@ -12,12 +12,18 @@ class Home extends CI_Controller {
         $data['role_freelance'] = $this->Resume_model->fetch('role',['pos_id' => 3,'status'=>1]);
         
         $title['title'] = "Astrid Technologies | Resume Management";
-         $this->load->view('include/header',$title);
+        $this->load->view('include/header',$title);
         $this->load->view('include/sidebar', $data);  
         $this->load->view('Home/index', $data);
         $this->load->view('include/footer');
 
       
+    }
+
+
+
+    public function maintenance(){
+        $this->load->view('index', $data); 
     }
 
   }
