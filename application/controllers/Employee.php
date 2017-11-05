@@ -150,14 +150,15 @@ class Employee extends CI_Controller {
         'birthday' => clean_data($this->input->post('birth_date')),
         'degree' => clean_data($this->input->post('degree')),
       ];
-      $this->Resume_model->update('record', $update, 'id='.$id);
+      //$this->Resume_model->update('record', $update, 'id='.$id);
+      $this->Resume_model->update('record', $update,array('id'=>$id));
       $update_employees=[
         'sss' => clean_data($this->input->post('sss')),
         'tin' => clean_data($this->input->post('tin')),
         'philhealth' => clean_data($this->input->post('philhealth')),
         'pagibig' => clean_data($this->input->post('pagibig')),
       ];
-      $this->Resume_model->update('employees',$update_employees,'record_id='.$id);
+      $this->Resume_model->update('employees',$update_employees,array('record_id='.$id));
       echo json_encode('success');
     }
 }

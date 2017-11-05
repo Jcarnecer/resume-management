@@ -125,8 +125,8 @@ class Freelance extends CI_Controller {
         'pos_id'=>3  
 
       ];
-      $this->Resume_model->update('record', $update, 'id='.$id);
-    
+     // $this->Resume_model->update('record', $update, 'id='.$id);
+     $this->Resume_model->update('record', $update,array('id'=>$id));
         echo json_encode('success');
     }
 
