@@ -111,6 +111,7 @@ class Applicant extends CI_Controller {
       echo json_encode(validation_errors());
     }else{
       $insert_data=[
+        'id'=>$this->utilities->unique_id('record',8),
         'first_name' => clean_data(ucwords($first_name)),
         'last_name'  => clean_data(ucwords($last_name)),
         'middle_name' => clean_data(ucwords($middle_name)),
@@ -223,8 +224,8 @@ class Applicant extends CI_Controller {
       'date_hired' => $date_now,
       'pos_id'=>$pos_id
     ];
-    $this->Resume_model->update('record', $update, 'id='.$id);
-
+    
+    $this->Resume_model->update('record', $update,array('id'=>$id));
     // $this->email->initialize(array(
     //     'protocol' => 'mail',
     //     'smtp_user' => 'farrahdee24@gmail.com',
@@ -251,14 +252,27 @@ class Applicant extends CI_Controller {
     elseif($status == "Hired"){
       // $this->email->message('Passed!');
       // $this->email->send();
+      $new_id=null;
+      if($pos_id==1){
+        $new_id=$this->utilities->unique_id('employees',8);
+        $insert=[
+          'record_id' => $new_id,
+        ];
+        $this->Resume_model->insert('employees', $insert);
+      }
+      else if($pos_id==2){  
+        $new_id=$this->utilities->unique_id('intern',8);
+      }
+      else if($pos_id==3){
+       $new_id=$this->utilities->unique_id('freelance',8);
+      }
       $update=[
+        'id'=>$new_id,
         'current_status' => "Active",
       ];
-      $insert=[
-        'record_id' => $id,
-      ];
-      $this->Resume_model->update('record', $update, 'id='.$id);
-      $this->Resume_model->insert('employees', $insert);
+     
+      //$this->Resume_model->update('record', $update, 'id='.$id);
+      $this->Resume_model->update('record', $update,array('id'=>$id));
     }
     echo json_encode('success');
   }

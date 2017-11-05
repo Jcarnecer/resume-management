@@ -78,7 +78,59 @@ class Utilities {
 				
 				return $temp_id;
 				break;
+				
+			case 'record':
+				$temp_id = '';
+			
+				do {
+				
+					$temp_id = 'APL' . $this->generate_id($length);
+				} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+				
+				return $temp_id;
+				break;
 
+			case 'role':
+				$temp_id = '';
+			
+				do {
+				
+					$temp_id = 'RLE' . $this->generate_id($length);
+				} while ($this->ci->db->where('role_id', $temp_id)->get('role')->result() != null);
+				
+				return $temp_id;
+				break;
+			case 'employees':
+				$temp_id = '';
+				
+					do {
+					
+						$temp_id = 'EMP' . $this->generate_id($length);
+					} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+					
+					return $temp_id;
+					break;
+			case 'intern':
+					$temp_id = '';
+					
+						do {
+						
+							$temp_id = 'IRN' . $this->generate_id($length);
+						} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+						
+						return $temp_id;
+						break;	
+			case 'freelance':
+						$temp_id = '';
+						
+							do {
+							
+								$temp_id = 'FLN' . $this->generate_id($length);
+							} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+							
+							return $temp_id;
+							break;						
+					
 			default:
 				return null;
 		}
