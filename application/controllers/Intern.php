@@ -126,7 +126,8 @@ class Intern extends CI_Controller {
           'current_status' => clean_data($status),
 
         ];
-        $result=$this->Resume_model->update('record', $update, 'id='.$id);
+        //$result=$this->Resume_model->update('record', $update, 'id='.$id);
+        $this->Resume_model->update('record', $update,array('id'=>$id));
         echo json_encode('success');
         
       }
