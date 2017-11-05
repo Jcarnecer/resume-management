@@ -72,6 +72,7 @@ class Roles extends CI_Controller {
       else{
 
           $insert=[
+            'role_id'=>$this->utilities->unique_id('role',8),
             'name' => strip_tags(clean_data(ucwords($this->input->post('role_name')))),
             'pos_id' => $this->input->post('pos_id'),
             'status'=>'1',

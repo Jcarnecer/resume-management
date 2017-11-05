@@ -56,6 +56,7 @@ class Intern extends CI_Controller {
         echo json_encode(validation_errors());
       }else{
         $insert_data=[
+          'id'=>$this->utilities->unique_id('intern',8),
           'first_name' => clean_data(ucwords($first_name)),
           'last_name'  => clean_data(ucwords($last_name)),
           'middle_name' => clean_data(ucwords($middle_name)),
