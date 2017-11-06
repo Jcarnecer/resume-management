@@ -26,8 +26,15 @@ $position = $this->Resume_model->fetch('position');
           <td data-role="position_name"><?=$role->pos_name?></td>
           <td data-role="role_status"><?=$role->status==1?"Activated":"Deactivated"?></td>
           <td>
-            <button class="btn custom-button" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</button>
-            <button class="btn btn-danger" data-value="<?=$role->pos_id;?>" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</button>
+            <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+              </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</a>
+                  <a class="dropdown-item" data-value="<?=$role->pos_id;?>" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</a>
+                </div>
+            </div>  
           </td>
         </tr>
         <?php endforeach; ?>

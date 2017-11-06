@@ -6,7 +6,7 @@ class Intern extends CI_Controller {
     public function index(){
     
       $data['interns'] = $this->Resume_model->show_record(['record.pos_id'=>2]);
-      $title['title'] = "Astrid Technologies | New Applicant";
+      $title['title'] = "Astrid Technologies | Intern";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar', $data);  
       $this->load->view('intern/index', $data);
@@ -17,7 +17,7 @@ class Intern extends CI_Controller {
 
     public function add_intern(){
 
-      $data['title'] = "Astrid Technologies | New Applicant";
+      $data['title'] = "Astrid Technologies | New Intern";
       $this->load->view('include/header', $data);
       $this->load->view('include/sidebar', $data);
       $this->load->view('intern/new');
@@ -56,6 +56,7 @@ class Intern extends CI_Controller {
         echo json_encode(validation_errors());
       }else{
         $insert_data=[
+          'id'=>$this->utilities->unique_id('intern',8),
           'first_name' => clean_data(ucwords($first_name)),
           'last_name'  => clean_data(ucwords($last_name)),
           'middle_name' => clean_data(ucwords($middle_name)),
@@ -99,7 +100,7 @@ class Intern extends CI_Controller {
       $this->load->helper('form');
       $id = $this->uri->segment(3);
       $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
-      $title['title'] = "Astrid Technologies | New Applicant";
+      $title['title'] = "Astrid Technologies | Edit Intern";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
       $this->load->view('intern/edit', $data);
@@ -125,7 +126,8 @@ class Intern extends CI_Controller {
           'current_status' => clean_data($status),
 
         ];
-        $result=$this->Resume_model->update('record', $update, 'id='.$id);
+        //$result=$this->Resume_model->update('record', $update, 'id='.$id);
+        $this->Resume_model->update('record', $update,array('id'=>$id));
         echo json_encode('success');
         
       }

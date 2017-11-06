@@ -114,11 +114,11 @@
       <div class="col-sm-8">
         <select class="form-control" name="status">
           <option value="<?= $applicant_data->current_status?>">Select Status</option>>
-          <option value="applicant">Applicant</option>
-          <option value="interview">For Interview</option>
-          <option value="shortlist">Shortlist</option>
-          <option value="archived">Archived</option>
-          <option value="hired">Hired</option>
+          <option value="Applicant">Applicant</option>
+          <option value="Interview">For Interview</option>
+          <option value="Shortlist">Shortlist</option>
+          <option value="Archived">Archived</option>
+          <option value="Hired">Hired</option>
         </select>
       </div>
     </div>

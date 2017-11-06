@@ -7,7 +7,7 @@ class Employee extends CI_Controller {
      $this->load->model('Resume_model'); 
      $data['employees'] = $this->Resume_model->show_record(['record.pos_id'=>1]);
      $result=$this->Resume_model->show_record(['record.pos_id'=>1]);
-     $title['title'] = "Astrid Technologies | New Applicant";
+     $title['title'] = "Astrid Technologies | Employee";
      $this->load->view('include/header',$title);
      $this->load->view('include/sidebar', $data); 
      $this->load->view('employee/index', $data);
@@ -15,7 +15,7 @@ class Employee extends CI_Controller {
     }
 
     public function add_employee(){
-      $data['title'] = "Astrid Technologies | New Applicant";
+      $data['title'] = "Astrid Technologies | New Employee";
       $this->load->view('include/header', $data);
       $this->load->view('include/sidebar', $data);
       $this->load->view('employee/new');
@@ -59,6 +59,7 @@ class Employee extends CI_Controller {
         echo json_encode(validation_errors());
       }else{
         $insert_data=[
+          'id'=>$this->utilities->unique_id('employees',8),
           'first_name' => clean_data(ucwords($first_name)),
           'last_name'  => clean_data(ucwords($last_name)),
           'middle_name' => clean_data(ucwords($middle_name)),
@@ -125,7 +126,7 @@ class Employee extends CI_Controller {
       $data['employee_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
       $join_where = ['employees.record_id' => $id];
       $data['employee'] = $this->Resume_model->join_employee_record($join_where);
-      $title['title'] = "Astrid Technologies | New Applicant";
+      $title['title'] = "Astrid Technologies | Edit Employee  ";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
       $this->load->view('employee/edit', $data);
@@ -149,14 +150,15 @@ class Employee extends CI_Controller {
         'birthday' => clean_data($this->input->post('birth_date')),
         'degree' => clean_data($this->input->post('degree')),
       ];
-      $this->Resume_model->update('record', $update, 'id='.$id);
+      //$this->Resume_model->update('record', $update, 'id='.$id);
+      $this->Resume_model->update('record', $update,array('id'=>$id));
       $update_employees=[
         'sss' => clean_data($this->input->post('sss')),
         'tin' => clean_data($this->input->post('tin')),
         'philhealth' => clean_data($this->input->post('philhealth')),
         'pagibig' => clean_data($this->input->post('pagibig')),
       ];
-      $this->Resume_model->update('employees',$update_employees,'record_id='.$id);
+      $this->Resume_model->update('employees',$update_employees,array('record_id='.$id));
       echo json_encode('success');
     }
 }

@@ -16,13 +16,15 @@ class Roles extends CI_Controller {
 
     public function edit(){
 
-      $id = $this->uri->segment(3);
-      $update=[
-        'name'=>$this->input->post('role_name')
-      ];
-      $record=$this->Resume_model->update('role', $update, 'role_id='.$id);   
-      echo json_encode($record);
-
+       
+        
+        $id = $this->uri->segment(3);
+        $update=[
+          'name'=>strip_tags($this->input->post('role_name'))
+        ];
+        $record=$this->Resume_model->update('role', $update, 'role_id='.$id);   
+        echo json_encode('success');
+        
     }
 
 
@@ -70,7 +72,8 @@ class Roles extends CI_Controller {
       else{
 
           $insert=[
-            'name' => clean_data(ucwords($this->input->post('role_name'))),
+            'role_id'=>$this->utilities->unique_id('role',8),
+            'name' => strip_tags(clean_data(ucwords($this->input->post('role_name')))),
             'pos_id' => $this->input->post('pos_id'),
             'status'=>'1',
           ];

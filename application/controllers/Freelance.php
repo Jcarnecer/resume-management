@@ -15,7 +15,7 @@ class Freelance extends CI_Controller {
 
         public function add_freelance(){
                 
-            $data['title'] = "Astrid Technologies | New Applicant";
+            $data['title'] = "Astrid Technologies | Add Freelancer";
             $this->load->view('include/header', $data);
             $this->load->view('include/sidebar', $data);
             $this->load->view('freelance/new');
@@ -55,6 +55,7 @@ class Freelance extends CI_Controller {
               echo json_encode(validation_errors());
             }else{
               $insert_data=[
+                'id'=>$this->utilities->unique_id('freelance',8),
                 'first_name' => clean_data(ucwords($first_name)),
                 'last_name'  => clean_data(ucwords($last_name)),
                 'middle_name' => clean_data(ucwords($middle_name)),
@@ -98,7 +99,7 @@ class Freelance extends CI_Controller {
             $this->load->helper('form');
             $id = $this->uri->segment(3);
             $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
-            $title['title'] = "Astrid Technologies | New Applicant";
+            $title['title'] = "Astrid Technologies | Edit Freelancer";
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar',$data);
             $this->load->view('freelance/edit', $data);
@@ -124,8 +125,8 @@ class Freelance extends CI_Controller {
         'pos_id'=>3  
 
       ];
-      $this->Resume_model->update('record', $update, 'id='.$id);
-    
+     // $this->Resume_model->update('record', $update, 'id='.$id);
+     $this->Resume_model->update('record', $update,array('id'=>$id));
         echo json_encode('success');
     }
 

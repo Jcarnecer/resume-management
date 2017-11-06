@@ -54,9 +54,9 @@ $route['applicant']['GET'] = 'Applicant';
 $route['applicant'] = 'Applicant/index';
 $route['applicant/new']['GET'] = 'Applicant/new';
 
-$route['applicant/edit_view/(:num)']['GET'] = 'Applicant/edit_view/$1';
+$route['applicant/edit_view/(:any)']['GET'] = 'Applicant/edit_view/$1';
 $route['applicant/edit']['POST'] = 'Applicant/edit';
-$route['applicant/(:num)']['GET'] = 'Applicant/view/$1';
+$route['applicant/(:any)']['GET'] = 'Applicant/view/$1';
 $route['insert_role']['POST'] = 'Applicant/insert_role';
 $route['applicants/add'] = 'Applicant/add_applicant';
  
@@ -64,19 +64,19 @@ $route['add_result']['POST'] = 'Applicant/add_result';
 
 //Employee
 $route['employee']['GET'] = 'Employee/index';
-$route['employee/edit/(:num)']['GET'] = 'Employee/edit/$1';
+$route['employee/edit/(:any)']['GET'] = 'Employee/edit/$1';
 $route['employee/edit']['POST'] = 'Employee/edit_data';
 $route['employee/add'] = 'employee/add_employee';
 
 //Intern
 $route['intern']['GET'] = 'Intern/index';
 $route['intern/add'] = 'intern/add_intern';
-$route['intern/edit/(:num)']['GET'] = 'Intern/edit/$1';
+$route['intern/edit/(:any)']['GET'] = 'Intern/edit/$1';
 $route['intern/edit']['POST'] = 'Intern/edit_data';
 //Freelancers
 $route['freelance']['GET'] = 'Freelance/index';
 $route['freelance/add'] = 'freelance/add_freelance';
-$route['freelance/edit/(:num)']['GET'] = 'Freelance/edit/$1';
+$route['freelance/edit/(:any)']['GET'] = 'Freelance/edit/$1';
 $route['freelance/edit']['POST'] = 'freelance/edit_data';
 
 //role
