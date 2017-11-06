@@ -164,7 +164,7 @@ public function count_record($data){
     $this->db->join('position', 'role.pos_id = position.id','inner'); 
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
-    return $query->result();
+    return $query->row();
   }
 
   public function get_role($where){
@@ -186,7 +186,7 @@ public function count_record($data){
     $this->db->join('employees', 'record.id = employees.record_id','inner');
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
-    return $query->row();
+    return $query->result();
     }
 
     
