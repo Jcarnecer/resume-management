@@ -11,7 +11,7 @@ class Roles extends CI_Controller {
       $this->load->view('include/sidebar');
       $this->load->view('role/index', $data);
       $this->load->view('include/footer');
- 
+      echo json_encode($data['roles']);
     }
 
     public function edit(){
