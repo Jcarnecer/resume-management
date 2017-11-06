@@ -266,6 +266,7 @@ a:hover {
 }
 
 .thumb {
+    @extend .center-block;
     height: 80px;
     width: auto;
 }
@@ -339,7 +340,8 @@ a:hover {
 .dropdown-item {
     &:hover, &:active {
         background-color: $secondary-color;
-        color: $white;
+        color: $white !important;
+        cursor: pointer;
         width: auto;
     }
 }
