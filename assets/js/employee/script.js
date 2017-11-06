@@ -169,3 +169,63 @@ $(document).ready(function(){
      
     });
   });
+
+
+  $(function(){
+    
+      $('[data-name="button-view"]').click(function() {
+          var applicantId = $(this).attr('data-id');
+          var url =  "employee/" +  applicantId;
+            console.log(applicantId);
+          $.ajax({
+              "url": url,
+              "method": "GET",
+              "success": function(response, status, http) {
+                // console.log('click');
+                  if (http.status == 200) {
+                      $('#first-name').html(response.first_name);
+                      $('#last-name').html(response.last_name);
+                      $('#middle-name').html(response.middle_name);
+                      $('#home-address').html(response.home_address);
+                      $('#phone_number').html(response.phone_number);
+                      $('#birthday').html(response.birthday);
+                      $('#degree').html(response.degree);
+                      $('#school').html(response.school);
+                      $('#role').html(response.name);
+                      $('#date_hired').html(response.date_hired);
+                      $('#app_date').html(response.application_date);
+                      $('#sss').html(response.sss);
+                      $('#tin').html(response.tin);
+                      $('#philhealth').html(response.philhealth);
+                      $('#pagibig').html(response.pagibig);
+                      $('#comment').html(response.comment);
+                      $('#resume').attr("href", base_url + 'assets/uploads/' + response.file);
+                      $('#resume').html(response.file);
+                      $('#interviewer').html(response.interviewer);
+                      $('#interview-notes').attr("href", base_url + 'assets/uploads/' + response.interview_notes);
+                      $('#interview-notes').html(response.interview_notes);
+                      if(response.exam_result == 1){
+                        $('#exam-result').html("Passed");
+                      }
+                      else if (response.exam_result == 0){
+                        $('#exam-result').html("Failed");
+                      }else{
+                        $('#interview-result').html("");
+                      }
+                      if(response.interview_result == 1){
+                        $('#interview-result').html("Passed");
+                      }
+                      else if (response.interview_result == 0){
+                        $('#interview-result').html("Failed");
+                      }
+                      else {
+                        $('#interview-result').html("");
+                      }
+    
+                      $('#viewmodal').modal('show');
+                  }
+              }
+          });
+      });
+    
+    });
