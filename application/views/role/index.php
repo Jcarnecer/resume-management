@@ -21,7 +21,7 @@ $position = $this->Resume_model->fetch('position');
       </thead>
       <tbody id="tbody-role">
         <?php foreach ($roles as $role) : ?>
-        <tr data-role="role_id" class="<?=$role->role_id?>">
+          <tr data-role="role_id" class="<?=$role->role_id?>">
           <td data-role="role_name"><?= $role->name?></td>
           <td data-role="position_name"><?=$role->pos_name?></td>
           <td data-role="role_status"><?=$role->status==1?"Activated":"Deactivated"?></td>

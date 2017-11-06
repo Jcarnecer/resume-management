@@ -90,10 +90,8 @@ $(document).on('click','#btn-update',function(){
   $.fn.displayRoles=function(items){
   
     $("#tbody-role").html('');
-  
         $.each(items,function(i,item){
             $('#tbody-role').append(`
-                      
                     <tr data-role="role_id" class=${item['role_id']}>
                         <td data-role="role_name">${item['name']}</td>
                         <td data-role="position_name">${item['pos_name']}</td>
@@ -144,8 +142,8 @@ $(document).on('click','#btn-update',function(){
       
     });
 
-    $(document).getRoles().done(function(data){
-        $(document).displayRoles(data);
-        });
+    // $(document).getRoles().done(function(data){
+    //     $(document).displayRoles(data);
+    //     });
 
 
