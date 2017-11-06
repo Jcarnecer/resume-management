@@ -82,28 +82,28 @@
     <div class="form-group row">
       <label  class="col-sm-2 control-label">TIN:</label>
       <div class="col-sm-8">
-        <input type="text" name="tin" class="form-control" value="<?= $employee->tin ?>" placeholder="TIN"/>
+        <input type="text" name="tin" class="form-control" value="<?= $employee_data->tin ?>" placeholder="TIN"/>
       </div>
     </div>
 
     <div class="form-group row">
       <label  class="col-sm-2 control-label">SSS:</label>
       <div class="col-sm-8">
-        <input type="text" name="sss" class="form-control" value="<?= $employee->sss ?>" placeholder="SSS"/>
+        <input type="text" name="sss" class="form-control" value="<?= $employee_data->sss ?>" placeholder="SSS"/>
       </div>
     </div>
 
     <div class="form-group row">
       <label  class="col-sm-2 control-label">Philhealth:</label>
       <div class="col-sm-8">
-        <input type="text" name="philhealth" class="form-control" value="<?= $employee->philhealth ?>" placeholder="Philhealth"/>
+        <input type="text" name="philhealth" class="form-control" value="<?= $employee_data->philhealth ?>" placeholder="Philhealth"/>
       </div>
     </div>
 
     <div class="form-group row">
       <label  class="col-sm-2 control-label">Pagibig:</label>
       <div class="col-sm-8">
-        <input type="text" name="pagibig" class="form-control" value="<?= $employee->pagibig ?>" placeholder="Pagibig"/>
+        <input type="text" name="pagibig" class="form-control" value="<?= $employee_data->pagibig ?>" placeholder="Pagibig"/>
       </div>
     </div>
 
