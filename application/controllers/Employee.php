@@ -125,7 +125,7 @@ class Employee extends CI_Controller {
       $id = $this->uri->segment(3);
       $data['employee_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
       $join_where = ['employees.record_id' => $id];
-      $data['employee'] = $this->Resume_model->join_employee_record(['employees.record_id' => $id]);
+      $data['employee'] = $this->Resume_model->join_employee_record($join_where);
       $title['title'] = "Astrid Technologies | Edit Employee  ";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
