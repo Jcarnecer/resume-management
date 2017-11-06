@@ -15,7 +15,6 @@ class Resume_model extends CI_Model {
 		}else{
 			return FALSE;
     }
-    return $result-row();
 	}
 
   public function get_insert_id(){
