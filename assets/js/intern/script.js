@@ -184,7 +184,7 @@ $(document).ready(function(){
     
         $(document).on('click',"button[data-function='add_intern_role']",function(){
             var url = "roles/insert_role";
-            var form=$('#role_form_inern').serialize();
+            var form=$('#form_role_intern').serialize();
                 $.ajax({
                     "url":url,
                     "method":"POST",
@@ -196,13 +196,13 @@ $(document).ready(function(){
                                     $(document).displayInternRoles(data);
                             });
                             bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
-                            $('#modal_emprole').modal('toggle'); 
+                            $('#modal_intern_role').modal('toggle'); 
             
             
                       }
                       else{
                           bs_notify("<strong>"+result+"</strong>","danger","top","right");  
-                          $('#roleModal').modal('toggle'); 
+                          $('#modal_intern_role').modal('toggle'); 
                       }
           
                     }
@@ -211,7 +211,7 @@ $(document).ready(function(){
     
     
     
-          $.fn.getInternlanceRoles=function(){
+          $.fn.getInternRoles=function(){
             var $url = "roles/get_pos_role/"+2;
            return $.ajax({
               url:$url,

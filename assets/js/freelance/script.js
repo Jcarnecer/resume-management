@@ -183,7 +183,7 @@ $(document).ready(function(){
     
         $(document).on('click',"button[data-function='add_freelance_role']",function(){
             var url = "roles/insert_role";
-            var form=$('#role_form_freelance').serialize();
+            var form=$('#form_role_freelance').serialize();
                 $.ajax({
                     "url":url,
                     "method":"POST",
