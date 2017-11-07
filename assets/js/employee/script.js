@@ -229,3 +229,88 @@ $(document).ready(function(){
       });
     
     });
+
+
+    $(document).on('change','#role',function(){
+
+        var role= $('#role').find(":selected").val();
+   
+        if(role=="Add Role"){
+            $("#modal_emprole").find("#btn-save").attr("data-function","add_emprole"); 
+            $('#modal_emprole').modal('show');
+        }
+
+    });
+
+
+
+    $(document).on('click',"button[data-function='add_emprole']",function(){
+        var url = "roles/insert_role";
+        var form=$('#role_form_employee').serialize();
+            $.ajax({
+                "url":url,
+                "method":"POST",
+                 data:form,
+                success: function(data){
+                    var result = JSON.parse(data);
+                  if(result=='success'){
+                        $(document).getEmpRoles().done(function(data){
+                                $(document).displayEmpRoles(data);
+                        });
+                        bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
+                        $('#modal_emprole').modal('toggle'); 
+        
+        
+                  }
+                  else{
+                      bs_notify("<strong>"+result+"</strong>","danger","top","right");  
+                      $('#roleModal').modal('toggle'); 
+                  }
+      
+                }
+            });
+      });
+
+
+
+      $.fn.getEmpRoles=function(){
+        var $url = "roles/get_pos_role/"+1;
+       return $.ajax({
+          url:$url,
+          type:"GET",
+          dataType: 'JSON'
+        });
+      };
+
+
+      $.fn.displayEmpRoles=function(items){
+        
+          $("#role-employee").html('');
+        
+              $.each(items,function(i,item){
+                  $('#role').append(`
+                  <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
+                  );
+              });
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -116,6 +116,24 @@ class Roles extends CI_Controller {
         }  
       
      }
+
+     public function get_pos_role($posid){
+      $where = ['pos_id' => $posid];
+      $role = $this->Resume_model->fetch('role',$where);
+      // print_r($role);die;
+      foreach($role as $row){
+        $r_name = $row->name;
+        $r_id = $row->role_id;
+        $r_pos_id=$row->pos_id;
+        $roles[] = [
+            'id'  => $r_id,
+            'name'  => $r_name,
+            'pos_id'=>$r_pos_id
+        ];
+      }
+      echo json_encode($roles);
+    }
+     
     
 
   }

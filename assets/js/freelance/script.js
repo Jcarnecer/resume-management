@@ -167,3 +167,67 @@ $(document).ready(function(){
      
     });
   });
+
+
+  $(document).on('change','#role-freelance',function(){
+    
+            var role= $('#role-freelance').find(":selected").val();
+            if(role=="Add Role"){
+                $("#modal_freelance_role").find("#btn-save").attr("data-function","add_emprole"); 
+                $('#modal_freelance_role').modal('show');
+            }
+    
+        });
+    
+    
+    
+        $(document).on('click',"button[data-function='add_freelance_role']",function(){
+            var url = "roles/insert_role";
+            var form=$('#role_form_freelance').serialize();
+                $.ajax({
+                    "url":url,
+                    "method":"POST",
+                     data:form,
+                    success: function(data){
+                        var result = JSON.parse(data);
+                      if(result=='success'){
+                            $(document).getFreelanceRoles().done(function(data){
+                                    $(document).displayFreelanceRoles(data);
+                            });
+                            bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
+                            $('#modal_emprole').modal('toggle'); 
+            
+            
+                      }
+                      else{
+                          bs_notify("<strong>"+result+"</strong>","danger","top","right");  
+                          $('#roleModal').modal('toggle'); 
+                      }
+          
+                    }
+                });
+          });
+    
+    
+    
+          $.fn.getFreelanceRoles=function(){
+            var $url = "roles/get_pos_role/"+3;
+           return $.ajax({
+              url:$url,
+              type:"GET",
+              dataType: 'JSON'
+            });
+          };
+    
+    
+          $.fn.displayFreelanceRoles=function(items){
+            
+              $("#role-freelance").html('');
+            
+                  $.each(items,function(i,item){
+                      $('#role-freelance').append(`
+                      <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
+                      );
+                  });
+            };
+    

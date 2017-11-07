@@ -190,4 +190,5 @@ class Employee extends CI_Controller {
       echo json_encode($record);//$applicant);
 
     }
+
 }
