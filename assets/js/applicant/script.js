@@ -218,8 +218,8 @@ $(document).ready(function(){
             html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
             // console.log(roles.id);
           }
-          html+='<option value="'+ "Add Role" +'">Add Role </option>'
-          $("#role").html(html);
+          html+='<option value="'+ "Add Role" +'" data-function="add_aplrole" data-toggle="modal_aplrole" data-target="modal">Add Role </option>'
+          $("#role-applicant").html(html);
           // alert(posid);
           if(posid == 1){
             $("#emp_form").show();
@@ -264,5 +264,20 @@ $.fn.getApplicants=function(){
   $(document).on('click','#btn_aplcancel',function(){
     location.href=document.referrer;
  });
+
+ $(document).on('change','#role-applicant',function(){
+            
+            var role= $('#role-applicant').find(":selected").val();
+            var posId = $("#pos-id").val();
+            console.log(role);
+            if(role=="Add Role"){
+                $("#modal_aplrole").find("#btn-save").attr("data-function","add_aplrole"); 
+                $("#modal_aplrole").find("#position_name").val(posId); 
+                $('#modal_aplrole').modal('show');
+            }
+    
+    });
+
+ 
 
 

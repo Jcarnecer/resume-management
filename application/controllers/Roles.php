@@ -119,7 +119,7 @@ class Roles extends CI_Controller {
      }
 
      public function get_pos_role($posid){
-      $where = ['pos_id' => $posid];
+      $where = ['pos_id' => $posid,'status'=>1];
       $role = $this->Resume_model->fetch('role',$where);
       // print_r($role);die;
       foreach($role as $row){
