@@ -27,7 +27,7 @@ $position = $this->Resume_model->fetch('position');
           <td data-role="role_status"><?=$role->status==1?"Activated":"Deactivated"?></td>
           <td>
             <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn custom-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Action
               </button>
                 <div class="dropdown-menu">

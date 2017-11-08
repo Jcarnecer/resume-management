@@ -78,7 +78,7 @@ a:hover {
     }
 
     .sidebar-menu {
-        padding-top: 50px;
+        padding-top: 57px;
     }
 
     ul, li {
@@ -119,7 +119,7 @@ a:hover {
         }
     }
 }
-
+ 
 .hidden-toggle {
     display: none;
 }
@@ -131,6 +131,9 @@ a:hover {
 .main-content {
     margin-left: 210px;
     overflow: hidden;
+    transition: .5s;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
 }
 
 .dashboard-margin {
@@ -138,25 +141,25 @@ a:hover {
     margin-top: 10%;
 }
 
-.animation { 
-    animation: expand .5s;
-    margin-left: 0;
-}
+// .animation { 
+//     animation: expand .5s;
+//     margin-left: 0;
+// }
 
-.reverse-animation { 
-    @extend .main-content;
-    animation: reverse-expand .5s;
-}
+// .reverse-animation { 
+//     @extend .main-content;
+//     animation: reverse-expand .5s;
+// }
 
-@keyframes expand {
-    from {margin-left: 210px;}
-    to {margin-left: 0px;}
-}
+// @keyframes expand {
+//     from {margin-left: 210px;}
+//     to {margin-left: 0px;}
+// }
 
-@keyframes reverse-expand {
-    from {margin-left: 0px;}
-    to {margin-left: 210px;}
-}
+// @keyframes reverse-expand {
+//     from {margin-left: 0px;}
+//     to {margin-left: 210px;}
+// }
 
 #nav-icon-close {
     float: right;
@@ -322,6 +325,11 @@ a:hover {
                 &:focus {
                     outline: none;
                 }
+
+                &:active {
+                    background: none;
+                    box-shadow: none;
+                }
             }
 
             &.next, &.previous {
@@ -345,6 +353,44 @@ a:hover {
         width: auto;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    #sidebar {
+        height: 100%;
+        margin-left: -210px;
+        position: fixed;
+        // top: 55px;
+        z-index: 99;
+
+        // .sidebar-menu {
+        //     padding-top: 0;
+        // }
+    }
+
+    .main-content {
+        margin-left: 0;
+        position: relative;
+    }
+
+    .navbar-custom {
+        z-index: 99;
+    }
+
+    .hidden-toggle {
+        display: block;
+    }
+
+    #nav-icon-close {
+        display: none;
+    }
+
+    .form-horizontal {
+        .control-label {
+            text-align: left;
+        }    
+    }
+}
+
 
 // .form-container {
 //     @extend .bottom-margin;
