@@ -230,6 +230,8 @@ $(document).ready(function(){
                       <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
                       );
                   });
+
+                  $('#role-intern').append('<option value="Add Role" data-function="add_intern_role" data-toggle="modal_intern_role" data-target="modal" >Add Role</option>');
             };
 
 

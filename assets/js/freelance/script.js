@@ -195,13 +195,13 @@ $(document).ready(function(){
                                     $(document).displayFreelanceRoles(data);
                             });
                             bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
-                            $('#modal_emprole').modal('toggle'); 
+                            $('#modal_freelance_role').modal('toggle'); 
             
             
                       }
                       else{
                           bs_notify("<strong>"+result+"</strong>","danger","top","right");  
-                          $('#roleModal').modal('toggle'); 
+                          $('#modal_freelance_role').modal('toggle'); 
                       }
           
                     }
@@ -229,6 +229,8 @@ $(document).ready(function(){
                       <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
                       );
                   });
+                  $('#role-freelance').append('<option value="Add Role" data-function="add_freelance_role" data-toggle="modal_freelance_role" data-target="modal" >Add Role</option>');      
+                  
             };
     
             

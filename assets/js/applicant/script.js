@@ -278,6 +278,49 @@ $.fn.getApplicants=function(){
     
     });
 
- 
 
+
+    $(document).on('click',"button[data-function='add_aplrole']",function(){
+        var url = "roles/insert_role";
+        var form=$('#role_form_applicant').serialize();
+            $.ajax({
+                "url":url,
+                "method":"POST",
+                 data:form,
+                success: function(data){
+                    var result = JSON.parse(data);
+                  if(result=='success'){
+                        $(document).getRoles().done(function(data){
+                                $(document).displayAplRoles(data);
+                        });
+                        bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
+                        $('#modal_aplrole').modal('toggle'); 
+        
+        
+                  }
+                  else{
+                      bs_notify("<strong>"+result+"</strong>","danger","top","right");  
+                      $('#modal_aplrole').modal('toggle'); 
+                  }
+      
+                }
+            });
+      });
+
+
+
+
+
+      $.fn.displayAplRoles=function(items){
+        
+          $("#role-applicant").html('');
+        
+              $.each(items,function(i,item){
+                  $('#role-applicant').append(`
+                  <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
+                  );
+              });
+               $('#role-applicant').append('<option value="Add Role" data-function="add_aplrole" data-toggle="modal_aplrole" data-target="modal" >Add Role</option>');
+
+        };
 

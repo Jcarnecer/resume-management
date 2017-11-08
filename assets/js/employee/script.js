@@ -264,7 +264,7 @@ $(document).ready(function(){
                   }
                   else{
                       bs_notify("<strong>"+result+"</strong>","danger","top","right");  
-                      $('#roleModal').modal('toggle'); 
+                      $('#modal_emprole').modal('toggle'); 
                   }
       
                 }
@@ -288,11 +288,14 @@ $(document).ready(function(){
           $("#role-employee").html('');
         
               $.each(items,function(i,item){
-                  $('#role').append(`
+                  $('#role-employee').append(`
                   <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
                   );
               });
-        };
+
+         $('#role-employee').append('<option value="Add Role" data-function="add_emprole" data-toggle="modal_emprole" data-target="modal" >Add Role</option>');
+
+         };
 
 
         $(document).on('click','#btn_empcancel',function(){

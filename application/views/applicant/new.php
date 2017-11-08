@@ -200,7 +200,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-row" method="POST" id="form_role_applicant">
+        <form class="form-row" method="POST" id="role_form_applicant">
             <div class="form-group col-md-6">
               <input type="text" id="role_name" class="form-control" name="role_name">
             </div>
