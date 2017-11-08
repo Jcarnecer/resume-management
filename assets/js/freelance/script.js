@@ -169,8 +169,8 @@ $(document).ready(function(){
   });
 
 
-  $(document).on('change','#role-freelance',function(){
-    
+    $(document).on('change','#role-freelance',function(){
+        $('#form_role_freelance')[0].reset();    
             var role= $('#role-freelance').find(":selected").val();
             if(role=="Add Role"){
                 $("#modal_freelance_role").find("#btn-save").attr("data-function","add_emprole"); 

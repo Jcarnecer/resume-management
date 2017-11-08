@@ -209,7 +209,7 @@ $(function(){
                   $('#philhealth').html(response.philhealth);
                   $('#pagibig').html(response.pagibig);
                   $('#comment').html(response.comment);
-                  $('#resume').attr("href", base_url + 'assets/uploads/' + response.file);
+                  $('#resume').attr("href", 'assets/uploads/' + response.file);
                   $('#resume').html(response.file);
                   $('#interviewer').html(response.interviewer);
                   $('#interview-notes').attr("href", base_url + 'assets/uploads/' + response.interview_notes);

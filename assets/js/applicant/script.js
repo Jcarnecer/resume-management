@@ -266,7 +266,7 @@ $.fn.getApplicants=function(){
  });
 
  $(document).on('change','#role-applicant',function(){
-            
+            $('#role_form_applicant')[0].reset();    
             var role= $('#role-applicant').find(":selected").val();
             var posId = $("#pos-id").val();
             console.log(role);
@@ -275,8 +275,8 @@ $.fn.getApplicants=function(){
                 $("#modal_aplrole").find("#position_name").val(posId); 
                 $('#modal_aplrole').modal('show');
             }
-    
-    });
+            
+    }); 
 
 
 

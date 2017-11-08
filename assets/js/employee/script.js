@@ -232,7 +232,7 @@ $(document).ready(function(){
 
 
     $(document).on('change','#role-employee',function(){
-
+        $('#role_form_employee')[0].reset();    
         var role= $('#role-employee').find(":selected").val();
         console.log(role);
         if(role=="Add Role"){

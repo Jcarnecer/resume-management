@@ -171,7 +171,7 @@ $(document).ready(function(){
 
 
   $(document).on('change','#role-intern',function(){
-    
+        $('#form_role_intern')[0].reset();    
             var role= $('#role-intern').find(":selected").val();
             if(role=="Add Role"){
                 $("#modal_intern_role").find("#btn-save").attr("data-function","add_intern_role"); 
