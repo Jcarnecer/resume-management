@@ -20,9 +20,10 @@ class Roles extends CI_Controller {
         
         $id = $this->uri->segment(3);
         $update=[
-          'name'=>strip_tags($this->input->post('role_name'))
+          'name'=>strip_tags($this->input->post('role_name')),
+          'pos_id'=>$this->input->post('pos_id')
         ];
-        $record=$this->Resume_model->update('role', $update, 'role_id='.$id);   
+        $record=$this->Resume_model->update('role', $update,['role_id' => $id]);   
         echo json_encode('success');
         
     }
@@ -116,6 +117,24 @@ class Roles extends CI_Controller {
         }  
       
      }
+
+     public function get_pos_role($posid){
+      $where = ['pos_id' => $posid,'status'=>1];
+      $role = $this->Resume_model->fetch('role',$where);
+      // print_r($role);die;
+      foreach($role as $row){
+        $r_name = $row->name;
+        $r_id = $row->role_id;
+        $r_pos_id=$row->pos_id;
+        $roles[] = [
+            'id'  => $r_id,
+            'name'  => $r_name,
+            'pos_id'=>$r_pos_id
+        ];
+      }
+      echo json_encode($roles);
+    }
+     
     
 
   }

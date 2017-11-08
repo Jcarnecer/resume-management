@@ -14,7 +14,7 @@ class Resume_model extends CI_Model {
 			return TRUE;
 		}else{
 			return FALSE;
-		}
+    }
 	}
 
   public function get_insert_id(){
@@ -219,6 +219,13 @@ public function count_record($data){
     $query = $this->db->get_where($table,array('id'=>$last_id));
     return $query->row();
   }
-}
 
+  
+  public function get_last_row(){
+    $result=$this->db->query('select id from record WHERE created_at=(SELECT Max(created_at) FROM record where pos_id=1)');
+    return $result->row();
+  }
+
+
+}
 

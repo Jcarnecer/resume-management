@@ -76,7 +76,9 @@ class Employee extends CI_Controller {
           'current_status' =>clean_data($current_status)
           
         ];
-        $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
+        $this->Resume_model->insert('record',$insert_data);
+        $last_inserted=$this->Resume_model->get_last_row();
+        
         // print_r($last_inserted->id);die;
            $insert_empdata = [
   
@@ -158,7 +160,35 @@ class Employee extends CI_Controller {
         'philhealth' => clean_data($this->input->post('philhealth')),
         'pagibig' => clean_data($this->input->post('pagibig')),
       ];
-      $this->Resume_model->update('employees',$update_employees,array('record_id='.$id));
+      $this->Resume_model->update('employees',$update_employees,array('record_id'=>$id));
       echo json_encode('success');
     }
+
+
+    public function view($id){
+
+      $this->load->model('Resume_model');
+   
+      $applicant = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
+      $join_where = $applicant->role_id;
+    
+      $applicant->name = $this->Resume_model->get_role($join_where)->name;
+      $record_id = $applicant->id;
+      $where = ['record_id' => $record_id];
+      $record =   $this->Resume_model->join_employee_record($where);
+      $record->name =  $this->Resume_model->get_role($join_where)->name;
+    
+      header('Content-Type: application/json');
+      header('Access-Control-Allow-Origin: *');
+      header('Access-Control-Allow-Methods: GET');
+  
+      http_response_code(200);
+      $json = [
+        'fname' => $record->first_name,
+        'role_name' => $applicant->name
+      ];
+      echo json_encode($record);//$applicant);
+
+    }
+
 }
