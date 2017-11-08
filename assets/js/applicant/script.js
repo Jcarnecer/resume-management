@@ -218,6 +218,7 @@ $(document).ready(function(){
             html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
             // console.log(roles.id);
           }
+          html+='<option value="'+ "Add Role" +'">Add Role </option>'
           $("#role").html(html);
           // alert(posid);
           if(posid == 1){

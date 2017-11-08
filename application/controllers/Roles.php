@@ -20,9 +20,10 @@ class Roles extends CI_Controller {
         
         $id = $this->uri->segment(3);
         $update=[
-          'name'=>strip_tags($this->input->post('role_name'))
+          'name'=>strip_tags($this->input->post('role_name')),
+          'pos_id'=>$this->input->post('pos_id')
         ];
-        $record=$this->Resume_model->update('role', $update, 'role_id='.$id);   
+        $record=$this->Resume_model->update('role', $update,['role_id' => $id]);   
         echo json_encode('success');
         
     }

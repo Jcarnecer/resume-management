@@ -1,5 +1,5 @@
 <?php $position = $this->Resume_model->fetch('position');
-     $role=$this->Resume_model->fetch('role',['pos_id'=>1]);
+     $role=$this->Resume_model->fetch('role',['pos_id'=>1,'status'=>1]);
 
 // print_r($position);die;
   ?>
