@@ -109,6 +109,7 @@
 
     <div class="form-group row">
       <div class="col-sm-8 offset-sm-2">
+      <input class="btn custom-button float-right" type="button"  id="btn_empcancel"value="Cancel"/>
         <input type="submit" value="Update" class="btn custom-button float-right" />
       </div>
     </div>

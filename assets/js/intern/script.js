@@ -233,4 +233,8 @@ $(document).ready(function(){
             };
 
 
+       
+    $(document).on('click','#btn_interncancel',function(){
+        location.href=document.referrer;
+     });         
   

@@ -181,9 +181,9 @@
 
     <div class="form-group row">
       <div class="col-sm-8 offset-sm-2">
-      `<input class="btn custom-button float-right" type="button" value="Cancel"/>
+      `<input class="btn custom-button float-right" type="button" id="btn_aplcancel" value="Cancel"/>
         <input class="btn custom-button float-right" type="submit" value="Create"/>
-      </div>
+      </div> 
     </div>
 
   </form>

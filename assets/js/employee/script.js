@@ -231,10 +231,10 @@ $(document).ready(function(){
     });
 
 
-    $(document).on('change','#role',function(){
+    $(document).on('change','#role-employee',function(){
 
-        var role= $('#role').find(":selected").val();
-   
+        var role= $('#role-employee').find(":selected").val();
+        console.log(role);
         if(role=="Add Role"){
             $("#modal_emprole").find("#btn-save").attr("data-function","add_emprole"); 
             $('#modal_emprole').modal('show');
@@ -295,6 +295,9 @@ $(document).ready(function(){
         };
 
 
+        $(document).on('click','#btn_empcancel',function(){
+            location.href=document.referrer;
+         });
 
 
 

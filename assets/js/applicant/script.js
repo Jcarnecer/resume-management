@@ -260,4 +260,8 @@ $.fn.getApplicants=function(){
         });
   };
 
+  $(document).on('click','#btn_aplcancel',function(){
+    location.href=document.referrer;
+ });
+
 

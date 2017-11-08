@@ -231,3 +231,7 @@ $(document).ready(function(){
                   });
             };
     
+            
+    $(document).on('click','#btn_freelancecancel',function(){
+        location.href=document.referrer;
+     });

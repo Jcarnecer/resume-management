@@ -19,16 +19,16 @@
           </select>
         </div>
       </div>
-
+    
       <div class="form-group row">
         <label  class="col-sm-2 control-label">Role:</label>
         <div class="col-sm-8">
-            <select  id="role-employee" name="role" class="form-control">
-            <?php foreach($role as $row): ?>
-              <option value="<?= $row->role_id ?>" data-id="<?=$row->pos_id?>"><?= $row->name ?></option>
-              <?php endforeach; ?>  
-                <option disabled="disabled"></option>          
-                <option value="Add Role" data-icon="glyphicon-heart" data-function="add_emprole" data-toggle="modal_emprole" data-target="modal" >Add Role</option> 
+            <select  id="role-employee" name="role" class="form-control">   
+                <?php foreach($role as $row): ?>
+                  <option value="<?= $row->role_id ?>" data-id="<?=$row->pos_id?>"><?= $row->name ?></option>
+                  <?php endforeach; ?>  
+                    <option class="divider"></option>      
+                    <option value="Add Role" data-icon="glyphicon-heart" data-function="add_emprole" data-toggle="modal_emprole" data-target="modal" >Add Role</option>
             </select>
         </div>  
       </div>
@@ -150,6 +150,7 @@
 
     <div class="form-group row">
       <div class="col-sm-8 offset-sm-2">
+       <input class="btn custom-button float-right" type="button"  id="btn_empcancel"value="Cancel"/>
         <input class="btn custom-button float-right" type="submit" value="Create"/>
       </div>
     </div>
