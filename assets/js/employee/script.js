@@ -296,8 +296,9 @@ $(document).ready(function(){
                   <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
                   );
               });
-
-         $('#role-employee').append('<option value="Add Role" data-function="add_emprole" data-toggle="modal_emprole" data-target="modal" >Add Role</option>');
+                
+         $('#role-employee').append(`<option disabled>──────────</option>
+         <option value="Add Role" data-function="add_emprole" data-toggle="modal_emprole" data-target="modal" >Add Role</option>`);
 
          };
 

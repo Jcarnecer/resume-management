@@ -28,6 +28,7 @@
         <?php foreach($role as $row): ?>
             <option value="<?= $row->role_id ?>"data-id="<?=$row->pos_id?>"><?= $row->name ?></option>
           <?php endforeach; ?>
+          <option disabled>──────────</option>
           <option value="Add Role" data-icon="glyphicon-heart" data-function="add_freelance_role" data-toggle="modal_freelance_role" data-target="modal" >Add Role</option> 
         </select>
       </div>
@@ -122,7 +123,6 @@
 
 
 
-
 <div class="modal fade" id="modal_freelance_role" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -136,6 +136,7 @@
         <form class="form-row" method="POST" id="form_role_freelance">
             <div class="form-group col-md-6">
               <input type="text" id="role_name" class="form-control" name="role_name">
+              <input type="hidden" name="pos_id" value="3">
             </div>
             <div class="form-group col-md-6" id="position">
               <select class="form-control" name="pos_id" id="position_name" disabled>

@@ -86,7 +86,8 @@ public function count_record($data){
 
   public function fetch($table, $where=""){
 		if (!empty($where)) {
-			$this->db->where($where);
+      $this->db->where($where);
+      $this->db->order_by("created_at","desc");
 		}
     $query = $this->db->get($table);
     if ($query->num_rows() > 0) {

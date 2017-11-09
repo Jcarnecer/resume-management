@@ -218,7 +218,8 @@ $(document).ready(function(){
             html += '<option value="'+roles.id+'"> '+roles.name+' </option> '
             // console.log(roles.id);
           }
-          html+='<option value="'+ "Add Role" +'" data-function="add_aplrole" data-toggle="modal_aplrole" data-target="modal">Add Role </option>'
+          html+=`<option disabled>──────────</option>
+          <option value="'+ "Add Role" +'" data-function="add_aplrole" data-toggle="modal_aplrole" data-target="modal">Add Role </option>`
           $("#role-applicant").html(html);
           // alert(posid);
           if(posid == 1){
@@ -324,7 +325,8 @@ $.fn.getApplicants=function(){
                   <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
                   );
               });
-               $('#role-applicant').append('<option value="Add Role" data-function="add_aplrole" data-toggle="modal_aplrole" data-target="modal" >Add Role</option>');
+               $('#role-applicant').append(` <option disabled>──────────</option>
+               <option value="Add Role" data-function="add_aplrole" data-toggle="modal_aplrole" data-target="modal" >Add Role</option>`);
 
         };
 

@@ -173,6 +173,7 @@
         <form class="form-row" method="POST" id="role_form_employee">
             <div class="form-group col-md-6">
               <input type="text" id="role_name" class="form-control" name="role_name">
+              <input type="hidden" name="pos_id" value="1">
             </div>
             <div class="form-group col-md-6" id="position">
               <select class="form-control" name="pos_id" id="position_name" disabled>

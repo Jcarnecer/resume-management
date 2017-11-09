@@ -173,7 +173,7 @@ $(document).ready(function(){
         $('#form_role_freelance')[0].reset();    
             var role= $('#role-freelance').find(":selected").val();
             if(role=="Add Role"){
-                $("#modal_freelance_role").find("#btn-save").attr("data-function","add_emprole"); 
+                $("#modal_freelance_role").find("#btn-save").attr("data-function","add_freelance_role"); 
                 $('#modal_freelance_role').modal('show');
             }
     
@@ -234,7 +234,8 @@ $(document).ready(function(){
                       <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
                       );
                   });
-                  $('#role-freelance').append('<option value="Add Role" data-function="add_freelance_role" data-toggle="modal_freelance_role" data-target="modal" >Add Role</option>');      
+                  $('#role-freelance').append(`<option disabled>──────────</option>
+                  <option value="Add Role" data-function="add_freelance_role" data-toggle="modal_freelance_role" data-target="modal" >Add Role</option>`);      
                   
             };
     
