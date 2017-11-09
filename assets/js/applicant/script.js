@@ -276,7 +276,11 @@ $.fn.getApplicants=function(){
                 $('#modal_aplrole').modal('show');
             }
             
-    }); 
+    });
+    $('#modal_aplrole').on('hide.bs.modal', function (e) {
+        // do something...
+            $('#role-applicant').prop('selectedIndex',0);
+      })     
 
 
 
@@ -294,13 +298,13 @@ $.fn.getApplicants=function(){
                                 $(document).displayAplRoles(data);
                         });
                         bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
-                        $('#modal_aplrole').modal('toggle'); 
+                        $('#modal_aplrole').modal('hide'); 
         
         
                   }
                   else{
                       bs_notify("<strong>"+result+"</strong>","danger","top","right");  
-                      $('#modal_aplrole').modal('toggle'); 
+                      $('#modal_aplrole').modal('hide'); 
                   }
       
                 }

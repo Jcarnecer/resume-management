@@ -234,13 +234,17 @@ $(document).ready(function(){
     $(document).on('change','#role-employee',function(){
         $('#role_form_employee')[0].reset();    
         var role= $('#role-employee').find(":selected").val();
-        console.log(role);
         if(role=="Add Role"){
             $("#modal_emprole").find("#btn-save").attr("data-function","add_emprole"); 
             $('#modal_emprole').modal('show');
         }
 
     });
+
+    $('#modal_emprole').on('hide.bs.modal', function (e) {
+        // do something...
+            $('#role-employee').prop('selectedIndex',0);
+      })    
 
 
 
@@ -258,13 +262,13 @@ $(document).ready(function(){
                                 $(document).displayEmpRoles(data);
                         });
                         bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
-                        $('#modal_emprole').modal('toggle'); 
+                        $('#modal_emprole').modal('hide'); 
         
         
                   }
                   else{
                       bs_notify("<strong>"+result+"</strong>","danger","top","right");  
-                      $('#modal_emprole').modal('toggle'); 
+                      $('#modal_emprole').modal('hide'); 
                   }
       
                 }

@@ -178,6 +178,11 @@ $(document).ready(function(){
             }
     
         });
+
+        $('#modal_freelance_role').on('hide.bs.modal', function (e) {
+            // do something...
+                $('#role-freelance').prop('selectedIndex',0);
+          })    
     
     
     
@@ -195,13 +200,13 @@ $(document).ready(function(){
                                     $(document).displayFreelanceRoles(data);
                             });
                             bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
-                            $('#modal_freelance_role').modal('toggle'); 
+                            $('#modal_freelance_role').modal('hide'); 
             
             
                       }
                       else{
                           bs_notify("<strong>"+result+"</strong>","danger","top","right");  
-                          $('#modal_freelance_role').modal('toggle'); 
+                          $('#modal_freelance_role').modal('hide'); 
                       }
           
                     }
