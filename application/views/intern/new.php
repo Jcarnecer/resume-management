@@ -28,6 +28,7 @@
           <?php foreach($role as $row): ?>
               <option value="<?= $row->role_id ?>" data-id="<?$row->pos_id?>"><?= $row->name ?></option>
             <?php endforeach; ?>
+            <option disabled>──────────</option>
             <option value="Add Role" data-icon="glyphicon-heart" data-function="add_intern_role" data-toggle="modal_intern_role" data-target="modal" >Add Role</option> 
           </select>
       </div>
