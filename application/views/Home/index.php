@@ -1,8 +1,8 @@
 <div class="container-fluid">
 
-  <!-- <div class="page-header">
-    <h3>Welcome, Ma'am Tess ♥</h3>
-</div> -->
+  <div class="page-header">
+    <h3>Welcome</h3>
+</div>
   
   <div class="row">
   <main role="main" class="col-xs-12 col-sm-10 col-md-10 col-lg-10 pt-3">
@@ -16,12 +16,11 @@
       </ul>
     </div>
 
-    <h2>Interview Shedules</h2>
+    <h2>Interview Shedules for Today</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  
                   <th>Position</th>
                   <th># of Applicants</th>
                   <th>Time</th>

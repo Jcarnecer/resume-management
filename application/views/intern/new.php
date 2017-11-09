@@ -132,7 +132,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Add Role</h3>
+        <h3 class="modal-title" id="exampleModalLabel">Add Role:Intern</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -143,10 +143,11 @@
               <input type="text" id="role_name" class="form-control" name="role_name">
             </div>
             <div class="form-group col-md-6" id="position">
-              <select class="form-control" name="pos_id" id="position_name">
-                <?php foreach($position as $row):?>
+              <select class="form-control" name="pos_id" id="position_name" disabled>
+                <!-- <?php foreach($position as $row):?>
                   <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
+                <option data-posid="2"value="2">Intern</option>
               </select>
             </div>
       </div>

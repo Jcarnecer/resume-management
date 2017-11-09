@@ -175,10 +175,12 @@
               <input type="text" id="role_name" class="form-control" name="role_name">
             </div>
             <div class="form-group col-md-6" id="position">
-              <select class="form-control" name="pos_id" id="position_name">
-                <?php foreach($position as $row):?>
+              <select class="form-control" name="pos_id" id="position_name" disabled>
+                <!-- <?php foreach($position as $row):?>
                   <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
+                <option data-posid="1"value="1">Employee</option>
+
               </select>
             </div>
       </div>

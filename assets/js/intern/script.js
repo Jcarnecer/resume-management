@@ -179,6 +179,11 @@ $(document).ready(function(){
             }
     
         });
+
+        $('#modal_intern_role').on('hide.bs.modal', function (e) {
+            // do something...
+                $('#role-intern').prop('selectedIndex',0);
+          })    
     
     
     
@@ -196,13 +201,13 @@ $(document).ready(function(){
                                     $(document).displayInternRoles(data);
                             });
                             bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
-                            $('#modal_intern_role').modal('toggle'); 
+                            $('#modal_intern_role').modal('hide'); 
             
             
                       }
                       else{
                           bs_notify("<strong>"+result+"</strong>","danger","top","right");  
-                          $('#modal_intern_role').modal('toggle'); 
+                          $('#modal_intern_role').modal('hide'); 
                       }
           
                     }
