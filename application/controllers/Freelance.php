@@ -5,7 +5,7 @@ class Freelance extends CI_Controller {
 
     
         public function index(){
-            $data['freelance'] = $this->Resume_model->show_record(['record.pos_id'=>3]);
+            $data['freelance'] = $this->Resume_model->show_record(['resume_record.pos_id'=>3]);
             $title['title'] = "Astrid Technologies | New Applicant";
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar', $data);  
@@ -55,7 +55,7 @@ class Freelance extends CI_Controller {
               echo json_encode(validation_errors());
             }else{
               $insert_data=[
-                'id'=>$this->utilities->unique_id('freelance',8),
+                //'id'=>$this->utilities->unique_id('freelance',8),
                 'first_name' => clean_data(ucwords($first_name)),
                 'last_name'  => clean_data(ucwords($last_name)),
                 'middle_name' => clean_data(ucwords($middle_name)),
@@ -73,7 +73,7 @@ class Freelance extends CI_Controller {
                 
               ];
       
-              $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);  
+              $last_inserted = $this->Resume_model->last_inserted_row('resume_record',$insert_data);  
       
                 echo json_encode('success'); 
             }
@@ -98,7 +98,7 @@ class Freelance extends CI_Controller {
     public function edit(){
             $this->load->helper('form');
             $id = $this->uri->segment(3);
-            $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
+            $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
             $title['title'] = "Astrid Technologies | Edit Freelancer";
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar',$data);
@@ -126,7 +126,7 @@ class Freelance extends CI_Controller {
 
       ];
      // $this->Resume_model->update('record', $update, 'id='.$id);
-     $this->Resume_model->update('record', $update,array('id'=>$id));
+     $this->Resume_model->update('resume_record', $update,array('id'=>$id));
         echo json_encode('success');
     }
 

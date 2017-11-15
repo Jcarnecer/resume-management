@@ -5,8 +5,8 @@ class Employee extends CI_Controller {
 
     public function index(){
      $this->load->model('Resume_model'); 
-     $data['employees'] = $this->Resume_model->show_record(['record.pos_id'=>1]);
-     $result=$this->Resume_model->show_record(['record.pos_id'=>1]);
+     $data['employees'] = $this->Resume_model->show_record(['resume_record.pos_id'=>1]);
+     $result=$this->Resume_model->show_record(['resume_record.pos_id'=>1]);
      $title['title'] = "Astrid Technologies | Employee";
      $this->load->view('include/header',$title);
      $this->load->view('include/sidebar', $data); 

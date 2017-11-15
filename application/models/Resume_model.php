@@ -63,22 +63,22 @@ class Resume_model extends CI_Model {
 
   public function count_applicant(){
     $status=array('Active','Inactive');
-    $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file');
-    $this->db->from('record');
-    $this->db->join('role', 'record.role_id = role.role_id','inner');
-    $this->db->join('position', 'record.pos_id = position.id','inner');
-    $this->db->where_not_in('record.current_status',$status); 
+    $this->db->select('resume_record.id,resume_record.images,resume_record.last_name,resume_record.first_name,resume_role.name,position.name as pos_name,resume_record.current_status,resume_record.file');
+    $this->db->from('resume_record');
+    $this->db->join('resume_role', 'resume_record.role_id = resume_role.role_id','inner');
+    $this->db->join('position', 'resume_record.pos_id = resume_position.id','inner');
+    $this->db->where_not_in('resume_record.current_status',$status); 
     $result = $this->db->get();
     return $result->num_rows();  
 
 }
 public function count_record($data){
       $status=array('Active','Inactive');
-      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,record.current_status');
-      $this->db->from('record');
+      $this->db->select('resume_record.id,resume_record.images,resume_record.last_name,resume_record.first_name,resume_role.name,resume_record.current_status');
+      $this->db->from('resume_record');
       $this->db->where($data);
-      $this->db->where_in('record.current_status',$status);
-      $this->db->join('role','record.role_id = role.role_id','inner'); 
+      $this->db->where_in('resume_record.current_status',$status);
+      $this->db->join('resume_role','resume_record.role_id = resume_role.role_id','inner'); 
       $result = $this->db->get();
       return $result->num_rows();  
   }
@@ -160,9 +160,9 @@ public function count_record($data){
 
 
   public function get_role_position(){
-    $this->db->select('role.role_id,role.name,position.name as pos_name,role.status,position.id as pos_id');
-    $this->db->from('role');
-    $this->db->join('position', 'role.pos_id = position.id','inner'); 
+    $this->db->select('resume_role.role_id,resume_role.name,position.name as pos_name,resume_role.status,position.id as pos_id');
+    $this->db->from('resume_role');
+    $this->db->join('position', 'resume_role.pos_id = position.id','inner'); 
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
     return $query->result();
@@ -170,10 +170,10 @@ public function count_record($data){
 
   public function get_role($where){
       $this->db->select('name');
-      $this->db->from('role');
+      $this->db->from('resume_role');
       // $this->db->join('employees', 'record.id = employees.record_id','inner');
       // $this->db->join('role', 'record.role_id = role.role_id','inner');
-      $this->db->where('role_id', $where);
+      $this->db->where('resume_role_id', $where);
       $query = $this->db->get();
       return $query->row();
   }
@@ -181,10 +181,10 @@ public function count_record($data){
   
 
   public function join_employee_record($where){
-    $this->db->select('employees.*,record.*');
-    $this->db->from('record');
+    $this->db->select('employee.*,resume_record.*');
+    $this->db->from('resume_record');
     $this->db->where($where);
-    $this->db->join('employees', 'record.id = employees.record_id','inner');
+    $this->db->join('employee', 'resume_record.id = employee.record_id','inner');
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
     return $query->row();
@@ -192,23 +192,23 @@ public function count_record($data){
 
     
   public function show_record($where){
-      $status=array('Active','Inactive');
-        $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,record.current_status');
-        $this->db->from('record');
+        $status=array('Active','Inactive');
+       $this->db->select('resume_record.id,resume_record.images,resume_record.last_name,resume_record.first_name,resume_role.name,resume_record.current_status');
+        $this->db->from('resume_record');
         $this->db->where($where);
-        $this->db->where_in('record.current_status',$status);
-        $this->db->join('role','record.role_id = role.role_id','inner'); 
+        $this->db->where_in('resume_record.current_status',$status);
+        $this->db->join('resume_role','resume_record.role_id = resume_role.role_id','inner'); 
         $query = $this->db->get();
         return $query->result();
     }
 
     public function show_applicant_record(){
       $status=array('Active','Inactive');
-      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file,record.interview_date');
-      $this->db->from('record');
-      $this->db->join('role', 'record.role_id = role.role_id','inner');
-      $this->db->join('position', 'record.pos_id = position.id','inner');
-      $this->db->where_not_in('record.current_status',$status); 
+      $this->db->select('resume_record.id,resume_record.images,resume_record.last_name,resume_record.first_name,resume_role.name,position.name as pos_name,resume_record.current_status,resume_record.file');
+      $this->db->from('resume_record');
+      $this->db->join('resume_role', 'resume_record.role_id = resume_role.role_id','inner');
+      $this->db->join('position', 'resume_record.pos_id = resume_position.id','inner');
+      $this->db->where_not_in('resume_record.current_status',$status); 
       $query = $this->db->get();
       return $query->result();
     }
@@ -223,7 +223,7 @@ public function count_record($data){
 
   
   public function get_last_row(){
-    $result=$this->db->query('select id from record WHERE created_at=(SELECT Max(created_at) FROM record where pos_id=1)');
+    $result=$this->db->query('select id from resume_record WHERE created_at=(SELECT Max(created_at) FROM resume_record where pos_id=1)');
     return $result->row();
   }
 
