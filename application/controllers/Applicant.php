@@ -129,6 +129,7 @@ class Applicant extends CI_Controller {
         'file' =>$this->session->resume,
         'application_date' => clean_data($this->input->post('application_date')),
         'available_date' => clean_data($this->input->post('available_date')),
+        'interview_date'=>clean_data($this->input->post('interview_date'))
       ];
       $this->Resume_model->insert('record',$insert_data);
       // print_r($last_inserted->id);die;
@@ -225,7 +226,9 @@ class Applicant extends CI_Controller {
       'comment' =>  clean_data($this->input->post('comment')),
       'current_status' => $status,
       'date_hired' => $date_now,
-      'pos_id'=>$pos_id
+      'application_date'=>clean_data($this->input->post('application_date')),
+      'pos_id'=>$pos_id,
+      'interview_date'=>clean_data($this->input->post('interview_date'))
     ];
     
     $this->Resume_model->update('record', $update,array('id'=>$id));

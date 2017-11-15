@@ -208,11 +208,12 @@ $(function(){
                   $('#tin').html(response.tin);
                   $('#philhealth').html(response.philhealth);
                   $('#pagibig').html(response.pagibig);
+                  $('#interview_date').html(response.interview_date);
                   $('#comment').html(response.comment);
                   $('#resume').attr("href", 'assets/uploads/' + response.file);
                   $('#resume').html(response.file);
                   $('#interviewer').html(response.interviewer);
-                  $('#interview-notes').attr("href", base_url + 'assets/uploads/' + response.interview_notes);
+                  $('#interview-notes').attr("href",'assets/uploads/' + response.interview_notes);
                   $('#interview-notes').html(response.interview_notes);
                   if(response.exam_result == 1){
                     $('#exam-result').html("Passed");

@@ -204,7 +204,7 @@ public function count_record($data){
 
     public function show_applicant_record(){
       $status=array('Active','Inactive');
-      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file');
+      $this->db->select('record.id,record.images,record.last_name,record.first_name,role.name,position.name as pos_name,record.current_status,record.file,record.interview_date');
       $this->db->from('record');
       $this->db->join('role', 'record.role_id = role.role_id','inner');
       $this->db->join('position', 'record.pos_id = position.id','inner');
