@@ -83,8 +83,11 @@ $route['freelance/edit']['POST'] = 'freelance/edit_data';
 //role
 $route['roles/add']['POST']='roles/insert_role';
 $route['delete_role'] = 'Applicant/delete_role';
+//login
+
+$route['dashboard']="Home/index";
 
 
-$route['default_controller'] = "Home";
+$route['default_controller'] = "users/login";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
