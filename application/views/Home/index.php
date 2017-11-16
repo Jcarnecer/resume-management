@@ -30,21 +30,21 @@
               <tbody>
                 <tr>
                   <td>Employee</td>
-                  <td>10</td>
+                  <td><?=$interview_employee==0?"None":$interview_employee?></td>
                   <td>9:00 am - 1:00pm</td>
                   <td>View</td>
                 
                 </tr>
                 <tr>
                   <td>Intern</td>
-                  <td>14</td>
+                  <td><?=$interview_intern==0?"None":$interview_intern?></td>
                   <td>9:00 am - 1:00pm</td>
                   <td>View</td>
                
                 </tr>
                 <tr>
                   <td>Freelance</td>
-                  <td>4</td>
+                  <td><?=$interview_freelance==0?"None":$interview_freelence?></td>
                   <td>9:00 am - 1:00pm</td>
                   <td>View</td>
                 
