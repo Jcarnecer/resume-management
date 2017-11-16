@@ -66,7 +66,7 @@ class Resume_model extends CI_Model {
     $this->db->select('resume_record.id,resume_record.images,resume_record.last_name,resume_record.first_name,resume_role.name,position.name as pos_name,resume_record.current_status,resume_record.file');
     $this->db->from('resume_record');
     $this->db->join('resume_role', 'resume_record.role_id = resume_role.role_id','inner');
-    $this->db->join('position', 'resume_record.pos_id = resume_position.id','inner');
+    $this->db->join('position', 'resume_record.pos_id = position.id','inner');
     $this->db->where_not_in('resume_record.current_status',$status); 
     $result = $this->db->get();
     return $result->num_rows();  
@@ -207,7 +207,7 @@ public function count_record($data){
       $this->db->select('resume_record.id,resume_record.images,resume_record.last_name,resume_record.first_name,resume_role.name,position.name as pos_name,resume_record.current_status,resume_record.file');
       $this->db->from('resume_record');
       $this->db->join('resume_role', 'resume_record.role_id = resume_role.role_id','inner');
-      $this->db->join('position', 'resume_record.pos_id = resume_position.id','inner');
+      $this->db->join('position', 'resume_record.pos_id = position.id','inner');
       $this->db->where_not_in('resume_record.current_status',$status); 
       $query = $this->db->get();
       return $query->result();
