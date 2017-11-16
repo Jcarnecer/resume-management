@@ -24,7 +24,7 @@
         <td><?= $applicant->current_status?></td>
         <td>
           <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn custom-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Action
             </button>
             <div class="dropdown-menu">
@@ -154,6 +154,16 @@
 
               <tr>
                 <td>
+                  <b><label class="group-label">Interview Date:</label></b>
+                </td>
+                <td>
+                  <div class="group-data" id="interview_date"></div>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td>
                   <b><label class="group-label">Comments:</label></b>
                 </td>
                 <td>
@@ -218,7 +228,7 @@
     </tbody>
   </table>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
   </div>
   </div>

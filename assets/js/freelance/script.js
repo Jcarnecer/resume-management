@@ -167,3 +167,79 @@ $(document).ready(function(){
      
     });
   });
+
+
+    $(document).on('change','#role-freelance',function(){
+        $('#form_role_freelance')[0].reset();    
+            var role= $('#role-freelance').find(":selected").val();
+            if(role=="Add Role"){
+                $("#modal_freelance_role").find("#btn-save").attr("data-function","add_freelance_role"); 
+                $('#modal_freelance_role').modal('show');
+            }
+    
+        });
+
+        $('#modal_freelance_role').on('hide.bs.modal', function (e) {
+            // do something...
+                $('#role-freelance').prop('selectedIndex',0);
+          })    
+    
+    
+    
+        $(document).on('click',"button[data-function='add_freelance_role']",function(){
+            var url = "roles/insert_role";
+            var form=$('#form_role_freelance').serialize();
+                $.ajax({
+                    "url":url,
+                    "method":"POST",
+                     data:form,
+                    success: function(data){
+                        var result = JSON.parse(data);
+                      if(result=='success'){
+                            $(document).getFreelanceRoles().done(function(data){
+                                    $(document).displayFreelanceRoles(data);
+                            });
+                            bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
+                            $('#modal_freelance_role').modal('hide'); 
+            
+            
+                      }
+                      else{
+                          bs_notify("<strong>"+result+"</strong>","danger","top","right");  
+                          $('#modal_freelance_role').modal('hide'); 
+                      }
+          
+                    }
+                });
+          });
+    
+    
+    
+          $.fn.getFreelanceRoles=function(){
+            var $url = "roles/get_pos_role/"+3;
+           return $.ajax({
+              url:$url,
+              type:"GET",
+              dataType: 'JSON'
+            });
+          };
+    
+    
+          $.fn.displayFreelanceRoles=function(items){
+            
+              $("#role-freelance").html('');
+            
+                  $.each(items,function(i,item){
+                      $('#role-freelance').append(`
+                      <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
+                      );
+                  });
+                  $('#role-freelance').append(`<option disabled>──────────</option>
+                  <option value="Add Role" data-function="add_freelance_role" data-toggle="modal_freelance_role" data-target="modal" >Add Role</option>`);      
+                  
+            };
+    
+            
+    $(document).on('click','#btn_freelancecancel',function(){
+        location.href=document.referrer;
+     });

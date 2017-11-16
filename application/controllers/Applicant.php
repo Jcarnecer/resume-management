@@ -126,22 +126,25 @@ class Applicant extends CI_Controller {
         'school' => clean_data($school),
         'images'=> $this->session->image,
         'current_status' => clean_data($current_status),
+        'file' =>$this->session->resume,
+        'application_date' => clean_data($this->input->post('application_date')),
+        'available_date' => clean_data($this->input->post('available_date')),
       ];
-      $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);
+      $this->Resume_model->insert('record',$insert_data);
       // print_r($last_inserted->id);die;
 
 
-      if($current_status == "Applicant") {
-        $insert_data = [
-             'current_status' => 'Applicant',
-             'file' =>$this->session->resume,
-             'application_date' => clean_data($this->input->post('application_date')),
-             'available_date' => clean_data($this->input->post('available_date')),
-            //  'user_id'  => $last_inserted->id
-        ];
-        $where_applicant = ['id'  => $last_inserted->id];
-        $this->Resume_model->update('record',$insert_data,$where_applicant);
-      }
+      // if($current_status == "Applicant") {
+      //   $insert_data = [
+      //        'current_status' => 'Applicant',
+      //        'file' =>$this->session->resume,
+      //        'application_date' => clean_data($this->input->post('application_date')),
+      //        'available_date' => clean_data($this->input->post('available_date')),
+      //       //  'user_id'  => $last_inserted->id
+      //   ];
+      //   $where_applicant = ['id'  => $last_inserted->id];
+      //   $this->Resume_model->update('record',$insert_data,$where_applicant);
+      // }
       
    
     echo json_encode('success');

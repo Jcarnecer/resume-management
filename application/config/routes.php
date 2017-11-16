@@ -67,6 +67,7 @@ $route['employee']['GET'] = 'Employee/index';
 $route['employee/edit/(:any)']['GET'] = 'Employee/edit/$1';
 $route['employee/edit']['POST'] = 'Employee/edit_data';
 $route['employee/add'] = 'employee/add_employee';
+$route['employee/(:any)']['GET']='employee/view/$1';
 
 //Intern
 $route['intern']['GET'] = 'Intern/index';

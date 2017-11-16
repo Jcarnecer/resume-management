@@ -170,4 +170,78 @@ $(document).ready(function(){
 
 
 
+  $(document).on('change','#role-intern',function(){
+        $('#form_role_intern')[0].reset();    
+            var role= $('#role-intern').find(":selected").val();
+            if(role=="Add Role"){
+                $("#modal_intern_role").find("#btn-save").attr("data-function","add_intern_role"); 
+                $('#modal_intern_role').modal('show');
+            }
+    
+        });
+
+        $('#modal_intern_role').on('hide.bs.modal', function (e) {
+            // do something...
+                $('#role-intern').prop('selectedIndex',0);
+          })    
+    
+    
+    
+        $(document).on('click',"button[data-function='add_intern_role']",function(){
+            var url = "roles/insert_role";
+            var form=$('#form_role_intern').serialize();
+                $.ajax({
+                    "url":url,
+                    "method":"POST",
+                     data:form,
+                    success: function(data){
+                        var result = JSON.parse(data);
+                      if(result=='success'){
+                            $(document).getInternRoles().done(function(data){
+                                    $(document).displayInternRoles(data);
+                            });
+                            bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
+                            $('#modal_intern_role').modal('hide'); 
+            
+            
+                      }
+                      else{
+                          bs_notify("<strong>"+result+"</strong>","danger","top","right");  
+                          $('#modal_intern_role').modal('hide'); 
+                      }
+          
+                    }
+                });
+          });
+    
+    
+    
+          $.fn.getInternRoles=function(){
+            var $url = "roles/get_pos_role/"+2;
+           return $.ajax({
+              url:$url,
+              type:"GET",
+              dataType: 'JSON'
+            });
+          };
+    
+    
+          $.fn.displayInternRoles=function(items){
+            
+              $("#role-intern").html('');
+            
+                  $.each(items,function(i,item){
+                      $('#role-intern').append(`
+                      <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
+                      );
+                  });
+
+                  $('#role-intern').append('<option value="Add Role" data-function="add_intern_role" data-toggle="modal_intern_role" data-target="modal" >Add Role</option>');
+            };
+
+
+       
+    $(document).on('click','#btn_interncancel',function(){
+        location.href=document.referrer;
+     });         
   

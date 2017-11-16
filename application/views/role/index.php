@@ -27,7 +27,7 @@ $position = $this->Resume_model->fetch('position');
           <td data-role="role_status"><?=$role->status==1?"Activated":"Deactivated"?></td>
           <td>
             <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn custom-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Action
               </button>
                 <div class="dropdown-menu">
@@ -54,11 +54,11 @@ $position = $this->Resume_model->fetch('position');
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-inline" method="POST" id="role-form">
-            <div class="form-group">
+        <form class="form-row" method="POST" id="role-form">
+            <div class="form-group col-md-6">
               <input type="text" id="role_name" class="form-control" name="role_name">
             </div>
-            <div class="form-group" id="position">
+            <div class="form-group col-md-6" id="position">
               <select class="form-control" name="pos_id" id="position_name">
                 <?php foreach($position as $row):?>
                   <option data-posid="<?= $row->id ?>"value="<?= $row->id ?>"><?= $row->name ?></option>

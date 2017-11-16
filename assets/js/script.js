@@ -1,25 +1,86 @@
-$(document).ready(toggle());
+// $(document).ready(toggle());
+
+//   function toggle(){
+//     $(window).on('resize', function(e){
+//       var hide = true;
+//       var windowSize = $(window).width();
+//       $('.custom-toggle').on('click', function (event){
+//         if (windowSize < 768) {
+//           if (hide) {
+//             $('#sidebar').css({'margin-left' : '-210px'});
+//             hide = false;
+//           } else {
+//             $('#sidebar').css({'margin-left' : '0px'});
+//             hide = true;
+//           }
+//         } else if (windowSize > 768) {  
+//           if (hide) {
+//             $('#sidebar').css({'margin-left' : '-210px'});
+//             $('.main-content').css({'margin-left' : '0px'});
+//             $('.hidden-toggle').css({'display' : 'block'});
+//             hide = false;
+//           } else {
+//             $('#sidebar').css({'margin-left' : '0px'});
+//             $('.main-content').css({'margin-left' : '210px'});
+//             $('.hidden-toggle').css({'display' : 'none'});
+//             hide = true;
+//           }
+//         }
+//       });
+//     });
+//   }
+
+// Erin's code
+function browserWidth(){
+  var width = $(window).width();
+  var height = $(window).height();
+
+  return width;
+};
 
 function toggle(){
   var hide = true;
-    $('.custom-toggle').on('click', function (event){
+  $(".custom-toggle").click(function() {
+    if(browserWidth() < 768) {
       if (hide) {
-            $('#sidebar').css({'margin-left' : '-210px'});
-            // $('#sidebar span').css({'margin-left' : '-210px'});
-            $('.main-content').addClass('animation');
-            $('.main-content').removeClass('reverse-animation');
-            $('.hidden-toggle').css({'display' : 'block'});
+        $('#sidebar').css({'margin-left' : '0px'});
         hide = false;
       } else {
-            $('#sidebar').css({'margin-left' : '0px'});
-            // $('#sidebar span').css({'margin-left' : '0px'});
-            $('.main-content').removeClass('animation');
-            $('.main-content').addClass('reverse-animation');
-            $('.hidden-toggle').css({'display' : 'none'});
+        $('#sidebar').css({'margin-left' : '-210px'});
         hide = true;
       }
+    } else {
+      if (hide) {
+        $('#sidebar').css({'margin-left' : '-210px'});
+        $('.main-content').css({'margin-left' : '0px'});
+        $('.hidden-toggle').css({'display' : 'block'});
+        hide = false;
+      } else {
+        $('#sidebar').css({'margin-left' : '0px'});
+        $('.main-content').css({'margin-left' : '210px'});
+        $('.hidden-toggle').css({'display' : 'none'});
+        hide = true;
+      }
+    }
   });
 }
+
+$(document).ready(toggle());
+
+$(window).resize(function() {
+  
+  if(browserWidth() < 768) {
+    $('#sidebar').css({'margin-left' : ''});
+    $('.main-content').css({'margin-left' : ''});
+    $('.hidden-toggle').css({'display' : ''});
+  } else {
+    // $('#sidebar').css({'margin-left' : ''});
+    // $('.main-content').css({'margin-left' : ''});
+  }
+  
+  toggle();
+  
+});
 
 // document.getElementsByClassName('custom-toggle')[0].click();
 
@@ -147,11 +208,12 @@ $(function(){
                   $('#tin').html(response.tin);
                   $('#philhealth').html(response.philhealth);
                   $('#pagibig').html(response.pagibig);
+                  $('#interview_date').html(response.interview_date);
                   $('#comment').html(response.comment);
-                  $('#resume').attr("href", base_url + 'assets/uploads/' + response.file);
+                  $('#resume').attr("href", 'assets/uploads/' + response.file);
                   $('#resume').html(response.file);
                   $('#interviewer').html(response.interviewer);
-                  $('#interview-notes').attr("href", base_url + 'assets/uploads/' + response.interview_notes);
+                  $('#interview-notes').attr("href",'assets/uploads/' + response.interview_notes);
                   $('#interview-notes').html(response.interview_notes);
                   if(response.exam_result == 1){
                     $('#exam-result').html("Passed");

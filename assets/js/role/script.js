@@ -97,15 +97,15 @@ $(document).on('click','#btn-update',function(){
                         <td data-role="position_name">${item['pos_name']}</td>
                         <td data-role="role_status">${item['status']==0?'Deactivated':'Activated'}</td>
                         <td>
-                        <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Action
-                          </button>
-                            <div class="dropdown-menu">
-                            <a class="dropdown-item" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
-                            <a class="dropdown-item" data-pos="${item['pos_id']}" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
-                            </div>
-                        </div>  
+                            <div class="btn-group">
+                                <button type="button" class="btn custom-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
+                                    <a class="dropdown-item" data-pos="${item['pos_id']}" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
+                                </div>
+                            </div>  
                         </td>
                     </tr>`    
             );

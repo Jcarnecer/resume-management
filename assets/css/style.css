@@ -5,7 +5,7 @@ html, body {
 body {
   background-color: #f2f2f2; }
 
-.center-block {
+.center-block, .thumb {
   display: block;
   margin: 0 auto; }
 
@@ -19,11 +19,11 @@ body {
   border: none; }
 
 .custom-button {
-  background-color: #25CBF2;
+  background-color: #38b5ff;
   border: none;
   color: #ffffff; }
   .custom-button:hover {
-    background-color: #15BBE8; }
+    background-color: #3679b2; }
 
 a:hover {
   color: #ffffff; }
@@ -36,20 +36,20 @@ a:hover {
 .navbar-custom {
   background-color: #ffffff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15);
-  color: #25CBF2;
+  color: #38b5ff;
   justify-content: left;
   margin-bottom: 20px; }
   .navbar-custom a {
     color: #626262; }
     .navbar-custom a:hover {
-      color: #15BBE8;
+      color: #3679b2;
       text-decoration: none; }
 
 #sidebar {
   width: 210px;
   height: 100%;
   position: fixed;
-  background: #25CBF2;
+  background: #38b5ff;
   overflow-y: scroll;
   transition: .5s;
   -webkit-transition: .5s;
@@ -57,7 +57,7 @@ a:hover {
   #sidebar .logo {
     margin: 15px auto; }
   #sidebar .sidebar-menu {
-    padding-top: 50px; }
+    padding-top: 57px; }
   #sidebar ul, #sidebar li {
     list-style: none; }
   #sidebar a {
@@ -67,8 +67,8 @@ a:hover {
     padding: 15px 30px 15px 30px;
     white-space: nowrap; }
     #sidebar a:hover {
-      background-color: #15BBE8;
-      border-left: 5px solid #007A9B;
+      background-color: #3679b2;
+      border-left: 5px solid #273d6a;
       text-decoration: none; }
     #sidebar a span {
       display: inline-grid;
@@ -86,32 +86,16 @@ a:hover {
 .title {
   display: inline-block; }
 
-.main-content, .reverse-animation {
+.main-content {
   margin-left: 210px;
-  overflow: hidden; }
+  overflow: hidden;
+  transition: .5s;
+  -webkit-transition: .5s;
+  -moz-transition: .5s; }
 
 .dashboard-margin {
   margin-bottom: 10%;
   margin-top: 10%; }
-
-.animation {
-  animation: expand .5s;
-  margin-left: 0; }
-
-.reverse-animation {
-  animation: reverse-expand .5s; }
-
-@keyframes expand {
-  from {
-    margin-left: 210px; }
-  to {
-    margin-left: 0px; } }
-
-@keyframes reverse-expand {
-  from {
-    margin-left: 0px; }
-  to {
-    margin-left: 210px; } }
 
 #nav-icon-close {
   float: right;
@@ -127,7 +111,7 @@ a:hover {
   width: 30px; }
 
 .custom-toggle span {
-  background: #007A9B;
+  background: #273d6a;
   border-radius: 9px;
   display: block;
   height: 3px;
@@ -173,7 +157,7 @@ a:hover {
   .button-group li {
     flex: 1; }
   .button-group .button-group-item {
-    background: #25CBF2;
+    background: #38b5ff;
     border-radius: .25rem;
     border: none;
     color: #ffffff;
@@ -186,7 +170,7 @@ a:hover {
     padding: 10px;
     text-align: center; }
     .button-group .button-group-item:hover {
-      background: #15BBE8;
+      background: #3679b2;
       text-decoration: none; }
     .button-group .button-group-item .number {
       font-size: 2.5em; }
@@ -222,20 +206,42 @@ a:hover {
   .dataTables_wrapper .dataTables_paginate a.paginate_button.current {
     border-radius: 50%; }
   .dataTables_wrapper .dataTables_paginate a.paginate_button:hover {
-    background: #15BBE8;
-    background-color: #15BBE8;
-    border: 1px solid #15BBE8;
+    background: #3679b2;
+    background-color: #3679b2;
+    border: 1px solid #3679b2;
     border-radius: 50%;
     color: #ffffff !important; }
   .dataTables_wrapper .dataTables_paginate a.paginate_button:focus {
     outline: none; }
+  .dataTables_wrapper .dataTables_paginate a.paginate_button:active {
+    background: none;
+    box-shadow: none; }
   .dataTables_wrapper .dataTables_paginate a.next:hover, .dataTables_wrapper .dataTables_paginate a.previous:hover {
     background: none;
     border: 1px solid transparent;
-    color: #15BBE8 !important;
+    color: #3679b2 !important;
     cursor: pointer; }
 
 .dropdown-item:hover, .dropdown-item:active {
-  background-color: #15BBE8;
-  color: #ffffff;
+  background-color: #3679b2;
+  color: #ffffff !important;
+  cursor: pointer;
   width: auto; }
+
+@media only screen and (max-width: 768px) {
+  #sidebar {
+    height: 100%;
+    margin-left: -210px;
+    position: fixed;
+    z-index: 99; }
+  .main-content {
+    margin-left: 0;
+    position: relative; }
+  .navbar-custom {
+    z-index: 99; }
+  .hidden-toggle {
+    display: block; }
+  #nav-icon-close {
+    display: none; }
+  .form-horizontal .control-label {
+    text-align: left; } }

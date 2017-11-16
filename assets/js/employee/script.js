@@ -169,3 +169,159 @@ $(document).ready(function(){
      
     });
   });
+
+
+  $(function(){
+    
+      $('[data-name="button-view"]').click(function() {
+          var applicantId = $(this).attr('data-id');
+          var url =  "employee/" +  applicantId;
+            console.log(applicantId);
+          $.ajax({
+              "url": url,
+              "method": "GET",
+              "success": function(response, status, http) {
+                // console.log('click');
+                  if (http.status == 200) {
+                      $('#first-name').html(response.first_name);
+                      $('#last-name').html(response.last_name);
+                      $('#middle-name').html(response.middle_name);
+                      $('#home-address').html(response.home_address);
+                      $('#phone_number').html(response.phone_number);
+                      $('#birthday').html(response.birthday);
+                      $('#degree').html(response.degree);
+                      $('#school').html(response.school);
+                      $('#role').html(response.name);
+                      $('#date_hired').html(response.date_hired);
+                      $('#app_date').html(response.application_date);
+                      $('#sss').html(response.sss);
+                      $('#tin').html(response.tin);
+                      $('#philhealth').html(response.philhealth);
+                      $('#pagibig').html(response.pagibig);
+                      $('#comment').html(response.comment);
+                      $('#resume').attr("href", base_url + 'assets/uploads/' + response.file);
+                      $('#resume').html(response.file);
+                      $('#interviewer').html(response.interviewer);
+                      $('#interview-notes').attr("href", base_url + 'assets/uploads/' + response.interview_notes);
+                      $('#interview-notes').html(response.interview_notes);
+                      if(response.exam_result == 1){
+                        $('#exam-result').html("Passed");
+                      }
+                      else if (response.exam_result == 0){
+                        $('#exam-result').html("Failed");
+                      }else{
+                        $('#interview-result').html("");
+                      }
+                      if(response.interview_result == 1){
+                        $('#interview-result').html("Passed");
+                      }
+                      else if (response.interview_result == 0){
+                        $('#interview-result').html("Failed");
+                      }
+                      else {
+                        $('#interview-result').html("");
+                      }
+    
+                      $('#viewmodal').modal('show');
+                  }
+              }
+          });
+      });
+    
+    });
+
+
+    $(document).on('change','#role-employee',function(){
+        $('#role_form_employee')[0].reset();    
+        var role= $('#role-employee').find(":selected").val();
+        if(role=="Add Role"){
+            $("#modal_emprole").find("#btn-save").attr("data-function","add_emprole"); 
+            $('#modal_emprole').modal('show');
+        }
+
+    });
+
+    $('#modal_emprole').on('hide.bs.modal', function (e) {
+        // do something...
+            $('#role-employee').prop('selectedIndex',0);
+      })    
+
+
+
+    $(document).on('click',"button[data-function='add_emprole']",function(){
+        var url = "roles/insert_role";
+        var form=$('#role_form_employee').serialize();
+            $.ajax({
+                "url":url,
+                "method":"POST",
+                 data:form,
+                success: function(data){
+                    var result = JSON.parse(data);
+                  if(result=='success'){
+                        $(document).getEmpRoles().done(function(data){
+                                $(document).displayEmpRoles(data);
+                        });
+                        bs_notify("<strong>Successfully Added A Role</strong>","success","top","center");  
+                        $('#modal_emprole').modal('hide'); 
+        
+        
+                  }
+                  else{
+                      bs_notify("<strong>"+result+"</strong>","danger","top","right");  
+                      $('#modal_emprole').modal('hide'); 
+                  }
+      
+                }
+            });
+      });
+
+
+
+      $.fn.getEmpRoles=function(){
+        var $url = "roles/get_pos_role/"+1;
+       return $.ajax({
+          url:$url,
+          type:"GET",
+          dataType: 'JSON'
+        });
+      };
+
+
+      $.fn.displayEmpRoles=function(items){
+        
+          $("#role-employee").html('');
+        
+              $.each(items,function(i,item){
+                  $('#role-employee').append(`
+                  <option value=${item['id']} data-id=${item['pos_id']}>${item['name']}</option> `    
+                  );
+              });
+                
+         $('#role-employee').append(`<option disabled>──────────</option>
+         <option value="Add Role" data-function="add_emprole" data-toggle="modal_emprole" data-target="modal" >Add Role</option>`);
+
+         };
+
+
+        $(document).on('click','#btn_empcancel',function(){
+            location.href=document.referrer;
+         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

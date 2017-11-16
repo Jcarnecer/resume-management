@@ -8,14 +8,14 @@
 		<ul class="sidebar-menu">
 			<li class="">
 				<a class="" href="<?= base_url(); ?>">
-					<i class="fa fa-dashboard"></i>
+					<!-- <i class="fa fa-dashboard"></i> -->
 					<span>Dashboard</span>
 				</a>
 			</li>
 
 			<li class="">
 				<a class="" href="<?= base_url('roles')?>">
-					<i class="fa fa-dashboard"></i>
+					<!-- <i class="fa fa-dashboard"></i> -->
 					<span>Roles</span>
 				</a>
 			</li>
