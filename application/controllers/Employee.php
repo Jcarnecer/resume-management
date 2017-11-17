@@ -76,7 +76,7 @@ class Employee extends CI_Controller {
           'current_status' =>clean_data($current_status)
           
         ];
-        $this->Resume_model->insert('record',$insert_data);
+        $this->Resume_model->insert('resume_record',$insert_data);
         $last_inserted=$this->Resume_model->get_last_row();
         
         // print_r($last_inserted->id);die;
@@ -89,7 +89,7 @@ class Employee extends CI_Controller {
 
            
            $where_employee = ['id'  => $last_inserted->id];
-           $this->Resume_model->update('record',$insert_empdata,$where_employee); 
+           $this->Resume_model->update('resume_record',$insert_empdata,$where_employee); 
            
            $insert_employee=[
                  'sss' => clean_data(ucwords($this->input->post('sss'))),
@@ -100,7 +100,7 @@ class Employee extends CI_Controller {
            ];
           
           
-           $this->Resume_model->insert('employees', $insert_employee);
+           $this->Resume_model->insert('resume_employees', $insert_employee);
            // print_r($insert_data);die;
            echo json_encode('success'); 
       }
@@ -160,7 +160,7 @@ class Employee extends CI_Controller {
         'philhealth' => clean_data($this->input->post('philhealth')),
         'pagibig' => clean_data($this->input->post('pagibig')),
       ];
-      $this->Resume_model->update('employees',$update_employees,array('record_id'=>$id));
+      $this->Resume_model->update('resume_employees',$update_employees,array('record_id'=>$id));
       echo json_encode('success');
     }
 
@@ -169,7 +169,7 @@ class Employee extends CI_Controller {
 
       $this->load->model('Resume_model');
    
-      $applicant = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
+      $applicant = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
       $join_where = $applicant->role_id;
     
       $applicant->name = $this->Resume_model->get_role($join_where)->name;

@@ -33,37 +33,43 @@ class Login extends CI_Controller {
 			if(!$get_user == NULL) {
 					$user_where = ['user_id' => $get_user->id];
 					$get_user_detail = $this->Resume_model->fetch_tag_row('*','user_details',$user_where);
-					
+					$user_pos=['id'=> $get_user->pos_id];
+					$get_pos=$this->Resume_model->fetch_tag_row('*','position',$user_pos);
+				
 					$check_password = $get_user->password;
-					
-					if(password_verify($password,$check_password)) {
+					if($get_pos->name=="Admin" || $get_pos->name=="Human Resource"){			
+							if(password_verify($password,$check_password)) {
 
-							if($get_user_detail->status == 1) {
-									$user_session = [
-											'id'        => $get_user->id,
-											'email'     => $get_user->email,
-											'firstname' => $get_user->firstname,
-											'lastname'  => $get_user->lastname,
-											'position' => $get_user->pos_id,
-											'profile_picture'   => $get_user->profile_picture,
-									];
-									$sess = $this->session->set_userdata('user',$user_session);
-									// parent::audittrail(
-									// 		'Account Access',
-									// 		'Account Login ',
-									// 		$this->user->info('firstname') .' '. $this->user->info('lastname'),
-									// 		$position->name,
-									// 		$this->input->ip_address()
-									// );
-									echo json_encode("success");
-							}elseif($get_user_detail->status == 0){
-									echo json_encode("Your account is inactive. Contact our human resource department regarding this problem.");
+									if($get_user_detail->status == 1) {
+											$user_session = [
+													'id'        => $get_user->id,
+													'email'     => $get_user->email,
+													'firstname' => $get_user->firstname,
+													'lastname'  => $get_user->lastname,
+													'position' => $get_user->pos_id,
+													'profile_picture'   => $get_user->profile_picture,
+											];
+											$sess = $this->session->set_userdata('user',$user_session);
+											// parent::audittrail(
+											// 		'Account Access',
+											// 		'Account Login ',
+											// 		$this->user->info('firstname') .' '. $this->user->info('lastname'),
+											// 		$position->name,
+											// 		$this->input->ip_address()
+											// );
+											echo json_encode("success");
+									}elseif($get_user_detail->status == 0){
+											echo json_encode("Your account is inactive. Contact our human resource department regarding this problem.");
+									}
+									
+							}else {
+									
+									echo json_encode("Invalid Credentials");
 							}
-							
-					}else {
-							
-							echo json_encode("Invalid Credentials");
-					}
+				}
+				else{
+					echo json_encode('Access Denied');	
+				}
 					
 			}else{
 					echo json_encode("Invalid Credentials");

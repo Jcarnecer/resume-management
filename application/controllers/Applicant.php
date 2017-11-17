@@ -111,7 +111,7 @@ class Applicant extends CI_Controller {
       echo json_encode(validation_errors());
     }else{
       $insert_data=[
-        //'id'=>$this->utilities->unique_id('record',8),
+        'id'=>$this->utilities->unique_id('record',8),
         'first_name' => clean_data(ucwords($first_name)),
         'last_name'  => clean_data(ucwords($last_name)),
         'middle_name' => clean_data(ucwords($middle_name)),
@@ -131,7 +131,7 @@ class Applicant extends CI_Controller {
         'available_date' => clean_data($this->input->post('available_date')),
         'interview_date'=>clean_data($this->input->post('interview_date'))
       ];
-      $this->Resume_model->insert('record',$insert_data);
+      $this->Resume_model->insert('resume_record',$insert_data);
       // print_r($last_inserted->id);die;
 
 
@@ -303,7 +303,7 @@ class Applicant extends CI_Controller {
         'interviewer' => clean_data($this->input->post('interviewer')),
         'interview_notes' => $this->session->notes,
     ];
-      $this->Resume_model->update('resume_record', $insert_result, 'id='.$id);
+      $this->Resume_model->update('resume_record', $insert_result, ['id'=>$id]);
       echo json_encode('success');
     }
   }
