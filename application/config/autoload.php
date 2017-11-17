@@ -89,8 +89,8 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
 
+$autoload['helper'] = array('url','file','form','html','string');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Config files
@@ -133,7 +133,5 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array();
-$autoload['helper'] = ['encryption'];
+$autoload['model'] = array('Resume_model');
 
-$autoload['helper'] = array('url');

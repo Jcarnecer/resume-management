@@ -85,9 +85,10 @@ $route['roles/add']['POST']='roles/insert_role';
 $route['delete_role'] = 'Applicant/delete_role';
 //login
 
+$route['auth/login']['POST']='login/auth';
 $route['dashboard']="Home/index";
 
 
-$route['default_controller'] = "users/login";
+$route['default_controller'] = "login";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
