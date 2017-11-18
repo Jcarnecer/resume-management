@@ -43,7 +43,7 @@
 					<span></span>
 				</div>
 				<a class="navbar-brand mr-auto" href="<?= base_url().'Home'; ?>">Payak Apps</a>
-				<a class="nav-text" href="users/logout">Logout</a>
+				<a class="nav-text" href="login/logout">Logout</a>
 			</nav>
 		</div>
 		<!--div class="container-fluid">
