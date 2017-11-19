@@ -1,4 +1,4 @@
-<?php $position = $this->Resume_model->fetch('position');
+<?php $position = $this->Resume_model->fetch('resume_position');
 // print_r($position);die;
   ?>
 <div class="container-fluid">

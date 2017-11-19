@@ -1,4 +1,4 @@
-<?php $position = $this->Resume_model->fetch('position');
+<?php $position = $this->Resume_model->fetch('resume_position');
      $role=$this->Resume_model->fetch('resume_role',['pos_id'=>1,'status'=>1]);
 
 // print_r($position);die;

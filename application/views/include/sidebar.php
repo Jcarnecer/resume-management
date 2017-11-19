@@ -7,7 +7,7 @@
 
 		<ul class="sidebar-menu">
 			<li class="">
-				<a class="" href="<?= base_url(); ?>">
+				<a class="" href="<?= base_url().'Home'; ?>">
 					<!-- <i class="fa fa-dashboard"></i> -->
 					<span>Dashboard</span>
 				</a>

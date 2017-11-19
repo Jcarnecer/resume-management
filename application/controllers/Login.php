@@ -11,7 +11,7 @@ class Login extends CI_Controller {
   
   public function index(){
  
-    $data['title'] = "Astrid Technologies | Resume Management";
+    $data['title'] = "Astrid Technologies | Login";
     $this->load->view('include/header',$data);
     $this->load->view('login/index',$data);
     $this->load->view('include/footer');
@@ -33,7 +33,7 @@ class Login extends CI_Controller {
 				if(!$get_user == NULL) {
 						$user_where = ['user_id' => $get_user->id];
 						$get_user_detail = $this->Resume_model->fetch_tag_row('*','user_details',$user_where);
-						$user_pos=['id'=> $get_user->pos_id];
+						$user_pos=['id'=> $get_user->position_id];
 						$get_pos=$this->Resume_model->fetch_tag_row('*','position',$user_pos);
 					
 						$check_password = $get_user->password;
@@ -46,7 +46,7 @@ class Login extends CI_Controller {
 														'email'     => $get_user->email,
 														'firstname' => $get_user->firstname,
 														'lastname'  => $get_user->lastname,
-														'position' => $get_user->pos_id,
+														'position' => $get_user->position_id,
 														'profile_picture'   => $get_user->profile_picture,
 												];
 												$sess = $this->session->set_userdata('user',$user_session);
