@@ -88,6 +88,7 @@ $route['delete_role'] = 'Applicant/delete_role';
 $route['auth/login']['POST']='login/auth';
 $route['dashboard']="Home/index";
 
+$route['login']='login/index';
 
 $route['default_controller'] = "login";
 $route['404_override'] = '';
