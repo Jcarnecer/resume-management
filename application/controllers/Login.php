@@ -5,46 +5,90 @@ class Login extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
-    $this->load->model('applicant');
+    
   }
 
-  private function check_session() {
-    if($this->session->userdata('hr_logged_in')){
-      redirect('applicant');
-    }
-  }
+  
   public function index(){
-    $this->check_session();
-    $data['title'] = "Astrid Technologies | Resume Management";
+ 
+    $data['title'] = "Astrid Technologies | Login";
     $this->load->view('include/header',$data);
-    $this->load->view('login/index');
+    $this->load->view('login/index',$data);
+    $this->load->view('include/footer');
+   
     
   }
 
   public function auth() {
-    $email = $this->input->post('email');
-    $password = $this->input->post('password');
+		$this->load->helper('encryption');
+		if($this->form_validation->run('login_validate') == FALSE) {
+			echo json_encode(validation_errors());
+		} else {
+				$email = clean_data($this->input->post('email'));
+				$password = clean_data($this->input->post('password'));
+				
+				$where = array('email'=>$email);
+				$get_user = $this->Resume_model->fetch_tag_row('*','users',$where);
 
-    $where = array('email_add' => $email);
-    $get_applicant = $this->applicant->fetch_tag_row('*','applicants',$where);
+				if(!$get_user == NULL) {
+						$user_where = ['user_id' => $get_user->id];
+						$get_user_detail = $this->Resume_model->fetch_tag_row('*','user_details',$user_where);
+						$user_pos=['id'=> $get_user->position_id];
+						$get_pos=$this->Resume_model->fetch_tag_row('*','position',$user_pos);
+					
+						$check_password = $get_user->password;
+						if($get_pos->name=="Admin" || $get_pos->name=="Human Resource"){			
+								if(password_verify($password,$check_password)) {
 
-    if(sha1($password) == $get_applicant->password){
-      $session = array(
-        'firstname' => $get_applicant->first_name,
-        'lastname'  => $get_applicant->last_name,
-        'email'     => $get_applicant->email_add,
-      );
-      $this->session->set_userdata('hr_logged_in',$session);
+										if($get_user_detail->status == 1) {
+												$user_session = [
+														'id'        => $get_user->id,
+														'email'     => $get_user->email,
+														'firstname' => $get_user->firstname,
+														'lastname'  => $get_user->lastname,
+														'position' => $get_user->position_id,
+														'profile_picture'   => $get_user->profile_picture,
+												];
+												$sess = $this->session->set_userdata('user',$user_session);
+												// parent::audittrail(
+												// 		'Account Access',
+												// 		'Account Login ',
+												// 		$this->user->info('firstname') .' '. $this->user->info('lastname'),
+												// 		$position->name,
+												// 		$this->input->ip_address()
+												// );
+												echo json_encode("success");
+										}elseif($get_user_detail->status == 0){
+												echo json_encode("Your account is inactive. Contact our human resource department regarding this problem.");
+										}
+										
+								}else {
+										
+										echo json_encode("Invalid Credentials");
+								}
+					}
+					else{
+						echo json_encode('Access Denied');	
+					}
+						
+				}else{
+						echo json_encode("Invalid Credentials");
+				}
+		}
+ 	}
 
-      echo json_encode("success");
-    }else{
-
-      echo json_encode("failed");
+	 public function logout() {
+        // $position_id = $this->user->info('pos_id');
+        // $pos_where = ['id'  => $position_id];
+        // $position = $this->Crud_model->fetch_tag_row('*','position',$pos_where);
+        // parent::audittrail(
+        //     'Account Access',
+        //     'Account Logout ',
+        //     $this->user->info('firstname') .' '. $this->user->info('lastname'),
+        //     $position->name,
+        //     $this->input->ip_address()
+        // );
+        $this->session->sess_destroy();
+        redirect('');
     }
-  }
-
-  public function logout() {
-    $this->session->sess_destroy();
-    redirect(''); //base_url
-  }
 }

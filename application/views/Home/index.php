@@ -16,7 +16,7 @@
       </ul>
     </div>
 
-    <h2>Interview Shedules for Today</h2>
+    <h2>Interview Shcedules</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                   <td>Freelance</td>
-                  <td><?=$interview_freelance==0?"None":$interview_freelence?></td>
+                  <td><?=$interview_freelance==0?"None":$interview_freealance?></td>
                   <td>9:00 am - 1:00pm</td>
                   <td>View</td>
                 

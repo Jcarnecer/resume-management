@@ -22,7 +22,7 @@ class Roles extends CI_Controller {
           'name'=>strip_tags($this->input->post('role_name')),
           'pos_id'=>$this->input->post('pos_id')
         ];
-        $record=$this->Resume_model->update('role', $update,['role_id' => $id]);   
+        $record=$this->Resume_model->update('resume_role', $update,['role_id' => $id]);   
         echo json_encode('success');
         
     }
@@ -34,7 +34,7 @@ class Roles extends CI_Controller {
         'role_id' =>$this->input->post('id'),
         'pos_id' => $this->input->post('pos_id'),
       ];
-      $result=$this->Resume_model->count('record', $check);
+      $result=$this->Resume_model->count('resume_record', $check);
         if($result>0){
             echo json_encode('Role cannot be Updated');
         }   
@@ -50,7 +50,7 @@ class Roles extends CI_Controller {
           else if($status=="Activate"){
               $status_id=1;
           }
-          $record=$this->Resume_model->update('role',['status'=>$status_id],['role_id' => $role_id]);
+          $record=$this->Resume_model->update('resume_role',['status'=>$status_id],['role_id' => $role_id]);
           echo json_encode('success');
         }
      }
@@ -77,7 +77,7 @@ class Roles extends CI_Controller {
             'pos_id' => $this->input->post('pos_id'),
             'status'=>'1',
           ];
-          $result=$this->Resume_model->insert('role', $insert);
+          $result=$this->Resume_model->insert('resume_role', $insert);
           echo json_encode('success');
         }
     }
@@ -89,7 +89,7 @@ class Roles extends CI_Controller {
           'pos_id' => $this->input->post('pos_id'),
         ];
 
-       $result=$this->Resume_model->count('role', $check);
+       $result=$this->Resume_model->count('resume_role', $check);
        if($result>0){
         $this->form_validation->set_message('Role', 'Role Already exists.');
         return FALSE;
@@ -106,7 +106,7 @@ class Roles extends CI_Controller {
         'role_id' => $id,
         'pos_id' => $this->input->post('pos_id'),
       ];
-      $result=$this->Resume_model->count('record', $check);
+      $result=$this->Resume_model->count('resume_record', $check);
         if($result>0){
           $this->form_validation->set_message('Role', 'Role Already exists.');
           return FALSE;
@@ -119,7 +119,7 @@ class Roles extends CI_Controller {
 
      public function get_pos_role($posid){
       $where = ['pos_id' => $posid,'status'=>1];
-      $role = $this->Resume_model->fetch('role',$where);
+      $role = $this->Resume_model->fetch('resume_role',$where);
       // print_r($role);die;
       foreach($role as $row){
         $r_name = $row->name;

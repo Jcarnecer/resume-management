@@ -5,7 +5,7 @@ class Intern extends CI_Controller {
 
     public function index(){
     
-      $data['interns'] = $this->Resume_model->show_record(['record.pos_id'=>2]);
+      $data['interns'] = $this->Resume_model->show_record(['resume_record.pos_id'=>2]);
       $title['title'] = "Astrid Technologies | Intern";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar', $data);  
@@ -74,7 +74,7 @@ class Intern extends CI_Controller {
           
         ];
 
-        $last_inserted = $this->Resume_model->last_inserted_row('record',$insert_data);  
+        $last_inserted = $this->Resume_model->last_inserted_row('resume_record',$insert_data);  
 
           echo json_encode('success'); 
       }
@@ -99,7 +99,7 @@ class Intern extends CI_Controller {
     public function edit(){
       $this->load->helper('form');
       $id = $this->uri->segment(3);
-      $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
+      $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
       $title['title'] = "Astrid Technologies | Edit Intern";
       $this->load->view('include/header',$title);
       $this->load->view('include/sidebar',$data);
@@ -127,7 +127,7 @@ class Intern extends CI_Controller {
 
         ];
         //$result=$this->Resume_model->update('record', $update, 'id='.$id);
-        $this->Resume_model->update('record', $update,array('id'=>$id));
+        $this->Resume_model->update('resume_record', $update,array('id'=>$id));
         echo json_encode('success');
         
       }
