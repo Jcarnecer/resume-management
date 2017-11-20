@@ -160,9 +160,9 @@ public function count_record($data){
 
 
   public function get_role_position(){
-    $this->db->select('resume_role.role_id,resume_role.name,position.name as pos_name,resume_role.status,resume_position.id as pos_id');
+    $this->db->select('resume_role.role_id,resume_role.name,resume_position.name as pos_name,resume_role.status,resume_position.id as pos_id');
     $this->db->from('resume_role');
-    $this->db->join('resume_position', 'resume_role.pos_id = position.id','inner'); 
+    $this->db->join('resume_position', 'resume_role.pos_id = resume_position.id','inner'); 
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
     return $query->result();
