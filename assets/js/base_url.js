@@ -1,1 +1,1 @@
-var base_url = window.location.origin+"/resume-management/";
+//var base_url = window.location.origin+"/resume-management/";
