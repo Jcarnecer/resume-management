@@ -166,14 +166,7 @@
     </div> -->
     
     <!--Hanggang Dito pang employee yan --> 
-    <div id="interview_date" class="form-group row" >
-        <label  class="col-sm-2 control-label">Interview Date:</label>
-      <div class="col-sm-8">
-        <input type="date" name="interview_date" class="form-control"/>
-      </div>
-    </div>
   
-
     <div class="form-group row">
       <label class="col-sm-2 control-label">Comment:</label>
       <div class="col-sm-8">
