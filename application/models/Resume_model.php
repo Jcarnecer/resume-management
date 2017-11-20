@@ -117,7 +117,7 @@ public function count_record($data){
   }
 	public function get_record($id)
   {
-    $query = $this->db->get_where('employees', ["record_id" => $id]);
+    $query = $this->db->get_where('resume_employees', ["record_id" => $id]);
     return $query->row();
   }
 
