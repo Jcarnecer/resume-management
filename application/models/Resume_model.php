@@ -184,7 +184,7 @@ public function count_record($data){
     $this->db->select('resume_employees.*,resume_record.*');
     $this->db->from('resume_record');
     $this->db->where($where);
-    $this->db->join('employees', 'resume_record.id = resume_employees.record_id','inner');
+    $this->db->join('resume_employees', 'resume_record.id = resume_employees.record_id','inner');
     // $this->db->join('role', 'record.role_id = role.role_id','inner');
     $query = $this->db->get();
     return $query->row();
