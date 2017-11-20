@@ -1,5 +1,5 @@
 
-<?php $role=$this->Resume_model->fetch('role',['pos_id'=>3])?>
+<?php $role=$this->Resume_model->fetch('resume_role',['pos_id'=>3])?>
 <div class="container-fluid">
   <h3>Edit Freelance</h3>
   <hr>

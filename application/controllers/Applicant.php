@@ -264,7 +264,7 @@ class Applicant extends CI_Controller {
         $insert=[
           'record_id' => $new_id,
         ];
-        $this->Resume_model->insert('employees', $insert);
+        $this->Resume_model->insert('resume_employees', $insert);
       }
       else if($pos_id==2){  
         $new_id=$this->utilities->unique_id('intern',8);
