@@ -173,7 +173,7 @@ public function count_record($data){
       $this->db->from('resume_role');
       // $this->db->join('employees', 'record.id = employees.record_id','inner');
       // $this->db->join('role', 'record.role_id = role.role_id','inner');
-      $this->db->where('resume_role_id', $where);
+      $this->db->where('resume_role.role_id', $where);
       $query = $this->db->get();
       return $query->row();
   }
