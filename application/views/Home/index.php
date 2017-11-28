@@ -16,7 +16,7 @@
       </ul>
     </div>
 
-    <h2>Interview Shcedules</h2>
+    <h2>Interview Schedules</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
