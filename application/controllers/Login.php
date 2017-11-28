@@ -37,7 +37,7 @@ class Login extends CI_Controller {
 						$get_pos=$this->Resume_model->fetch_tag_row('*','position',$user_pos);
 					
 						$check_password = $get_user->password;
-						if($get_pos->name=="Admin" || $get_pos->name=="Human Resource"){			
+									
 								if(password_verify($password,$check_password)) {
 
 										if($get_user_detail->status == 1) {
@@ -66,10 +66,7 @@ class Login extends CI_Controller {
 										
 										echo json_encode("Invalid Credentials");
 								}
-					}
-					else{
-						echo json_encode('Access Denied');	
-					}
+					
 						
 				}else{
 						echo json_encode("Invalid Credentials");
