@@ -5,14 +5,14 @@
 </div>
   
   <div class="row">
-  <main role="main" class="col-xs-12 col-sm-10 col-md-10 col-lg-10 pt-3">
+  <main role="main" class="col-xs-12 col-sm-10 col-md-10 col-lg-12 pt-3">
   <!-- <a href="<?= base_url('roles')?>" class="btn custom-button" id="Roles"> View Roles</a> -->
     <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 center-block dashboard-margin">
       <ul class="button-group">
         <li><a href="<?= base_url('employee')?>" class="button-group-item active" id="employee">Employees</a></li>
         <li><a href="<?= base_url('Intern')?>" class="button-group-item" id="intern">Interns</a></li>
-        <li><a href="<?= base_url('applicant')?>" class="button-group-item" id="applicants">Applicants</a></li>
         <li><a href="<?= base_url('freelance')?>" class="button-group-item" id="freelance">Freelancers</a></li>
+        <li><a href="<?= base_url('applicant')?>" class="button-group-item" id="applicants">Applicants</a></li>
       </ul>
     </div>
 
@@ -32,21 +32,21 @@
                   <td>Employee</td>
                   <td><?=$interview_employee==0?"None":$interview_employee?></td>
                   <td>9:00 am - 1:00pm</td>
-                  <td>View</td>
+                  <td><button class="btn custom-button">View</button></td>
                 
                 </tr>
                 <tr>
                   <td>Intern</td>
                   <td><?=$interview_intern==0?"None":$interview_intern?></td>
                   <td>9:00 am - 1:00pm</td>
-                  <td>View</td>
+                  <td><button class="btn custom-button">View</button></td>
                
                 </tr>
                 <tr>
                   <td>Freelance</td>
                   <td><?=$interview_freelance==0?"None":$interview_intern?></td>
                   <td>9:00 am - 1:00pm</td>
-                  <td>View</td>
+                  <td><button class="btn custom-button">View</button></td>
                 
                 </tr>
         </main>
