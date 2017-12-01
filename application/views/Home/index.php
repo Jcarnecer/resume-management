@@ -26,7 +26,7 @@
                   <th>Time</th>
                   <th>Actions</th>
                 </tr>
-              </thead>
+              </thead> 
               <tbody>
                 <tr>
                   <td>Employee</td>
