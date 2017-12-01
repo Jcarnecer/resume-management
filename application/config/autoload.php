@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','email','form_validation','Utilities');
+$autoload['libraries'] = array('database','session','email','form_validation','Utilities','Authenticate');
 
 /*
 | -------------------------------------------------------------------
@@ -89,8 +89,8 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
 
+$autoload['helper'] = array('url','file','form','html','string');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Config files
@@ -132,8 +132,6 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = ['employee'];
-$autoload['model'] = ['Resume_model'];
-$autoload['helper'] = ['encryption'];
 
-$autoload['helper'] = array('url');
+$autoload['model'] = array('Resume_model');
+

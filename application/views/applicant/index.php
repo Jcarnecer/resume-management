@@ -160,8 +160,7 @@
                   <div class="group-data" id="interview_date"></div>
                 </td>
               </tr>
-
-
+              
               <tr>
                 <td>
                   <b><label class="group-label">Comments:</label></b>

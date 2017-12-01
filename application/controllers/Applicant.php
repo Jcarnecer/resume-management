@@ -27,7 +27,7 @@ class Applicant extends CI_Controller {
 
   public function get_pos_role($posid){
     $where = ['pos_id' => $posid];
-    $role = $this->Resume_model->fetch('role',$where);
+    $role = $this->Resume_model->fetch('resume_role',$where);
     // print_r($role);die;
     foreach($role as $row){
       $r_name = $row->name;
@@ -103,8 +103,8 @@ class Applicant extends CI_Controller {
 
     $this->form_validation->set_rules('resume_file','Resume','callback_validate_resume_file');
     //$this->form_validation->set_rules('image_file','Image','callback_validate_images_file');
-    $this->form_validation->set_rules('email_address','Email Address','Is_unique[record.email]');
-    $this->form_validation->set_rules('phone_number','Phone Number','Is_unique[record.phone_number]');
+    $this->form_validation->set_rules('email_address','Email Address','Is_unique[resume_record.email]');
+    $this->form_validation->set_rules('phone_number','Phone Number','Is_unique[resume_record.phone_number]');
     $this->form_validation->set_rules('last_name','Last Name','required');
     $this->form_validation->set_rules('first_name','First Name','required');
     if($this->form_validation->run()==FALSE){
@@ -129,8 +129,9 @@ class Applicant extends CI_Controller {
         'file' =>$this->session->resume,
         'application_date' => clean_data($this->input->post('application_date')),
         'available_date' => clean_data($this->input->post('available_date')),
+        'interview_date'=>clean_data($this->input->post('interview_date'))
       ];
-      $this->Resume_model->insert('record',$insert_data);
+      $this->Resume_model->insert('resume_record',$insert_data);
       // print_r($last_inserted->id);die;
 
 
@@ -158,7 +159,7 @@ class Applicant extends CI_Controller {
     $this->load->model('Resume_model');
     // $applicant = $this->db->get_where('record', ['id' => $id])->row();
 //
-    $applicant = $this->Resume_model->fetch_tag_row('*','record', ['id' => $id]);
+    $applicant = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
     $join_where = $applicant->role_id;
     // print_r($join_where);die;  
     $applicant->name = $this->Resume_model->get_role($join_where)->name;
@@ -171,7 +172,7 @@ class Applicant extends CI_Controller {
 		$record =   $this->Resume_model->join_employee_record($where);
 	}
 	else{
-		$record = $this->db->get_where('record', ['id' => $id])->row();
+		$record = $this->db->get_where('resume_record', ['id' => $id])->row();
 	}
 	$record->name =  $this->Resume_model->get_role($join_where)->name;
   
@@ -194,7 +195,7 @@ class Applicant extends CI_Controller {
     $id = $this->uri->segment(3);
     $this->load->model('Resume_model');
     $title['title'] = "Astrid Technologies | Edit Applicant";
-    $data['applicant_data']= $this->db->get_where('record', ['id' => $id])->row();
+    $data['applicant_data']= $this->db->get_where('resume_record', ['id' => $id])->row();
     $this->load->view('include/header',$title);
     $this->load->view('include/sidebar', $data);
     $this->load->view('applicant/edit', $data);
@@ -225,10 +226,12 @@ class Applicant extends CI_Controller {
       'comment' =>  clean_data($this->input->post('comment')),
       'current_status' => $status,
       'date_hired' => $date_now,
-      'pos_id'=>$pos_id
+      'application_date'=>clean_data($this->input->post('application_date')),
+      'pos_id'=>$pos_id,
+      'interview_date'=>clean_data($this->input->post('interview_date'))
     ];
     
-    $this->Resume_model->update('record', $update,array('id'=>$id));
+    $this->Resume_model->update('resume_record', $update,array('id'=>$id));
     // $this->email->initialize(array(
     //     'protocol' => 'mail',
     //     'smtp_user' => 'farrahdee24@gmail.com',
@@ -275,7 +278,7 @@ class Applicant extends CI_Controller {
       ];
      
       //$this->Resume_model->update('record', $update, 'id='.$id);
-      $this->Resume_model->update('record', $update,array('id'=>$id));
+      $this->Resume_model->update('resume_record', $update,array('id'=>$id));
     }
     echo json_encode('success');
   }
@@ -300,7 +303,7 @@ class Applicant extends CI_Controller {
         'interviewer' => clean_data($this->input->post('interviewer')),
         'interview_notes' => $this->session->notes,
     ];
-      $this->Resume_model->update('record', $insert_result, 'id='.$id);
+      $this->Resume_model->update('resume_record', $insert_result, ['id'=>$id]);
       echo json_encode('success');
     }
   }

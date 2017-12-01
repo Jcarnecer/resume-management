@@ -1,0 +1,1 @@
+var base_url = window.location.origin+"/resume-management/";

@@ -1,4 +1,4 @@
-<?php $position = $this->Resume_model->fetch('position');
+<?php $position = $this->Resume_model->fetch('resume_position');
 // print_r($position);die;
   ?>
 <div class="container-fluid">
@@ -97,6 +97,15 @@
         <input type="date" name="application_date" class="form-control"/>
       </div>
     </div>
+
+    
+    <div id="interview_date" class="form-group row" >
+      <label  class="col-sm-2 control-label">Interview Date:</label>
+      <div class="col-sm-8">
+        <input type="date" name="interview_date" class="form-control"/>
+      </div>
+    </div>
+
 
   <!--bawal to sa current pero pweds siya applicant -->
     <div id="available_date" class="form-group row">

@@ -1,6 +1,6 @@
 
 <?php
-$position = $this->Resume_model->fetch('position');
+$position = $this->Resume_model->fetch('resume_position');
 ?>
 
 <div class="container-fluid" id="record-table">

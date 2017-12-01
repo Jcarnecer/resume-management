@@ -7,7 +7,7 @@
 
 		<ul class="sidebar-menu">
 			<li class="">
-				<a class="" href="<?= base_url(); ?>">
+				<a class="" href="<?= base_url().'Home'; ?>">
 					<!-- <i class="fa fa-dashboard"></i> -->
 					<span>Dashboard</span>
 				</a>
@@ -42,8 +42,8 @@
 					<span></span>
 					<span></span>
 				</div>
-				<a class="navbar-brand mr-auto" href="<?= base_url(); ?>">Payak Apps</a>
-				<a class="nav-text" href="users/logout">Logout</a>
+				<a class="navbar-brand mr-auto" href="<?= base_url().'Home'; ?>">Payak Apps</a>
+				<a class="nav-text" href="login/logout">Logout</a>
 			</nav>
 		</div>
 		<!--div class="container-fluid">
