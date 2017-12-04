@@ -337,13 +337,13 @@ $.fn.getApplicants=function(){
     })
     
     $(document).on('click',"button[data-posid='2']",function(){
-        $("#roleModal").find(".modal-title").html("For Interview: Intern");
+        $("#interviewModal").find(".modal-title").html("For Interview: Intern");
                 
     })
     
     $(document).on('click',"button[data-posid='3']",function(){
         
-        $("#roleModal").find(".modal-title").html("For Interview: Freelance");
+        $("#interviewModal").find(".modal-title").html("For Interview: Freelance");
     })
         
         
