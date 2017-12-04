@@ -341,4 +341,19 @@ class Applicant extends CI_Controller {
   }
 
 
+  public function forInterview(){
+    $now = new DateTime();
+    $now->setTimezone(new DateTimezone('Asia/Manila'));
+    $date_now = $now->format('Y-m-d');
+    
+    $pos_id=$this->uri->segment(3);
+
+    $result=$this->Resume_model->show_applicant_forInterview(['resume_record.interview_date'=>$date_now,'resume_record.pos_id'=>$pos_id]);
+    
+    echo json_encode($result);
+
+}
+
+
+
 }
