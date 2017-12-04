@@ -330,3 +330,52 @@ $.fn.getApplicants=function(){
 
         };
 
+
+    $(document).on('click',"button[data-posid='1']",function(){
+        $("#interviewModal").find(".modal-title").html("For Interview: Employee");
+
+    })
+    
+    $(document).on('click',"button[data-posid='2']",function(){
+        $("#roleModal").find(".modal-title").html("For Interview: Intern");
+                
+    })
+    
+    $(document).on('click',"button[data-posid='3']",function(){
+        
+        $("#roleModal").find(".modal-title").html("For Interview: Freelance");
+    })
+        
+        
+    $(document).on('click',"button[data-function='applicant_interview']",function(){
+        var $posid=$(this).attr('data-posid');
+        var $url = "Applicant/forInterview/"+$posid;
+         $.ajax({
+           url:$url,
+           type:"GET",
+           dataType: 'JSON',
+           success: function(data){
+               if(data.error){
+
+               } 
+                else{
+                     $('#tbody_interview').html('');
+                     $.each(data,function(i,item){
+                           $('#tbody_interview').append(`   
+                                      <tr>
+                                     <td>${item['first_name']} ${item['last_name']}</td>
+                                     <td>${item['pos_name']}</td>
+                                         <td>${item['name']}</td>
+                                         <td><a href="assets/uploads/${item['file']}">${item['file']}</td>
+                                         <td>    
+                                         </tr>`    
+                                 );  
+                         });   
+                    }
+                },
+        });
+    
+    });
+
+
+
