@@ -261,6 +261,7 @@ $(document).ready(function(){
 
 
 
+
 //Edit Employee
  
   //Edit Freelance
