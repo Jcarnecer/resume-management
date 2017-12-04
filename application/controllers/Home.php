@@ -17,14 +17,10 @@ class Home extends CI_Controller {
         $data['interview_freelance']=$this->Resume_model->count('resume_record',['interview_date'=>$date_now,'pos_id'=>3]); 
          $data['position']=$this->Resume_model->fetch('resume_position');
         $title['title'] = "Astrid Technologies | Resume Management";
-        $this->load->view('include/header',$title);
+         $this->load->view('include/header',$title);
         $this->load->view('include/sidebar', $data);  
         $this->load->view('Home/index', $data);
         $this->load->view('include/footer');
-       
-    }
-
-
 
     }
 
