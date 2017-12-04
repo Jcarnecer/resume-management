@@ -38,7 +38,7 @@
                   <td>Intern</td>
                   <td><?=$interview_intern==0?"None":$interview_intern?></td>
                   <td>9:00 am - 1:00pm</td>
-                  <td><button class="btn custom-button">View</button></td>
+                  <td><button class="btn custom-button" data-toggle="modal" data-target="#interviewModal">View</button></td>
                 </tr>
                 <tr>
                   <td>Freelance</td>
@@ -49,4 +49,34 @@
         </main>
     </div>
     
+  <div class="modal fade" id="interviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+        
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">For Interview</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="modal-body">
+
+        
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
 </div>
+
+
+
+
+</div>
+
+
+
+
