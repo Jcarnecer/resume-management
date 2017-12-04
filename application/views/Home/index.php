@@ -1,3 +1,48 @@
+ <?php  $now = new DateTime();
+        $now->setTimezone(new DateTimezone('Asia/Manila'));
+        $date_now = $now->format('Y-m-d');
+        $this->load->model('Resume_model');?>
+
+
+
+<div class="modal fade" id="interviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content">  
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel"></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="modal-body">
+            
+                    <table class="table table-bordered table-responsive-xl" id="interview_table">
+                        <thead>
+                            <tr>
+                                <th>Name</th> 
+                                <th>Position</th>
+                                <th>Role</th>
+                                <th>File</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_interview">
+                          
+                        </tbody>
+
+                    </table>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>      
+</div>
+
+
+
 <div class="container-fluid">
 
   <div class="page-header">
@@ -27,55 +72,30 @@
                   <th>Actions</th>
                 </tr>
               </thead> 
-              <tbody>
-                <tr>
-                  <td>Employee</td>
-                  <td><?=$interview_employee==0?"None":$interview_employee?></td>
-                  <td>9:00 am - 1:00pm</td>
-                  <td><button class="btn custom-button">View</button></td>
-                </tr>
-                <tr>
-                  <td>Intern</td>
-                  <td><?=$interview_intern==0?"None":$interview_intern?></td>
-                  <td>9:00 am - 1:00pm</td>
-                  <td><button class="btn custom-button" data-toggle="modal" data-target="#interviewModal">View</button></td>
-                </tr>
-                <tr>
-                  <td>Freelance</td>
-                  <td><?=$interview_freelance==0?"None":$interview_intern?></td>
-                  <td>9:00 am - 1:00pm</td>
-                  <td><button class="btn custom-button">View</button></td>
-                </tr>
+                  <tbody>
+                    <?php if($position==""){
+
+                    }else{
+                      foreach($position as $pos):?>
+                    <tr>
+                      <td><?=$pos->name?></td>
+                      <td><?=$this->Resume_model->count('resume_record',['interview_date'=>$date_now,'pos_id'=>$pos->id])==0?"None":$this->Resume_model->count('resume_record',['interview_date'=>$date_now,'pos_id'=>$pos->id])?></td>
+                      <td>9:00 am - 1:00pm</td>
+                      <td><button class="btn custom-button" data-toggle="modal" data-target="#interviewModal" data-function="applicant_interview" data-posid=<?=$pos->id?>>View</button></td>
+                    </tr>
+                  
+                    <?php endforeach;?>
+                    <?php }?>
+                    </tbody>
+                </table>
         </main>
     </div>
     
-  <div class="modal fade" id="interviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-        
-          <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalLabel">For Interview</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          
-          <div class="modal-body">
-
-        
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            
-          </div>
-        </div>
-      </div>
-</div>
-
-
-
 
 </div>
+
+
+
 
 
 

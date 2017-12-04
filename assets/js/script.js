@@ -251,7 +251,9 @@ $(document).ready(function(){
   $('#intern_table').DataTable();
   $('#employee_table').DataTable();
   $('#freelance_table').DataTable();
+  $('#interview_table').DataTable();
 });
+
 
 
 

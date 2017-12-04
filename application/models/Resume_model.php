@@ -185,6 +185,19 @@ public function count_record($data){
       $query = $this->db->get();
       return $query->result();
     }
+
+    public function show_applicant_forInterview($where){
+      $status=array('Active','Inactive');
+      $this->db->select('resume_record.id,resume_record.images,resume_record.last_name,resume_record.first_name,resume_role.name,resume_position.name as pos_name,resume_record.current_status,resume_record.file');
+      $this->db->from('resume_record');
+      $this->db->where($where);
+      $this->db->join('resume_role', 'resume_record.role_id = resume_role.role_id','inner');
+      $this->db->join('resume_position', 'resume_record.pos_id = resume_position.id','inner');
+      $this->db->where_not_in('resume_record.current_status',$status); 
+      $query = $this->db->get();
+      return $query->result();
+    }
+    
   
   
   public function last_inserted_row($table,$data){
