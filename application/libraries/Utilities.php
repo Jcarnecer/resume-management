@@ -85,7 +85,7 @@ class Utilities {
 				do {
 				
 					$temp_id = 'APL' . $this->generate_id($length);
-				} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+				} while ($this->ci->db->where('id', $temp_id)->get('resume_record')->result() != null);
 				
 				return $temp_id;
 				break;
@@ -96,7 +96,7 @@ class Utilities {
 				do {
 				
 					$temp_id = 'RLE' . $this->generate_id($length);
-				} while ($this->ci->db->where('role_id', $temp_id)->get('role')->result() != null);
+				} while ($this->ci->db->where('role_id', $temp_id)->get('resume_role')->result() != null);
 				
 				return $temp_id;
 				break;
@@ -106,7 +106,7 @@ class Utilities {
 					do {
 					
 						$temp_id = 'EMP' . $this->generate_id($length);
-					} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+					} while ($this->ci->db->where('id', $temp_id)->get('resume_record')->result() != null);
 					
 					return $temp_id;
 					break;
@@ -116,7 +116,7 @@ class Utilities {
 						do {
 						
 							$temp_id = 'IRN' . $this->generate_id($length);
-						} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+						} while ($this->ci->db->where('id', $temp_id)->get('resume_record')->result() != null);
 						
 						return $temp_id;
 						break;	
@@ -126,7 +126,7 @@ class Utilities {
 							do {
 							
 								$temp_id = 'FLN' . $this->generate_id($length);
-							} while ($this->ci->db->where('id', $temp_id)->get('record')->result() != null);
+							} while ($this->ci->db->where('id', $temp_id)->get('resume_record')->result() != null);
 							
 							return $temp_id;
 							break;						

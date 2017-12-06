@@ -7,7 +7,7 @@
 
     <form class="form-horizontal" id="edit-form" enctype="multipart/form-data"  method="POST">
 
-      <input type="hidden" name="id" value="<?= $applicant_data->id ?>">
+      <input type="hidden" name="id" value="<?= secret_url('encrypt',$applicant_data->id) ?>">
       <input type="hidden" name="position" value="<?= $applicant_data->pos_id?>">
 
       <div class="form-group row">

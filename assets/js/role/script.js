@@ -90,7 +90,7 @@ $(document).on('click','#btn-update',function(){
   $.fn.displayRoles=function(items){
   
     $("#tbody-role").html('');
-  
+    
         $.each(items,function(i,item){
             $('#tbody-role').append(`
                       
@@ -144,8 +144,8 @@ $(document).on('click','#btn-update',function(){
       
     });
 
-    $(document).getRoles().done(function(data){
-        $(document).displayRoles(data);
-        });
+  $(document).getRoles().done(function(data){
+       $(document).displayRoles(data);
+  });
 
 

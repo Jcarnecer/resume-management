@@ -28,9 +28,9 @@
               Action
             </button>
             <div class="dropdown-menu">
-            <a class="dropdown-item" data-name="button-view" data-id="<?= $applicant->id; ?>">View</a>
-          <!-- <a href="<?= base_url('assets/uploads/'.$applicant->file) ?>" type="button" class="btn btn-info" data-id="<?= $applicant->id;?>" >View Resume</a> -->
-          <a href="<?= base_url('applicant/edit_view/'.$applicant->id) ?>" class="dropdown-item" data-id="<?= $applicant->id;?>" >Edit</a>
+            <a class="dropdown-item" data-name="button-view" data-id="<?=secret_url('encrypt',$applicant->id)?>">View</a>
+          <!-- <a href="<?= base_url('assets/uploads/'.$applicant->file) ?>" type="button" class="btn btn-info" data-id="<?=secret_url('encrypt',$applicant->id)?>" >View Resume</a> -->
+          <a href="<?= base_url('applicant/edit_view/'.secret_url('encrypt',$applicant->id)) ?>" class="dropdown-item" data-id="<?=secret_url('encrypt',$applicant->id)?>" >Edit</a>
             </div>
 
           </div>

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Roles extends CI_Controller {
 
     public function index(){
-    $this->load->model('Resume_model'); 
+      $this->load->model('Resume_model'); 
       $data['roles'] = $this->Resume_model->get_role_position();    
       $data['title'] = "Astrid Technologies | Roles";
       $this->load->view('include/header',$data);
@@ -16,7 +16,7 @@ class Roles extends CI_Controller {
 
     public function edit(){
 
-       
+      $this->load->helper('encryption');
         
         $id = $this->uri->segment(3);
         $update=[
@@ -30,6 +30,7 @@ class Roles extends CI_Controller {
 
 
     public function update_status() {
+      $this->load->helper('encryption');
       $this->load->model('Resume_model');
       $check=[  
         'role_id' =>$this->input->post('id'),
@@ -60,7 +61,7 @@ class Roles extends CI_Controller {
      public function get_roles(){
        $this->load->model('Resume_model');
        $roles=$this->Resume_model->get_role_position();
-       echo json_encode($roles);
+        echo json_encode($roles);
      }
 
 
@@ -101,7 +102,8 @@ class Roles extends CI_Controller {
        }   
      }
 
-     public function check_role_status(){      
+     public function check_role_status(){
+      $this->load->helper('encryption');      
       $id=$this->uri->segment(3);
       $check=[  
         'role_id' => $id,
@@ -116,9 +118,10 @@ class Roles extends CI_Controller {
           return TRUE;
         }  
       
-     }
+     }  
 
      public function get_pos_role($posid){
+       $this->load->helper('encryption');
       $where = ['pos_id' => $posid,'status'=>1];
       $role = $this->Resume_model->fetch('resume_role',$where);
       // print_r($role);die;
