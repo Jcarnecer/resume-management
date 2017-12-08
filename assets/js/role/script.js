@@ -90,17 +90,11 @@ $(document).on('click','#btn-update',function(){
   $.fn.displayRoles=function(items){
   
     $("#tbody-role").html('');
-<<<<<<< HEAD
-        $.each(items,function(i,item){
-            $('#tbody-role').append(`
-                    <tr data-role="role_id" class=${item['role_id']}>
-=======
     
         $.each(items,function(i,item){
             $('#tbody-role').append(`
                       
                     <tr data-role="role_id" class=${item['id']}>
->>>>>>> 4df4dba00e45adf4f53d732f04e1071ad4f21840
                         <td data-role="role_name">${item['name']}</td>
                         <td data-role="position_name">${item['pos_name']}</td>
                         <td data-role="role_status">${item['status']==0?'Deactivated':'Activated'}</td>
@@ -150,14 +144,8 @@ $(document).on('click','#btn-update',function(){
       
     });
 
-<<<<<<< HEAD
-    $(document).getRoles().done(function(data){
-     $(document).displayRoles(data);
-});
-=======
   $(document).getRoles().done(function(data){
        $(document).displayRoles(data);
   });
->>>>>>> 4df4dba00e45adf4f53d732f04e1071ad4f21840
 
 
