@@ -18,7 +18,7 @@ class Roles extends CI_Controller {
 
       $this->load->helper('encryption');
         
-        $id = $this->uri->segment(3);
+        $id = secret_url('decrypt',$this->uri->segment(3));
         $update=[
           'name'=>strip_tags($this->input->post('role_name')),
           'pos_id'=>$this->input->post('pos_id')
@@ -33,7 +33,7 @@ class Roles extends CI_Controller {
       $this->load->helper('encryption');
       $this->load->model('Resume_model');
       $check=[  
-        'role_id' =>$this->input->post('id'),
+        'role_id' =>secret_url('decrypt',$this->input->post('id')),
         'pos_id' => $this->input->post('pos_id'),
       ];
       $result=$this->Resume_model->count('resume_record', $check);
@@ -41,7 +41,7 @@ class Roles extends CI_Controller {
             echo json_encode('Role cannot be Updated');
         }   
       else{
-          $role_id =$this->input->post('id');
+          $role_id =secret_url('decrypt',$this->input->post('id'));
           $status=$this->input->post('status');
 
           $status_id=null;
@@ -61,7 +61,24 @@ class Roles extends CI_Controller {
      public function get_roles(){
        $this->load->model('Resume_model');
        $roles=$this->Resume_model->get_role_position();
-        echo json_encode($roles);
+       foreach ($roles as $row){
+        $r_name = $row->name;
+        $r_id = $row->role_id;
+        $r_pos_name=$row->pos_name;
+        $r_status=$row->status;
+        $r_pos_id=$row->pos_id;
+        $resume_role[] = [
+            'id'  => secret_url('encrypt',$r_id),
+            'name'  => $r_name,
+            'pos_name'=>$r_pos_name,
+            'status'=>$r_status,
+            'pos_id'=>$r_pos_id
+        ];
+       } 
+
+
+
+        echo json_encode($resume_role);
      }
 
 
@@ -104,7 +121,7 @@ class Roles extends CI_Controller {
 
      public function check_role_status(){
       $this->load->helper('encryption');      
-      $id=$this->uri->segment(3);
+      $id=secret_url('decrypt',$this->input->post('id'));
       $check=[  
         'role_id' => $id,
         'pos_id' => $this->input->post('pos_id'),

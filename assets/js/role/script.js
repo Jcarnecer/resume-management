@@ -94,7 +94,7 @@ $(document).on('click','#btn-update',function(){
         $.each(items,function(i,item){
             $('#tbody-role').append(`
                       
-                    <tr data-role="role_id" class=${item['role_id']}>
+                    <tr data-role="role_id" class=${item['id']}>
                         <td data-role="role_name">${item['name']}</td>
                         <td data-role="position_name">${item['pos_name']}</td>
                         <td data-role="role_status">${item['status']==0?'Deactivated':'Activated'}</td>
@@ -104,8 +104,8 @@ $(document).on('click','#btn-update',function(){
                                 Action
                             </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" id="btn-update"data-id="${item['role_id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
-                                    <a class="dropdown-item" data-pos="${item['pos_id']}" data-id="${item['role_id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
+                                    <a class="dropdown-item" id="btn-update"data-id="${item['id']}"data-value="${item['pos_id']}" data-toggle="modal"data-target="#roleModal">Edit</a>
+                                    <a class="dropdown-item" data-pos="${item['pos_id']}" data-id="${item['id']}"data-function="${item['status']=='0'?'Activate':'Deactivate'}" id="btn-status">${item['status']==1?'Deactivate':'Activate'}</a>
                                 </div>
                             </div>  
                         </td>
