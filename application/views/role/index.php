@@ -31,8 +31,8 @@ $position = $this->Resume_model->fetch('resume_position');
                 Action
               </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" id="btn-update"data-id="<?= $role->role_id;?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</a>
-                  <a class="dropdown-item" data-value="<?=$role->pos_id;?>" data-id="<?= $role->role_id;?>"data-function="" id="btn-status">Deactivate</a>
+                  <a class="dropdown-item" id="btn-update" data-id="<?=$role->role_id?>"data-value="<?=$role->pos_id;?>" data-toggle="modal"data-target="#roleModal">Edit</a>
+                  <a class="dropdown-item" data-value="<?=$role->pos_id;?>" data-id="<?=$role->role_id?>"data-function="" id="btn-status">Deactivate</a>
                 </div>
             </div>  
           </td>

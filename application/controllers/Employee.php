@@ -124,7 +124,7 @@ class Employee extends CI_Controller {
     public function edit(){
 
       $this->load->helper('form');
-      $id = $this->uri->segment(3);
+      $id = secret_url('decrypt',$this->uri->segment(3));
       $data['employee_data'] = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
       $join_where = ['resume_employees.record_id' => $id];
       $data['employee'] = $this->Resume_model->join_employee_record($join_where);
@@ -139,7 +139,7 @@ class Employee extends CI_Controller {
 
     public function edit_data(){
       $this->load->helper('encryption');
-      $id = $_POST['id'];
+      $id = secret_url('decrypt',$_POST['id']);
       $current_status=$_POST['current_status'];
       $update=[
         'first_name' => clean_data($this->input->post('first_name')),
@@ -168,7 +168,7 @@ class Employee extends CI_Controller {
     public function view($id){
 
       $this->load->model('Resume_model');
-   
+      $id=secret_url('decrypt',$id);
       $applicant = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
       $join_where = $applicant->role_id;
     

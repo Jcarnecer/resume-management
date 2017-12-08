@@ -158,7 +158,7 @@ class Applicant extends CI_Controller {
   public function view($id){
     $this->load->model('Resume_model');
     // $applicant = $this->db->get_where('record', ['id' => $id])->row();
-//
+    $id=secret_url('decrypt',$id);
     $applicant = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
     $join_where = $applicant->role_id;
     // print_r($join_where);die;  
@@ -192,7 +192,7 @@ class Applicant extends CI_Controller {
   public function edit_view()
   {
     $this->load->helper('form');
-    $id = $this->uri->segment(3);
+    $id = secret_url('decrypt',$this->uri->segment(3));
     $this->load->model('Resume_model');
     $title['title'] = "Astrid Technologies | Edit Applicant";
     $data['applicant_data']= $this->db->get_where('resume_record', ['id' => $id])->row();
@@ -210,7 +210,7 @@ class Applicant extends CI_Controller {
     $now->setTimezone(new DateTimezone('Asia/Manila'));
     $date_now = $now->format('Y-m-d');
     $status = $_POST['status'];
-    $id = $_POST['id'];
+    $id = secret_url('decrypt',$_POST['id']);
     $to_email = $_POST['email_address'];
     $pos_id=$_POST['pos_id'];
     $update=[
@@ -291,7 +291,7 @@ class Applicant extends CI_Controller {
     $config['max_size'] = 2048;
     $this->load->library('upload', $config);
 
-    $id = $_POST['id'];
+    $id = secret_url('decrypt',$_POST['id']);
     $this->form_validation->set_rules('notes_file','Notes','callback_validate_notes_file');
 
     if($this->form_validation->run()==FALSE){

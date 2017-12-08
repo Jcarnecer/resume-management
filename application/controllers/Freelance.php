@@ -73,7 +73,7 @@ class Freelance extends CI_Controller {
                 
               ];
       
-              $last_inserted = $this->Resume_model->last_inserted_row('resume_record',$insert_data);  
+              $last_inserted = $this->Resume_model->insert('resume_record',$insert_data);  
       
                 echo json_encode('success'); 
             }
@@ -97,8 +97,8 @@ class Freelance extends CI_Controller {
 
     public function edit(){
             $this->load->helper('form');
-            $id = $this->uri->segment(3);
-            $data['applicant_data'] = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
+            $id = secret_url('decrypt',$this->uri->segment(3));
+            $data['freelance_data'] = $this->Resume_model->fetch_tag_row('*','resume_record', ['id' => $id]);
             $title['title'] = "Astrid Technologies | Edit Freelancer";
             $this->load->view('include/header',$title);
             $this->load->view('include/sidebar',$data);
@@ -108,7 +108,7 @@ class Freelance extends CI_Controller {
 
     public function edit_data(){
       $this->load->helper('encryption');
-      $id = $_POST['id'];
+      $id = secret_url('decrypt',$_POST['id']);
       $status =$_POST['current_status'];
       $update=[
         'first_name' => clean_data($this->input->post('first_name')),

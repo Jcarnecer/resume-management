@@ -27,8 +27,8 @@
               Action
             </button>
               <div class="dropdown-menu">
-                  <a class="dropdown-item" data-name="button-view" data-id="<?= $employee->id; ?>">View</a>
-                  <a href="<?= base_url('employee/edit/'.$employee->id) ?>" class="dropdown-item" data-id="<?= $employee->id;?>" >Edit</a>
+                  <a class="dropdown-item" data-name="button-view" data-id="<?=secret_url('encrypt',$employee->id) ?>">View</a>
+                  <a href="<?= base_url('employee/edit/'.secret_url('encrypt',$employee->id)) ?>" class="dropdown-item" data-id="<?= secret_url('encrypt',$employee->id)?>" >Edit</a>
               </div>
            </div> 
           <!-- <button type="button" class="btn custom-button" data-name="button-view" data-id="<?= $employee->id; ?>">View</button>

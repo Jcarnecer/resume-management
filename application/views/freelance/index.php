@@ -28,8 +28,8 @@
               Action
             </button>
               <div class="dropdown-menu">
-                  <a class="dropdown-item" data-name="button-view" data-id="<?= $freelance->id; ?>">View</a>
-                  <a href="<?= base_url('freelance/edit/'.$freelance->id) ?>" class="dropdown-item" data-id="<?= $freelance->id;?>" >Edit</a>
+                  <a class="dropdown-item" data-name="button-view" data-id="<?=secret_url('encrypt',$freelance->id) ?>">View</a>
+                  <a href="<?= base_url('freelance/edit/'.secret_url('encrypt',$freelance->id)) ?>" class="dropdown-item" data-id="<?= secret_url('encrypt',$freelance->id)?>" >Edit</a>
               </div>
            </div> 
 
